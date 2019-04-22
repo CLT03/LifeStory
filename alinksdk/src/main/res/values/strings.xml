@@ -1,0 +1,98 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">名邦车间管理</string>
+    <!-- -->
+    <string name="action_test">测试点击</string>
+    <string name="prompt_test">提示测试</string>
+    <string name="action_login_enter">登录</string>
+    <string name="action_login_exitapp">注销APP</string>
+    <string name="action_login_unforget_pasword">忘记密码</string>
+    <string name="prompt_init_title">软件初始化</string>
+    <string name="prompt_init_account">请输入公司代码</string>
+    <string name="prompt_upwd_password_new">请输入新密码</string>
+    <string name="prompt_upwd_password_confirm">请再次输入新密码</string>
+    <string name="prompt_uinit_password_new">请输入新密码</string>
+    <string name="prompt_uinit_password_confirm">请再次输入新密码</string>
+
+    <!-- title -->
+    <string name="title_login">用户登录</string>
+    <string name="title_login_wellcome">只为让您更便捷</string>
+    <string name="title_about">关于软件</string>
+    <string name="title_user_init">用户初始化</string>
+    <string name="title_upadate_pwd">修改用户密码</string>
+    <string name="title_day">当日已完成工序</string>
+    <string name="title_day_gd">当日工单</string>
+    <!-- action -->
+    <string name="action_login">登录</string>
+    <string name="action_exit_app">注销APP</string>
+    <string name="action_unforget_pasword">忘记密码</string>
+    <string name="action_user_init">用户初始化</string>
+    <string name="action_back">返回</string>
+    <string name="action_next">下一步</string>
+    <string name="action_ok">确定</string>
+    <string name="action_clear">清空</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_click_scan"> 点击扫码 </string>
+    <string name="action_serach">搜索</string>
+    <string name="action_open_light">打开灯光</string>
+    <string name="action_close_light">关闭灯光</string>
+    <string name="action_click_screen_refresh">点击屏幕刷新</string>
+    <string name="action_home">主页</string>
+    <string name="action_day">当日</string>
+    <string name="action_report">统计</string>
+    <string name="action_ucenter">我的</string>
+    <!-- commend -->
+    <string name="prompt_input_account">请输入账号</string>
+    <string name="prompt_password">请输入用户密码</string>
+    <string name="prompt_password_old">请输入原密码</string>
+    <string name="prompt_password_new">请输入新密码</string>
+    <string name="prompt_password_again">请再次输入新密码</string>
+    <string name="prompt_code_company">请输入公司代码</string>
+    <string name="prompt_code_company_right">请输入正确的公司代码</string>
+
+    <string name="prompt_loging">正在登录验证中...</string>
+    <string name="prompt_accoutn_or_password_null">账号或密码不能为空！</string>
+    <string name="prompt_loading_config">正在拉取配置信息，请稍等...</string>
+    <string name="prompt_account">账号</string>
+    <string name="prompt_phone">手机号</string>
+    <string name="prompt_password_set">密码设置</string>
+    <string name="prompt_contact_customer_service">联系客服</string>
+    <string name="prompt_check_and_update">检查更新</string>
+    <string name="prompt_about_app">关于软件</string>
+    <string name="prompt_input_barcode_or_qrcode">请输入流水号或条形码</string>
+    <string name="prompt_copyright">广东名邦软件科技有限公司 版权所有</string>
+    <string name="prompt_version_name">版本 V1.0.0 测试版</string>
+    <string name="prompt_system_tip">系统提示！</string>
+    <string name="prompt_no">序号</string>
+    <string name="prompt_kh">货号</string>
+    <string name="prompt_name">名称</string>
+    <string name="prompt_quantity">数量</string>
+    <string name="prompt_sum_price">总金额</string>
+    <string name="prompt_sum_detail">数量总计：#{Quantity}， 金额总计：#{SumPrice}</string>
+    <string name="prompt_job_code">#{BarCode}</string>
+    <string name="prompt_job_kh">，款号：#{KH}</string>
+    <string name="prompt_job_name">名称:#{Name}</string>
+    <string name="prompt_job_detail">数量：#{Quantity}，金额：#{UnitPrice}，颜色:#{Color}，尺寸:#{Size}，(#{personName})</string>
+    <string name="prompt_net_error">哎哟~网络开了小差！刷新试试...</string>
+    <string name="prompt_no_data">暂无相关数据...</string>
+    <string name="prompt_to_refresh">下拉刷新</string>
+    <string name="prompt_up_to_load">上拉加载更多</string>
+    <string name="prompt_release_to_refresh">释放立即刷新</string>
+    <string name="prompt_release_to_load">释放立即加载</string>
+    <string name="prompt_refreshing">正在刷新&#8230;</string>
+    <string name="prompt_loading">加载中，请稍后&#8230;</string>
+    <string name="prompt_refresh_succeeded">刷新成功</string>
+    <string name="prompt_refresh_failed">刷新失败</string>
+    <string name="prompt_load_succeeded">加载成功</string>
+    <string name="prompt_load_failed">加载失败</string>
+    <!-- 二维码 -->
+    <string name="scan_text">扫一扫</string>
+    <!--小米推送-->
+    <string name="xiaomi_update_dialog_title"><xliff:g id="app_name">%1$s</xliff:g>新版本</string>
+    <string name="xiaomi_update_dialog_message">推荐您立即升级到最新的<xliff:g id="version_name">%1$s</xliff:g>版\n大小: <xliff:g id="app_size">%2$s</xliff:g></string>
+    <string name="xiaomi_update_dialog_message_diff">推荐您立即升级到最新的<xliff:g id="version_name">%1$s</xliff:g>版\n增量更新只需下载: <xliff:g id="app_size">%2$s</xliff:g></string>
+    <string name="xiaomi_external_storage_unavailable">存储分区不可用，请检查SD卡</string>
+    <string name="xiaomi_bytes_unit"><xliff:g id="size">%1$s</xliff:g>B</string>
+    <string name="xiaomi_kilobytes_unit"><xliff:g id="size">%1$s</xliff:g>KB</string>
+    <string name="xiaomi_megabytes_unit"><xliff:g id="size">%1$s</xliff:g>MB</string>
+    <string name="xiaomi_connect_download_manager_fail">连接下载管理器失败，请在应用管理中检查下载管理器的状态</string>
+</resources>

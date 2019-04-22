@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LikeButton">
+        <attr name="icon_type" format="string" />
+        <attr name="icon_size" format="dimension|reference"/>
+        <attr name="like_drawable" format="reference" />
+        <attr name="unlike_drawable" format="reference" />
+        <attr name="dots_primary_color" format="color|reference" />
+        <attr name="dots_secondary_color" format="color|reference" />
+        <attr name="circle_start_color" format="color|reference" />
+        <attr name="circle_end_color" format="color|reference" />
+        <attr name="liked" format="boolean"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="TopMenuView">
+        <attr name="textColor" format="reference|color" />
+        <attr name="rightTextColor" format="reference|color" />
+
+        <attr name="leftIcon" format="reference"></attr>
+        <attr name="centerIcon" format="reference"></attr>
+        <attr name="right1Icon" format="reference"></attr>
+        <attr name="right2Icon" format="reference"></attr>
+        <attr name="right3Icon" format="reference"></attr>
+
+        <attr name="leftText" format="string|reference"></attr>
+        <attr name="centerText" format="string|reference"></attr>
+        <attr name="rightText" format="string|reference"></attr>
+
+    </declare-styleable>
+</resources>
