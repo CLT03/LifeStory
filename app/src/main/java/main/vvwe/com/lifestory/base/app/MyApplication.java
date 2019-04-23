@@ -23,6 +23,7 @@ public class MyApplication extends Application {
 
         initSdk();
         //更新
+        //再试一次
     }
 
     /**
