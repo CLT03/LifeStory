@@ -22,6 +22,7 @@ public class MyApplication extends Application {
         myApplication = this;
 
         initSdk();
+        //更新
     }
 
     /**
