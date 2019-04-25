@@ -35,6 +35,8 @@ dependencies {
     // image-loader
     api 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
+
+
     // retrofit2
     api 'com.squareup.retrofit2:retrofit:2.4.0'
     api 'com.squareup.okhttp3:okhttp:3.11.0'

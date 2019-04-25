@@ -42,6 +42,14 @@ public class WebMsg {
 		this.webCode = webCode;
 	}
 
+	public static WebMsg getSuccessed(){
+		WebMsg webMsg = new WebMsg();
+		webMsg.webCode = 200;
+		webMsg.errorCode = 99999;
+		return webMsg;
+	}
+
+
 	public static WebMsg getFailed(Throwable e){
 
 		WebMsg webMsg = new WebMsg();
