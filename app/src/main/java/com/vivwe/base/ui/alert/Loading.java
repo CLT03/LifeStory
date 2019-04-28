@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.lifestory.lifestory.R;
+import com.vivwe.main.R;
 
 /**
  * @projectName：baibailai01

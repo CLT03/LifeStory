@@ -1,9 +1,8 @@
 package com.vivwe.faceunity.core;
 
 import android.content.Context;
-
-import com.faceunity.core.base.BaseCore;
 import com.faceunity.wrapper.faceunity;
+import com.vivwe.faceunity.core.base.BaseCore;
 
 /**
  * Created by tujh on 2018/12/17.

@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.lifestory.lifestory.R;
 import com.vivwe.base.ui.alert.adapter.NormalSpinerAdapter;
+import com.vivwe.main.R;
 
 public class SpinerPopWindow extends PopupWindow implements OnItemClickListener {
 

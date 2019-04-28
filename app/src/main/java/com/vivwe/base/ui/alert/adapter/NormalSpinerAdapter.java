@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.vivwe.main.R;
+
 import java.util.ArrayList;
 import java.util.List;
-import com.lifestory.lifestory.R;
 
 public class NormalSpinerAdapter extends BaseAdapter {
 

@@ -8,10 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.lifestory.lifestory.R;
 import com.vivwe.base.ui.alert.constant.AlertDialogEnum;
 import com.vivwe.base.ui.alert.constant.AlertDialogTypeEnum;
 import com.vivwe.base.ui.alert.listener.OnDialogClickListener;
+import com.vivwe.main.R;
 
 /**
  * 一个自定义的弹出框
