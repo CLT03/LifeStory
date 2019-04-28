@@ -10,25 +10,24 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-        ndk {
-            //选择要添加的对应 cpu 类型的 .so 库。
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
-            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
-        }
-
         multiDexEnabled true
     }
 
-    packagingOptions {
-        doNotStrip '*/mips/*.so'
-        doNotStrip '*/mips64/*.so'
-    }
+//    packagingOptions {
+//        doNotStrip '*/mips/*.so'
+//        doNotStrip '*/mips64/*.so'
+//    }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main{
+            jniLibs.srcDirs = ['libs']
         }
     }
 
@@ -53,7 +52,7 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
     //没有使用特殊Header，可以不加这行
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
-    implementation project(':alinksdk')
-    implementation files('libs/FUP2AClient.jar')
-    implementation files('libs/nama.jar')
+//    implementation project(':alinksdk')
+    implementation project(':faceunity')
+
 }

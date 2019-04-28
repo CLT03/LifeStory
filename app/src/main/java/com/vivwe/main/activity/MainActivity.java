@@ -38,7 +38,7 @@ public class MainActivity extends BaseFragmentActivity {
     @BindView(R.id.fl_content)
     FrameLayout contentFl; // 内容
 
-    private int showIndex;
+    private int showIndex = -1;
     private Fragment showFragment;
 
     private int menuNormalIcons[] = {R.mipmap.icon_home_n, R.mipmap.icon_video_n, R.mipmap.icon_interactive_n, R.mipmap.icon_my_n};
@@ -82,13 +82,12 @@ public class MainActivity extends BaseFragmentActivity {
 
         if(showFragment != null){
             transaction.hide(showFragment);
+            menuLabels.get(showIndex).setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryBlack, null));
+            menuIcons.get(showIndex).setImageResource(menuNormalIcons[showIndex]);
         }
 
         menuLabels.get(index).setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorBlack, null));
         menuIcons.get(index).setImageResource(menuFocusIcons[index]);
-
-        menuLabels.get(showIndex).setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryBlack, null));
-        menuIcons.get(showIndex).setImageResource(menuNormalIcons[showIndex]);
 
         showFragment = tempFramgnet;
         showIndex = index;

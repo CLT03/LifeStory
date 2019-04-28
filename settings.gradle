@@ -1,1 +1,1 @@
-include ':app', ':alinksdk'
+include ':app', ':alinksdk', ':faceunity'

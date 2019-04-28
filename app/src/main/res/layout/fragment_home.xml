@@ -15,9 +15,14 @@
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/ll_home_menu">
-    </FrameLayout>
+        android:layout_above="@id/ll_home_menu"></FrameLayout>
 
+    <ImageView
+        android:id="@+id/fl_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_home_menu"
+        android:src="@color/bg_color" />
 
     <TextView
         android:id="@+id/edt_home_dollname"
@@ -161,56 +166,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="表情"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/x10" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/tv_home_vr"
-            android:layout_width="@dimen/x58"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ra_transparent_btn"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/x16"
-            android:paddingTop="@dimen/x4"
-            android:paddingRight="@dimen/x16"
-            android:paddingBottom="@dimen/x4">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x30"
-                android:src="@mipmap/icon_vr" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="VR"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/x10" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/tv_home_commonweal"
-            android:layout_width="@dimen/x58"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ra_transparent_btn"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/x16"
-            android:paddingTop="@dimen/x4"
-            android:paddingRight="@dimen/x16"
-            android:paddingBottom="@dimen/x4">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x30"
-                android:src="@mipmap/icon_benefit" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="公益"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/x10" />
         </LinearLayout>
