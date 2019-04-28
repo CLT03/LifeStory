@@ -35,10 +35,10 @@ public class MainActivity extends BaseFragmentActivity {
     List<ImageView> menuIcons;
     @BindViews({R.id.tv_home_label, R.id.tv_video_label, R.id.tv_friend_label, R.id.tv_ucenter_label})
     List<TextView> menuLabels;
-    @BindView(R.id.id_content)
+    @BindView(R.id.fl_content)
     FrameLayout contentFl; // 内容
 
-    private Integer showIndex;
+    private int showIndex;
     private Fragment showFragment;
 
     private int menuNormalIcons[] = {R.mipmap.icon_home_n, R.mipmap.icon_video_n, R.mipmap.icon_interactive_n, R.mipmap.icon_my_n};
@@ -60,6 +60,8 @@ public class MainActivity extends BaseFragmentActivity {
         fragments.add(new RecommendFragment());
         fragments.add(new TemplateFramgent());
         fragments.add(new UcenterFragment());
+
+        showFragment(0);
     }
 
     /**
