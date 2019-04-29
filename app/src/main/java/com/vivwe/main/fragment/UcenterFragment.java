@@ -6,7 +6,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.vivwe.base.activity.BaseFragment;
+
+import com.vivwe.faceunity.base.BaseFragment;
 import com.vivwe.main.R;
 
 /**

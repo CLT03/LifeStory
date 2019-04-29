@@ -21,6 +21,7 @@ import com.faceunity.p2a_art.renderer.CameraRenderer;
 import com.mbs.sdk.utils.PermissionsUtil;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.base.activity.BaseFragmentActivity;
+import com.vivwe.faceunity.listener.OnFragmentListener;
 import com.vivwe.main.R;
 import com.vivwe.main.fragment.MainFragment;
 import com.vivwe.main.fragment.UcenterFragment;
@@ -34,7 +35,7 @@ import butterknife.ButterKnife;
  * date: 2019/4/23 13:49
  * remark: 主Activity
  */
-public class MainActivity extends BaseFragmentActivity implements CameraRenderer.OnCameraRendererStatusListener {
+public class MainActivity extends BaseFragmentActivity implements CameraRenderer.OnCameraRendererStatusListener, OnFragmentListener {
 
     @BindView(R.id.fl_content)
     FrameLayout contentFl; // 内容
@@ -219,6 +220,7 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
     MainFragment homeFragment = null;
     BaseFragment baseFragment = null;
 
+    @Override
     public void showFragment(Class cls){
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -234,6 +236,7 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
 
             if(homeFragment == null){
                 homeFragment = new MainFragment();
+                homeFragment.setOnFragmentListener(this);
                 transaction.add(contentFl.getId(), homeFragment);
             } else {
                 transaction.show(homeFragment);

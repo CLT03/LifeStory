@@ -38,7 +38,7 @@ public class MainFragment extends BaseFragment {
     private int menuFocusIcons[] = {R.mipmap.icon_avatart_black, R.mipmap.icon_recommend_black,
             R.mipmap.icon_model_black, R.mipmap.icon_ucenter_black};
 
-    private List<Fragment> fragments = new ArrayList<>();
+    private List<BaseFragment> fragments = new ArrayList<>();
 
     @BindView(R.id.fl_content)
     FrameLayout contentFl; // 内容
@@ -65,6 +65,10 @@ public class MainFragment extends BaseFragment {
         fragments.add(new RecommendFragment());
         fragments.add(new TemplateFramgent());
         fragments.add(new UcenterFragment());
+
+        for (BaseFragment fragment : fragments) {
+            fragment.setOnFragmentListener(this.getOnFragmentListener());
+        }
 
         showFragment(0);
     }

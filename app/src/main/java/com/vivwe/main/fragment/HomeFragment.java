@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.vivwe.base.activity.BaseFragment;
+import com.vivwe.faceunity.base.BaseFragment;
 import com.vivwe.main.R;
 
 import butterknife.ButterKnife;
@@ -26,4 +26,7 @@ public class HomeFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         return view;
     }
+
+
+
 }
