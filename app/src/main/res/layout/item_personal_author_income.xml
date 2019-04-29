@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/x88"
+    android:background="#F2F2F2">
+
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x86"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/x120"
+        android:paddingRight="@dimen/x180"
+        android:text="Domo购买了特效模板"
+        android:textColor="#a6a6a6"
+        android:textSize="@dimen/x24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x48"
+        android:layout_marginLeft="@dimen/x50"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_content"
+        app:srcCompat="@mipmap/icon_money_gold" />
+
+    <TextView
+        android:id="@+id/tv_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/x50"
+        android:text="+¥99.36"
+        android:textColor="#222222"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_content"
+        app:layout_constraintEnd_toEndOf="@+id/tv_content"
+        app:layout_constraintTop_toTopOf="@+id/tv_content" />
+</android.support.constraint.ConstraintLayout>
