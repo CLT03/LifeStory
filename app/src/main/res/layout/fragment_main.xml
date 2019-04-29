@@ -41,7 +41,7 @@
                 android:foregroundGravity="center_horizontal"
                 android:gravity="center"
                 android:scaleType="centerInside"
-                android:src="@mipmap/icon_home_n"
+                android:src="@mipmap/icon_avatart_black"
                 android:textSize="38sp" />
 
             <TextView
@@ -76,7 +76,7 @@
                 android:foregroundGravity="center_horizontal"
                 android:gravity="center"
                 android:scaleType="fitXY"
-                android:src="@mipmap/icon_video_n"
+                android:src="@mipmap/icon_recommend_gay"
                 android:textSize="38sp" />
 
             <TextView
@@ -111,7 +111,7 @@
                 android:foregroundGravity="center_horizontal"
                 android:gravity="center"
                 android:scaleType="centerInside"
-                android:src="@mipmap/icon_interactive_n"
+                android:src="@mipmap/icon_model_gay"
                 android:textSize="38sp" />
 
             <TextView
