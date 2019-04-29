@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_personal_author_apply_name"><font color="#FF0000">*</font>真实姓名</string>
+    <string name="activity_personal_author_apply_phone"><font color="#FF0000">*</font>手机号码</string>
+    <string name="activity_personal_author_apply_verification"><font color="#FF0000">*</font>验证码</string>
+    <string name="activity_personal_author_apply_id_card"><font color="#FF0000">*</font>身份证号</string>
+    <string name="activity_personal_author_apply_alipay"><font color="#FF0000">*</font>支付宝号</string>
+    <string name="activity_personal_author_apply_mail"><font color="#FF0000">*</font>联系邮箱</string>
+</resources>
