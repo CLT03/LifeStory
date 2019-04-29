@@ -33,8 +33,10 @@ public class MainFragment extends BaseFragment {
     @BindViews({R.id.tv_home_label, R.id.tv_video_label, R.id.tv_friend_label, R.id.tv_ucenter_label})
     List<TextView> menuLabels;
 
-    private int menuNormalIcons[] = {R.mipmap.icon_home_n, R.mipmap.icon_video_n, R.mipmap.icon_interactive_n, R.mipmap.icon_my_n};
-    private int menuFocusIcons[] = {R.mipmap.icon_home_f, R.mipmap.icon_video_f, R.mipmap.icon_interactive_f, R.mipmap.icon_my_f};
+    private int menuNormalIcons[] = {R.mipmap.icon_avatart_gay, R.mipmap.icon_recommend_gay,
+            R.mipmap.icon_model_gay, R.mipmap.icon_ucenter_gay};
+    private int menuFocusIcons[] = {R.mipmap.icon_avatart_black, R.mipmap.icon_recommend_black,
+            R.mipmap.icon_model_black, R.mipmap.icon_ucenter_black};
 
     private List<Fragment> fragments = new ArrayList<>();
 
