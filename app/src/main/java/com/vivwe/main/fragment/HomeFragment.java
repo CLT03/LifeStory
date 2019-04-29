@@ -6,29 +6,24 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.vivwe.faceunity.base.BaseFragment;
+
+import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.main.R;
+
+import butterknife.ButterKnife;
 
 /**
  * ahtor: super_link
- * date: 2019/4/25 10:56
- * remark: 推荐模块
+ * date: 2019/4/28 16:54
+ * remark:
  */
 public class HomeFragment extends BaseFragment {
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, null);
+        View view = inflater.inflate(R.layout.fragment_home, null);
+        ButterKnife.bind(this, view);
+        return view;
     }
 }

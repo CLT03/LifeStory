@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_above="@id/rl_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_menu"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x98"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/x12"
+        android:paddingBottom="@dimen/x6">
+
+        <LinearLayout
+            android:id="@+id/ll_home"
+            android:layout_width="@dimen/x93"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x46"
+            android:layout_marginRight="@dimen/x46"
+            android:background="@drawable/ra_white_btn"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_home_icon"
+                android:layout_width="@dimen/x46"
+                android:layout_height="@dimen/x46"
+                android:layout_gravity="center_horizontal"
+                android:background="@null"
+                android:foregroundGravity="center_horizontal"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                android:src="@mipmap/icon_home_n"
+                android:textSize="38sp" />
+
+            <TextView
+                android:id="@+id/tv_home_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="@string/action_home"
+                android:textColor="@color/colorPrimaryBlack"
+                android:textSize="@dimen/x23" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_video"
+            android:layout_width="@dimen/x93"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x47"
+            android:layout_marginRight="@dimen/x47"
+            android:layout_toRightOf="@id/ll_home"
+            android:background="@drawable/ra_white_btn"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_video_icon"
+                android:layout_width="@dimen/x46"
+                android:layout_height="@dimen/x46"
+                android:layout_gravity="center_horizontal"
+                android:background="@null"
+                android:foregroundGravity="center_horizontal"
+                android:gravity="center"
+                android:scaleType="fitXY"
+                android:src="@mipmap/icon_video_n"
+                android:textSize="38sp" />
+
+            <TextView
+                android:id="@+id/tv_video_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="朋友圈"
+                android:textColor="@color/colorPrimaryBlack"
+                android:textSize="@dimen/x23" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_friend"
+            android:layout_width="@dimen/x93"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x47"
+            android:layout_marginRight="@dimen/x47"
+            android:layout_toRightOf="@id/ll_video"
+            android:background="@drawable/ra_white_btn"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_friend_icon"
+                android:layout_width="@dimen/x46"
+                android:layout_height="@dimen/x46"
+                android:layout_gravity="center_horizontal"
+                android:background="@null"
+                android:foregroundGravity="center_horizontal"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                android:src="@mipmap/icon_interactive_n"
+                android:textSize="38sp" />
+
+            <TextView
+                android:id="@+id/tv_friend_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="聊天"
+                android:textColor="@color/colorPrimaryBlack"
+                android:textSize="@dimen/x23" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_ucenter"
+            android:layout_width="@dimen/x93"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x47"
+            android:layout_marginRight="@dimen/x47"
+            android:layout_toRightOf="@id/ll_friend"
+            android:background="@drawable/ra_white_btn"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_ucenter_icon"
+                android:layout_width="@dimen/x46"
+                android:layout_height="@dimen/x46"
+                android:layout_gravity="center_horizontal"
+                android:background="@null"
+                android:foregroundGravity="center_horizontal"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                android:src="@mipmap/icon_my_n"
+                android:textSize="38sp" />
+
+            <TextView
+                android:id="@+id/tv_ucenter_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="@string/action_ucenter"
+                android:textColor="@color/colorPrimaryBlack"
+                android:textSize="@dimen/x23" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

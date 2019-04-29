@@ -5,6 +5,8 @@ import android.content.Context;
 import com.mbs.sdk.core.SdkContext;
 import com.mbs.sdk.net.HttpRequestConfig;
 import com.mbs.sdk.net.listener.OnWebExceptionListener;
+import com.vivwe.main.activity.WellcomeActivity;
+
 import java.util.Map;
 
 /**
@@ -36,6 +38,9 @@ public class MyApplication extends Application {
 
     // init sdk
     private void initSdk(){
+
+        Fup2aController.init(this);
+
         // 初始化SDK
         SdkContext.init(this, true);
 

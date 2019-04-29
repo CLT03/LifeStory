@@ -1,48 +1,56 @@
 package com.vivwe.main.activity;
 
+import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.res.ResourcesCompat;
-import android.view.View;
+import android.support.v4.view.GestureDetectorCompat;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.faceunity.p2a_art.constant.AvatarConstant;
+import com.faceunity.p2a_art.core.AvatarHandle;
+import com.faceunity.p2a_art.core.FUP2ARenderer;
+import com.faceunity.p2a_art.core.P2ACore;
+import com.faceunity.p2a_art.entity.AvatarP2A;
+import com.faceunity.p2a_art.renderer.CameraRenderer;
+import com.mbs.sdk.utils.PermissionsUtil;
+import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.base.activity.BaseFragmentActivity;
 import com.vivwe.main.R;
-import com.vivwe.main.fragment.RecommendFragment;
-import com.vivwe.main.fragment.TemplateFramgent;
-import com.vivwe.main.fragment.HomeFragment;
+import com.vivwe.main.fragment.MainFragment;
 import com.vivwe.main.fragment.UcenterFragment;
-import java.util.ArrayList;
-import java.util.List;
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
 import butterknife.BindView;
-import butterknife.BindViews;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * ahtor: super_link
  * date: 2019/4/23 13:49
  * remark: 主Activity
  */
-public class MainActivity extends BaseFragmentActivity {
+public class MainActivity extends BaseFragmentActivity implements CameraRenderer.OnCameraRendererStatusListener {
 
-    private List<Fragment> fragments = new ArrayList<>();
-
-    @BindViews({R.id.iv_home_icon, R.id.iv_video_icon, R.id.iv_friend_icon, R.id.iv_ucenter_icon})
-    List<ImageView> menuIcons;
-    @BindViews({R.id.tv_home_label, R.id.tv_video_label, R.id.tv_friend_label, R.id.tv_ucenter_label})
-    List<TextView> menuLabels;
     @BindView(R.id.fl_content)
     FrameLayout contentFl; // 内容
+    @BindView(R.id.glsv_avatar)
+    GLSurfaceView mGLSurfaceView;
 
-    private int showIndex = -1;
-    private Fragment showFragment;
+    private AvatarHandle mAvatarHandle;
+    private CameraRenderer mCameraRenderer;
+    private FUP2ARenderer mFUP2ARenderer;
+    private P2ACore mP2ACore;
 
-    private int menuNormalIcons[] = {R.mipmap.icon_home_n, R.mipmap.icon_video_n, R.mipmap.icon_interactive_n, R.mipmap.icon_my_n};
-    private int menuFocusIcons[] = {R.mipmap.icon_home_f, R.mipmap.icon_video_f, R.mipmap.icon_interactive_f, R.mipmap.icon_my_f};
+    private GestureDetectorCompat mGestureDetector;
+    private ScaleGestureDetector mScaleGestureDetector;
+
+    // 用户化身
+    private AvatarP2A avatarP2A;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,61 +63,194 @@ public class MainActivity extends BaseFragmentActivity {
         init();
     }
 
+    private int touchMode = 0;
     private void init(){
-        fragments.add(new HomeFragment());
-        fragments.add(new RecommendFragment());
-        fragments.add(new TemplateFramgent());
-        fragments.add(new UcenterFragment());
 
-        showFragment(0);
+        PermissionsUtil.checkAndRequestPermissions(this);
+
+        mGLSurfaceView.setEGLContextClientVersion(3);
+        mCameraRenderer = new CameraRenderer(this, mGLSurfaceView);
+        mCameraRenderer.setOnCameraRendererStatusListener(this);
+        mGLSurfaceView.setRenderer(mCameraRenderer);
+        mGLSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+
+        mFUP2ARenderer = new FUP2ARenderer(this);
+        mP2ACore = new P2ACore(this, mFUP2ARenderer);
+        mFUP2ARenderer.setFUCore(mP2ACore);
+        mAvatarHandle = mP2ACore.createAvatarHandle();
+
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        final int screenWidth = metrics.widthPixels;
+        final int screenHeight = metrics.heightPixels;
+        mGestureDetector = new GestureDetectorCompat(this, new GestureDetector.SimpleOnGestureListener() {
+
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+//                if (showIndex == 0) {
+//                    return fragments.get(0).onSingleTapUp(e);
+//                }
+                return false;
+            }
+
+            @Override
+            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                if (touchMode != 1) {
+                    touchMode = 1;
+                    return false;
+                }
+                float rotDelta = -distanceX / screenWidth;
+                float translateDelta = distanceY / screenHeight;
+                mAvatarHandle.setRotDelta(rotDelta);
+                mAvatarHandle.setTranslateDelta(translateDelta);
+                return distanceX != 0 || translateDelta != 0;
+            }
+        });
+
+        mScaleGestureDetector = new ScaleGestureDetector(this, new ScaleGestureDetector.SimpleOnScaleGestureListener() {
+            @Override
+            public boolean onScale(ScaleGestureDetector detector) {
+                if (touchMode != 2) {
+                    touchMode = 2;
+                    return false;
+                }
+                float scale = detector.getScaleFactor() - 1;
+                mAvatarHandle.setScaleDelta(scale);
+                return scale != 0;
+            }
+        });
+        showFragment(MainFragment.class);
+        loadAvatarP2A();
     }
 
-    /**
-     * 显示fragment
-     * @param index 下标
+    private void loadAvatarP2A(){
+        setMShowAvatarP2A();
+    }
+
+    /***
+     * 设置并显示化身数据
      */
-    public void showFragment(int index){
-        if(showIndex == index){
-            return;
+    private void setMShowAvatarP2A(){
+
+        mAvatarHandle.setAvatar(getShowAvatarP2A(), new Runnable() {
+            @Override
+            public void run() {
+//                if (loadingV.getVisibility() == View.VISIBLE) {
+//                    loadingV.post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            loadingV.setVisibility(View.GONE);
+//                        }
+//                    });
+//                }
+            }
+        });
+    }
+
+
+
+    public AvatarP2A getShowAvatarP2A() {
+
+        // 如果转换失败的话创建一个默认的
+        if(avatarP2A == null){
+            avatarP2A = new AvatarP2A(AvatarP2A.style_art, R.drawable.head_1_male, AvatarP2A.gender_boy, "head_1/head.bundle",
+                    AvatarConstant.hairBundle("head_1", AvatarP2A.gender_boy), 2, 0);
         }
+
+        return avatarP2A;
+    }
+
+
+
+    @Override
+    public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+        mFUP2ARenderer.onSurfaceCreated();
+    }
+
+    @Override
+    public void onSurfaceChanged(GL10 gl, int width, int height) {
+
+    }
+
+    @Override
+    public int onDrawFrame(byte[] cameraNV21Byte, int cameraTextureId, int cameraWidth, int cameraHeight) {
+        mCameraRenderer.refreshLandmarks(mP2ACore.getLandmarksData());
+        return mFUP2ARenderer.onDrawFrame(cameraNV21Byte, cameraTextureId, cameraWidth, cameraHeight);
+    }
+
+    @Override
+    public void onSurfaceDestroy() {
+        mFUP2ARenderer.onSurfaceDestroyed();
+    }
+
+    @Override
+    public void onCameraChange(int currentCameraType, int cameraOrientation) {
+        mFUP2ARenderer.onCameraChange(currentCameraType, cameraOrientation);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (baseFragment == null) {
+            if (event.getPointerCount() == 2) {
+                mScaleGestureDetector.onTouchEvent(event);
+            } else if (event.getPointerCount() == 1)
+                mGestureDetector.onTouchEvent(event);
+        }
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mCameraRenderer.openCamera();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mCameraRenderer.releaseCamera();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mCameraRenderer.onDestroy();
+    }
+
+    MainFragment homeFragment = null;
+    BaseFragment baseFragment = null;
+
+    public void showFragment(Class cls){
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        Fragment tempFramgnet = fragments.get(index);
 
-        if(!tempFramgnet.isAdded()){
-            transaction.add(contentFl.getId(), tempFramgnet);
+        if(MainFragment.class == cls){
+
+            Log.v("----", "A");
+
+            if(baseFragment != null){
+                transaction.remove(baseFragment);
+                baseFragment = null;
+            }
+
+            if(homeFragment == null){
+                homeFragment = new MainFragment();
+                transaction.add(contentFl.getId(), homeFragment);
+            } else {
+                transaction.show(homeFragment);
+            }
+        } else {
+            Log.v("----", "B");
+
+            if(homeFragment != null){
+                transaction.hide(homeFragment);
+            }
+
+            baseFragment = new UcenterFragment();
+            transaction.add(contentFl.getId(), baseFragment);
+
+            // transaction.show(baseFragment);
         }
 
-        if(showFragment != null){
-            transaction.hide(showFragment);
-            menuLabels.get(showIndex).setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryBlack, null));
-            menuIcons.get(showIndex).setImageResource(menuNormalIcons[showIndex]);
-        }
-
-        menuLabels.get(index).setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorBlack, null));
-        menuIcons.get(index).setImageResource(menuFocusIcons[index]);
-
-        showFragment = tempFramgnet;
-        showIndex = index;
-        // 展示当前选中页面并提交
-        transaction.show(tempFramgnet).commitAllowingStateLoss();
-    }
-
-    @OnClick({R.id.ll_home, R.id.ll_video, R.id.ll_friend, R.id.ll_ucenter})
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.ll_home:
-                showFragment(0);
-                break;
-            case R.id.ll_video:
-                showFragment(1);
-                break;
-            case R.id.ll_friend:
-                showFragment(2);
-                break;
-            case R.id.ll_ucenter:
-                showFragment(3);
-                break;
-        }
+        transaction.commitAllowingStateLoss();
     }
 }
