@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/x42"
         android:layout_marginTop="@dimen/x56"
-        android:background="#04ffffff"
         android:gravity="center"
         android:imeOptions="actionDone"
         android:inputType="text"
