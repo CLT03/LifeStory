@@ -160,13 +160,18 @@ public class CreateAvatarFragment extends BaseFragment implements OnCreateAvatar
     }
 
     @Override
-    public void onFileResult(Bitmap bitmap, String dir) {
+    public void onFileResult(final Bitmap bitmap,final String dir) {
 
         // 拿到选择或拍照后的图片文件路径，进入扫脸步骤
         if(scanFaceController == null){
             scanFaceController = new CreateAvatarController(this.getActivity(), this);
         }
-        scanFaceController.show(contentRl, sex, bitmap, dir);
+        this.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                scanFaceController.show(contentRl, sex, bitmap, dir);
+            }
+        });
 
     }
 

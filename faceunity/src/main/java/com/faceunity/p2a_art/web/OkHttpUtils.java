@@ -130,7 +130,7 @@ public class OkHttpUtils {
     /**
      * 请求服务器，验证验证码
      */
-    public static void createAvatarRequest(final Context context, String code, final Callback callback) {
+    /*public static void createAvatarRequest(final Context context, String code, final Callback callback) {
         String imei = "";
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
             imei = ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
@@ -148,6 +148,48 @@ public class OkHttpUtils {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                callback.onResponse(call, response);
+            }
+        });
+    }*/
+
+    /**
+     * 请求服务器，处理图片并获得处理后的数据
+     *
+     * @param uploadFile 图片路径
+     * @param gender     性别 0：男 1：女
+     * @param isQ        是否是Q版
+     * @param callback
+     */
+    public static void createAvatarRequest(final String uploadFile, int gender, int isQ, final Callback callback, ProgressRequestBody.UploadProgressListener uploadProgressListener) {
+//        String url = Constant.web_url_create;
+        String url = "https://api2.faceunity.com:2339/api/upload/image";
+        Log.i(TAG, "createAvatarRequest url " + url);
+        Log.i(TAG, "createAvatarRequest uploadFile " + uploadFile);
+        Bitmap bitmap = BitmapUtil.loadBitmap(uploadFile);
+        String tmp = Constant.filePath + "tmp.png";
+        FileUtil.saveBitmapToFile(tmp, bitmap);
+        final File reallyUploadFile = new File(tmp);
+        RequestBody requestBody = (new okhttp3.MultipartBody.Builder())
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("gender", String.valueOf(gender))
+                .addFormDataPart("is_q", String.valueOf(isQ))
+                .addFormDataPart("input", "filename", RequestBody.create(MediaType.parse("image/png"), reallyUploadFile))
+                .build();
+        if (uploadProgressListener != null) {
+            requestBody = new ProgressRequestBody(requestBody, uploadProgressListener);
+        }
+        getInstance().getOkHttpClient().newCall(new Request.Builder().url(url).post(requestBody).build()).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callback.onFailure(call, e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (!reallyUploadFile.equals(uploadFile)) {
+                    reallyUploadFile.delete();
+                }
                 callback.onResponse(call, response);
             }
         });
