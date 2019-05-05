@@ -25,6 +25,7 @@ import com.faceunity.p2a_art.core.P2ACore;
 import com.faceunity.p2a_art.entity.AvatarP2A;
 import com.faceunity.p2a_art.renderer.CameraRenderer;
 import com.mbs.sdk.utils.PermissionsUtil;
+import com.mbs.sdk.utils.ScreenUtils;
 import com.vivwe.base.activity.BaseFragmentActivity;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.faceunity.fragment.CreateAvatarFragment;
@@ -66,6 +67,11 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+
+        int width = ScreenUtils.getScreenWidth(this);
+        int height = ScreenUtils.getScreenHeight(this);
+        Log.v("---", "width:"+width + "height:"+ height);
 
         ButterKnife.bind(this);
 

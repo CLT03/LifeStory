@@ -189,12 +189,13 @@ public class CreateAvatarFragment extends BaseFragment implements OnCreateAvatar
         // 退出
 //        setResult(1);
 //        finish();
+        onBackPressed();
     }
 
     @Override
     public void onFinished() {
         // 退出
-//        finish();
+        onBackPressed();
     }
 
     @Override
