@@ -45,6 +45,16 @@
         android:layout_marginRight="@dimen/x42"
         android:background="@mipmap/icon_change_face_camera" />
 
+    <ImageView
+        android:id="@+id/iv_face"
+        android:layout_width="@dimen/x84"
+        android:layout_height="@dimen/x84"
+        android:layout_below="@id/img_home_camera"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/x28"
+        android:layout_marginRight="@dimen/x42"
+        android:background="@mipmap/icon_change_face_camera" />
+
 
     <TextView
         android:id="@+id/tv_home_downloading"
@@ -71,89 +81,4 @@
         android:text="文件同步出错！点击重试~"
         android:visibility="gone" />
 
-    <LinearLayout
-        android:id="@+id/ll_home_menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/ra_home_func"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/tv_home_figure"
-            android:layout_width="@dimen/x136"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/x38"
-            android:background="@drawable/ra_transparent_btn"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/x38"
-            android:paddingTop="@dimen/x9"
-            android:paddingRight="@dimen/x38"
-            android:paddingBottom="@dimen/x9">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x70"
-                android:src="@mipmap/icon_visualize" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="形象"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/x23" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/tv_home_story"
-            android:layout_width="@dimen/x148"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ra_transparent_btn"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/x38"
-            android:paddingTop="@dimen/x9"
-            android:paddingRight="@dimen/x38"
-            android:paddingBottom="@dimen/x9">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x70"
-                android:src="@mipmap/icon_history" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="故事"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/x23" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/tv_home_phiz"
-            android:layout_width="@dimen/x136"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ra_transparent_btn"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/x37"
-            android:paddingTop="@dimen/x9"
-            android:paddingRight="@dimen/x37"
-            android:paddingBottom="@dimen/x9">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x70"
-                android:src="@mipmap/icon_emjoy" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="表情"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/x23" />
-        </LinearLayout>
-
-    </LinearLayout>
 </RelativeLayout>
