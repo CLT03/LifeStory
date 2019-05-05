@@ -26,7 +26,7 @@ public class GenerateValueFiles {
 	 */
 	private final static String VALUE_TEMPLATE = "values-{0}x{1}";
 
-	private static final String SUPPORT_DIMESION = "320,480;480,800;480,854;540,960;600,1024;720,1184;720,1196;720,1280;768,1024;768,1280;800,1280;1080,1812;1080,1920;1440,2560;";
+	private static final String SUPPORT_DIMESION = "320,480;480,800;480,854;540,960;600,1024;720,1184;720,1196;720,1280;768,1024;768,1280;800,1280;1080,1760;1080,1812;1080,1920;1440,2560;";
 
 	private String supportStr = SUPPORT_DIMESION;
 
@@ -120,7 +120,7 @@ public class GenerateValueFiles {
 
 		File fileDir = new File(dirStr + File.separator
 				+ VALUE_TEMPLATE.replace("{0}", w + "")//
-						.replace("{1}", w + ""));
+						.replace("{1}", h + ""));
 		fileDir.mkdir();
 
 		File layxFile = new File(fileDir.getAbsolutePath(), "lay_x.xml");
