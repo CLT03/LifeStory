@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/loading1" />
+        android:src="@drawable/scan_photo_loading_anim" />
 
     <TextView
         android:id="@+id/tv_tip"

@@ -11,6 +11,7 @@ import android.opengl.GLSurfaceView;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 
 import com.faceunity.p2a_art.gles.ProgramLandmarks;
 import com.faceunity.p2a_art.gles.ProgramTexture2d;
@@ -381,15 +382,24 @@ public class CameraRenderer implements Camera.PreviewCallback, GLSurfaceView.Ren
         }
         mIsNeedTakePic = false;
         setNeedStopDrawFrame(true);
-        PictureEncoder.encoderPicture(textureId, mtx, GlUtil.IDENTITY_MATRIX, texWidth, texHeight, new PictureEncoder.OnEncoderPictureListener() {
-            @Override
-            public void onEncoderPictureListener(Bitmap bitmap) {
-                if (mTakePhotoCallBack != null) {
-                    mTakePhotoCallBack.takePhotoCallBack(bitmap);
+        try{
+            PictureEncoder.encoderPicture(textureId, mtx, GlUtil.IDENTITY_MATRIX, texWidth, texHeight, new PictureEncoder.OnEncoderPictureListener() {
+                @Override
+                public void onEncoderPictureListener(Bitmap bitmap) {
+                    if (mTakePhotoCallBack != null) {
+                        mTakePhotoCallBack.takePhotoCallBack(bitmap);
+                    }
+                    mTakePicing = false;
                 }
-                mTakePicing = false;
-            }
-        });
+            });
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+//            if (mTakePhotoCallBack != null) {
+//                mTakePhotoCallBack.takePhotoCallBack(bitmap);
+//            }
+            mTakePicing = false;
+        }
     }
 
     public interface TakePhotoCallBack {
