@@ -7,8 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.main.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * ahtor: super_link
@@ -17,9 +24,38 @@ import com.vivwe.main.R;
  */
 public class UcenterFragment extends BaseFragment {
 
-    @Nullable
+    @BindView(R.id.srl_content)
+    SmartRefreshLayout contentSrl;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_ucenter, null);
+
+        View view = inflater.inflate(R.layout.fragment_ucenter, null);
+        ButterKnife.bind(this, view);
+
+        return view;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init();
+    }
+
+    private void init(){
+        contentSrl.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshLayout) {
+                refreshLayout.finishRefresh(2000);
+            }
+        });
+
+        contentSrl.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshLayout) {
+                refreshLayout.finishLoadMore(2000);
+            }
+        });
+    }
+
 }
