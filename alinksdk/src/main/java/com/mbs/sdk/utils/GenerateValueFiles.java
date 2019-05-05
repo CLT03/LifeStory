@@ -119,7 +119,7 @@ public class GenerateValueFiles {
 		sbForHeight.append("</resources>");
 
 		File fileDir = new File(dirStr + File.separator
-				+ VALUE_TEMPLATE.replace("{0}", h + "")//
+				+ VALUE_TEMPLATE.replace("{0}", w + "")//
 						.replace("{1}", w + ""));
 		fileDir.mkdir();
 
