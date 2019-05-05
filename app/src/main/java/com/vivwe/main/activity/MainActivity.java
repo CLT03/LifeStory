@@ -1,16 +1,22 @@
 package com.vivwe.main.activity;
 
+import android.content.Intent;
+import android.hardware.Camera;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GestureDetectorCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.faceunity.p2a_art.constant.AvatarConstant;
 import com.faceunity.p2a_art.core.AvatarHandle;
@@ -19,12 +25,14 @@ import com.faceunity.p2a_art.core.P2ACore;
 import com.faceunity.p2a_art.entity.AvatarP2A;
 import com.faceunity.p2a_art.renderer.CameraRenderer;
 import com.mbs.sdk.utils.PermissionsUtil;
-import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.base.activity.BaseFragmentActivity;
+import com.vivwe.base.activity.BaseFragment;
+import com.vivwe.faceunity.fragment.CreateAvatarFragment;
 import com.vivwe.faceunity.listener.OnFragmentListener;
 import com.vivwe.main.R;
+import com.vivwe.main.fragment.HomeFragment;
 import com.vivwe.main.fragment.MainFragment;
-import com.vivwe.main.fragment.UcenterFragment;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import butterknife.BindView;
@@ -66,6 +74,14 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
 
     private int touchMode = 0;
     private void init(){
+
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                ISEXIT = false;
+            }
+        };
 
         PermissionsUtil.checkAndRequestPermissions(this);
 
@@ -200,6 +216,46 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
     }
 
     @Override
+    public void onBackPressed() {
+
+        if (!ISEXIT) {
+            if(baseFragment != null){
+                Log.v("----","showFragment(MainFragment.class)");
+                //showFragment(MainFragment.class);
+                baseFragment.onBackPressed();
+            } else {
+                ISEXIT = true;
+                Toast.makeText(getApplicationContext(), "再按一次退出程序",
+                        Toast.LENGTH_SHORT).show();
+                // 利用handler延迟发送更改状态信息,2秒之内再按一次退出程序
+                handler.sendEmptyMessageDelayed(0, 2000);
+            }
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    //重写返回键
+    private Handler handler;
+    private boolean ISEXIT = false;
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_BACK && !ISEXIT) {
+//            if(baseFragment != null){
+//                showFragment(HomeFragment.class);
+//            } else {
+//                ISEXIT = true;
+//                Toast.makeText(getApplicationContext(), "再按一次退出程序",
+//                        Toast.LENGTH_SHORT).show();
+//                // 利用handler延迟发送更改状态信息,2秒之内再按一次退出程序
+//                handler.sendEmptyMessageDelayed(0, 2000);
+//            }
+//            return false;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         mCameraRenderer.openCamera();
@@ -215,6 +271,15 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
     protected void onDestroy() {
         super.onDestroy();
         mCameraRenderer.onDestroy();
+    }
+
+    //选文件响应函数
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(baseFragment != null){
+            baseFragment.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     MainFragment homeFragment = null;
@@ -234,13 +299,8 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
                 baseFragment = null;
             }
 
-            if(homeFragment == null){
-                homeFragment = new MainFragment();
-                homeFragment.setOnFragmentListener(this);
-                transaction.add(contentFl.getId(), homeFragment);
-            } else {
-                transaction.show(homeFragment);
-            }
+            // 显示主页
+            showHomeFragment(transaction);
         } else {
             Log.v("----", "B");
 
@@ -248,12 +308,57 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
                 transaction.hide(homeFragment);
             }
 
-            baseFragment = new UcenterFragment();
+            if(CreateAvatarFragment.class == cls){
+                baseFragment = new CreateAvatarFragment();
+            }
+
             transaction.add(contentFl.getId(), baseFragment);
 
             // transaction.show(baseFragment);
         }
 
         transaction.commitAllowingStateLoss();
+    }
+
+    /**
+     * 展示主页
+     * @param transaction
+     */
+    public void showHomeFragment(FragmentTransaction transaction) {
+        if (mCameraRenderer.getCurrentCameraType() == Camera.CameraInfo.CAMERA_FACING_BACK) {
+            mCameraRenderer.updateMTX();
+            mCameraRenderer.changeCamera();
+        }
+
+        if(homeFragment == null){
+            homeFragment = new MainFragment();
+            homeFragment.setOnFragmentListener(this);
+            transaction.add(contentFl.getId(), homeFragment);
+        } else {
+            transaction.show(homeFragment);
+        }
+
+
+        mAvatarHandle.resetAllMin();
+    }
+
+    public GLSurfaceView getmGLSurfaceView() {
+        return mGLSurfaceView;
+    }
+
+    public AvatarHandle getmAvatarHandle() {
+        return mAvatarHandle;
+    }
+
+    public CameraRenderer getmCameraRenderer() {
+        return mCameraRenderer;
+    }
+
+    public FUP2ARenderer getmFUP2ARenderer() {
+        return mFUP2ARenderer;
+    }
+
+    public P2ACore getmP2ACore() {
+        return mP2ACore;
     }
 }

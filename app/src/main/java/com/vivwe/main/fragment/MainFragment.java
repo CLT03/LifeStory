@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.vivwe.faceunity.base.BaseFragment;
+import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.main.R;
 import java.util.ArrayList;
 import java.util.List;

@@ -7,10 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.vivwe.faceunity.base.BaseFragment;
+import com.vivwe.base.activity.BaseFragment;
+import com.vivwe.faceunity.fragment.CreateAvatarFragment;
 import com.vivwe.main.R;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * ahtor: super_link
@@ -27,6 +29,14 @@ public class HomeFragment extends BaseFragment {
         return view;
     }
 
+    @OnClick({R.id.img_home_file})
+    public void onclick(View view){
+        switch (view.getId()){
+            case R.id.img_home_file:
+                mainActivity.showFragment(CreateAvatarFragment.class);
+                break;
+        }
+    }
 
 
 }
