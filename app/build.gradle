@@ -50,9 +50,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
-    //没有使用特殊Header，可以不加这行
-    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
+
+    //1.1.0 （1.0.5及以前版本的老用户升级需谨慎，API改动过大）
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-24'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-24'//没有使用特殊Header，可以不加这行
+
 //    implementation project(':alinksdk')
     implementation project(':faceunity')
 
