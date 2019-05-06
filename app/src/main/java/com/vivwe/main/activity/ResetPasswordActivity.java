@@ -9,7 +9,7 @@ import com.vivwe.main.R;
 /**
  * ahtor: super_link
  * date: 2019/4/26 18:12
- * remark: 关于生活故事
+ * remark: 重置用户密码
  */
 public class ResetPasswordActivity extends BaseActivity {
 
