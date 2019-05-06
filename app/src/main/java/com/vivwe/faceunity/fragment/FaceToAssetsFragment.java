@@ -9,6 +9,8 @@ import android.support.v7.widget.SimpleItemAnimator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
 import com.faceunity.p2a_art.constant.AvatarConstant;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.faceunity.adapter.TestAdapter;
@@ -27,8 +29,14 @@ public class FaceToAssetsFragment extends BaseFragment {
     @BindView(R.id.rlv_face)
     RecyclerView faceRlv;
 
-    @BindView(R.id.v_under_line)
-    View underLineV;
+    @BindView(R.id.v_face_line)
+    View faceLineV;
+    @BindView(R.id.v_gif_line)
+    View gifLineV;
+    @BindView(R.id.btn_face_toassets)
+    Button faceToAssetsBtn;
+    @BindView(R.id.btn_gif_toassets)
+    Button gifToAssetsBtn;
 
     @Nullable
     @Override

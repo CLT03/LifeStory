@@ -88,7 +88,7 @@
         app:layout_constraintTop_toTopOf="@+id/view2" />
 
     <View
-        android:id="@+id/v_under_line"
+        android:id="@+id/v_face_line"
         android:layout_width="@dimen/x40"
         android:layout_height="4dp"
         android:layout_marginStart="8dp"
@@ -112,7 +112,7 @@
 
 
     <View
-        android:id="@+id/v_under_line2"
+        android:id="@+id/v_gif_line"
         android:layout_width="@dimen/x40"
         android:layout_height="4dp"
         android:background="@drawable/app_bg_h"
