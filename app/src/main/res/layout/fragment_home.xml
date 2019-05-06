@@ -27,7 +27,7 @@
         android:textSize="@dimen/x47" />
 
     <ImageView
-        android:id="@+id/img_home_file"
+        android:id="@+id/iv_creater_avatar"
         android:layout_width="@dimen/x84"
         android:layout_height="@dimen/x84"
         android:layout_alignParentRight="true"
@@ -36,20 +36,20 @@
         android:background="@mipmap/icon_change_face" />
 
     <ImageView
-        android:id="@+id/img_home_camera"
+        android:id="@+id/iv_edit_face"
         android:layout_width="@dimen/x84"
         android:layout_height="@dimen/x84"
-        android:layout_below="@id/img_home_file"
+        android:layout_below="@id/iv_creater_avatar"
         android:layout_alignParentRight="true"
         android:layout_marginTop="@dimen/x28"
         android:layout_marginRight="@dimen/x42"
         android:background="@mipmap/icon_change_face_camera" />
 
     <ImageView
-        android:id="@+id/iv_face"
+        android:id="@+id/iv_toassets"
         android:layout_width="@dimen/x84"
         android:layout_height="@dimen/x84"
-        android:layout_below="@id/img_home_camera"
+        android:layout_below="@id/iv_edit_face"
         android:layout_alignParentRight="true"
         android:layout_marginTop="@dimen/x28"
         android:layout_marginRight="@dimen/x42"

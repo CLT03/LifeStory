@@ -15,7 +15,9 @@ import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.faceunity.p2a_art.constant.AvatarConstant;
@@ -29,6 +31,7 @@ import com.mbs.sdk.utils.ScreenUtils;
 import com.vivwe.base.activity.BaseFragmentActivity;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.faceunity.fragment.CreateAvatarFragment;
+import com.vivwe.faceunity.fragment.FaceToAssetsFragment;
 import com.vivwe.faceunity.listener.OnFragmentListener;
 import com.vivwe.main.R;
 import com.vivwe.main.fragment.HomeFragment;
@@ -143,6 +146,8 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
         });
         showFragment(MainFragment.class);
         loadAvatarP2A();
+
+        setGLSurfaceViewSize(false);
     }
 
     private void loadAvatarP2A(){
@@ -316,6 +321,8 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
 
             if(CreateAvatarFragment.class == cls){
                 baseFragment = new CreateAvatarFragment();
+            } else if(FaceToAssetsFragment.class == cls){
+                baseFragment = new FaceToAssetsFragment();
             }
 
             transaction.add(contentFl.getId(), baseFragment);
@@ -346,6 +353,18 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
 
 
         mAvatarHandle.resetAllMin();
+    }
+
+    public void setGLSurfaceViewSize(boolean isMin) {
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mGLSurfaceView.getLayoutParams();
+        params.width = isMin ? getResources().getDimensionPixelSize(R.dimen.x750) : RelativeLayout.LayoutParams.MATCH_PARENT;
+//        int height = (int)(this.getResources().getDimensionPixelSize(R.dimen.x750) * 1.2);
+//        params.height = isMin ? height : RelativeLayout.LayoutParams.MATCH_PARENT;
+
+//        params.topMargin = isMin ? getResources().getDimensionPixelSize(R.dimen.x158) : 0;
+        params.bottomMargin =  isMin ? getResources().getDimensionPixelSize(R.dimen.x380) : 0;
+        mGLSurfaceView.setLayoutParams(params);
+        //mGroupPhotoRound.setVisibility(isMin ? View.VISIBLE : View.GONE);
     }
 
     public GLSurfaceView getmGLSurfaceView() {
