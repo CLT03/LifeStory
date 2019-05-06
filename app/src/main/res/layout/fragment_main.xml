@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
-                android:text="朋友圈"
+                android:text="推荐"
                 android:textColor="@color/colorPrimaryBlack"
                 android:textSize="@dimen/x23" />
 
@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
-                android:text="聊天"
+                android:text="模板"
                 android:textColor="@color/colorPrimaryBlack"
                 android:textSize="@dimen/x23" />
 
