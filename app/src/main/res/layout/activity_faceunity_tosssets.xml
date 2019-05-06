@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="@dimen/x140"
+        android:layout_height="@dimen/x98"
+        android:background="@drawable/ra_transparent_btn"
+        android:scaleType="fitCenter"
+        android:padding="@dimen/x28"
+        android:src="@mipmap/icon_back_black"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="表情"
+        android:textColor="#191919"
+        android:textSize="@dimen/x36"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_back" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="@dimen/x140"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ra_transparent_btn"
+        android:text="保存"
+        android:textColor="#191919"
+        android:textSize="@dimen/x32"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_back" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x120"
+        android:background="@drawable/r60_white_toassets"
+        app:layout_constraintBottom_toTopOf="@+id/rlv_face"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorSlightGray"
+        app:layout_constraintBottom_toTopOf="@+id/rlv_face" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rlv_face"
+        android:padding="@dimen/x8"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x300"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/btn_face_toassets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/x64"
+        android:background="@drawable/ra_transparent_btn"
+        android:text="表情"
+        android:textColor="#191919"
+        android:textSize="@dimen/x32"
+        app:layout_constraintBottom_toTopOf="@+id/view3"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2" />
+
+    <Button
+        android:id="@+id/btn_gif_toassets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ra_transparent_btn"
+        android:text="GIF"
+        android:textColor="#191919"
+        android:textSize="@dimen/x32"
+        app:layout_constraintBottom_toTopOf="@+id/rlv_face"
+        app:layout_constraintStart_toEndOf="@+id/btn_face_toassets"
+        app:layout_constraintTop_toTopOf="@+id/view2" />
+
+
+</android.support.constraint.ConstraintLayout>
