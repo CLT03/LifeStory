@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.faceunity.p2a_art.constant.AvatarConstant;
+import com.faceunity.p2a_art.entity.Scenes;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.faceunity.adapter.TestAdapter;
 import com.vivwe.main.R;
@@ -34,9 +36,12 @@ public class FaceToAssetsFragment extends BaseFragment {
     @BindView(R.id.v_gif_line)
     View gifLineV;
     @BindView(R.id.btn_face_toassets)
-    Button faceToAssetsBtn;
+    TextView faceToAssetsBtn;
     @BindView(R.id.btn_gif_toassets)
-    Button gifToAssetsBtn;
+    TextView gifToAssetsBtn;
+
+    // adapter
+    TestAdapter testAdapter;
 
     @Nullable
     @Override
@@ -58,23 +63,51 @@ public class FaceToAssetsFragment extends BaseFragment {
     private void init(){
 
         // 初始化表情控件
+        testAdapter = new TestAdapter(AvatarConstant.SCENES_ART_SINGLE);
+
         faceRlv.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        faceRlv.setAdapter(new TestAdapter(AvatarConstant.SCENES_ART_SINGLE));
+        faceRlv.setAdapter(testAdapter);
         ((SimpleItemAnimator) faceRlv.getItemAnimator()).setSupportsChangeAnimations(false);
+
+        testAdapter.setScenesSelectListener(new TestAdapter.ScenesSelectListener() {
+            @Override
+            public void onScenesSelectListener(boolean isAnim, Scenes scenes) {
+
+            }
+        });
 
         // 显示缩小
         mainActivity.setGLSurfaceViewSize(true);
     }
 
-    @OnClick({R.id.btn_face_toassets})
+    @OnClick({R.id.btn_face_toassets, R.id.btn_gif_toassets})
     public void onclick(View view){
         switch (view.getId()){
             case R.id.btn_face_toassets: // 表情导出
 //                underLineV.setCon
+                showFunView(1);
                 break;
             case R.id.btn_gif_toassets: // gif导出
-
+                showFunView(2);
                 break;
         }
     }
+
+    private int showIndex = 1;
+    private void showFunView(int index){
+        if(showIndex != index){
+
+            showIndex = index;
+
+            faceLineV.setVisibility(index == 1 ? View.VISIBLE : View.INVISIBLE);
+            gifLineV.setVisibility(index == 2 ? View.VISIBLE : View.INVISIBLE);
+            faceToAssetsBtn.setTextColor(index == 1 ? 0xff191919 : 0xFFABABAB);
+            gifToAssetsBtn.setTextColor(index == 2 ? 0xff191919 : 0xFFABABAB);
+
+            // 切换选项卡
+            testAdapter.setDatas(index == 1 ? AvatarConstant.SCENES_ART_SINGLE : AvatarConstant.SCENES_ART_ANIMATION);
+
+        }
+    }
+
 }
