@@ -50,5 +50,7 @@ public class FaceToAssetsFragment extends BaseFragment {
         faceRlv.setAdapter(new TestAdapter(AvatarConstant.SCENES_ART_SINGLE));
         ((SimpleItemAnimator) faceRlv.getItemAnimator()).setSupportsChangeAnimations(false);
 
+        // 显示缩小
+        mainActivity.setGLSurfaceViewSize(true);
     }
 }
