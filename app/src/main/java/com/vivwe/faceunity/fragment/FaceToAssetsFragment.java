@@ -15,6 +15,7 @@ import com.vivwe.faceunity.adapter.TestAdapter;
 import com.vivwe.main.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * ahtor: super_link
@@ -25,6 +26,9 @@ public class FaceToAssetsFragment extends BaseFragment {
 
     @BindView(R.id.rlv_face)
     RecyclerView faceRlv;
+
+    @BindView(R.id.v_under_line)
+    View underLineV;
 
     @Nullable
     @Override
@@ -52,5 +56,17 @@ public class FaceToAssetsFragment extends BaseFragment {
 
         // 显示缩小
         mainActivity.setGLSurfaceViewSize(true);
+    }
+
+    @OnClick({R.id.btn_face_toassets})
+    public void onclick(View view){
+        switch (view.getId()){
+            case R.id.btn_face_toassets: // 表情导出
+//                underLineV.setCon
+                break;
+            case R.id.btn_gif_toassets: // gif导出
+
+                break;
+        }
     }
 }
