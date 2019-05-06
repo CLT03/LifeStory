@@ -1,6 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x320"
+        android:background="@drawable/app_bg_h"
+        android:gravity="center"
+        android:paddingBottom="@dimen/x232"
+        android:text="个人信息设置"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/x32"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/x88"
+        android:layout_height="@dimen/x88"
+        android:paddingLeft="@dimen/x34"
+        android:paddingTop="@dimen/x30"
+        android:paddingRight="@dimen/x36"
+        android:paddingBottom="@dimen/x26"
+        android:src="@mipmap/icon_back_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+    <ImageView
+        android:id="@+id/iv_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/x70"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/icon_logo_default" />
+
+    <ImageView
+        android:id="@+id/iv_camera"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x48"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_head"
+        app:layout_constraintEnd_toEndOf="@+id/iv_head"
+        app:srcCompat="@mipmap/icon_cutphoto" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x88"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="end|center_vertical"
+        android:paddingStart="@dimen/x112"
+        android:paddingRight="@dimen/x76"
+        android:text="Dameon"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x30"
+        android:text="昵称"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x48"
+        android:layout_marginRight="@dimen/x16"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_name"
+        app:srcCompat="@mipmap/icon_enter_ucenter" />
+
+    <View
+        android:layout_width="@dimen/x720"
+        android:layout_height="@dimen/x2"
+        android:background="#F2F2F2"
+        app:layout_constraintBottom_toBottomOf="@id/tv_name"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_gender"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x88"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="end|center_vertical"
+        android:paddingStart="@dimen/x112"
+        android:paddingRight="@dimen/x76"
+        android:text="Dameon"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x30"
+        android:text="性别"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_gender"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_gender" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x48"
+        android:layout_marginRight="@dimen/x16"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_gender"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_gender"
+        app:srcCompat="@mipmap/icon_enter_ucenter" />
+
+    <View
+        android:layout_width="@dimen/x720"
+        android:layout_height="@dimen/x2"
+        android:background="#F2F2F2"
+        app:layout_constraintBottom_toBottomOf="@id/tv_gender"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_birthday"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x88"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="end|center_vertical"
+        android:paddingStart="@dimen/x112"
+        android:paddingRight="@dimen/x76"
+        android:text="Dameon"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_gender" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x30"
+        android:text="生日"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_birthday"
+        app:layout_constraintStart_toStartOf="@+id/tv_birthday"
+        app:layout_constraintTop_toTopOf="@+id/tv_birthday" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x48"
+        android:layout_marginRight="@dimen/x16"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_birthday"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_birthday"
+        app:srcCompat="@mipmap/icon_enter_ucenter" />
+
+    <View
+        android:layout_width="@dimen/x720"
+        android:layout_height="@dimen/x2"
+        android:background="#F2F2F2"
+        app:layout_constraintBottom_toBottomOf="@id/tv_birthday"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_city"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x88"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="end|center_vertical"
+        android:paddingStart="@dimen/x112"
+        android:paddingRight="@dimen/x76"
+        android:text="Dameon"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_birthday" />
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x30"
+        android:text="城市"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_city"
+        app:layout_constraintStart_toStartOf="@+id/tv_city"
+        app:layout_constraintTop_toTopOf="@+id/tv_city" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x48"
+        android:layout_marginRight="@dimen/x16"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_city"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_city"
+        app:srcCompat="@mipmap/icon_enter_ucenter" />
+
+    <View
+        android:layout_width="@dimen/x720"
+        android:layout_height="@dimen/x2"
+        android:background="#F2F2F2"
+        app:layout_constraintBottom_toBottomOf="@id/tv_city"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_sign"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x88"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="end|center_vertical"
+        android:paddingStart="@dimen/x168"
+        android:paddingRight="@dimen/x76"
+        android:text="Dameon"
+        android:textColor="#A6A6A6"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_city" />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x30"
+        android:text="个性签名"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_sign"
+        app:layout_constraintStart_toStartOf="@+id/tv_sign"
+        app:layout_constraintTop_toTopOf="@+id/tv_sign" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x48"
+        android:layout_marginRight="@dimen/x16"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_sign"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_sign"
+        app:srcCompat="@mipmap/icon_enter_ucenter" />
+
+    <View
+        android:layout_width="@dimen/x720"
+        android:layout_height="@dimen/x2"
+        android:background="#F2F2F2"
+        app:layout_constraintBottom_toBottomOf="@id/tv_sign"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
