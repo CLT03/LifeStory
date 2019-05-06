@@ -23,6 +23,11 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
         this.scenes = scenes;
     }
 
+    public void setDatas(Scenes[] scenes){
+        this.scenes = scenes;
+        this.notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public TestAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
