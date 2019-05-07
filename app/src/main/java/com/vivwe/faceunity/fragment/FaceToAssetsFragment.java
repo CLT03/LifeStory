@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.faceunity.p2a_art.constant.AvatarConstant;
+import com.faceunity.p2a_art.constant.Constant;
+import com.faceunity.p2a_art.core.AvatarHandle;
+import com.faceunity.p2a_art.core.P2AMultipleCore;
+import com.faceunity.p2a_art.entity.AvatarP2A;
 import com.faceunity.p2a_art.entity.Scenes;
+import com.faceunity.p2a_art.utils.DateUtil;
+import com.faceunity.p2a_helper.gif.GifHardEncoderWrapper;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.faceunity.adapter.TestAdapter;
 import com.vivwe.main.R;
@@ -42,6 +49,16 @@ public class FaceToAssetsFragment extends BaseFragment {
 
     // adapter
     TestAdapter testAdapter;
+    private AvatarP2A avatarP2A;
+    private P2AMultipleCore mP2AMultipleCore;
+    private GifHardEncoderWrapper mGifHardEncoder;
+    private boolean isAnimationScenes;
+    private int isLoadComplete;
+    private String mGifPath = "";
+    private SparseArray<AvatarHandle> mAvatarHandleSparse;
+    private Scenes mScenes;
+    int frameId = NONE_FRAME_ID;
+    static final int NONE_FRAME_ID = -100;
 
     @Nullable
     @Override
@@ -62,6 +79,9 @@ public class FaceToAssetsFragment extends BaseFragment {
      */
     private void init(){
 
+        // data
+        avatarP2A = mainActivity.getShowAvatarP2A();
+
         // 初始化表情控件
         testAdapter = new TestAdapter(AvatarConstant.SCENES_ART_SINGLE);
 
@@ -69,15 +89,92 @@ public class FaceToAssetsFragment extends BaseFragment {
         faceRlv.setAdapter(testAdapter);
         ((SimpleItemAnimator) faceRlv.getItemAnimator()).setSupportsChangeAnimations(false);
 
+        // listener
         testAdapter.setScenesSelectListener(new TestAdapter.ScenesSelectListener() {
             @Override
             public void onScenesSelectListener(boolean isAnim, Scenes scenes) {
+                isAnimationScenes = isAnim;
+                mScenes = scenes;
+                mP2AMultipleCore = new P2AMultipleCore(mainActivity, mFUP2ARenderer) {
 
+                    @Override
+                    public int onDrawFrame(byte[] img, int tex, int w, int h) {
+                        int fuTex = super.onDrawFrame(img, tex, w, h);
+                        AvatarHandle avatarHandle = mAvatarHandleSparse.get(0);
+                        if (avatarHandle != null && mGifHardEncoder != null) {
+                            int nowFrameId = avatarHandle.getNowFrameId();
+                            if (frameId > nowFrameId) {
+                                releaseGifEncoder();
+                                frameId = NONE_FRAME_ID;
+                            } else {
+                                mGifHardEncoder.encodeFrame(fuTex);
+                                frameId = nowFrameId;
+                            }
+                        }
+                        return fuTex;
+                    }
+                };
+                mP2ACore.unBind();
+                mFUP2ARenderer.setFUCore(mP2AMultipleCore);
+                mAvatarHandleSparse = mP2AMultipleCore.createAvatarMultiple(mScenes);
+                isLoadComplete = 0;
+
+                showAvatar();
             }
         });
 
         // 显示缩小
         mainActivity.setGLSurfaceViewSize(true);
+    }
+
+    /**
+     * 展示形象
+     * 暂时只是设计为单角色，因为mScenes.bundles[0]为第一个角色，所以单角色情况下这样获取。
+     */
+    private void showAvatar(){
+        if (avatarP2A.getGender() == mScenes.bundles[0].gender) {
+            avatarP2A.setExpressionFile(mScenes.bundles[0].path);
+            final AvatarHandle avatarHandle = mAvatarHandleSparse.get(0);
+            avatarHandle.setAvatar(avatarP2A, new Runnable() {
+                @Override
+                public void run() {
+//                    mAvatarLayout.updateAvatarPoint();
+                    if (++isLoadComplete == mAvatarHandleSparse.size()) {
+                        if (isAnimationScenes) {
+                            startGifEncoder();
+                        }
+                    }
+                    avatarHandle.seekToAnimFrameId(1);
+                    avatarHandle.setAnimState(2);
+                }
+            });
+        }
+    }
+
+    private void startGifEncoder() {
+        mP2AMultipleCore.queueEvent(new Runnable() {
+            @Override
+            public void run() {
+                if (mGifHardEncoder != null) {
+                    mGifHardEncoder.release();
+                }
+                mGifHardEncoder = new GifHardEncoderWrapper(mGifPath = Constant.TmpPath + DateUtil.getCurrentDate() + "_tmp.gif",
+                        mCameraRenderer.getCameraHeight() / 2, mCameraRenderer.getCameraWidth() / 2);
+                if (mAvatarHandleSparse.get(0) != null) {
+                    mAvatarHandleSparse.get(0).seekToAnimFrameId(1);
+                    mAvatarHandleSparse.get(0).setAnimState(1);
+                }
+                frameId = NONE_FRAME_ID;
+            }
+        });
+    }
+
+    private void releaseGifEncoder() {
+        if (mGifHardEncoder != null) {
+            mGifHardEncoder.release();
+            mGifHardEncoder = null;
+//            mAvatarLayout.updateNextBtn(true);
+        }
     }
 
     @OnClick({R.id.btn_face_toassets, R.id.btn_gif_toassets})

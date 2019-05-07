@@ -71,7 +71,6 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
 
         setContentView(R.layout.activity_main);
 
-
         int width = ScreenUtils.getScreenWidth(this);
         int height = ScreenUtils.getScreenHeight(this);
         Log.v("---", "width:"+width + "height:"+ height);
