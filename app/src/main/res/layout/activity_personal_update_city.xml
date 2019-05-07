@@ -8,10 +8,11 @@
 
 
     <ImageView
-        android:id="@+id/iv_setting"
+        android:id="@+id/iv_back"
         android:layout_width="@dimen/x88"
         android:layout_height="@dimen/x88"
-        android:padding="@dimen/x20"
+        android:background="@drawable/ra_white_btn"
+        android:padding="@dimen/x32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/icon_cancel_black" />
@@ -26,7 +27,7 @@
         android:textColor="#787878"
         android:textSize="@dimen/x24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_setting" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_back" />
 
     <TextView
         android:id="@+id/textView26"

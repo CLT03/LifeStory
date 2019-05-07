@@ -26,6 +26,7 @@
         android:layout_height="0dp"
         android:paddingLeft="@dimen/x34"
         android:paddingTop="@dimen/x30"
+        android:background="@drawable/ra_white_btn"
         android:paddingRight="@dimen/x36"
         android:paddingBottom="@dimen/x26"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
