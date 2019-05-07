@@ -27,6 +27,7 @@
         android:paddingLeft="@dimen/x34"
         android:paddingTop="@dimen/x30"
         android:paddingRight="@dimen/x36"
+        android:background="@drawable/ra_white_btn"
         android:paddingBottom="@dimen/x26"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView2"

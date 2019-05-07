@@ -6,6 +6,9 @@ import android.support.annotation.Nullable;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.main.R;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * ahtor: super_link
  * date: 2019/4/26 18:04
@@ -17,6 +20,12 @@ public class UpdateCityActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_update_city);
+        ButterKnife.bind(this);
 
+    }
+
+    @OnClick(R.id.iv_back)
+    public void onClick() {
+        finish();
     }
 }
