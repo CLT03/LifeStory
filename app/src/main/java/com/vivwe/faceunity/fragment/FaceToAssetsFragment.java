@@ -6,13 +6,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-
 import com.faceunity.p2a_art.constant.AvatarConstant;
 import com.faceunity.p2a_art.constant.Constant;
 import com.faceunity.p2a_art.core.AvatarHandle;
@@ -20,10 +19,14 @@ import com.faceunity.p2a_art.core.P2AMultipleCore;
 import com.faceunity.p2a_art.entity.AvatarP2A;
 import com.faceunity.p2a_art.entity.Scenes;
 import com.faceunity.p2a_art.utils.DateUtil;
+import com.faceunity.p2a_art.utils.FileUtil;
 import com.faceunity.p2a_helper.gif.GifHardEncoderWrapper;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.faceunity.adapter.TestAdapter;
 import com.vivwe.main.R;
+
+import java.io.File;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -80,10 +83,11 @@ public class FaceToAssetsFragment extends BaseFragment {
     private void init(){
 
         // data
+        FileUtil.createFile(Constant.TmpPath);
         avatarP2A = mainActivity.getShowAvatarP2A();
 
         // 初始化表情控件
-        testAdapter = new TestAdapter(AvatarConstant.SCENES_ART_SINGLE);
+        testAdapter = new TestAdapter(avatarP2A.getGender() == 0 ? AvatarConstant.SCENES_ART_SINGLE_MALE : AvatarConstant.SCENES_ART_SINGLE_FEMALE);
 
         faceRlv.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.HORIZONTAL, false));
         faceRlv.setAdapter(testAdapter);
@@ -158,6 +162,9 @@ public class FaceToAssetsFragment extends BaseFragment {
                 if (mGifHardEncoder != null) {
                     mGifHardEncoder.release();
                 }
+
+                Log.v("---", Constant.TmpPath + DateUtil.getCurrentDate() + "_tmp.gif");
+
                 mGifHardEncoder = new GifHardEncoderWrapper(mGifPath = Constant.TmpPath + DateUtil.getCurrentDate() + "_tmp.gif",
                         mCameraRenderer.getCameraHeight() / 2, mCameraRenderer.getCameraWidth() / 2);
                 if (mAvatarHandleSparse.get(0) != null) {
@@ -190,7 +197,13 @@ public class FaceToAssetsFragment extends BaseFragment {
         }
     }
 
+    /** 当前展示功能索引（1: 表情、2：gif） */
     private int showIndex = 1;
+
+    /**
+     * 切换功能视图
+     * @param index 1: 表情、2：gif
+     */
     private void showFunView(int index){
         if(showIndex != index){
 
@@ -202,9 +215,26 @@ public class FaceToAssetsFragment extends BaseFragment {
             gifToAssetsBtn.setTextColor(index == 2 ? 0xff191919 : 0xFFABABAB);
 
             // 切换选项卡
-            testAdapter.setDatas(index == 1 ? AvatarConstant.SCENES_ART_SINGLE : AvatarConstant.SCENES_ART_ANIMATION);
+            testAdapter.setDatas(index == 1 ? (avatarP2A.getGender() == 0 ? AvatarConstant.SCENES_ART_SINGLE_MALE : AvatarConstant.SCENES_ART_SINGLE_FEMALE) :
+                    (avatarP2A.getGender() == 0 ? AvatarConstant.SCENES_ART_ANIMATION_MALE :AvatarConstant.SCENES_ART_ANIMATION_FEMALE));
 
         }
     }
 
+    @Override
+    public void onBackPressed() {
+
+        mP2ACore.bind();
+        mFUP2ARenderer.setFUCore(mP2ACore);
+
+        mainActivity.setGLSurfaceViewSize(false);
+
+        if (mP2AMultipleCore != null) {
+            mP2AMultipleCore.release();
+            mP2AMultipleCore = null;
+        }
+        FileUtil.deleteDirAndFile(new File(Constant.TmpPath));
+
+        super.onBackPressed();
+    }
 }
