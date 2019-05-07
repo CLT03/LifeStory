@@ -14,7 +14,7 @@ import butterknife.OnClick;
 /**
  * ahtor: super_link
  * date: 2019/4/26 18:04
- * remark: 修改用户信息
+ * remark: 个人信息设置
  */
 public class UpdateUserInfoActivity extends BaseActivity {
 
