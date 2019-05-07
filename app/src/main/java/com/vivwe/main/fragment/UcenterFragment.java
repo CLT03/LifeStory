@@ -10,11 +10,7 @@ import android.view.ViewGroup;
 
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.main.R;
-import com.vivwe.main.activity.MessageActivity;
-import com.vivwe.main.activity.SettingActivity;
-import com.vivwe.personal.activity.AuthorApplyActivity;
-import com.vivwe.personal.activity.AuthorCenterActivity;
-import com.vivwe.personal.activity.MyAssetsActivity;
+import com.vivwe.author.activity.ApplyActivity;
 import com.vivwe.personal.activity.MyAttentionActivity;
 import com.vivwe.personal.activity.MyCollectedActivity;
 import com.vivwe.personal.activity.MyDraftActivity;
@@ -60,10 +56,9 @@ public class UcenterFragment extends BaseFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_setting:
-                startActivity(new Intent(getActivity(),SettingActivity.class));
+                startActivity(new Intent(getActivity(),UpdateUserInfoActivity.class));
                 break;
             case R.id.iv_notice:
-                startActivity(new Intent(getActivity(),MessageActivity.class));
                 break;
             case R.id.iv_attention:
             case R.id.tv_attention:
@@ -83,9 +78,9 @@ public class UcenterFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(),MyDraftActivity.class));
                 break;
             case R.id.tv_source:
-                startActivity(new Intent(getActivity(),MyAssetsActivity.class));
                 break;
             case R.id.iv_more:
+                break;
             case R.id.tv_more:
                 break;
             case R.id.tv_movement:
@@ -95,7 +90,7 @@ public class UcenterFragment extends BaseFragment {
             case R.id.tv_recommend:
                 break;
             case R.id.tv_author_ucenter:
-                startActivity(new Intent(getActivity(),AuthorCenterActivity.class));
+                startActivity(new Intent(getActivity(),ApplyActivity.class));
                 break;
         }
     }
