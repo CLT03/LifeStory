@@ -1,9 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fafafa">
+    android:background="#ffffff"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x88"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:text="素材库"
+        android:textColor="#191919"
+        android:textSize="@dimen/x32"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/x88"
+        android:layout_height="0dp"
+        android:paddingLeft="@dimen/x34"
+        android:paddingTop="@dimen/x30"
+        android:paddingRight="@dimen/x36"
+        android:paddingBottom="@dimen/x26"
+        android:background="@drawable/ra_white_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:srcCompat="@mipmap/icon_back_black" />
+
+    <TextView
+        android:id="@+id/tv_edit"
+        android:layout_width="@dimen/x80"
+        android:layout_height="@dimen/x56"
+        android:layout_marginRight="@dimen/x15"
+        android:gravity="center"
+        android:text="编辑"
+        android:textColor="#191919"
+        android:background="@drawable/ra_white_btn"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/tv_image"
+        android:layout_width="@dimen/x104"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x218"
+        android:layout_marginTop="@dimen/x16"
+        android:text="图片"
+        android:gravity="center"
+        android:background="@drawable/ra_white_btn"
+        android:textColor="#ff5f22"
+        android:textSize="@dimen/x32"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <View
+        android:id="@+id/view_image"
+        android:layout_width="@dimen/x32"
+        android:layout_height="@dimen/x6"
+        android:layout_marginTop="@dimen/x4"
+        android:background="#ff5f22"
+        app:layout_constraintEnd_toEndOf="@+id/tv_image"
+        app:layout_constraintStart_toStartOf="@+id/tv_image"
+        app:layout_constraintTop_toBottomOf="@+id/tv_image" />
+
+    <TextView
+        android:id="@+id/tv_gif"
+        android:layout_width="@dimen/x104"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x108"
+        android:text="GIF"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center"
+        android:textColor="#262626"
+        android:textSize="@dimen/x32"
+        app:layout_constraintStart_toEndOf="@+id/tv_image"
+        app:layout_constraintTop_toTopOf="@+id/tv_image" />
+
+    <View
+        android:id="@+id/view_gif"
+        android:layout_width="@dimen/x32"
+        android:layout_height="@dimen/x6"
+        android:layout_marginTop="@dimen/x4"
+        android:background="#ff5f22"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/tv_gif"
+        app:layout_constraintStart_toStartOf="@+id/tv_gif"
+        app:layout_constraintTop_toBottomOf="@+id/tv_gif" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_assets"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/x26"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_image" />
 
 </android.support.constraint.ConstraintLayout>
