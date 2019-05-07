@@ -42,7 +42,7 @@ public class SettingActivity extends BaseActivity {
                 startActivity(new Intent(this,FeebackActivity.class));
                 break;
             case R.id.tv_update:
-                startActivity(new Intent(this,VersionUpdateActivity.class));
+                //startActivity(new Intent(this,VersionUpdateActivity.class));
                 break;
             case R.id.tv_about:
                 startActivity(new Intent(this,AboutActivity.class));
