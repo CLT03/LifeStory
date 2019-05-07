@@ -3,13 +3,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FAFAFA">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x88"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:text="关于生活故事"
+        android:textColor="#191919"
+        android:textSize="@dimen/x32"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/x88"
+        android:layout_height="0dp"
+        android:background="@drawable/ra_white_btn"
+        android:padding="@dimen/x32"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:srcCompat="@mipmap/icon_cancel_black" />
 
     <TextView
         android:id="@+id/textView40"
-        android:layout_width="82dp"
-        android:layout_height="58dp"
-        android:text="TextView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x110"
+        android:paddingLeft="@dimen/x40"
+        android:text="标题"
+        android:gravity="center_vertical"
+        android:textColor="#191919"
+        android:textSize="@dimen/x36"
+        android:textStyle="bold"
+        android:background="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/x40"
+        android:paddingTop="@dimen/x6"
+        android:paddingRight="@dimen/x40"
+        android:paddingBottom="@dimen/x48"
+        android:textSize="@dimen/x28"
+        android:textColor="#6a6a6a"
+        android:background="#ffffff"
+        android:text="文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView40" />
+
+
 </android.support.constraint.ConstraintLayout>

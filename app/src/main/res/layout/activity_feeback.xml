@@ -1,6 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafafa">
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x88"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:text="帮助与反馈"
+        android:textColor="#191919"
+        android:textSize="@dimen/x32"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/x88"
+        android:layout_height="0dp"
+        android:background="@drawable/ra_white_btn"
+        android:paddingLeft="@dimen/x34"
+        android:paddingTop="@dimen/x30"
+        android:paddingRight="@dimen/x36"
+        android:paddingBottom="@dimen/x26"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:srcCompat="@mipmap/icon_back_black" />
+
+    <TextView
+        android:id="@+id/textView44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginTop="@dimen/x20"
+        android:text="联系方式"
+        android:textColor="#a6a6a6"
+        android:textSize="@dimen/x28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView45"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x88"
+        android:layout_marginTop="@dimen/x20"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/x30"
+        android:paddingRight="@dimen/x106"
+        android:text="姓名"
+        android:textColor="#000000"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView44" />
+
+    <EditText
+        android:id="@+id/edt_name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/x188"
+        android:layout_marginRight="@dimen/x30"
+        android:background="#ffffff"
+        android:hint="选填，便于我们与您联系"
+        android:inputType="textPersonName"
+        android:textColor="#000000"
+        android:textColorHint="#a6a6a6"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@id/textView45"
+        app:layout_constraintEnd_toEndOf="@+id/textView45"
+        app:layout_constraintStart_toStartOf="@+id/textView45"
+        app:layout_constraintTop_toTopOf="@id/textView45" />
+
+    <View
+        android:id="@+id/view10"
+        android:layout_width="@dimen/x720"
+        android:layout_height="@dimen/x2"
+        android:background="#F2F2F2"
+        app:layout_constraintBottom_toBottomOf="@id/textView45"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView46"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x88"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/x30"
+        android:paddingRight="@dimen/x106"
+        android:text="联系电话"
+        android:textColor="#000000"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView45" />
+
+    <EditText
+        android:id="@+id/edt_phone"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/x188"
+        android:layout_marginRight="@dimen/x30"
+        android:background="#ffffff"
+        android:hint="选填，便于我们与您联系"
+        android:inputType="textPersonName"
+        android:textColor="#000000"
+        android:textColorHint="#a6a6a6"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@id/textView46"
+        app:layout_constraintEnd_toEndOf="@+id/textView46"
+        app:layout_constraintStart_toStartOf="@+id/textView46"
+        app:layout_constraintTop_toTopOf="@id/textView46" />
+
+    <View
+        android:id="@+id/view11"
+        android:layout_width="@dimen/x720"
+        android:layout_height="@dimen/x2"
+        android:background="#F2F2F2"
+        app:layout_constraintBottom_toBottomOf="@id/textView46"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView47"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginTop="@dimen/x20"
+        android:text="请描述具体问题"
+        android:textColor="#a6a6a6"
+        android:textSize="@dimen/x28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view11" />
+
+    <EditText
+        android:id="@+id/edt_content"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x240"
+        android:layout_marginTop="@dimen/x20"
+        android:background="#ffffff"
+        android:singleLine="false"
+        android:gravity="top"
+        android:hint="请填写10字以上的问题描述，以便我们提供更好的服务。"
+        android:padding="@dimen/x30"
+        android:textColor="#000000"
+        android:textColorHint="#a6a6a6"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView47" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="@dimen/x530"
+        android:layout_height="@dimen/x92"
+        android:layout_marginBottom="@dimen/x174"
+        android:background="@drawable/r23_back_btn"
+        android:text="提交"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/x32"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

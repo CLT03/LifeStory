@@ -28,6 +28,7 @@
         android:paddingLeft="@dimen/x34"
         android:paddingTop="@dimen/x30"
         android:paddingRight="@dimen/x36"
+        android:background="@drawable/ra_white_btn"
         android:paddingBottom="@dimen/x26"
         app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toTopOf="@+id/textView10"
@@ -200,7 +201,7 @@
         app:srcCompat="@mipmap/icon_data_creater" />
 
     <TextView
-        android:id="@+id/tv_had_publish2"
+        android:id="@+id/tv_today_earning"
         android:layout_width="@dimen/x136"
         android:layout_height="@dimen/x136"
         android:background="@drawable/ra_white_btn"
@@ -223,9 +224,9 @@
         android:text="今日收益"
         android:textColor="#939393"
         android:textSize="@dimen/x24"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_had_publish2"
-        app:layout_constraintEnd_toEndOf="@+id/tv_had_publish2"
-        app:layout_constraintStart_toStartOf="@+id/tv_had_publish2" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_today_earning"
+        app:layout_constraintEnd_toEndOf="@+id/tv_today_earning"
+        app:layout_constraintStart_toStartOf="@+id/tv_today_earning" />
 
     <TextView
         android:id="@+id/tv_had_publish3"
@@ -240,8 +241,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/tv_had_publish4"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_had_publish2"
-        app:layout_constraintTop_toTopOf="@+id/tv_had_publish2" />
+        app:layout_constraintStart_toEndOf="@+id/tv_today_earning"
+        app:layout_constraintTop_toTopOf="@+id/tv_today_earning" />
 
     <TextView
         android:id="@+id/textView14"
@@ -269,7 +270,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_had_publish3"
-        app:layout_constraintTop_toTopOf="@+id/tv_had_publish2" />
+        app:layout_constraintTop_toTopOf="@+id/tv_today_earning" />
 
     <TextView
         android:id="@+id/textView15"
@@ -297,7 +298,7 @@
         app:layout_constraintEnd_toStartOf="@+id/tv_had_publish6"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_had_publish2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_today_earning" />
 
     <TextView
         android:id="@+id/textView19"
@@ -325,7 +326,7 @@
         app:layout_constraintEnd_toStartOf="@+id/tv_had_publish7"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_had_publish5"
-        app:layout_constraintTop_toBottomOf="@+id/tv_had_publish2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_today_earning" />
 
     <TextView
         android:id="@+id/textView20"
@@ -353,7 +354,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_had_publish6"
-        app:layout_constraintTop_toBottomOf="@+id/tv_had_publish2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_today_earning" />
 
     <TextView
         android:id="@+id/textView21"
