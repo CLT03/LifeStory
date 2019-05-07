@@ -1,4 +1,4 @@
-package com.vivwe.personal.activity;
+package com.vivwe.author.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,7 +15,7 @@ import butterknife.OnClick;
  * date: 2019/4/26 17:57
  * remark: 申请为创作者
  */
-public class AuthorApplyActivity extends BaseActivity {
+public class ApplyActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

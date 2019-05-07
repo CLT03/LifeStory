@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.vivwe.author.activity.IncomeActivity;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.main.R;
 
@@ -16,7 +17,7 @@ import butterknife.OnClick;
  * date: 2019/4/26 17:57
  * remark: 创作者中心
  */
-public class AuthorCenterActivity extends BaseActivity {
+public class CenterActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class AuthorCenterActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_today_earning:
-                startActivity(new Intent(this,AuthorIncomeActivity.class));
+                startActivity(new Intent(this,IncomeActivity.class));
                 break;
         }
     }
