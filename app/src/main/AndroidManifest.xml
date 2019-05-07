@@ -26,45 +26,20 @@
         <activity android:name=".activity.LoginActivity" android:theme="@style/AppTheme" />
         <activity android:name=".activity.RegisterActivity" android:theme="@style/AppTheme" />
         <activity android:name=".activity.MainActivity" android:theme="@style/AppTheme" />
-        <activity android:name="com.vivwe.personal.activity.AuthorApplyActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name="com.vivwe.personal.activity.AuthorCenterActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name="com.vivwe.personal.activity.AuthorIncomeActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name="com.vivwe.personal.activity.AuthorTransactionRecordActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name="com.vivwe.personal.activity.MyAttentionActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name="com.vivwe.personal.activity.MyCollectedActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name="com.vivwe.personal.activity.MyDraftActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name="com.vivwe.personal.activity.MyPurchasedActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name="com.vivwe.personal.activity.MyFansActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name="com.vivwe.personal.activity.UpdateCityActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name="com.vivwe.personal.activity.MyAssetsActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name="com.vivwe.personal.activity.UpdateNicknameActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name="com.vivwe.personal.activity.UpdateRemarkActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name="com.vivwe.personal.activity.UpdateUserInfoActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name=".activity.SettingActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name=".activity.AboutActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name=".activity.FeebackActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name=".activity.VersionUpdateActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name=".activity.MessageActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
-        <activity android:name=".activity.ResetPasswordActivity"
-            android:theme="@style/AppTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.author.activity.ApplyActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.author.activity.CenterActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.author.activity.IncomeActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.author.activity.TransactionRecordActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.personal.activity.MyAttentionActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.personal.activity.MyCollectedActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.personal.activity.MyDraftActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.personal.activity.MyPurchasedActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.personal.activity.MyFansActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.personal.activity.UpdateCityActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.personal.activity.UpdateNicknameActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.personal.activity.UpdateRemarkActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.personal.activity.UpdateUserInfoActivity" android:theme="@style/AppTheme" />
+
+
     </application>
 </manifest>
