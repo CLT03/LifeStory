@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.main.R;
-import com.vivwe.personal.activity.AuthorApplyActivity;
+import com.vivwe.author.activity.ApplyActivity;
 import com.vivwe.personal.activity.MyAttentionActivity;
 import com.vivwe.personal.activity.MyCollectedActivity;
 import com.vivwe.personal.activity.MyDraftActivity;
@@ -90,7 +90,7 @@ public class UcenterFragment extends BaseFragment {
             case R.id.tv_recommend:
                 break;
             case R.id.tv_author_ucenter:
-                startActivity(new Intent(getActivity(),AuthorApplyActivity.class));
+                startActivity(new Intent(getActivity(),ApplyActivity.class));
                 break;
         }
     }
