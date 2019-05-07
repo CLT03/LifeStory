@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.vivwe.author.activity.TransactionRecordActivity;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.main.R;
 
@@ -32,7 +33,7 @@ public class MyPurchasedActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_record:
-                startActivity(new Intent(this,AuthorTransactionRecordActivity.class));
+                startActivity(new Intent(this,TransactionRecordActivity.class));
                 break;
         }
     }
