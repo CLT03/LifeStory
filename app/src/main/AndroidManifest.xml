@@ -26,10 +26,10 @@
         <activity android:name=".activity.LoginActivity" android:theme="@style/AppTheme" />
         <activity android:name=".activity.RegisterActivity" android:theme="@style/AppTheme" />
         <activity android:name=".activity.MainActivity" android:theme="@style/AppTheme" />
-        <activity android:name="com.vivwe.personal.activity.AuthorApplyActivity" android:theme="@style/AppTheme" />
-        <activity android:name="com.vivwe.personal.activity.AuthorCenterActivity" android:theme="@style/AppTheme" />
-        <activity android:name="com.vivwe.personal.activity.AuthorIncomeActivity" android:theme="@style/AppTheme" />
-        <activity android:name="com.vivwe.personal.activity.AuthorTransactionRecordActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.author.activity.ApplyActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.author.activity.CenterActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.author.activity.IncomeActivity" android:theme="@style/AppTheme" />
+        <activity android:name="com.vivwe.author.activity.TransactionRecordActivity" android:theme="@style/AppTheme" />
         <activity android:name="com.vivwe.personal.activity.MyAttentionActivity" android:theme="@style/AppTheme" />
         <activity android:name="com.vivwe.personal.activity.MyCollectedActivity" android:theme="@style/AppTheme" />
         <activity android:name="com.vivwe.personal.activity.MyDraftActivity" android:theme="@style/AppTheme" />
