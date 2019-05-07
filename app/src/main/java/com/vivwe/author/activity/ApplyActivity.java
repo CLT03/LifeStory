@@ -20,7 +20,7 @@ public class ApplyActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personal_author_apply);
+        setContentView(R.layout.activity_author_apply);
         ButterKnife.bind(this);
     }
 
