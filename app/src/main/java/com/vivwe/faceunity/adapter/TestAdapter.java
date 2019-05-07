@@ -41,7 +41,8 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 if (mScenesSelectListener != null) {
-                    mScenesSelectListener.onScenesSelectListener(scenes == AvatarConstant.SCENES_ART_ANIMATION, scenes[position]);
+                    mScenesSelectListener.onScenesSelectListener(scenes == AvatarConstant.SCENES_ART_ANIMATION_MALE ||
+                            scenes == AvatarConstant.SCENES_ART_ANIMATION_FEMALE, scenes[position]);
                 }
             }
         });

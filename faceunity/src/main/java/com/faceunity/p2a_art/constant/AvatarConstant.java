@@ -14,29 +14,37 @@ import java.util.List;
  */
 public abstract class AvatarConstant {
 
-    public static final Scenes[] SCENES_ART_SINGLE = {
-            new Scenes(R.drawable.expression_female_1, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_pose_shuangshoubixin.bundle")}),
-            new Scenes(R.drawable.expression_female_2, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_pose_ok.bundle")}),
-            new Scenes(R.drawable.expression_male_1, new BundleRes[]{new BundleRes(AvatarP2A.gender_boy, "male_pose_shuangshoubixin.bundle")}),
-            new Scenes(R.drawable.expression_male_2, new BundleRes[]{new BundleRes(AvatarP2A.gender_boy, "male_pose_ok.bundle")}),
+    public static final Scenes[] SCENES_ART_SINGLE_MALE = {
+        new Scenes(R.drawable.expression_male_1, new BundleRes[]{new BundleRes(AvatarP2A.gender_boy, "male_pose_shuangshoubixin.bundle")}),
+        new Scenes(R.drawable.expression_male_2, new BundleRes[]{new BundleRes(AvatarP2A.gender_boy, "male_pose_ok.bundle")})
     };
+
+    public static final Scenes[] SCENES_ART_SINGLE_FEMALE = {
+        new Scenes(R.drawable.expression_female_1, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_pose_shuangshoubixin.bundle")}),
+        new Scenes(R.drawable.expression_female_2, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_pose_ok.bundle")})
+    };
+
     public static final Scenes[] SCENES_ART_MULTIPLE = {
             new Scenes(R.drawable.expression_multiple_1, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "pose_nanbaonv_female.bundle"), new BundleRes(AvatarP2A.gender_boy, "pose_nanbaonv_male.bundle")}),
             new Scenes(R.drawable.expression_multiple_2, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "pose_nvlounan_female.bundle"), new BundleRes(AvatarP2A.gender_boy, "pose_nvlounan_male.bundle")}),
     };
-    public static final Scenes[] SCENES_ART_ANIMATION = {
-            new Scenes(R.drawable.expression_anim_female_1, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_danshoubixin.bundle")}),
-            new Scenes(R.drawable.expression_anim_female_2, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_guzhang.bundle")}),
-            new Scenes(R.drawable.expression_anim_female_3, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_hi.bundle")}),
-            new Scenes(R.drawable.expression_anim_female_4, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_ok.bundle")}),
-            new Scenes(R.drawable.expression_anim_female_5, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_rock.bundle")}),
-            new Scenes(R.drawable.expression_anim_female_6, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_shuangshoubixin.bundle")}),
+
+    public static final Scenes[] SCENES_ART_ANIMATION_MALE = {
             new Scenes(R.drawable.expression_anim_male_1, new BundleRes[]{new BundleRes(AvatarP2A.gender_boy, "male_danshoubixin.bundle")}),
             new Scenes(R.drawable.expression_anim_male_2, new BundleRes[]{new BundleRes(AvatarP2A.gender_boy, "male_guzhang.bundle")}),
             new Scenes(R.drawable.expression_anim_male_3, new BundleRes[]{new BundleRes(AvatarP2A.gender_boy, "male_hi.bundle")}),
             new Scenes(R.drawable.expression_anim_male_4, new BundleRes[]{new BundleRes(AvatarP2A.gender_boy, "male_ok.bundle")}),
             new Scenes(R.drawable.expression_anim_male_5, new BundleRes[]{new BundleRes(AvatarP2A.gender_boy, "male_rock.bundle")}),
-            new Scenes(R.drawable.expression_anim_male_6, new BundleRes[]{new BundleRes(AvatarP2A.gender_boy, "male_shuangshoubixin.bundle")}),
+            new Scenes(R.drawable.expression_anim_male_6, new BundleRes[]{new BundleRes(AvatarP2A.gender_boy, "male_shuangshoubixin.bundle")})
+    };
+
+    public static final Scenes[] SCENES_ART_ANIMATION_FEMALE = {
+            new Scenes(R.drawable.expression_anim_female_1, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_danshoubixin.bundle")}),
+            new Scenes(R.drawable.expression_anim_female_2, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_guzhang.bundle")}),
+            new Scenes(R.drawable.expression_anim_female_3, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_hi.bundle")}),
+            new Scenes(R.drawable.expression_anim_female_4, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_ok.bundle")}),
+            new Scenes(R.drawable.expression_anim_female_5, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_rock.bundle")}),
+            new Scenes(R.drawable.expression_anim_female_6, new BundleRes[]{new BundleRes(AvatarP2A.gender_girl, "female_shuangshoubixin.bundle")})
     };
 
     private static final BundleRes[] HAIR_ART_BOY = {
