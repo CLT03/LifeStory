@@ -34,6 +34,11 @@ public class SelectSexController {
         ButterKnife.bind(this, v);
     }
 
+    @OnClick(R.id.iv_cancel)
+    public void onBack(){
+        listener.onFinished();
+    }
+
     @OnClick({R.id.iv_cancel, R.id.btn_boy, R.id.btn_take_photo})
     public void onClick(View view) {
         switch (view.getId()) {

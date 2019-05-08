@@ -133,26 +133,17 @@ public class TakePhotoController  {
         });
     }
 
-    public void onBackPressed(){
-        // 设置形象展示源
-        Log.v("---","mFUP2ARenderer.setFUCore(mP2ACore)");
-        mNamaCore.release();
-    }
-
     /**
      * 资源释放
      */
     public void onDestroy(){
-
+        mNamaCore.release();
         LightSensorUtil.unregisterLightSensor(mSensorManager, mSensorEventListener);
     }
 
     @OnClick({R.id.btn_take_photo})
     public void onclick(View view){
         switch (view.getId()){
-            case R.id.iv_cancel:
-
-                break;
             case R.id.btn_take_photo:
                 if (isTracking > 0) {
                     mCameraRenderer.takePic(new CameraRenderer.TakePhotoCallBack() {
@@ -169,5 +160,10 @@ public class TakePhotoController  {
                 break;
         }
 
+    }
+
+    @OnClick(R.id.ibtn_cancel)
+    public void onBack(){
+        listener.onFinished();
     }
 }

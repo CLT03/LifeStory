@@ -15,11 +15,11 @@ import static com.vivwe.base.app.MyApplication.getContext;
  * date: 2019/5/6 09:20
  * remark:
  */
-public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
+public class ScenesAdapter extends RecyclerView.Adapter<ScenesAdapter.ViewHolder> {
 
     Scenes[] scenes;
 
-    public TestAdapter(Scenes[] scenes){
+    public ScenesAdapter(Scenes[] scenes){
         this.scenes = scenes;
     }
 
@@ -28,9 +28,17 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
         this.notifyDataSetChanged();
     }
 
+    public Scenes getScene(int position) {
+        return scenes[position];
+    }
+
+    public void setScenes(Scenes[] scenes) {
+        this.scenes = scenes;
+    }
+
     @NonNull
     @Override
-    public TestAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public ScenesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         return new ViewHolder(new ImageView(getContext()));
     }
 

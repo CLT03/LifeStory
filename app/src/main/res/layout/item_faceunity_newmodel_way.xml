@@ -29,7 +29,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_start"
-        app:srcCompat="@mipmap/icon_cancel_black" />
+        android:src="@mipmap/icon_cancel_black" />
 
     <Button
         android:id="@+id/btn_takephoto"
