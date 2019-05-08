@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:mActivity=".MainActivity">
 
-
-    <ImageView
-        android:id="@+id/iv_cancel"
-        android:layout_width="@dimen/x168"
-        android:layout_height="@dimen/x168"
-        android:background="@drawable/ra_transparent_btn"
-        android:padding="@dimen/x66"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/icon_cancel_black" />
-
     <ImageView
         android:id="@+id/take_photo_mask"
         android:layout_width="match_parent"
@@ -26,6 +15,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ibtn_cancel"
+        android:layout_width="@dimen/x98"
+        android:layout_height="@dimen/x98"
+        android:background="@drawable/r60_white_btn"
+        android:padding="@dimen/x32"
+        android:layout_margin="@dimen/x32"
+        android:src="@mipmap/icon_cancel_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/tv_tip"

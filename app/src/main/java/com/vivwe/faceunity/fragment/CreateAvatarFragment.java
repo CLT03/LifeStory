@@ -96,14 +96,14 @@ public class CreateAvatarFragment extends BaseFragment implements OnCreateAvatar
                 String filePath = FileUtil.getFileAbsolutePath(this.getContext(), uri);
                 File file = new File(filePath);
 //                if (!Constant.is_debug || !createAvatarDebug(file)) {
-                    if (file.exists()) {
-                        Bitmap bitmap = BitmapUtil.loadBitmap(filePath, 720);
-                        String dir = BitmapUtil.saveBitmap(bitmap, null);
-                        onFileResult(bitmap, dir);
-                        return;
-                    } else {
-                        ToastUtil.showCenterToast(this.getContext(), "所选图片文件不存在。");
-                    }
+                if (file.exists()) {
+                    Bitmap bitmap = BitmapUtil.loadBitmap(filePath, 720);
+                    String dir = BitmapUtil.saveBitmap(bitmap, null);
+                    onFileResult(bitmap, dir);
+                    return;
+                } else {
+                    ToastUtil.showCenterToast(this.getContext(), "所选图片文件不存在。");
+                }
 //                }
             }
         } else if(requestCode == 2){ // 图库选择照片结果
@@ -129,11 +129,11 @@ public class CreateAvatarFragment extends BaseFragment implements OnCreateAvatar
 //            intent.setClass(this, ImageLoadActivity.class);
 //            this.startActivityForResult(intent, 2);
 //        } else { // 拍照作为化身
-            if(readyController == null){
-                readyController = new GetPhotoWayController(this.getContext(),this);
-            }
-            // 选择获取图片方式
-            readyController.show(contentRl);
+        if(readyController == null){
+            readyController = new GetPhotoWayController(this.getContext(),this);
+        }
+        // 选择获取图片方式
+        readyController.show(contentRl);
 //        }
     }
 
@@ -200,18 +200,15 @@ public class CreateAvatarFragment extends BaseFragment implements OnCreateAvatar
 
     @Override
     public void onBackPressed() {
-        if(takePhotoController != null){
-            mFUP2ARenderer.setFUCore(mP2ACore);
-            takePhotoController.onBackPressed();
-
-            mCameraRenderer.updateMTX();
-            mFUP2ARenderer.queueNextEvent(new Runnable() {
-                @Override
-                public void run() {
-                    CreateAvatarFragment.super.onBackPressed();
-                }
-            });
-        }
+        // 重新设置人偶输入对象
+        mFUP2ARenderer.setFUCore(mP2ACore);
+        mCameraRenderer.updateMTX();
+        mFUP2ARenderer.queueNextEvent(new Runnable() {
+            @Override
+            public void run() {
+                CreateAvatarFragment.super.onBackPressed();
+            }
+        });
     }
 
     @Override

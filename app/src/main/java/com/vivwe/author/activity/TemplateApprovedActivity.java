@@ -11,11 +11,11 @@ import com.vivwe.main.R;
  * date: 2019/4/26 17:57
  * remark: 未批准模板
  */
-public class TemplateNotApprovedActivity extends BaseActivity {
+public class TemplateApprovedActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_author_template_not_approved);
+        setContentView(R.layout.activity_author_template_approved);
     }
 }

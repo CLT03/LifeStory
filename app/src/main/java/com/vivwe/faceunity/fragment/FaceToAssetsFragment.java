@@ -22,7 +22,8 @@ import com.faceunity.p2a_art.utils.DateUtil;
 import com.faceunity.p2a_art.utils.FileUtil;
 import com.faceunity.p2a_helper.gif.GifHardEncoderWrapper;
 import com.vivwe.base.activity.BaseFragment;
-import com.vivwe.faceunity.adapter.TestAdapter;
+import com.vivwe.base.ui.alert.Toast;
+import com.vivwe.faceunity.adapter.ScenesAdapter;
 import com.vivwe.main.R;
 
 import java.io.File;
@@ -51,7 +52,7 @@ public class FaceToAssetsFragment extends BaseFragment {
     TextView gifToAssetsBtn;
 
     // adapter
-    TestAdapter testAdapter;
+    ScenesAdapter scenesAdapter;
     private AvatarP2A avatarP2A;
     private P2AMultipleCore mP2AMultipleCore;
     private GifHardEncoderWrapper mGifHardEncoder;
@@ -87,55 +88,58 @@ public class FaceToAssetsFragment extends BaseFragment {
         avatarP2A = mainActivity.getShowAvatarP2A();
 
         // 初始化表情控件
-        testAdapter = new TestAdapter(avatarP2A.getGender() == 0 ? AvatarConstant.SCENES_ART_SINGLE_MALE : AvatarConstant.SCENES_ART_SINGLE_FEMALE);
+        scenesAdapter = new ScenesAdapter(avatarP2A.getGender() == 0 ? AvatarConstant.SCENES_ART_SINGLE_MALE : AvatarConstant.SCENES_ART_SINGLE_FEMALE);
 
         faceRlv.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        faceRlv.setAdapter(testAdapter);
+        faceRlv.setAdapter(scenesAdapter);
         ((SimpleItemAnimator) faceRlv.getItemAnimator()).setSupportsChangeAnimations(false);
 
         // listener
-        testAdapter.setScenesSelectListener(new TestAdapter.ScenesSelectListener() {
+        mP2AMultipleCore = new P2AMultipleCore(mainActivity, mFUP2ARenderer) {
+            @Override
+            public int onDrawFrame(byte[] img, int tex, int w, int h) {
+                int fuTex = super.onDrawFrame(img, tex, w, h);
+                AvatarHandle avatarHandle = mAvatarHandleSparse.get(0);
+                if (avatarHandle != null && mGifHardEncoder != null) {
+                    int nowFrameId = avatarHandle.getNowFrameId();
+                    if (frameId > nowFrameId) {
+                        releaseGifEncoder();
+                        frameId = NONE_FRAME_ID;
+                    } else {
+                        mGifHardEncoder.encodeFrame(fuTex);
+                        frameId = nowFrameId;
+                    }
+                }
+                return fuTex;
+            }
+        };
+
+        scenesAdapter.setScenesSelectListener(new ScenesAdapter.ScenesSelectListener() {
             @Override
             public void onScenesSelectListener(boolean isAnim, Scenes scenes) {
-                isAnimationScenes = isAnim;
-                mScenes = scenes;
-                mP2AMultipleCore = new P2AMultipleCore(mainActivity, mFUP2ARenderer) {
-
-                    @Override
-                    public int onDrawFrame(byte[] img, int tex, int w, int h) {
-                        int fuTex = super.onDrawFrame(img, tex, w, h);
-                        AvatarHandle avatarHandle = mAvatarHandleSparse.get(0);
-                        if (avatarHandle != null && mGifHardEncoder != null) {
-                            int nowFrameId = avatarHandle.getNowFrameId();
-                            if (frameId > nowFrameId) {
-                                releaseGifEncoder();
-                                frameId = NONE_FRAME_ID;
-                            } else {
-                                mGifHardEncoder.encodeFrame(fuTex);
-                                frameId = nowFrameId;
-                            }
-                        }
-                        return fuTex;
-                    }
-                };
-                mP2ACore.unBind();
-                mFUP2ARenderer.setFUCore(mP2AMultipleCore);
-                mAvatarHandleSparse = mP2AMultipleCore.createAvatarMultiple(mScenes);
-                isLoadComplete = 0;
-
-                showAvatar();
+                showAvatar(isAnim, scenes);
             }
         });
 
         // 显示缩小
         mainActivity.setGLSurfaceViewSize(true);
+        // 展示第一个表情
+        showAvatar(false, scenesAdapter.getScene(0));
     }
 
     /**
      * 展示形象
      * 暂时只是设计为单角色，因为mScenes.bundles[0]为第一个角色，所以单角色情况下这样获取。
      */
-    private void showAvatar(){
+    private void showAvatar(boolean isAnim, Scenes scenes){
+
+        isAnimationScenes = isAnim;
+        mScenes = scenes;
+        mP2ACore.unBind();
+        mFUP2ARenderer.setFUCore(mP2AMultipleCore);
+        mAvatarHandleSparse = mP2AMultipleCore.createAvatarMultiple(mScenes);
+        isLoadComplete = 0;
+
         if (avatarP2A.getGender() == mScenes.bundles[0].gender) {
             avatarP2A.setExpressionFile(mScenes.bundles[0].path);
             final AvatarHandle avatarHandle = mAvatarHandleSparse.get(0);
@@ -215,12 +219,13 @@ public class FaceToAssetsFragment extends BaseFragment {
             gifToAssetsBtn.setTextColor(index == 2 ? 0xff191919 : 0xFFABABAB);
 
             // 切换选项卡
-            testAdapter.setDatas(index == 1 ? (avatarP2A.getGender() == 0 ? AvatarConstant.SCENES_ART_SINGLE_MALE : AvatarConstant.SCENES_ART_SINGLE_FEMALE) :
+            scenesAdapter.setDatas(index == 1 ? (avatarP2A.getGender() == 0 ? AvatarConstant.SCENES_ART_SINGLE_MALE : AvatarConstant.SCENES_ART_SINGLE_FEMALE) :
                     (avatarP2A.getGender() == 0 ? AvatarConstant.SCENES_ART_ANIMATION_MALE :AvatarConstant.SCENES_ART_ANIMATION_FEMALE));
 
         }
     }
 
+    @OnClick(R.id.btn_back)
     @Override
     public void onBackPressed() {
 
@@ -236,5 +241,12 @@ public class FaceToAssetsFragment extends BaseFragment {
         FileUtil.deleteDirAndFile(new File(Constant.TmpPath));
 
         super.onBackPressed();
+    }
+
+    @OnClick(R.id.btn_save)
+    public void save(){
+        // 保存为本地资源
+        Toast.show(this.getContext(), "已保存为本地资源", Toast.LENGTH_LONG);
+//        onBackPressed();
     }
 }
