@@ -33,6 +33,7 @@ public class MyPurchasedActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_record:
+                //
                 startActivity(new Intent(this,TransactionRecordActivity.class));
                 break;
         }
