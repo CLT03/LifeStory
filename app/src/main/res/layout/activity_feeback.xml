@@ -15,7 +15,7 @@
         android:text="帮助与反馈"
         android:textSize="@dimen/x32"
         android:textStyle="bold"
-
+        app:startColor="#FF52D3FF"
         app:endColor="#FFB35CFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

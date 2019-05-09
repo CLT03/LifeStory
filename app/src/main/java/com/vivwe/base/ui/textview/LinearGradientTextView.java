@@ -8,11 +8,8 @@ import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Shader;
-import android.support.annotation.ColorInt;
-import android.support.annotation.IntDef;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-
 import com.vivwe.main.R;
 
 /**
@@ -24,10 +21,8 @@ public class LinearGradientTextView extends AppCompatTextView {
 
     private LinearGradient mLinearGradient;
     private Paint mPaint;
-    private int mViewWidth = 0;//文字的宽度
-    private int mViewHeight = 0;//文字的高度
+    private int mViewWidth = 0;
     private Rect mTextBound = new Rect();
-    private boolean isVertrial;//默认是横向
 
     int startColor = 0;
     int endColor = 0;
@@ -66,20 +61,43 @@ public class LinearGradientTextView extends AppCompatTextView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (isVertrial) {
-            mViewHeight = getMeasuredHeight();
-        } else {
-            mViewWidth = getMeasuredWidth();
-        }
+//        super.onDraw(canvas);
+
+        int start = startColor == endColor ? textColor : startColor;
+        int end = startColor == endColor ? textColor : endColor;
+
+        mViewWidth = getMeasuredWidth();
         mPaint = getPaint();
         String mTipText = getText().toString();
         mPaint.getTextBounds(mTipText, 0, mTipText.length(), mTextBound);
-        //前面4个参数分别表示渐变的开始x轴,开始y轴,结束的x轴,结束的y轴,mcolorList表示渐变的颜色数组
-        mLinearGradient = new LinearGradient(0, 0, mViewWidth, mViewHeight, new int[]{Color.RED,Color.GREEN}, null, Shader.TileMode.CLAMP);
+        mLinearGradient = new LinearGradient(0, 0, mViewWidth, 0,
+                new int[]{start, end},
+                null, Shader.TileMode.REPEAT);
         mPaint.setShader(mLinearGradient);
-        //画出文字
         canvas.drawText(mTipText, getMeasuredWidth() / 2 - mTextBound.width() / 2, getMeasuredHeight() / 2 + mTextBound.height() / 2, mPaint);
+    }
+
+
+    /**
+     * 设置渐变色
+     * @param startColor 开始颜色
+     * @param endColor 结束颜色
+     */
+    public void setTextColor(int startColor, int endColor) {
+        this.startColor = startColor;
+        this.endColor = endColor;
+        invalidate();
+    }
+
+    /**
+     * 设置文紫颜色
+     * @param textColor 颜色
+     */
+    public void setTextColor(int textColor) {
+        this.startColor = textColor;
+        this.endColor = textColor;
+        this.textColor = textColor;
+        invalidate();
     }
 
 }

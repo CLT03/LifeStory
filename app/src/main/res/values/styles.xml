@@ -1,25 +1,37 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppImmersiveTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!--<item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>-->
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <!--Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="WellcomeTheme" parent="AppTheme">
+    <style name="AppWhiteTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!--标题栏的颜色-->
+        <item name="colorPrimary">@color/colorWhite</item>
+        <!--状态栏的颜色-->
+        <item name="colorPrimaryDark">@color/colorWhite</item>
+        <!--默认的光标、选中的RadioButton颜色-->
+        <item name="colorAccent">@color/colorWhite</item>
+        <!-- 避免控件会顶到状态栏上 -->
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+
+    <style name="WelcomeTheme" parent="AppImmersiveTheme">
         <item name="android:windowBackground">@mipmap/test_bg</item>
     </style>
-    ViewsDialog
-    <style name="AppTheme1" parent="@android:style/Theme.NoTitleBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorWhite</item>
-        <item name="colorPrimaryDark">@color/colorWhite</item>
-        <item name="colorAccent">@color/colorWhite</item>
-    </style>
 
-    <style name="ViewsDialog" parent="AppTheme">
+
+    <style name="ViewsDialog" parent="AppImmersiveTheme">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@color/transparent</item>
