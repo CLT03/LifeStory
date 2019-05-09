@@ -52,7 +52,7 @@ public class CreateAvatarFragment extends BaseFragment implements OnCreateAvatar
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_faceunity_create, null);
+        View view = inflater.inflate(R.layout.fragment_faceunity_create, null);
         ButterKnife.bind(this, view);
         return view;
     }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/view14"
+        android:layout_width="@dimen/x580"
+        android:layout_height="@dimen/x460"
+        android:background="@drawable/r30_white_alert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="@dimen/x80"
+        android:layout_height="@dimen/x98"
+        android:layout_marginEnd="@dimen/x22"
+        android:layout_marginBottom="@dimen/x386"
+        android:background="@drawable/ra_transparent_btn"
+        android:src="@mipmap/icon_back_alert"
+        app:layout_constraintBottom_toBottomOf="@+id/view14"
+        app:layout_constraintEnd_toEndOf="@+id/view14" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x44"
+        android:layout_marginTop="@dimen/x108"
+        android:text="TextView"
+        android:textColor="#191919"
+        android:textSize="@dimen/x34"
+        app:layout_constraintEnd_toEndOf="@+id/view14"
+        app:layout_constraintStart_toStartOf="@+id/view14"
+        app:layout_constraintTop_toTopOf="@+id/view14"
+        tools:text="发现新版本 V 1.0.0" />
+
+    <TextView
+        android:id="@+id/textView50"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x44"
+        android:layout_marginTop="@dimen/x16"
+        android:text="TextView"
+        android:textColor="#191919"
+        android:textSize="@dimen/x34"
+        app:layout_constraintEnd_toEndOf="@+id/view14"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/view14"
+        app:layout_constraintTop_toBottomOf="@+id/textView49"
+        tools:text="是否立即更新？" />
+
+    <TextView
+        android:id="@+id/textView51"
+        android:layout_width="@dimen/x200"
+        android:layout_height="@dimen/x72"
+        android:layout_marginTop="@dimen/x48"
+        android:background="@drawable/r60_main_btn"
+        android:gravity="center"
+        android:text="更新"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/x30"
+        app:layout_constraintEnd_toEndOf="@+id/view14"
+        app:layout_constraintStart_toStartOf="@+id/view14"
+        app:layout_constraintTop_toBottomOf="@+id/textView50" />
+
+
+    <TextView
+        android:id="@+id/textView52"
+        android:layout_width="@dimen/x200"
+        android:layout_height="@dimen/x72"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="#191919"
+        android:textSize="@dimen/x30"
+        app:layout_constraintEnd_toEndOf="@+id/view14"
+        app:layout_constraintStart_toStartOf="@+id/view14"
+        app:layout_constraintTop_toBottomOf="@+id/textView51" />
+</android.support.constraint.ConstraintLayout>

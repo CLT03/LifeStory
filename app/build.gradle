@@ -57,5 +57,7 @@ dependencies {
 
 //    implementation project(':alinksdk')
     implementation project(':faceunity')
+    implementation 'org.jetbrains:annotations-java5:15.0'
+    implementation 'org.jetbrains:annotations-java5:15.0'
 
 }

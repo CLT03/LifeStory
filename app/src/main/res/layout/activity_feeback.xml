@@ -6,19 +6,21 @@
     android:layout_height="match_parent"
     android:background="#fafafa">
 
-    <TextView
+    <com.vivwe.base.ui.textview.LinearGradientTextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
-        android:layout_height="@dimen/x88"
+        android:layout_height="47dp"
         android:background="#ffffff"
         android:gravity="center"
         android:text="帮助与反馈"
-        android:textColor="#191919"
         android:textSize="@dimen/x32"
         android:textStyle="bold"
+
+        app:endColor="#FFB35CFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+         />
 
     <ImageView
         android:id="@+id/iv_back"
@@ -145,10 +147,10 @@
         android:layout_height="@dimen/x240"
         android:layout_marginTop="@dimen/x20"
         android:background="#ffffff"
-        android:singleLine="false"
         android:gravity="top"
         android:hint="请填写10字以上的问题描述，以便我们提供更好的服务。"
         android:padding="@dimen/x30"
+        android:singleLine="false"
         android:textColor="#000000"
         android:textColorHint="#a6a6a6"
         android:textSize="@dimen/x28"

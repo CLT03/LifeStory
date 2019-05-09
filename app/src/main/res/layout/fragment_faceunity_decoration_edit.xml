@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <View
+        android:id="@+id/view15"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x98"
+        android:background="#FFFFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="@dimen/x140"
+        android:layout_height="@dimen/x98"
+        android:background="@drawable/ra_transparent_btn"
+        android:padding="@dimen/x28"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/icon_back_black"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView53"
+        android:layout_width="@dimen/x126"
+        android:layout_height="@dimen/x60"
+        android:layout_marginStart="@dimen/x200"
+        android:background="@drawable/r60_main_btn"
+        android:gravity="center"
+        android:text="装扮"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/x32"
+        app:layout_constraintBottom_toBottomOf="@+id/view15"
+        app:layout_constraintStart_toStartOf="@+id/view15"
+        app:layout_constraintTop_toTopOf="@+id/view15" />
+
+    <TextView
+        android:id="@+id/textView54"
+        android:layout_width="@dimen/x126"
+        android:layout_height="@dimen/x60"
+        android:gravity="center"
+        android:text="装扮"
+        android:textColor="#404040"
+        android:textSize="@dimen/x32"
+        app:layout_constraintBottom_toBottomOf="@+id/view15"
+        app:layout_constraintStart_toEndOf="@+id/textView53"
+        app:layout_constraintTop_toTopOf="@+id/view15"
+        app:layout_constraintVertical_bias="0.526" />
+
+    <TextView
+        android:id="@+id/textView55"
+        android:layout_width="@dimen/x158"
+        android:layout_height="@dimen/x98"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center"
+        android:text="保存形象"
+        android:textColor="#808080"
+        app:layout_constraintBottom_toBottomOf="@+id/view15"
+        app:layout_constraintEnd_toEndOf="@+id/view15"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

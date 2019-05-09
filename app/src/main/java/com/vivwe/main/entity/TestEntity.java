@@ -6,4 +6,5 @@ package com.vivwe.main.entity;
  * remark:
  */
 public class TestEntity {
+
 }
