@@ -12,7 +12,7 @@
         android:layout_height="@dimen/x88"
         android:background="#ffffff"
         android:gravity="center"
-        android:text="今日收益"
+        android:text="月收益"
         android:textColor="#191919"
         android:textSize="@dimen/x32"
         android:textStyle="bold"
@@ -35,9 +35,9 @@
         app:srcCompat="@mipmap/icon_back_black" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_purchased"
-        android:layout_width="411dp"
-        android:layout_height="635dp"
+        android:id="@+id/recycler_view_income"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -2,18 +2,21 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:background="#ffffff"
+    android:layout_height="wrap_content">
 
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="@dimen/x182"
+        android:layout_width="@dimen/x186"
         android:layout_height="@dimen/x102"
+        android:paddingRight="@dimen/x4"
         android:scaleType="fitXY"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView31"
@@ -31,11 +34,14 @@
         android:id="@+id/textView39"
         android:layout_width="0dp"
         android:layout_height="@dimen/x48"
-        android:text="视频标题"
         android:background="#ffffff"
-        android:textSize="@dimen/x20"
-        android:textColor="#3a3a3a"
         android:gravity="center_vertical"
+        android:paddingEnd="@dimen/x4"
+        android:text="视频标题视频标题视频标题视频标题视频标题"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textColor="#3a3a3a"
+        android:textSize="@dimen/x20"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
