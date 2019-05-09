@@ -3,8 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/x108"
+    android:layout_height="@dimen/x132"
     android:background="#fffdff">
 
+
+    <ImageView
+        android:id="@+id/iv_choose"
+        android:layout_width="@dimen/x40"
+        android:layout_height="@dimen/x40"
+        android:layout_marginLeft="@dimen/x20"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <ImageView
+        android:id="@+id/iv_cover"
+        android:layout_width="@dimen/x192"
+        android:layout_height="@dimen/x108"
+        android:layout_marginLeft="@dimen/x12"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toEndOf="@+id/iv_choose"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginLeft="@dimen/x20"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x16"
+        android:text="开启好心情"
+        android:textColor="#FE7E00"
+        android:textSize="@dimen/x28"
+        app:layout_constraintStart_toEndOf="@+id/iv_cover"
+        app:layout_constraintTop_toTopOf="@+id/iv_cover" />
+
+    <TextView
+        android:id="@+id/tv_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="观看至81%"
+        android:textColor="#979797"
+        android:textSize="@dimen/x28"
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
 </android.support.constraint.ConstraintLayout>

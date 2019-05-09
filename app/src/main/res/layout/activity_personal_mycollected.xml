@@ -97,13 +97,67 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_video" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_purchased"
+        android:id="@+id/recycler_view_purchased_demo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/x26"
+        android:paddingLeft="@dimen/x32"
+        android:paddingTop="@dimen/x26"
+        android:paddingRight="@dimen/x6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_demo" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_purchased_video"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/x28"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_demo" />
+
+    <TextView
+        android:id="@+id/tv_all"
+        android:layout_width="@dimen/x375"
+        android:layout_height="@dimen/x128"
+        android:background="@drawable/ra_gray_btn"
+        android:gravity="center"
+        android:text="全选"
+        android:textColor="#3F3F3F"
+        android:textSize="@dimen/x32"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_delete"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x128"
+        android:background="@drawable/ra_gray_btn"
+        android:gravity="center"
+        android:text="删除"
+        android:textColor="#9A9A9A"
+        android:textSize="@dimen/x32"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_all" />
+
+    <View
+        android:id="@+id/view14"
+        android:layout_width="@dimen/x2"
+        android:layout_height="@dimen/x26"
+        android:background="#E1E1E1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_delete"
+        app:layout_constraintTop_toTopOf="@+id/tv_all" />
+
+    <android.support.constraint.Group
+        android:id="@+id/group_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="tv_delete,tv_all,view14" />
 
 </android.support.constraint.ConstraintLayout>
