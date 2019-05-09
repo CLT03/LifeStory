@@ -50,12 +50,17 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_purchased"
-        android:layout_width="411dp"
-        android:layout_height="635dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingLeft="@dimen/x32"
+        android:paddingTop="@dimen/x20"
+        android:paddingRight="@dimen/x6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
 
 
 

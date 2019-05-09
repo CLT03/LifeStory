@@ -3,22 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/x88"
+    android:layout_height="@dimen/x120"
     android:background="#F2F2F2">
 
 
     <TextView
         android:id="@+id/tv_content"
         android:layout_width="0dp"
-        android:layout_height="@dimen/x86"
+        android:layout_height="@dimen/x118"
         android:background="#ffffff"
-        android:gravity="center_vertical"
         android:paddingLeft="@dimen/x120"
+        android:paddingTop="@dimen/x22"
         android:paddingRight="@dimen/x180"
-        android:text="Domo购买了特效模板"
-        android:textColor="#a6a6a6"
-        android:textSize="@dimen/x24"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:text="购买了文文西瓜特效模板购买了文文西瓜特效模板购买了文文西瓜特效模板"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,7 +30,7 @@
         android:layout_width="@dimen/x48"
         android:layout_height="@dimen/x48"
         android:layout_marginLeft="@dimen/x50"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_content"
+        android:layout_marginTop="@dimen/x20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_content"
         app:srcCompat="@mipmap/icon_money_gold" />
@@ -36,11 +39,35 @@
         android:id="@+id/tv_money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x22"
         android:layout_marginRight="@dimen/x50"
         android:text="+¥99.36"
         android:textColor="#222222"
         android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_content"
         app:layout_constraintEnd_toEndOf="@+id/tv_content"
         app:layout_constraintTop_toTopOf="@+id/tv_content" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginBottom="@dimen/x18"
+        android:text="2019-05-01 12:02:36"
+        android:textColor="#A6A6A6"
+        android:textSize="@dimen/x24"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_content"
+        app:layout_constraintStart_toEndOf="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/tv_time2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/x18"
+        android:text="永久使用"
+        android:textColor="#A6A6A6"
+        android:textSize="@dimen/x24"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_content"
+        app:layout_constraintEnd_toEndOf="@+id/tv_money" />
+
 </android.support.constraint.ConstraintLayout>
