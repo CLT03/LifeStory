@@ -488,7 +488,7 @@
                     android:layout_width="@dimen/x48"
                     android:layout_height="@dimen/x48"
                     android:layout_marginLeft="@dimen/x50"
-                    android:src="@mipmap/icon_recommend_ucenter"
+                    android:src="@mipmap/icon_video_recommended"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_recommend"
                     app:layout_constraintStart_toStartOf="@+id/tv_recommend"
                     app:layout_constraintTop_toTopOf="@+id/tv_recommend" />
