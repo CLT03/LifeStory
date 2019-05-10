@@ -22,8 +22,8 @@ public class WebMsg {
 	// 普通变量
     private Object data;
 	private int webCode = 200; // 网络错误代码
-	private int errorCode;
-	private String errorMsg;
+	private String code;
+	private String desc;
 
 
 //	public String getData() {
@@ -45,7 +45,7 @@ public class WebMsg {
 	public static WebMsg getSuccessed(){
 		WebMsg webMsg = new WebMsg();
 		webMsg.webCode = 200;
-		webMsg.errorCode = 99999;
+		webMsg.code = "success";
 		return webMsg;
 	}
 
@@ -69,20 +69,20 @@ public class WebMsg {
 		return webCode;
 	}
 
-	public int getErrorCode() {
-		return errorCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setErrorCode(int errorCode) {
-		this.errorCode = errorCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public String getErrorMsg() {
-		return errorMsg == null ? "" : errorMsg;
+	public String getDesc() {
+		return desc;
 	}
 
-	public void setErrorMsg(String errorMsg) {
-		this.errorMsg = errorMsg;
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
 	/**
@@ -90,6 +90,6 @@ public class WebMsg {
 	 * @return
 	 */
 	public boolean isSuccessed(){
-		return errorCode == 99999 && webCode == 200;
+		return code.equals("success") && webCode == 200;
 	}
 }
