@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/AppWhiteTheme">
+
+
+    <View
+        android:id="@+id/v_status"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x58"
+        android:background="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x98"
+        android:background="#FFFFFFFF"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v_status" />
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="@dimen/x120"
+        android:layout_height="@dimen/x98"
+        android:background="@drawable/ra_white_btn"
+        android:padding="@dimen/x28"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/icon_back_black"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="@+id/test"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/test" />
+
+    <TextView
+        android:id="@+id/tv_decoration"
+        android:layout_width="@dimen/x126"
+        android:layout_height="@dimen/x60"
+        android:layout_marginStart="@dimen/x240"
+        android:gravity="center"
+        android:text="装扮"
+        android:textColor="#404040"
+        android:textSize="@dimen/x32"
+        app:layout_constraintBottom_toBottomOf="@+id/test"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/test" />
+
+    <TextView
+        android:id="@+id/tv_face"
+        android:layout_width="@dimen/x126"
+        android:layout_height="@dimen/x60"
+        android:gravity="center"
+        android:text="容貌"
+        android:background="@drawable/r60_main_btn"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/x32"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_decoration"
+        app:layout_constraintStart_toEndOf="@+id/tv_decoration"
+        app:layout_constraintTop_toTopOf="@+id/tv_decoration"
+        app:layout_constraintVertical_bias="0.526" />
+
+    <TextView
+        android:id="@+id/tv_save"
+        android:layout_width="@dimen/x158"
+        android:layout_height="@dimen/x98"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center"
+        android:text="保存形象"
+        android:textColor="#808080"
+        app:layout_constraintBottom_toBottomOf="@+id/test"
+        app:layout_constraintEnd_toEndOf="@+id/v_status"
+        app:layout_constraintTop_toTopOf="@+id/test" />
+
+    <View
+        android:id="@+id/view17"
+        android:layout_width="@dimen/x120"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/test" />
+
+    <ImageButton
+        android:id="@+id/ibtn_lips"
+        android:layout_width="@dimen/x120"
+        android:layout_height="@dimen/x132"
+        android:background="@color/colorWhite"
+        android:scaleType="center"
+        android:src="@mipmap/icon_faceunit_face_lips_noc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ibtn_hollow" />
+
+    <ImageButton
+        android:id="@+id/ibtn_beard"
+        android:layout_width="@dimen/x120"
+        android:layout_height="@dimen/x132"
+        android:background="@color/colorWhite"
+        android:scaleType="center"
+        android:src="@mipmap/icon_faceunit_face_beard_noc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ibtn_lips" />
+
+    <ImageButton
+        android:id="@+id/ibtn_eyebrow"
+        android:layout_width="@dimen/x120"
+        android:layout_height="@dimen/x132"
+        android:background="@color/colorWhite"
+        android:scaleType="center"
+        android:src="@mipmap/icon_faceunit_face_eyebrow_noc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ibtn_beard" />
+
+    <ImageButton
+        android:id="@+id/ibtn_pinchingface"
+        android:layout_width="@dimen/x120"
+        android:layout_height="@dimen/x132"
+        android:background="@color/colorWhite"
+        android:scaleType="center"
+        android:src="@mipmap/icon_faceunit_face_pinchingface_noc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ibtn_eyebrow" />
+
+    <ImageButton
+        android:id="@+id/ibtn_reset"
+        android:layout_width="@dimen/x120"
+        android:layout_height="@dimen/x132"
+        android:background="@drawable/ra_white_btn"
+        android:scaleType="center"
+        android:src="@mipmap/icon_faceunit_face_reset_foc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/test" />
+
+    <ImageButton
+        android:id="@+id/ibtn_skin"
+        android:layout_width="@dimen/x120"
+        android:layout_height="@dimen/x132"
+        android:background="@drawable/ra_white_btn"
+        android:scaleType="center"
+        android:src="@mipmap/icon_faceunit_face_skin_noc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ibtn_reset" />
+
+    <ImageButton
+        android:id="@+id/ibtn_hollow"
+        android:layout_width="@dimen/x120"
+        android:layout_height="@dimen/x132"
+        android:background="@drawable/ra_white_btn"
+        android:scaleType="center"
+        android:src="@mipmap/icon_faceunit_face_hollow_noc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ibtn_skin" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_parts"
+        android:layout_width="@dimen/x120"
+        android:layout_height="0dp"
+        android:background="#F4F4F4"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view17"
+        app:layout_constraintTop_toBottomOf="@+id/test"
+        app:layout_constraintVertical_weight="1" />
+
+    <View
+        android:id="@+id/view19"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@color/colorSlightGray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
+        app:layout_constraintTop_toBottomOf="@+id/v_status" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_colors"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x232"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/rcv_parts" />
+
+</android.support.constraint.ConstraintLayout>

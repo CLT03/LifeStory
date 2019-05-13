@@ -105,7 +105,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
             <TextView
-                android:id="@+id/textView53"
+                android:id="@+id/tv_decoration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x20"
@@ -125,7 +125,7 @@
                 android:layout_marginTop="@dimen/x34"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView53" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_decoration" />
 
             <android.support.constraint.Group
                 android:id="@+id/group_today"
@@ -145,7 +145,7 @@
                 android:id="@+id/group_earlier"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="textView53,recyclerView5" />
+                app:constraint_referenced_ids="tv_decoration,recyclerView5" />
 
 
         </android.support.constraint.ConstraintLayout>

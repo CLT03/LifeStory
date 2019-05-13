@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.faceunity.fragment.CreateAvatarFragment;
+import com.vivwe.faceunity.fragment.EditDecorationFragment;
 import com.vivwe.faceunity.fragment.FaceToAssetsFragment;
 import com.vivwe.main.R;
 
@@ -30,17 +31,18 @@ public class HomeFragment extends BaseFragment {
         return view;
     }
 
-    @OnClick({R.id.iv_creater_avatar, R.id.iv_toassets})
-    public void onclick(View view){
-        switch (view.getId()){
-            case R.id.iv_creater_avatar:
-                mainActivity.showFragment(CreateAvatarFragment.class);
-                break;
-            case R.id.iv_toassets:
-                mainActivity.showFragment(FaceToAssetsFragment.class);
-                break;
-        }
+    @OnClick(R.id.iv_creater_avatar)
+    public void toCreaterAvatarFragment(){
+        mainActivity.showFragment(CreateAvatarFragment.class);
     }
 
+    @OnClick(R.id.iv_toassets)
+    public void toAssetsFragment(){
+        mainActivity.showFragment(FaceToAssetsFragment.class);
+    }
 
+    @OnClick(R.id.iv_edit_face)
+    public void toEditFaceFragment(){
+        mainActivity.showFragment(EditDecorationFragment.class);
+    }
 }

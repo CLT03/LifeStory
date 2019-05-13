@@ -32,7 +32,7 @@
                 app:srcCompat="@mipmap/icon_back_black" />
 
             <TextView
-                android:id="@+id/textView54"
+                android:id="@+id/tv_face"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x46"
@@ -50,11 +50,11 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView54" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_face" />
 
 
             <TextView
-                android:id="@+id/textView55"
+                android:id="@+id/tv_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x46"
@@ -96,7 +96,7 @@
                 android:paddingLeft="@dimen/x32"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView55" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_save" />
 
             <TextView
                 android:id="@+id/textView57"
