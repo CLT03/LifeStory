@@ -83,6 +83,9 @@ public class FaceToAssetsFragment extends BaseFragment {
      */
     private void init(){
 
+        // 设置状态栏高度
+//        setViewToStatusHeight(statusV);
+
         // data
         FileUtil.createFile(Constant.TmpPath);
         avatarP2A = mainActivity.getShowAvatarP2A();
@@ -122,7 +125,7 @@ public class FaceToAssetsFragment extends BaseFragment {
         });
 
         // 显示缩小
-        mainActivity.setGLSurfaceViewSize(true);
+        mainActivity.setGLSurfaceViewSize(0, 0, 0, getResources().getDimensionPixelSize(R.dimen.x380));
         // 展示第一个表情
         showAvatar(false, scenesAdapter.getScene(0));
     }
@@ -232,7 +235,7 @@ public class FaceToAssetsFragment extends BaseFragment {
         mP2ACore.bind();
         mFUP2ARenderer.setFUCore(mP2ACore);
 
-        mainActivity.setGLSurfaceViewSize(false);
+        mainActivity.setGLSurfaceViewSize(0, 0, 0, getResources().getDimensionPixelSize(R.dimen.x380));
 
         if (mP2AMultipleCore != null) {
             mP2AMultipleCore.release();

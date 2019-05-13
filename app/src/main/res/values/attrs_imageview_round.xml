@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RoundImageView">
+        <attr name="paddingSize" format="integer" />
+        <attr name="titleText" format="string" />
+        <attr name="backgroud" format="color"/>
+        <attr name="titleTextSize" format="dimension"/>
+        <attr name="titleTextColor" format="color"/>
+        <attr name="mCornerSize" format="integer"/>
+    </declare-styleable>
+</resources>

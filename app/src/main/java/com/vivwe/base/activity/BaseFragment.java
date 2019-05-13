@@ -2,13 +2,20 @@ package com.vivwe.base.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.annotation.ColorInt;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.faceunity.p2a_art.core.AvatarHandle;
 import com.faceunity.p2a_art.core.FUP2ARenderer;
 import com.faceunity.p2a_art.core.P2ACore;
 import com.faceunity.p2a_art.entity.AvatarP2A;
 import com.faceunity.p2a_art.renderer.CameraRenderer;
+import com.mbs.sdk.utils.ScreenUtils;
 import com.vivwe.faceunity.listener.OnFragmentListener;
 import com.vivwe.main.activity.MainActivity;
 import com.vivwe.main.fragment.MainFragment;
@@ -63,5 +70,21 @@ public class BaseFragment extends Fragment {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data){
 
+    }
+
+    /**
+     * 触摸是否可以到达父级
+     * @return
+     */
+    public boolean touchIsCanToParent(){
+        return false;
+    }
+
+    public void setViewToStatusHeight(View view){
+        // 设置状态栏高度
+        int stateusHeight = ScreenUtils.getStatusHeight(this.getContext());
+        ConstraintLayout.LayoutParams linearParams =(ConstraintLayout.LayoutParams) view.getLayoutParams();
+        linearParams.height = stateusHeight;
+        view.setLayoutParams(linearParams);
     }
 }

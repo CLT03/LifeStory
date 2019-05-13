@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <ImageButton
         android:id="@+id/btn_back"
         android:layout_width="@dimen/x140"
         android:layout_height="@dimen/x98"
+        android:layout_marginTop="32dp"
         android:background="@drawable/ra_transparent_btn"
         android:padding="@dimen/x28"
         android:scaleType="fitCenter"
@@ -34,7 +36,7 @@
     <Button
         android:id="@+id/btn_save"
         android:layout_width="@dimen/x140"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/x98"
         android:background="@drawable/ra_transparent_btn"
         android:text="保存"
         android:textColor="#191919"

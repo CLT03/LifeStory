@@ -1,12 +1,14 @@
 package com.vivwe.main.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.hardware.Camera;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GestureDetectorCompat;
 import android.util.DisplayMetrics;
@@ -17,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -31,6 +34,8 @@ import com.mbs.sdk.utils.ScreenUtils;
 import com.vivwe.base.activity.BaseFragmentActivity;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.faceunity.fragment.CreateAvatarFragment;
+import com.vivwe.faceunity.fragment.EditDecorationFragment;
+import com.vivwe.faceunity.fragment.EditFaceFragment;
 import com.vivwe.faceunity.fragment.FaceToAssetsFragment;
 import com.vivwe.faceunity.listener.OnFragmentListener;
 import com.vivwe.main.R;
@@ -40,6 +45,7 @@ import com.vivwe.main.fragment.MainFragment;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 
 /**
@@ -53,6 +59,9 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
     FrameLayout contentFl; // 内容
     @BindView(R.id.glsv_avatar)
     GLSurfaceView mGLSurfaceView;
+
+    @BindViews({R.id.v_left, R.id.v_top, R.id.v_right, R.id.v_bottom})
+    View[] boundaryV;
 
     private AvatarHandle mAvatarHandle;
     private CameraRenderer mCameraRenderer;
@@ -82,6 +91,9 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
 
     private int touchMode = 0;
     private void init(){
+
+        // 设置状态栏文字颜色
+        setStatusBarColor(Color.BLACK);
 
         handler = new Handler() {
             @Override
@@ -146,7 +158,7 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
         showFragment(MainFragment.class);
         loadAvatarP2A();
 
-        setGLSurfaceViewSize(false);
+
     }
 
     private void loadAvatarP2A(){
@@ -216,7 +228,7 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (baseFragment == null) {
+        if (baseFragment == null || baseFragment.touchIsCanToParent()) {
             if (event.getPointerCount() == 2) {
                 mScaleGestureDetector.onTouchEvent(event);
             } else if (event.getPointerCount() == 1)
@@ -300,14 +312,14 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
+        if(baseFragment != null){
+            transaction.remove(baseFragment);
+            baseFragment = null;
+        }
+
         if(MainFragment.class == cls){
 
             Log.v("----", "A");
-
-            if(baseFragment != null){
-                transaction.remove(baseFragment);
-                baseFragment = null;
-            }
 
             // 显示主页
             showHomeFragment(transaction);
@@ -322,6 +334,10 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
                 baseFragment = new CreateAvatarFragment();
             } else if(FaceToAssetsFragment.class == cls){
                 baseFragment = new FaceToAssetsFragment();
+            } else if(EditDecorationFragment.class == cls){
+                baseFragment = new EditDecorationFragment();
+            } else if(EditFaceFragment.class == cls){
+                baseFragment = new EditFaceFragment();
             }
 
             transaction.add(contentFl.getId(), baseFragment);
@@ -351,18 +367,61 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
         }
 
 
+        setGLSurfaceViewSize(0, 0, 0, getResources().getDimensionPixelSize(R.dimen.x98));
         mAvatarHandle.resetAllMin();
     }
 
-    public void setGLSurfaceViewSize(boolean isMin) {
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mGLSurfaceView.getLayoutParams();
-        params.width = isMin ? getResources().getDimensionPixelSize(R.dimen.x750) : RelativeLayout.LayoutParams.MATCH_PARENT;
+    /**
+     * 设置GlSurfaceView的位置
+     * @param l 左间距
+     * @param t 上间距
+     * @param r 右间距
+     * @param b 下间距
+     */
+    public void setGLSurfaceViewSize(final int l, final int t, final int r, final int b) {
+
+//        params.width = getResources().getDimensionPixelSize(R.dimen.x750) - l - r;
+//        params.height = ScreenUtils.getScreenHeight(this) - t - b;
 //        int height = (int)(this.getResources().getDimensionPixelSize(R.dimen.x750) * 1.2);
 //        params.height = isMin ? height : RelativeLayout.LayoutParams.MATCH_PARENT;
 
 //        params.topMargin = isMin ? getResources().getDimensionPixelSize(R.dimen.x158) : 0;
-        params.bottomMargin =  isMin ? getResources().getDimensionPixelSize(R.dimen.x380) : 0;
-        mGLSurfaceView.setLayoutParams(params);
+//        params.bottomMargin =  isMin ? getResources().getDimensionPixelSize(R.dimen.x380) : 0;
+
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mGLSurfaceView.getLayoutParams();
+                // 设置左间距宽度
+                RelativeLayout.LayoutParams linearParams =(RelativeLayout.LayoutParams) boundaryV[0].getLayoutParams();
+                linearParams.width = l;
+                boundaryV[0].setLayoutParams(linearParams);
+
+                // 设置上间距高度
+                linearParams =(RelativeLayout.LayoutParams) boundaryV[1].getLayoutParams();
+                linearParams.height = t;
+                boundaryV[1].setLayoutParams(linearParams);
+
+                // 设置右间距宽度
+                linearParams =(RelativeLayout.LayoutParams) boundaryV[2].getLayoutParams();
+                linearParams.width = r;
+                boundaryV[2].setLayoutParams(linearParams);
+
+                // 设置下间距高度
+                linearParams =(RelativeLayout.LayoutParams) boundaryV[3].getLayoutParams();
+                linearParams.height = b;
+                boundaryV[3].setLayoutParams(linearParams);
+
+                mGLSurfaceView.setLayoutParams(params);
+            }
+        });
+
+//        params.leftMargin = l;
+//        params.topMargin = t;
+//        params.rightMargin = r;
+//        params.bottomMargin = b;
+
         //mGroupPhotoRound.setVisibility(isMin ? View.VISIBLE : View.GONE);
     }
 
