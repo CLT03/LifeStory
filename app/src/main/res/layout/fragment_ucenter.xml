@@ -9,10 +9,10 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
-        android:layout_height="@dimen/x128"
+        android:layout_height="@dimen/x138"
         android:background="@drawable/app_bg_h"
         android:gravity="center"
-        android:paddingTop="@dimen/x40"
+        android:paddingTop="@dimen/x50"
         android:text="个人中心"
         android:textColor="#ffffff"
         android:textSize="@dimen/x32"
@@ -26,8 +26,8 @@
         android:layout_width="@dimen/x88"
         android:layout_height="@dimen/x88"
         android:layout_marginLeft="@dimen/x6"
-        android:padding="@dimen/x20"
         android:background="@drawable/ra_transparent_btn"
+        android:padding="@dimen/x20"
         android:src="@mipmap/icon_setting_ucenter"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="parent" />
@@ -75,12 +75,13 @@
         <ScrollView
             android:layout_width="match_parent"
             android:overScrollMode="never"
+            android:background="@color/colorWhite"
             android:layout_height="match_parent">
 
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="#ffffff">
 
 
@@ -115,6 +116,7 @@
                     android:layout_marginLeft="@dimen/x20"
                     android:layout_marginTop="@dimen/x96"
                     android:text="ID:18011707954"
+                    android:textColor="#EBEBEB"
                     app:layout_constraintStart_toEndOf="@+id/tv_head"
                     app:layout_constraintTop_toTopOf="@+id/tv_name" />
 
@@ -488,7 +490,7 @@
                     android:layout_width="@dimen/x48"
                     android:layout_height="@dimen/x48"
                     android:layout_marginLeft="@dimen/x50"
-                    android:src="@mipmap/icon_video_recommended"
+                    android:src="@mipmap/icon_recommend_ucenter"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_recommend"
                     app:layout_constraintStart_toStartOf="@+id/tv_recommend"
                     app:layout_constraintTop_toTopOf="@+id/tv_recommend" />
