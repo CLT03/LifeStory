@@ -6,21 +6,20 @@
     android:layout_height="match_parent"
     android:background="#fafafa">
 
-    <com.vivwe.base.ui.textview.LinearGradientTextView
+    <TextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
-        android:layout_height="47dp"
+        android:layout_height="@dimen/x88"
         android:background="#ffffff"
         android:gravity="center"
         android:text="帮助与反馈"
         android:textSize="@dimen/x32"
+        android:textColor="#191919"
         android:textStyle="bold"
-        app:startColor="#FF52D3FF"
-        app:endColor="#FFB35CFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-         />
+        />
 
     <ImageView
         android:id="@+id/iv_back"

@@ -23,7 +23,6 @@ public class UpdateUserInfoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_update_userinfo);
         ButterKnife.bind(this);
-
     }
 
     @OnClick({R.id.iv_back, R.id.iv_camera, R.id.tv_name, R.id.tv_gender, R.id.tv_birthday, R.id.tv_city, R.id.tv_sign})

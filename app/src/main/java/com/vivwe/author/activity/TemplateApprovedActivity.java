@@ -1,5 +1,6 @@
 package com.vivwe.author.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.Group;
@@ -13,6 +14,7 @@ import com.vivwe.author.adapter.TemplateNoPassAdapter;
 import com.vivwe.author.adapter.TemplatePublishAdapter;
 import com.vivwe.author.adapter.TemplateWaitReviewAdapter;
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.ui.textview.LinearGradientTextView;
 import com.vivwe.main.R;
 import com.vivwe.personal.adapter.MyCollectedDemoAdapter;
 import com.vivwe.personal.adapter.MyCollectedVideoAdapter;
@@ -29,15 +31,15 @@ import butterknife.OnClick;
 public class TemplateApprovedActivity extends BaseActivity {
 
     @BindView(R.id.tv_publish)
-    TextView tvPublish;
+    LinearGradientTextView tvPublish;
     @BindView(R.id.view_publish)
     View viewPublish;
     @BindView(R.id.tv_wait_review)
-    TextView tvWaitReview;
+    LinearGradientTextView tvWaitReview;
     @BindView(R.id.view_wait_review)
     View viewWaitReview;
     @BindView(R.id.tv_no_pass)
-    TextView tvNoPass;
+    LinearGradientTextView tvNoPass;
     @BindView(R.id.view_no_pass)
     View viewNoPass;
     @BindView(R.id.recycler_view_publish)
@@ -101,6 +103,9 @@ public class TemplateApprovedActivity extends BaseActivity {
                 viewPublish.setVisibility(View.VISIBLE);
                 viewNoPass.setVisibility(View.GONE);
                 viewWaitReview.setVisibility(View.GONE);
+                tvPublish.setTextColor(Color.parseColor("#52D3FF"),Color.parseColor("#B35CFF"));
+                tvWaitReview.setTextColor(Color.parseColor("#262626"));
+                tvNoPass.setTextColor(Color.parseColor("#262626"));
                 break;
             case R.id.tv_wait_review:
             case R.id.view_wait_review:
@@ -110,6 +115,9 @@ public class TemplateApprovedActivity extends BaseActivity {
                 viewPublish.setVisibility(View.GONE);
                 viewNoPass.setVisibility(View.GONE);
                 viewWaitReview.setVisibility(View.VISIBLE);
+                tvWaitReview.setTextColor(Color.parseColor("#52D3FF"),Color.parseColor("#B35CFF"));
+                tvPublish.setTextColor(Color.parseColor("#262626"));
+                tvNoPass.setTextColor(Color.parseColor("#262626"));
                 break;
             case R.id.tv_no_pass:
             case R.id.view_no_pass:
@@ -119,6 +127,9 @@ public class TemplateApprovedActivity extends BaseActivity {
                 viewPublish.setVisibility(View.GONE);
                 viewNoPass.setVisibility(View.VISIBLE);
                 viewWaitReview.setVisibility(View.GONE);
+                tvNoPass.setTextColor(Color.parseColor("#52D3FF"),Color.parseColor("#B35CFF"));
+                tvWaitReview.setTextColor(Color.parseColor("#262626"));
+                tvPublish.setTextColor(Color.parseColor("#262626"));
                 break;
             case R.id.tv_all:
 

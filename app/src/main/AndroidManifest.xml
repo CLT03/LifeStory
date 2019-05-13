@@ -23,32 +23,32 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.LoginActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name=".activity.RegisterActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name=".activity.MainActivity" android:theme="@style/AppImmersiveTheme" />
-        <activity android:name="com.vivwe.author.activity.ApplyActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.author.activity.CenterActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.author.activity.IncomeActivity" android:theme="@style/AppWhiteTheme"  />
-        <activity android:name="com.vivwe.author.activity.TransactionRecordActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.personal.activity.MyAttentionActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.personal.activity.MyCollectedActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.personal.activity.MyDraftActivity" android:theme="@style/AppWhiteTheme"  />
-        <activity android:name="com.vivwe.personal.activity.MyPurchasedActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.personal.activity.MyFansActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.personal.activity.UpdateCityActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.personal.activity.UpdateNicknameActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.personal.activity.UpdateRemarkActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.personal.activity.UpdateUserInfoActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.personal.activity.MyBrowsingHistoryActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.personal.activity.MyAssetsActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.personal.activity.MyVideoActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.personal.activity.RecommendForYouActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.personal.activity.TheDesignerRecommendForYouActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name="com.vivwe.author.activity.TemplateApprovedActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name=".activity.SettingActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name=".activity.ResetPasswordActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name=".activity.FeebackActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name=".activity.AboutActivity" android:theme="@style/AppWhiteTheme" />
-        <activity android:name=".activity.MessageActivity" android:theme="@style/AppWhiteTheme" />
+        <activity android:name=".activity.LoginActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name=".activity.RegisterActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name=".activity.MainActivity" android:theme="@style/AppImmersiveTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.author.activity.ApplyActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.author.activity.CenterActivity" android:theme="@style/AppImmersiveTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.author.activity.IncomeActivity" android:theme="@style/AppWhiteTheme"  android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.author.activity.TransactionRecordActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.personal.activity.MyAttentionActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.personal.activity.MyCollectedActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.personal.activity.MyDraftActivity" android:theme="@style/AppWhiteTheme"  android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.personal.activity.MyPurchasedActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.personal.activity.MyFansActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.personal.activity.UpdateCityActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.personal.activity.UpdateNicknameActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.personal.activity.UpdateRemarkActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.personal.activity.UpdateUserInfoActivity" android:theme="@style/AppImmersiveTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.personal.activity.MyBrowsingHistoryActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.personal.activity.MyAssetsActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.personal.activity.MyVideoActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.personal.activity.RecommendForYouActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.personal.activity.TheDesignerRecommendForYouActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.author.activity.TemplateApprovedActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name=".activity.SettingActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name=".activity.ResetPasswordActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name=".activity.FeebackActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name=".activity.AboutActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name=".activity.MessageActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
     </application>
 </manifest>

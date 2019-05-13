@@ -7,11 +7,12 @@
     android:background="#ffffff">
 
 
-    <VideoView
+    <ImageView
         android:id="@+id/videoView"
         android:layout_width="0dp"
         android:layout_height="@dimen/x400"
         android:layout_marginLeft="@dimen/x20"
+        android:background="#000000"
         android:layout_marginRight="@dimen/x20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
