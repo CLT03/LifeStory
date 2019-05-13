@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA">
+    android:background="#ffffff">
 
     <TextView
         android:id="@+id/textView2"
@@ -47,112 +47,107 @@
         app:layout_constraintEnd_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="@+id/textView2" />
 
-    <TextView
-        android:id="@+id/textView63"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
+    <com.vivwe.base.ui.textview.LinearGradientTextView
         android:id="@+id/tv_publish"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/x76"
         android:layout_marginLeft="@dimen/x152"
-        android:layout_marginTop="@dimen/x14"
+        android:gravity="center"
         android:text="已发布"
         android:textSize="@dimen/x32"
-        android:textColor="#262626"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:textColor="#262626" />
 
     <View
         android:id="@+id/view_publish"
         android:layout_width="@dimen/x32"
         android:layout_height="@dimen/x6"
-        android:layout_marginTop="@dimen/x4"
+        android:layout_marginBottom="@dimen/x4"
         android:background="@drawable/app_bg_h"
-        android:visibility="gone"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_publish"
         app:layout_constraintEnd_toEndOf="@+id/tv_publish"
-        app:layout_constraintStart_toStartOf="@+id/tv_publish"
-        app:layout_constraintTop_toBottomOf="@+id/tv_publish" />
+        app:layout_constraintStart_toStartOf="@+id/tv_publish" />
 
-    <TextView
+    <com.vivwe.base.ui.textview.LinearGradientTextView
         android:id="@+id/tv_wait_review"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/x76"
         android:layout_marginLeft="@dimen/x80"
+        android:gravity="center"
         android:text="待审核"
-        android:textColor="#262626"
         android:textSize="@dimen/x32"
         app:layout_constraintStart_toEndOf="@+id/tv_publish"
-        app:layout_constraintTop_toTopOf="@+id/tv_publish" />
+        app:layout_constraintTop_toTopOf="@+id/tv_publish"
+        app:textColor="#262626" />
 
     <View
         android:id="@+id/view_wait_review"
         android:layout_width="@dimen/x32"
         android:layout_height="@dimen/x6"
-        android:layout_marginTop="@dimen/x4"
+        android:layout_marginBottom="@dimen/x4"
         android:background="@drawable/app_bg_h"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_wait_review"
         app:layout_constraintEnd_toEndOf="@+id/tv_wait_review"
-        app:layout_constraintStart_toStartOf="@+id/tv_wait_review"
-        app:layout_constraintTop_toBottomOf="@+id/tv_wait_review" />
+        app:layout_constraintStart_toStartOf="@+id/tv_wait_review" />
 
-    <TextView
+    <com.vivwe.base.ui.textview.LinearGradientTextView
         android:id="@+id/tv_no_pass"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/x76"
         android:layout_marginLeft="@dimen/x80"
+        android:gravity="center"
         android:text="未通过"
-        android:textColor="#262626"
         android:textSize="@dimen/x32"
         app:layout_constraintStart_toEndOf="@+id/tv_wait_review"
-        app:layout_constraintTop_toTopOf="@+id/tv_publish" />
+        app:layout_constraintTop_toTopOf="@+id/tv_publish"
+        app:textColor="#262626" />
 
     <View
         android:id="@+id/view_no_pass"
         android:layout_width="@dimen/x32"
         android:layout_height="@dimen/x6"
-        android:layout_marginTop="@dimen/x4"
+        android:layout_marginBottom="@dimen/x4"
         android:background="@drawable/app_bg_h"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_no_pass"
         app:layout_constraintEnd_toEndOf="@+id/tv_no_pass"
-        app:layout_constraintStart_toStartOf="@+id/tv_no_pass"
-        app:layout_constraintTop_toBottomOf="@+id/tv_no_pass" />
+        app:layout_constraintStart_toStartOf="@+id/tv_no_pass" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_publish"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/x30"
+        android:paddingTop="@dimen/x14"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view_publish" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_publish" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_wait_review"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/x30"
+        android:paddingTop="@dimen/x14"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view_publish" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_wait_review" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_no_pass"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/x30"
+        android:paddingTop="@dimen/x14"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view_publish" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_no_pass" />
 
     <TextView
         android:id="@+id/tv_all"
