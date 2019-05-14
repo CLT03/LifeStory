@@ -7,7 +7,7 @@
     android:background="#fafafa">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="@dimen/x88"
         android:background="#ffffff"
@@ -31,7 +31,7 @@
         android:paddingBottom="@dimen/x26"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/tv_title"
         app:srcCompat="@mipmap/icon_back_black" />
 
     <TextView
@@ -45,7 +45,7 @@
         android:textColor="#a6a6a6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <TextView
         android:id="@+id/textView4"
