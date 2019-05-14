@@ -57,10 +57,14 @@ public class AvatarPartsAdapter extends RecyclerView.Adapter<AvatarPartsAdapter.
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
         if(bundleRes != null){
+            holder.image.setLayoutParams(new ViewGroup.LayoutParams(getContext().getResources().getDimensionPixelSize(R.dimen.x120),
+                    getContext().getResources().getDimensionPixelSize(R.dimen.x194)));
             holder.image.setImageResource(bundleRes[position].resId);
             holder.image.setBackground(Color.TRANSPARENT);
             holder.image.setCornerSize(0);
         } else {
+            holder.image.setLayoutParams(new ViewGroup.LayoutParams(getContext().getResources().getDimensionPixelSize(R.dimen.x120),
+                    getContext().getResources().getDimensionPixelSize(R.dimen.x120)));
             holder.image.setImageResource(R.drawable.transparent);
             holder.image.setCornerSize(100);
             double[] rgb = colorRes[position];
@@ -98,7 +102,7 @@ public class AvatarPartsAdapter extends RecyclerView.Adapter<AvatarPartsAdapter.
             image = itemView;
             image.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
             image.setLayoutParams(new ViewGroup.LayoutParams(getContext().getResources().getDimensionPixelSize(R.dimen.x120),
-                    getContext().getResources().getDimensionPixelSize(R.dimen.x120)));
+                    getContext().getResources().getDimensionPixelSize(R.dimen.x194)));
             image.setBackgroundResource(R.drawable.ra_white_btn);
 //            int len = getContext().getResources().getDimensionPixelSize(R.dimen.x10);
             int len = 0;
