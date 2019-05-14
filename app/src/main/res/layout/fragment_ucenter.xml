@@ -37,8 +37,8 @@
         android:layout_width="@dimen/x88"
         android:layout_height="@dimen/x88"
         android:layout_marginRight="@dimen/x16"
-        android:padding="@dimen/x20"
         android:background="@drawable/ra_transparent_btn"
+        android:padding="@dimen/x20"
         android:src="@mipmap/icon_notice_ucenter"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="@+id/textView2" />
@@ -74,9 +74,9 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:overScrollMode="never"
+            android:layout_height="match_parent"
             android:background="@color/colorWhite"
-            android:layout_height="match_parent">
+            android:overScrollMode="never">
 
 
             <android.support.constraint.ConstraintLayout
@@ -134,9 +134,9 @@
                     android:id="@+id/tv_attention"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/ra_transparent_btn"
                     android:paddingLeft="@dimen/x6"
                     android:text="954"
-                    android:background="@drawable/ra_transparent_btn"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/x32"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_attention"
@@ -148,8 +148,8 @@
                     android:layout_width="@dimen/x40"
                     android:layout_height="@dimen/x40"
                     android:layout_marginLeft="@dimen/x160"
-                    android:src="@mipmap/icon_fans_my"
                     android:background="@drawable/ra_transparent_btn"
+                    android:src="@mipmap/icon_fans_my"
                     app:layout_constraintStart_toStartOf="@+id/tv_attention"
                     app:layout_constraintTop_toTopOf="@+id/iv_attention" />
 
@@ -157,10 +157,10 @@
                     android:id="@+id/tv_fans"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/ra_transparent_btn"
                     android:paddingLeft="@dimen/x6"
                     android:text="954"
                     android:textColor="#ffffff"
-                    android:background="@drawable/ra_transparent_btn"
                     android:textSize="@dimen/x32"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_fans"
                     app:layout_constraintStart_toEndOf="@+id/iv_fans"
@@ -367,10 +367,10 @@
                     android:layout_height="@dimen/x68"
                     android:layout_marginRight="@dimen/x116"
                     android:scaleType="fitXY"
+                    android:src="@mipmap/icon_history_none"
                     app:layout_constraintBottom_toBottomOf="@+id/textView23"
                     app:layout_constraintEnd_toEndOf="@+id/textView23"
-                    app:layout_constraintTop_toTopOf="@+id/textView23"
-                    android:src="@mipmap/icon_history_none" />
+                    app:layout_constraintTop_toTopOf="@+id/textView23" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_view_history"
@@ -490,7 +490,7 @@
                     android:layout_width="@dimen/x48"
                     android:layout_height="@dimen/x48"
                     android:layout_marginLeft="@dimen/x50"
-                    android:src="@mipmap/icon_recommend_ucenter"
+                    android:src="@mipmap/icon_video_recommended"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_recommend"
                     app:layout_constraintStart_toStartOf="@+id/tv_recommend"
                     app:layout_constraintTop_toTopOf="@+id/tv_recommend" />
@@ -561,11 +561,9 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="@dimen/x40"
-                    app:layout_constraintTop_toBottomOf="@id/view6"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
-
-
+                    app:layout_constraintTop_toBottomOf="@id/view6" />
 
 
             </android.support.constraint.ConstraintLayout>
