@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="@dimen/x88"
         android:background="#ffffff"
@@ -30,8 +30,8 @@
         android:paddingBottom="@dimen/x26"
         android:background="@drawable/ra_white_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/tv_title"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
         app:srcCompat="@mipmap/icon_back_black" />
 
     <TextView
@@ -44,9 +44,9 @@
         android:textColor="#191919"
         android:background="@drawable/ra_white_btn"
         android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintTop_toTopOf="@+id/tv_title" />
 
     <TextView
         android:id="@+id/tv_image"
@@ -59,7 +59,7 @@
         android:textColor="#ff5f22"
         android:textSize="@dimen/x32"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <View
         android:id="@+id/view_image"
