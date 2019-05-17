@@ -7,7 +7,7 @@
     android:background="#ffffff">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="@dimen/x360"
         android:background="@drawable/app_bg_h"
@@ -33,15 +33,15 @@
         android:paddingBottom="@dimen/x26"
         android:src="@mipmap/icon_back_white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
+        app:layout_constraintTop_toTopOf="@+id/tv_title" />
 
     <ImageView
         android:id="@+id/iv_head"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/x70"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@mipmap/icon_logo_default" />
 
@@ -66,7 +66,7 @@
         android:textSize="@dimen/x28"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <TextView
         android:id="@+id/textView30"
