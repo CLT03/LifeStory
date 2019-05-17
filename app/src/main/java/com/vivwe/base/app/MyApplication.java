@@ -2,9 +2,12 @@ package com.vivwe.base.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 import com.mbs.sdk.core.SdkContext;
 import com.mbs.sdk.net.HttpRequestConfig;
 import com.mbs.sdk.net.listener.OnWebExceptionListener;
+import com.mbs.sdk.net.msg.WebMsg;
+import com.vivwe.base.ui.alert.Toast;
 import java.util.Map;
 
 /**
@@ -12,7 +15,7 @@ import java.util.Map;
  * date: 2019/4/22 14:12
  * remark:
  */
-public class MyApplication extends Application {
+public class MyApplication extends Application implements OnWebExceptionListener {
 
     private static MyApplication myApplication;
 
@@ -46,7 +49,7 @@ public class MyApplication extends Application {
         SdkContext.getSdkContext().setHttpRequestConfig(new HttpRequestConfig() {
             @Override
             public String getBaseUrl() {
-                return null;
+                return "http://192.168.0.253:8083/";
             }
 
             @Override
@@ -61,11 +64,27 @@ public class MyApplication extends Application {
 
             @Override
             public OnWebExceptionListener onWebExceptionListener() {
-                return null;
+                return MyApplication.this;
             }
         });
     }
 
 
+    @Override
+    public void onNetError(WebMsg webMsg) {
+        Log.v(">>>", String.valueOf(webMsg.getWebCode()));
+        switch (webMsg.getWebCode()){
+            case -1:
+                Toast.show(this, "服务器连接失败！", 3000);
+                break;
+        }
+    }
 
+    @Override
+    public void onServiceError(WebMsg webMsg) {
+        Log.v(">>>", String.valueOf(webMsg.getWebCode()));
+        switch (webMsg.getWebCode()){
+//            case
+        }
+    }
 }

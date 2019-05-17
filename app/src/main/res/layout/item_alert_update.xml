@@ -43,21 +43,21 @@
         android:id="@+id/textView50"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/x44"
-        android:layout_marginTop="@dimen/x16"
+        android:layout_marginTop="16dp"
         android:text="TextView"
         android:textColor="#191919"
         android:textSize="@dimen/x34"
         app:layout_constraintEnd_toEndOf="@+id/view14"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/view14"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/textView49"
         tools:text="是否立即更新？" />
 
     <TextView
         android:id="@+id/textView51"
         android:layout_width="@dimen/x200"
         android:layout_height="@dimen/x72"
-        android:layout_marginTop="@dimen/x48"
+        android:layout_marginTop="@dimen/x42"
         android:background="@drawable/r60_main_btn"
         android:gravity="center"
         android:text="更新"
@@ -65,14 +65,14 @@
         android:textSize="@dimen/x30"
         app:layout_constraintEnd_toEndOf="@+id/view14"
         app:layout_constraintStart_toStartOf="@+id/view14"
-        app:layout_constraintTop_toBottomOf="@+id/tv_theme" />
+        app:layout_constraintTop_toBottomOf="@+id/textView50" />
 
 
     <TextView
         android:id="@+id/textView52"
         android:layout_width="@dimen/x200"
         android:layout_height="@dimen/x72"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/x16"
         android:background="@drawable/ra_white_btn"
         android:gravity="center"
         android:text="取消"

@@ -48,7 +48,7 @@ public class WellcomeActivity extends BaseActivity {
 //                    @Override
 //                    public void onComplete() {
                         Intent intent = new Intent();
-                        intent.setClass(WellcomeActivity.this, MainActivity.class);
+                        intent.setClass(WellcomeActivity.this, LoginActivity.class);
                         WellcomeActivity.this.startActivity(intent);
                         WellcomeActivity.this.finish();
 //                    }

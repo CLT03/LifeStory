@@ -348,7 +348,7 @@
         android:layout_below="@id/rl_ok_password">
 
         <TextView
-            android:id="@id/id_ok"
+            android:id="@+id/id_ok"
             android:layout_width="@dimen/x520"
             android:layout_height="@dimen/x79"
             android:layout_centerHorizontal="true"

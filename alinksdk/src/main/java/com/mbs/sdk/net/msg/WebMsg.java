@@ -90,6 +90,6 @@ public class WebMsg {
 	 * @return
 	 */
 	public boolean isSuccessed(){
-		return code.equals("success") && webCode == 200;
+		return "success".equals(code) && webCode == 200;
 	}
 }

@@ -320,9 +320,17 @@ public class HttpRequest {
 
                         @Override
                         public void onError(Throwable e) {
+
+                            if(Globals.isDebug){
+                                Log.v(">>>request::error", e.toString());
+                            }
+
                             WebMsg webMsg = WebMsg.getFailed(e);
                             listener.onWebUiResult(webMsg);
-                            SdkContext.getSdkContext().getHttpRequestConfig().onWebExceptionListener().onNetError(webMsg);
+                            if(SdkContext.getSdkContext().getHttpRequestConfig().onWebExceptionListener() != null){
+                                SdkContext.getSdkContext().getHttpRequestConfig().onWebExceptionListener().onNetError(webMsg);
+                            }
+
                         }
 
                         @Override

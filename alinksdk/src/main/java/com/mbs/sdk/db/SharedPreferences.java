@@ -10,15 +10,12 @@ import android.content.SharedPreferences.Editor;
  * remark: 共享引用存储
  **/
 
-public abstract class SharedPreferencesDb {
+public abstract class SharedPreferences {
 	
 	public static Context context;
 	private static String NAME = "AlinkSdk";
-	
-//	public static void init(Context context){
-//		SharedPreferencesDb.context = context;
-//	}
-	
+
+
 	private static android.content.SharedPreferences getSharePerference(){
 		return context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
 	}
