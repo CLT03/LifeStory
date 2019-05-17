@@ -23,9 +23,18 @@ public interface WebMainApi {
      */
     @FormUrlEncoded
     @POST("api/authentication")
-    public Observable<WebMsg> listRegister(@Field("phoneNumber") String phoneNumber,
+    public Observable<WebMsg> register(@Field("phoneNumber") String phoneNumber,
                                            @Field("password") String password,
                                            @Field("confirmedPassword") String confirmedPassword,
                                            @Field("captcha") String captcha);
+
+    /**
+     * 通过手机获取验证码
+     * @param phoneNumber 手机号
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api/captcha")
+    public Observable<WebMsg> getCaptcha(@Field("phoneNumber") String phoneNumber);
 
 }

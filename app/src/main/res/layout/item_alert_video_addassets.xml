@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/view14"
+        android:layout_width="@dimen/x580"
+        android:layout_height="@dimen/x592"
+        android:background="@drawable/r30_white_alert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="@dimen/x80"
+        android:layout_height="@dimen/x80"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/r8_white_btn"
+        android:src="@mipmap/icon_cancel_black"
+        app:layout_constraintEnd_toEndOf="@+id/view14"
+        app:layout_constraintTop_toTopOf="@+id/view14" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="@dimen/x462"
+        android:layout_height="@dimen/x88"
+        android:layout_marginTop="@dimen/x32"
+        android:background="@drawable/r60_main_btn"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/x36"
+        app:layout_constraintEnd_toEndOf="@+id/view14"
+        app:layout_constraintStart_toStartOf="@+id/view14"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        tools:text="本地上传" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="@dimen/x462"
+        android:layout_height="@dimen/x88"
+        android:layout_marginTop="@dimen/x18"
+        android:background="@mipmap/icon_main_frame"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/x16"
+        android:text="从素材库上传"
+
+        android:textColor="#929292"
+        android:textSize="@dimen/x34"
+        app:layout_constraintEnd_toEndOf="@+id/textView49"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="@+id/textView49"
+        app:layout_constraintTop_toBottomOf="@+id/textView49" />
+
+    <TextView
+        android:id="@+id/textView75"
+        android:layout_width="@dimen/x462"
+        android:layout_height="@dimen/x88"
+        android:layout_marginTop="@dimen/x18"
+        android:background="@mipmap/icon_main_frame"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/x16"
+        android:text="随便添加几个试试"
+
+        android:textColor="#929292"
+        android:textSize="@dimen/x34"
+        app:layout_constraintEnd_toEndOf="@+id/textView10"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView76"
+        android:layout_width="@dimen/x462"
+        android:layout_height="@dimen/x88"
+        android:layout_marginTop="@dimen/x18"
+        android:background="@mipmap/icon_main_frame"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/x16"
+        android:text="添加模板样片素材"
+        android:textColor="#929292"
+        android:textSize="@dimen/x34"
+        app:layout_constraintEnd_toEndOf="@+id/textView75"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView75"
+        app:layout_constraintTop_toBottomOf="@+id/textView75" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/r8_white_normal"
+        android:text="添加素材"
+        android:textSize="@dimen/x32"
+        android:textColor="#343434"
+        app:layout_constraintStart_toStartOf="@+id/view14"
+        app:layout_constraintTop_toTopOf="@+id/view14" />
+
+
+</android.support.constraint.ConstraintLayout>

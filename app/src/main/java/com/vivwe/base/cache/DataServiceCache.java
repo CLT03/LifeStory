@@ -3,6 +3,7 @@ package com.vivwe.base.cache;
 import android.content.Context;
 import com.mbs.sdk.db.DBServer;
 import com.vivwe.base.app.MyApplication;
+import com.vivwe.main.entity.UserLoginInfoEntity;
 
 /**
  * ahtor: super_link
@@ -15,6 +16,7 @@ public class DataServiceCache extends DBServer {
     private static final int VERSION_CODE = 1;
 
     private static DataServiceCache cacheDataService;
+
     /**
      * 初始化
      *
@@ -31,7 +33,7 @@ public class DataServiceCache extends DBServer {
 
 
 
-        return new Class[]{LoginInfo.class, Recomend.class};
+        return null;
     }
 
     @Override

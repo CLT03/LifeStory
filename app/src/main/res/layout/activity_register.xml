@@ -7,11 +7,11 @@
     android:background="@color/colorWhite">
 
     <TextView
-        android:id="@+id/login_tv"
+        android:id="@+id/tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/x70"
-        android:layout_marginTop="@dimen/x130"
+        android:layout_marginTop="@dimen/x105"
         android:text="登录"
         android:textColor="#333333"
         android:textSize="@dimen/x38"
@@ -39,14 +39,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/x60"
         android:layout_toRightOf="@id/login_tv"
-
         android:text="注册"
         android:textColor="#333333"
         android:textSize="@dimen/x38"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/login_tv"
-        app:layout_constraintStart_toEndOf="@+id/login_tv"
-        app:layout_constraintTop_toTopOf="@+id/login_tv" />
+        app:layout_constraintBottom_toBottomOf="@id/tv_login"
+        app:layout_constraintStart_toEndOf="@id/tv_login"
+        app:layout_constraintTop_toTopOf="@id/tv_login" />
 
 
     <TextView
@@ -91,7 +90,7 @@
     <EditText
         android:id="@+id/id_account"
         android:layout_width="@dimen/x510"
-        android:layout_height="41dp"
+        android:layout_height="@dimen/x84"
         android:layout_marginStart="@dimen/x150"
         android:layout_marginTop="@dimen/x16"
         android:background="@null"
@@ -121,8 +120,9 @@
         android:layout_height="@dimen/x38"
         android:layout_marginTop="@dimen/x26"
         android:src="@mipmap/icon_verification_code"
-        app:layout_constraintTop_toBottomOf="@+id/id_account"
-        tools:layout_editor_absoluteX="39dp" />
+        app:layout_constraintEnd_toEndOf="@+id/icon_account_code"
+        app:layout_constraintStart_toStartOf="@+id/icon_account_code"
+        app:layout_constraintTop_toBottomOf="@+id/id_account" />
 
     <TextView
         android:id="@+id/textView60"
@@ -139,7 +139,7 @@
         app:layout_constraintTop_toTopOf="@+id/icon_verification_code" />
 
     <EditText
-        android:id="@+id/id_code"
+        android:id="@+id/edt_code"
         android:layout_width="@dimen/x300"
         android:layout_height="@dimen/x84"
         android:layout_below="@id/icon_verification_code"
@@ -159,11 +159,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textView60" />
 
     <TextView
-        android:id="@+id/tv_send"
+        android:id="@+id/tv_code_obtain"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/x70"
         android:layout_below="@id/icon_verification_code"
         android:layout_alignParentRight="true"
+        android:layout_marginStart="@dimen/x26"
         android:background="@drawable/r8_black_btn"
         android:gravity="center"
         android:paddingLeft="@dimen/x19"
@@ -171,9 +172,9 @@
         android:text="获取验证码"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@+id/id_code"
-        app:layout_constraintTop_toTopOf="@+id/id_code"
-        tools:layout_editor_absoluteX="205dp" />
+        app:layout_constraintBottom_toBottomOf="@id/edt_code"
+        app:layout_constraintStart_toEndOf="@id/edt_code"
+        app:layout_constraintTop_toTopOf="@id/edt_code" />
 
     <TextView
         android:layout_width="@dimen/x300"
@@ -182,18 +183,19 @@
         android:layout_toLeftOf="@id/tv_send"
         android:layout_toRightOf="@id/icon_verification_code"
         android:background="@color/colorLightBlack"
-        app:layout_constraintEnd_toEndOf="@+id/id_code"
-        app:layout_constraintStart_toStartOf="@+id/id_code"
-        app:layout_constraintTop_toBottomOf="@+id/id_code" />
+        app:layout_constraintEnd_toEndOf="@id/edt_code"
+        app:layout_constraintStart_toStartOf="@id/edt_code"
+        app:layout_constraintTop_toBottomOf="@id/edt_code" />
 
     <ImageView
         android:id="@+id/icon_iv_password"
         android:layout_width="@dimen/x38"
         android:layout_height="@dimen/x38"
+        android:layout_marginStart="@dimen/x90"
         android:layout_marginTop="@dimen/x26"
         android:src="@mipmap/icon_password"
-        app:layout_constraintTop_toBottomOf="@+id/id_code"
-        tools:layout_editor_absoluteX="39dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edt_code" />
 
     <TextView
         android:id="@+id/textView62"
@@ -210,7 +212,7 @@
         app:layout_constraintTop_toTopOf="@+id/icon_iv_password" />
 
     <EditText
-        android:id="@+id/id_password"
+        android:id="@+id/edt_password"
         android:layout_width="@dimen/x510"
         android:layout_height="@dimen/x84"
         android:layout_below="@id/icon_iv_password"
@@ -227,14 +229,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textView62" />
 
     <View
+        android:id="@+id/view20"
         android:layout_width="@dimen/x510"
         android:layout_height="0.5dp"
         android:layout_below="@id/id_password"
         android:layout_toRightOf="@id/icon_iv_password"
         android:background="@color/colorLightBlack"
-        app:layout_constraintEnd_toEndOf="@+id/id_password"
-        app:layout_constraintStart_toStartOf="@+id/id_password"
-        app:layout_constraintTop_toBottomOf="@+id/id_password" />
+        app:layout_constraintEnd_toEndOf="@id/edt_password"
+        app:layout_constraintStart_toStartOf="@id/edt_password"
+        app:layout_constraintTop_toBottomOf="@id/edt_password" />
 
     <ImageView
         android:id="@+id/icon_iv_ok_password"
@@ -242,8 +245,9 @@
         android:layout_height="@dimen/x38"
         android:layout_marginTop="@dimen/x26"
         android:src="@mipmap/icon_password"
-        app:layout_constraintTop_toBottomOf="@+id/id_password"
-        tools:layout_editor_absoluteX="39dp" />
+        app:layout_constraintEnd_toEndOf="@+id/icon_iv_password"
+        app:layout_constraintStart_toStartOf="@+id/icon_iv_password"
+        app:layout_constraintTop_toBottomOf="@id/edt_password" />
 
     <TextView
         android:id="@+id/textView74"
@@ -260,7 +264,7 @@
         app:layout_constraintTop_toTopOf="@+id/icon_iv_ok_password" />
 
     <EditText
-        android:id="@+id/id_password_new"
+        android:id="@+id/edt_password_repeat"
         android:layout_width="@dimen/x510"
         android:layout_height="@dimen/x84"
         android:layout_below="@id/icon_iv_ok_password"
@@ -283,12 +287,12 @@
         android:layout_below="@id/id_password_new"
         android:layout_toRightOf="@id/icon_iv_ok_password"
         android:background="@color/colorLightBlack"
-        app:layout_constraintEnd_toEndOf="@+id/id_password_new"
-        app:layout_constraintStart_toStartOf="@+id/id_password_new"
-        app:layout_constraintTop_toBottomOf="@+id/id_password_new" />
+        app:layout_constraintEnd_toEndOf="@+id/edt_password_repeat"
+        app:layout_constraintStart_toStartOf="@+id/edt_password_repeat"
+        app:layout_constraintTop_toBottomOf="@+id/edt_password_repeat" />
 
     <TextView
-        android:id="@+id/id_ok"
+        android:id="@+id/tv_register"
         android:layout_width="@dimen/x520"
         android:layout_height="@dimen/x79"
         android:layout_centerHorizontal="true"
@@ -304,6 +308,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_password_new" />
+        app:layout_constraintTop_toBottomOf="@id/edt_password_repeat" />
 
 </android.support.constraint.ConstraintLayout>

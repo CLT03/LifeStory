@@ -19,11 +19,13 @@ public class AvatarP2A implements Serializable {
     public static final String FILE_NAME_HEAD_BUNDLE = "head.bundle";
     public static final String FILE_NAME_SERVER_DATA = "server.bundle";
 
+
     public static final int style_basic = 0;
     public static final int style_art = 1;
     public static final int gender_boy = 0;
     public static final int gender_girl = 1;
 
+    private String serverUrl = null; //
     private int style = style_art;
     private String bundleDir = "";
     private int originPhotoRes = -1;
@@ -325,6 +327,14 @@ public class AvatarP2A implements Serializable {
 
     public void setHatColorValue(double hatColorValue) {
         this.hatColorValue = hatColorValue;
+    }
+
+    public String getServerUrl() {
+        return serverUrl;
+    }
+
+    public void setServerUrl(String serverUrl) {
+        this.serverUrl = serverUrl;
     }
 
     @Override
