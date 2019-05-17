@@ -4,15 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.vivwe.author.activity.ApplyActivity;
+import com.mbs.sdk.utils.ScreenUtils;
 import com.vivwe.author.activity.CenterActivity;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.main.R;
@@ -28,7 +27,6 @@ import com.vivwe.personal.activity.MyFansActivity;
 import com.vivwe.personal.activity.MyPurchasedActivity;
 import com.vivwe.personal.activity.MyVideoActivity;
 import com.vivwe.personal.activity.RecommendForYouActivity;
-import com.vivwe.personal.activity.UpdateUserInfoActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,6 +42,8 @@ public class UcenterFragment extends BaseFragment {
     Unbinder unbind;
     @BindView(R.id.recycler_view_history)
     RecyclerView recyclerViewHistory;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private UcenterHistoryAdapter adapter;
 
 
@@ -60,12 +60,16 @@ public class UcenterFragment extends BaseFragment {
         init();
     }
 
-    private void init(){
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+    private void init() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerViewHistory.setLayoutManager(linearLayoutManager);
-        adapter=new UcenterHistoryAdapter(getActivity());
+        adapter = new UcenterHistoryAdapter(getActivity());
         recyclerViewHistory.setAdapter(adapter);
+        ViewGroup.LayoutParams layoutParams=tvTitle.getLayoutParams();
+        layoutParams.height=ScreenUtils.getStatusHeight(getContext())+getResources().getDimensionPixelOffset(R.dimen.x88);
+        tvTitle.setLayoutParams(layoutParams);
+        tvTitle.setPadding(0,ScreenUtils.getStatusHeight(getContext()),0,0);
     }
 
 
