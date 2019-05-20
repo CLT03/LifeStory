@@ -21,27 +21,21 @@ import com.vivwe.main.entity.UserInfoEntity
 import com.vivwe.main.api.WebUserInfoApi
 
 
-
-
-
 /**
  * ahtor: super_link
  * date: 2019/5/20 09:56
  * remark:
  */
-class LoginActivity:BaseActivity() {
+class LoginActivity : BaseActivity() {
 
     @BindView(R.id.edit_username)
-    var accountEdt:EditText? = null
+    var accountEdt: EditText? = null
 
     @BindView(R.id.edt_password)
     var passwordEdt: EditText? = null
 
-
-
-
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         ButterKnife.bind(this)
     }
@@ -49,7 +43,7 @@ class LoginActivity:BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == 1 && resultCode == 1){ // 注册返回结果
+        if (requestCode == 1 && resultCode == 1) { // 注册返回结果
             var account = data!!.getStringExtra("account")
             accountEdt!!.setText(account)
             passwordEdt!!.setText("")
@@ -58,7 +52,7 @@ class LoginActivity:BaseActivity() {
     }
 
     @OnClick(R.id.tv_register)
-    fun toRegister(){
+    fun toRegister() {
         var intent = Intent()
         intent.setClass(this, RegisterActivity::class.java)
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
@@ -68,18 +62,18 @@ class LoginActivity:BaseActivity() {
     var loginIsBusying = false
 
     @OnClick(R.id.tv_login)
-    fun login(){
-        if(loginIsBusying ) return
+    fun login() {
+        if (loginIsBusying) return
 
         var account: String = accountEdt!!.text.toString().trim()
         val password: String = passwordEdt!!.text.toString().trim()
 
-        if(!StringUtils.checkMobileNumber(account)) {
+        if (!StringUtils.checkMobileNumber(account)) {
             Toast.show(this, "请输入正确的手机号码！", 3000);
             return;
         }
 
-        if(password.length < 6){
+        if (password.length < 6) {
             Toast.show(this, "请输入正确的密码！", 3000);
             return;
         }
