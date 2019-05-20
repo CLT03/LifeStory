@@ -30,19 +30,19 @@ class RegisterActivity : BaseActivity() {
 
     /** 账号  */
     @BindView(R.id.id_account)
-    internal var accountEdt: EditText? = null
+    lateinit var accountEdt: EditText
     /** 验证码  */
     @BindView(R.id.edt_code)
-    internal var codeEdt: EditText? = null
+    lateinit var codeEdt: EditText
     /** 密码  */
     @BindView(R.id.edt_password)
-    internal var passwordEdt: EditText? = null
+    lateinit var passwordEdt: EditText
     /** 重复密码  */
     @BindView(R.id.edt_password_repeat)
-    internal var passwordRepeatEdt: EditText? = null
+    lateinit var passwordRepeatEdt: EditText
     /** 获取验证码按钮  */
     @BindView(R.id.tv_code_obtain)
-    internal var codeObtainTv: TextView? = null
+    lateinit var codeObtainTv: TextView
 
     /**
      * 发送验证码计时
