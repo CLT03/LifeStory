@@ -7,6 +7,7 @@ import com.mbs.sdk.core.SdkContext;
 import com.mbs.sdk.net.HttpRequestConfig;
 import com.mbs.sdk.net.listener.OnWebExceptionListener;
 import com.mbs.sdk.net.msg.WebMsg;
+import com.vivwe.base.cache.UserCache;
 import com.vivwe.base.entity.UserToken;
 import com.vivwe.base.ui.alert.Toast;
 
@@ -58,7 +59,7 @@ public class MyApplication extends Application implements OnWebExceptionListener
             @Override
             public Map<String, String> getCommonHeaders() {
 
-                UserToken userToken = UserCache.getUserToken();
+                UserToken userToken = UserCache.Companion.getUserToken();
                 if(userToken != null){
                     // 当用户登录后，将token作为header方式传参
                     Map<String,String> params = new HashMap<>();

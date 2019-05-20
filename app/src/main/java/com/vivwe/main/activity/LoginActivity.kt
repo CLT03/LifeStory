@@ -39,6 +39,7 @@ class LoginActivity:BaseActivity() {
 
 
 
+
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
         setContentView(R.layout.activity_login)
@@ -110,12 +111,12 @@ class LoginActivity:BaseActivity() {
 
         loginIsBusying = true
 
-        HttpRequest.getInstance().excute(HttpRequest.create(WebUserInfoApi::class.java).getUserInfo(UserCache.getUserToken().id)) { webMsg ->
+        HttpRequest.getInstance().excute(HttpRequest.create(WebUserInfoApi::class.java).getUserInfo(UserCache.getUserToken()!!.id)) { webMsg ->
             Loading.stop()
             loginIsBusying = false
 
             if (webMsg.dataIsSuccessed()) {
-                UserCache.setUserInfo(webMsg.getData(UserInfoEntity::class.java))
+                UserCache.userInfo = webMsg.getData(UserInfoEntity::class.java)
                 Toast.show(this@LoginActivity, "恭喜，登录成功！", 3000)
                 val intent = Intent()
                 intent.setClass(this@LoginActivity, MainActivity::class.java)

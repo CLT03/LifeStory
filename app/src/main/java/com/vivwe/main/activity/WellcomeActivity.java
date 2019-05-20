@@ -7,6 +7,7 @@ import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.cache.UserCache;
 import com.vivwe.base.entity.UserToken;
 import com.vivwe.main.R;
 import com.vivwe.main.api.WebUserInfoApi;
@@ -25,15 +26,15 @@ public class WellcomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wellcome);
 
-        UserToken userToken = UserCache.getUserToken();
+        UserToken userToken = UserCache.Companion.getUserToken();
 
         // 用户已经登录，获取用户信息
         if(userToken != null){
-            HttpRequest.getInstance().excute(HttpRequest.create(WebUserInfoApi.class).getUserInfo(UserCache.getUserToken().getId()), new OnResultListener(){
+            HttpRequest.getInstance().excute(HttpRequest.create(WebUserInfoApi.class).getUserInfo(UserCache.Companion.getUserToken().getId()), new OnResultListener(){
                 @Override
                 public void onWebUiResult(WebMsg webMsg) {
                     if(webMsg.dataIsSuccessed()){
-                        UserCache.setUserInfo(webMsg.getData(UserInfoEntity.class));
+                        UserCache.Companion.setUserInfo(webMsg.getData(UserInfoEntity.class));
                     }
 
                     Intent intent = new Intent();
