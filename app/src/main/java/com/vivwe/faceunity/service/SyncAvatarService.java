@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnProgressListener;
 import com.mbs.sdk.net.msg.WebMsg;
+import com.vivwe.base.cache.UserCache;
 import com.vivwe.base.util.MiscUtil;
 
 import java.io.File;
@@ -50,7 +51,7 @@ public class SyncAvatarService extends Service {
 
         // 获取任务栈中的任务目录
 //        String asyncDir = BaseDataService.getValueByString("Async-Bundle-Cache");
-        String asyncDir = UserCache.get("Async-Bundle-Cache");
+        String asyncDir = UserCache.Companion.get("Async-Bundle-Cache");
 
 
         Log.v("ououou", "isBusying && dir.equals(asyncDir) = " + String.valueOf(isBusying && dir.equals(asyncDir)));
@@ -63,7 +64,7 @@ public class SyncAvatarService extends Service {
         Log.v("ououou", "file.isDirectory() = " + file.isDirectory());
         if(file.isDirectory()){
             /** 更新待同步的缓存文件夹，这样可以保持下次检测有最新需要同步的文件 */
-            UserCache.save("Async-Bundle-Cache", asyncDir);
+            UserCache.Companion.save("Async-Bundle-Cache", asyncDir);
 //            BaseDataService.saveValueToSharePerference("Async-Bundle-Cache", asyncDir);
         }
 
@@ -136,7 +137,7 @@ public class SyncAvatarService extends Service {
      */
     private void zipToServer(final String zipPath){
 
-        final AvatarP2A avatarP2A = UserCache.getUserInfo().getAvatar();
+        final AvatarP2A avatarP2A = UserCache.Companion.getUserInfo().getAvatar();
 
         // 保存到服务器
         Map<String, String> map = new HashMap<>();

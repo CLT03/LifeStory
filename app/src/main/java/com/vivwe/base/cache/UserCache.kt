@@ -11,7 +11,7 @@ import com.vivwe.main.entity.UserInfoEntity
  * date: 2019/5/14 13:38
  * remark:
  */
-class UserCache : SharedPreferences() {
+open class UserCache : SharedPreferences() {
     companion object {
 
 
