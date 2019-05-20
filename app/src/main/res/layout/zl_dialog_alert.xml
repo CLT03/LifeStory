@@ -1,130 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/transparent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="66000000"
     android:gravity="center"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="@dimen/x300"
+    <View
+        android:id="@+id/view23"
+        android:layout_width="@dimen/x540"
+        android:layout_height="@dimen/x270"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/r30_white_alert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dialog_title_tv"
+        android:layout_width="@dimen/x540"
         android:layout_height="wrap_content"
-        android:background="@drawable/r8_white_normal"
-        android:orientation="vertical"
-        android:padding="@dimen/x8">
+        android:layout_marginTop="@dimen/x30"
+        android:gravity="center"
+        android:text="确认删除视频吗？"
+        android:textColor="#333333"
+        android:textSize="@dimen/x34"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/view23"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/view23"
+        app:layout_constraintTop_toTopOf="@+id/view23" />
+
+    <TextView
+        android:id="@+id/dialog_message_tv"
+        android:layout_width="@dimen/x540"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x18"
+        android:gravity="center"
+        android:paddingLeft="@dimen/x12"
+        android:paddingRight="@dimen/x12"
+        android:text="删除后不可恢复"
+        android:textColor="#888888"
+
+        android:textSize="@dimen/x30"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/view23"
+        app:layout_constraintStart_toStartOf="@+id/view23"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_title_tv" />
+
+    <View
+        android:id="@+id/view24"
+        android:layout_width="@dimen/x540"
+        android:layout_height="0.5dp"
+        android:background="#DCDEE3"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="@+id/view23"
+        app:layout_constraintStart_toStartOf="@+id/dialog_message_tv" />
+
+    <View
+        android:id="@+id/view25"
+        android:layout_width="0.5dp"
+        android:layout_height="@dimen/x100"
+        android:background="#DCDEE3"
+        app:layout_constraintBottom_toBottomOf="@+id/view23"
+        app:layout_constraintEnd_toEndOf="@+id/view23"
+        app:layout_constraintStart_toStartOf="@+id/view23" />
+
+    <TextView
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x100"
+        android:background="@drawable/r30_white_left_btn"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="#000000"
+        android:textSize="@dimen/x32"
+        app:layout_constraintBottom_toBottomOf="@+id/view23"
+        app:layout_constraintEnd_toStartOf="@+id/view25"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="@+id/view23" />
+
+    <TextView
+        android:id="@+id/button4"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x100"
+        android:background="@drawable/r30_white_right_btn"
+        android:gravity="center"
+        android:text="删除"
+        android:textColor="#108EE9"
+        android:textSize="@dimen/x32"
+        app:layout_constraintBottom_toBottomOf="@+id/view23"
+        app:layout_constraintEnd_toEndOf="@+id/view23"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/view25" />
 
 
-        <TextView
-            android:id="@+id/dialog_title_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/x12"
-            android:paddingLeft="@dimen/x4"
-            android:paddingRight="@dimen/x4"
-            android:text="@string/prompt_system_tip"
-            android:textColor="#333333"
-            android:textSize="@dimen/x16"
-            android:textStyle="bold" />
-
-
-        <RelativeLayout
-            android:id="@+id/rl_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#a8ffffff"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/dialog_message_tv"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/x12"
-                android:visibility="gone"
-                android:paddingRight="@dimen/x12"
-                android:text="再连续登陆25天，就可以变身QQ达人。退出QQ可能会使你现有记录归零，确定退出？"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/x14"
-
-                />
-
-            <EditText
-                android:id="@+id/dialog_message_zedt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x12"
-                android:layout_marginRight="@dimen/x12"
-                android:gravity="left|center_vertical"
-                android:hint="请输入内容"
-                android:maxLength="120"
-                android:background="@drawable/r8_white_normal"
-                android:maxLines="4"
-                android:text="asdfasd"
-                android:paddingBottom="@dimen/x8"
-                android:textColor="@color/colorBlack"
-                android:textColorHint="#ababab"
-                android:textSize="@dimen/x14"
-                android:visibility="visible" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x12"
-            android:gravity="right"
-            android:orientation="horizontal"
-            android:padding="@dimen/x8">
-
-
-            <Button
-                android:id="@+id/btn_ok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ra_white_btn"
-                android:gravity="center"
-                android:padding="@dimen/x4"
-                android:text="确定"
-                android:textColor="@color/colorPrimaryBlue"
-                android:textSize="@dimen/x14" />
-
-            <Button
-                android:id="@+id/btn_other"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x8"
-                android:background="@drawable/ra_white_btn"
-                android:gravity="center"
-                android:padding="@dimen/x4"
-                android:text="考虑一下"
-                android:textColor="@color/colorPrimaryBlue"
-                android:textSize="@dimen/x14" />
-
-            <Button
-                android:id="@+id/btn_opt2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x8"
-                android:background="@drawable/ra_white_btn"
-                android:gravity="center"
-                android:padding="@dimen/x4"
-                android:text="考虑一下"
-                android:textColor="@color/colorPrimaryBlue"
-                android:textSize="@dimen/x14" />
-
-            <Button
-                android:id="@+id/btn_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x8"
-                android:background="@drawable/ra_white_btn"
-                android:gravity="center"
-                android:padding="@dimen/x4"
-                android:text="取消"
-                android:textColor="@color/colorPrimaryBlue"
-                android:textSize="@dimen/x14"
-                android:visibility="visible" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
