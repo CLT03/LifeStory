@@ -28,6 +28,8 @@
         </activity>
 
         <activity android:name=".activity.MainActivity" android:theme="@style/AppImmersiveTheme" android:launchMode="singleTop"/>
+        <activity android:name=".activity.LoginActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop" />
+        <activity android:name=".activity.RegisterActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop" />
         <activity android:name="com.vivwe.author.activity.ApplyActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name="com.vivwe.author.activity.CenterActivity" android:theme="@style/AppImmersiveTheme" android:launchMode="singleTop"/>
         <activity android:name="com.vivwe.author.activity.IncomeActivity" android:theme="@style/AppWhiteTheme"  android:launchMode="singleTop"/>
