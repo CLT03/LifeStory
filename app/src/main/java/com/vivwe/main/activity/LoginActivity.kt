@@ -29,10 +29,10 @@ import com.vivwe.main.api.WebUserInfoApi
 class LoginActivity : BaseActivity() {
 
     @BindView(R.id.edit_username)
-    var accountEdt: EditText? = null
+    lateinit var accountEdt: EditText
 
     @BindView(R.id.edt_password)
-    var passwordEdt: EditText? = null
+    lateinit var passwordEdt: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
