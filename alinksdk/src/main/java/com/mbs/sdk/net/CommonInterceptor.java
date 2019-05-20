@@ -1,5 +1,7 @@
 package com.mbs.sdk.net;
 
+import android.util.Log;
+
 import com.mbs.sdk.core.SdkContext;
 import java.io.IOException;
 import java.util.Map;
@@ -20,6 +22,8 @@ public class CommonInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
 
         Request oldRequest = chain.request();
+
+        Log.v(">>>Request url", oldRequest.url().host());
 
         HttpUrl.Builder authorizedUrlBuilder = oldRequest.url().newBuilder().scheme(oldRequest.url()
                 .scheme())

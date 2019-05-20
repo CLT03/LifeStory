@@ -160,7 +160,7 @@
 
     <TextView
         android:id="@+id/tv_code_obtain"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/x180"
         android:layout_height="@dimen/x70"
         android:layout_below="@id/icon_verification_code"
         android:layout_alignParentRight="true"

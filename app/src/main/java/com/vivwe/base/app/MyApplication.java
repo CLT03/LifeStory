@@ -7,7 +7,10 @@ import com.mbs.sdk.core.SdkContext;
 import com.mbs.sdk.net.HttpRequestConfig;
 import com.mbs.sdk.net.listener.OnWebExceptionListener;
 import com.mbs.sdk.net.msg.WebMsg;
+import com.vivwe.base.entity.UserToken;
 import com.vivwe.base.ui.alert.Toast;
+
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -54,6 +57,14 @@ public class MyApplication extends Application implements OnWebExceptionListener
 
             @Override
             public Map<String, String> getCommonHeaders() {
+
+                UserToken userToken = UserCache.getUserToken();
+                if(userToken != null){
+                    // 当用户登录后，将token作为header方式传参
+                    Map<String,String> params = new HashMap<>();
+                    params.put("token", userToken.getToken());
+                    return params;
+                }
                 return null;
             }
 
@@ -72,11 +83,15 @@ public class MyApplication extends Application implements OnWebExceptionListener
 
     @Override
     public void onNetError(WebMsg webMsg) {
-        Log.v(">>>", String.valueOf(webMsg.getWebCode()));
+        Log.v(">>>onNetError", String.valueOf(webMsg.getWebCode()));
         switch (webMsg.getWebCode()){
             case -1:
                 Toast.show(this, "服务器连接失败！", 3000);
                 break;
+            case 500:
+                Toast.show(this, "网络开了小差，请稍后重试！", 3000);
+                break;
+
         }
     }
 

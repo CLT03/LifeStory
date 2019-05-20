@@ -3,7 +3,6 @@ package com.vivwe.base.cache;
 import android.content.Context;
 import com.mbs.sdk.db.DBServer;
 import com.vivwe.base.app.MyApplication;
-import com.vivwe.main.entity.UserLoginInfoEntity;
 
 /**
  * ahtor: super_link

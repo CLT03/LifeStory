@@ -4,7 +4,9 @@ import com.mbs.sdk.net.msg.WebMsg;
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * ahtor: super_link
@@ -37,4 +39,12 @@ public interface WebMainApi {
     @POST("api/captcha")
     public Observable<WebMsg> getCaptcha(@Field("phoneNumber") String phoneNumber);
 
+    /**
+     * 用户登录
+     * @param phoneNumber 手机号
+     * @param password 密码
+     * @return
+     */
+    @GET("api/authentication")
+    public Observable<WebMsg> login(@Query("phoneNumber") String phoneNumber, @Query("password") String password);
 }

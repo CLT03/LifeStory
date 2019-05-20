@@ -3,6 +3,8 @@ package com.mbs.sdk.db;
 import android.content.Context;
 import android.content.SharedPreferences.Editor;
 
+import com.mbs.sdk.core.SdkContext;
+
 /**
  * author:zlcai
  * new date:2016-10-18
@@ -12,12 +14,12 @@ import android.content.SharedPreferences.Editor;
 
 public abstract class SharedPreferences {
 	
-	public static Context context;
-	private static String NAME = "AlinkSdk";
+//	public static Context context;
+	private static String NAME = "LifeStory";
 
 
 	private static android.content.SharedPreferences getSharePerference(){
-		return context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
+		return SdkContext.getSdkContext().getContext().getSharedPreferences(NAME, Context.MODE_PRIVATE);
 	}
 	
 	public static String getValueByString(String key){

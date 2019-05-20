@@ -3,8 +3,14 @@ package com.vivwe.main.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import com.mbs.sdk.net.HttpRequest;
+import com.mbs.sdk.net.listener.OnResultListener;
+import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.entity.UserToken;
 import com.vivwe.main.R;
+import com.vivwe.main.api.WebUserInfoApi;
+import com.vivwe.main.entity.UserInfoEntity;
 
 
 /**
@@ -19,39 +25,28 @@ public class WellcomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wellcome);
 
-//        Observable.create(new ObservableOnSubscribe<Integer>() {
-//            @Override
-//            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
-//                // 初始化人偶核心组件
-//
-//
-//                emitter.onComplete();
-//            }
-//        }).observeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<Integer>() {
-//                    @Override
-//                    public void onSubscribe(Disposable d) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onNext(Integer integer) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-                        Intent intent = new Intent();
-                        intent.setClass(WellcomeActivity.this, LoginActivity.class);
-                        WellcomeActivity.this.startActivity(intent);
-                        WellcomeActivity.this.finish();
-//                    }
-//                });
+        UserToken userToken = UserCache.getUserToken();
+
+        // 用户已经登录，获取用户信息
+        if(userToken != null){
+            HttpRequest.getInstance().excute(HttpRequest.create(WebUserInfoApi.class).getUserInfo(UserCache.getUserToken().getId()), new OnResultListener(){
+                @Override
+                public void onWebUiResult(WebMsg webMsg) {
+                    if(webMsg.dataIsSuccessed()){
+                        UserCache.setUserInfo(webMsg.getData(UserInfoEntity.class));
+                    }
+
+                    Intent intent = new Intent();
+                    intent.setClass(WellcomeActivity.this, MainActivity.class);
+                    WellcomeActivity.this.startActivity(intent);
+                    WellcomeActivity.this.finish();
+                }
+            });
+        } else { // 用户未登录，跳转到登录界面
+            Intent intent = new Intent();
+            intent.setClass(WellcomeActivity.this, LoginActivity.class);
+            WellcomeActivity.this.startActivity(intent);
+            WellcomeActivity.this.finish();
+        }
     }
 }
