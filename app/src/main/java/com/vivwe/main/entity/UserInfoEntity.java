@@ -1,5 +1,8 @@
 package com.vivwe.main.entity;
 
+import com.faceunity.p2a_art.entity.AvatarP2A;
+import com.google.gson.GsonBuilder;
+
 import java.math.BigDecimal;
 
 /**
@@ -7,7 +10,7 @@ import java.math.BigDecimal;
  * date: 2019/5/14 10:07
  * remark: 用户登录信息
  */
-public class UserLoginInfoEntity {
+public class UserInfoEntity {
     /** id */
     private int id;
     /** 用户账号 */
@@ -181,8 +184,13 @@ public class UserLoginInfoEntity {
         this.token = token;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public AvatarP2A getAvatar() {
+
+        if(avatar != null){
+            return new GsonBuilder().create().fromJson(avatar, AvatarP2A.class);
+        }
+
+        return null;
     }
 
     public void setAvatar(String avatar) {

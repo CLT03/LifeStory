@@ -13,7 +13,7 @@ import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnProgressListener;
 import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.util.MiscUtil;
-import com.vivwe.base.cache.UserCache;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -136,7 +136,7 @@ public class SyncAvatarService extends Service {
      */
     private void zipToServer(final String zipPath){
 
-        final AvatarP2A avatarP2A = UserCache.getAvatarP2A();
+        final AvatarP2A avatarP2A = UserCache.getUserInfo().getAvatar();
 
         // 保存到服务器
         Map<String, String> map = new HashMap<>();
@@ -152,7 +152,7 @@ public class SyncAvatarService extends Service {
 
             @Override
             public void onFinished(WebMsg webMsg) {
-                if (webMsg.isSuccessed()) {
+                if (webMsg.dataIsSuccessed()) {
                     final String url = new Gson().fromJson(webMsg.getData(), String.class);
                     avatarP2A.setServerUrl(url);
 

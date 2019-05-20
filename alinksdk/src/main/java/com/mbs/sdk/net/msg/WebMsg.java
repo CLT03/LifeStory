@@ -34,6 +34,10 @@ public class WebMsg {
 		return new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create().toJson(data);
 	}
 
+	public <T> T getData(Class<T> cls){
+		return new GsonBuilder().create().fromJson(getData(), cls);
+	}
+
 	public void setData(Object data) {
 		this.data = data;
 	}
@@ -89,7 +93,11 @@ public class WebMsg {
 	 * 是否成功
 	 * @return
 	 */
-	public boolean isSuccessed(){
-		return "success".equals(code) && webCode == 200;
+	public boolean dataIsSuccessed(){
+		return "success".equals(code);
+	}
+
+	public boolean netIsSuccessed(){
+		return webCode == 200;
 	}
 }
