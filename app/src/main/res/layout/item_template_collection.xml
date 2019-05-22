@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/x204"
+    android:layout_height="@dimen/x224">
+
+    <ImageView
+        android:id="@+id/imageView40"
+        android:layout_width="@dimen/x184"
+        android:layout_height="@dimen/x180"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_launcher_background" />
+
+</android.support.constraint.ConstraintLayout>

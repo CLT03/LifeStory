@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_head"
+        android:layout_width="@dimen/x64"
+        android:layout_height="@dimen/x64"
+        android:layout_marginLeft="@dimen/x22"
+        android:layout_marginTop="@dimen/x8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/icon_logo_default" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x12"
+        android:text="八月盛开"
+        android:textColor="#555555"
+        android:textSize="@dimen/x24"
+        app:layout_constraintStart_toEndOf="@+id/iv_head"
+        app:layout_constraintTop_toTopOf="@+id/iv_head" />
+
+    <TextView
+        android:id="@+id/tv_comment"
+        android:layout_width="@dimen/x540"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x8"
+        android:text="这你就不懂了吧，这叫山外有山人外有人懂了吧，这叫山外有山人外有人，长"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+    <ImageView
+        android:id="@+id/iv_like"
+        android:layout_width="@dimen/x56"
+        android:layout_height="@dimen/x56"
+        android:layout_marginRight="@dimen/x22"
+        android:padding="@dimen/x8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/icon_like_video" />
+
+    <TextView
+        android:id="@+id/tv_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="215"
+        app:layout_constraintEnd_toEndOf="@+id/iv_like"
+        app:layout_constraintStart_toStartOf="@+id/iv_like"
+        app:layout_constraintTop_toBottomOf="@+id/iv_like" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/iv_like"
+        app:layout_constraintStart_toStartOf="@+id/tv_comment"
+        app:layout_constraintTop_toBottomOf="@+id/tv_comment" />
+
+    <TextView
+        android:id="@+id/tv_open"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x58"
+        android:layout_marginLeft="@dimen/x52"
+        android:layout_marginTop="@dimen/x30"
+        android:text="展开1条回复"
+        android:textColor="#999999"
+        android:textSize="@dimen/x24"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+    <ImageView
+        android:id="@+id/imageView41"
+        android:layout_width="@dimen/x12"
+        android:layout_height="@dimen/x8"
+        android:layout_marginLeft="@dimen/x4"
+        android:layout_marginTop="@dimen/x14"
+        app:layout_constraintStart_toEndOf="@+id/tv_open"
+        app:layout_constraintTop_toTopOf="@+id/tv_open"
+        app:srcCompat="@mipmap/icon_back_gray" />
+</android.support.constraint.ConstraintLayout>

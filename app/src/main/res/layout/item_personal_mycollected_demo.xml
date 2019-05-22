@@ -14,7 +14,7 @@
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        android:src="@drawable/ic_launcher_background" />
 
     <TextView
         android:id="@+id/textView12"
@@ -38,6 +38,6 @@
         android:layout_height="@dimen/x26"
         app:layout_constraintEnd_toEndOf="@+id/iv_cover"
         app:layout_constraintTop_toTopOf="@+id/iv_cover"
-        app:srcCompat="@mipmap/icon_fee_red" />
+        android:src="@mipmap/icon_fee_red" />
 
 </android.support.constraint.ConstraintLayout>
