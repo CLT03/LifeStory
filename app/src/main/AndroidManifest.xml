@@ -61,5 +61,8 @@
         <activity android:name="com.vivwe.video.activity.MusicLibraryActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name="com.vivwe.author.activity.DesignerHomeActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
 
+
+        <!-- 自动同步化身服务 -->
+        <service android:name="com.vivwe.faceunity.service.SyncAvatarService" />
     </application>
 </manifest>
