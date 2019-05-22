@@ -68,13 +68,15 @@ public class LinearGradientTextView extends AppCompatTextView {
 
         mViewWidth = getMeasuredWidth();
         mPaint = getPaint();
+        Paint.FontMetricsInt fmi = mPaint.getFontMetricsInt();
+        float baseline = (float) (getMeasuredHeight()/2 - (fmi.bottom / 2.0 + fmi.top / 2.0));
         String mTipText = getText().toString();
         mPaint.getTextBounds(mTipText, 0, mTipText.length(), mTextBound);
         mLinearGradient = new LinearGradient(0, 0, mViewWidth, 0,
                 new int[]{start, end},
                 null, Shader.TileMode.REPEAT);
         mPaint.setShader(mLinearGradient);
-        canvas.drawText(mTipText, getMeasuredWidth() / 2 - mTextBound.width() / 2, getMeasuredHeight() / 2 + mTextBound.height() / 2, mPaint);
+        canvas.drawText(mTipText, getMeasuredWidth() / 2 - mTextBound.width() / 2, baseline, mPaint);
     }
 
 

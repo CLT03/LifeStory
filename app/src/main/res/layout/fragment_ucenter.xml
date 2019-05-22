@@ -244,7 +244,7 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_purchased" />
 
                 <TextView
-                    android:id="@+id/tv_"
+                    android:id="@+id/tv_open"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/x24"
@@ -348,7 +348,7 @@
                 <TextView
                     android:id="@+id/textView23"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/x150"
+                    android:layout_height="@dimen/x140"
                     android:layout_marginLeft="@dimen/x20"
                     android:layout_marginTop="@dimen/x20"
                     android:background="#F8F8F8"
@@ -375,62 +375,28 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_view_history"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/x150"
+                    android:layout_height="@dimen/x162"
                     android:layout_marginLeft="@dimen/x20"
                     android:layout_marginTop="@dimen/x20"
+                    android:background="#ffffff"
                     android:overScrollMode="never"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
-                <TextView
-                    android:id="@+id/tv_movement"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/x88"
-                    android:layout_marginTop="@dimen/x52"
-                    android:background="@drawable/ra_white_btn"
-                    android:gravity="center_vertical"
-                    android:paddingStart="@dimen/x120"
-                    android:paddingRight="@dimen/x106"
-                    android:text="我的动态"
-                    android:textColor="#191919"
-                    android:textSize="@dimen/x28"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recycler_view_history" />
+                <android.support.constraint.Barrier
+                    android:id="@+id/barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="textView23,recycler_view_history" />
 
-                <ImageView
-                    android:id="@+id/imageView13"
-                    android:layout_width="@dimen/x48"
-                    android:layout_height="@dimen/x48"
-                    android:layout_marginLeft="@dimen/x50"
-                    android:src="@mipmap/icon_movement_ucenter"
-                    app:layout_constraintBottom_toTopOf="@+id/view3"
-                    app:layout_constraintStart_toStartOf="@+id/tv_movement"
-                    app:layout_constraintTop_toTopOf="@+id/tv_movement" />
-
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="@dimen/x48"
-                    android:layout_height="@dimen/x48"
-                    android:layout_marginRight="@dimen/x16"
-                    android:src="@mipmap/icon_enter_ucenter"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_movement"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_movement" />
-
-                <View
-                    android:id="@+id/view3"
-                    android:layout_width="@dimen/x720"
-                    android:layout_height="@dimen/x2"
-                    android:background="#F2F2F2"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_movement"
-                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_video"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/x88"
+                    android:layout_marginTop="@dimen/x52"
                     android:background="@drawable/ra_white_btn"
                     android:gravity="center_vertical"
                     android:paddingStart="@dimen/x120"
@@ -440,7 +406,7 @@
                     android:textSize="@dimen/x28"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_movement" />
+                    app:layout_constraintTop_toBottomOf="@+id/barrier" />
 
                 <ImageView
                     android:id="@+id/imageView14"
@@ -490,10 +456,10 @@
                     android:layout_width="@dimen/x48"
                     android:layout_height="@dimen/x48"
                     android:layout_marginLeft="@dimen/x50"
+                    android:src="@mipmap/icon_video_recommended"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_recommend"
                     app:layout_constraintStart_toStartOf="@+id/tv_recommend"
-                    app:layout_constraintTop_toBottomOf="@+id/view4"
-                    android:src="@mipmap/icon_video_recommended" />
+                    app:layout_constraintTop_toBottomOf="@+id/view4" />
 
                 <ImageView
                     android:id="@+id/imageView16"
@@ -564,6 +530,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/view6" />
+
+
 
 
             </android.support.constraint.ConstraintLayout>

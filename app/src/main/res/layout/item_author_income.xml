@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/iv_search"
         android:layout_width="@dimen/x48"
         android:layout_height="@dimen/x48"
         android:layout_marginLeft="@dimen/x50"
@@ -57,7 +57,7 @@
         android:textColor="#A6A6A6"
         android:textSize="@dimen/x24"
         app:layout_constraintBottom_toBottomOf="@+id/tv_content"
-        app:layout_constraintStart_toEndOf="@+id/imageView4" />
+        app:layout_constraintStart_toEndOf="@+id/iv_search" />
 
     <TextView
         android:id="@+id/tv_time2"

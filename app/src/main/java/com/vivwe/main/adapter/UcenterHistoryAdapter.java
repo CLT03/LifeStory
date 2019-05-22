@@ -37,7 +37,7 @@ public class UcenterHistoryAdapter extends RecyclerView.Adapter<UcenterHistoryAd
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 7;
     }
 
 
