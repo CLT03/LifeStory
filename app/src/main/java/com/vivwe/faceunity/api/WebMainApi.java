@@ -1,4 +1,4 @@
-package com.vivwe.main.api;
+package com.vivwe.faceunity.api;
 
 import com.mbs.sdk.net.msg.WebMsg;
 
@@ -14,12 +14,12 @@ import retrofit2.http.Query;
  * date: 2019/5/9 16:57
  * remark:
  */
-public interface WebUserInfoApi {
+public interface WebMainApi {
+
     /**
-     * 获取用户信息
-     * @param userId 用户ID
+     * 七牛上传获取token
      * @return
      */
-    @GET("api/user/getUserInfo")
-    public Observable<WebMsg> getUserInfo(@Query("userId") Integer userId);
+    @GET("api/qi-niu/token")
+    public Observable<WebMsg> getToken();
 }

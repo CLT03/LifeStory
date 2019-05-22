@@ -11,9 +11,19 @@ import com.faceunity.p2a_art.entity.AvatarP2A;
 import com.google.gson.Gson;
 import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnProgressListener;
+import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
+import com.qiniu.android.storage.UpProgressHandler;
+import com.qiniu.android.storage.UploadManager;
+import com.qiniu.android.storage.UploadOptions;
 import com.vivwe.base.cache.UserCache;
 import com.vivwe.base.util.MiscUtil;
+import com.vivwe.faceunity.api.WebMainApi;
+import com.vivwe.faceunity.entity.UploadToken;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.HashMap;
@@ -136,37 +146,78 @@ public class SyncAvatarService extends Service {
      * @param zipPath zip文件路径
      */
     private void zipToServer(final String zipPath){
-
         final AvatarP2A avatarP2A = UserCache.Companion.getUserInfo().getAvatar();
 
-        // 保存到服务器
-        Map<String, String> map = new HashMap<>();
-        map.put("file", "uploadFile");
-
-        HttpRequest.getInstance().uploadToExcute("file/upload", "uploadFile", new File(zipPath), new OnProgressListener() {
+        HttpRequest.getInstance().excute(HttpRequest.create(WebMainApi.class).getToken(), new OnResultListener() {
             @Override
-            public void onProgress(long currentBytes, long contentLength) {
-                int progress = (int) (currentBytes * 100 / contentLength);
+            public void onWebUiResult(WebMsg webMsg) {
+                if(webMsg.dataIsSuccessed()) {
+                    UploadManager uploadManager = new UploadManager();
+                    uploadManager.put(new File(zipPath), null, webMsg.getData(UploadToken.class).getToken(), new UpCompletionHandler() {
+                        @Override
+                        public void complete(String key, ResponseInfo info, JSONObject res) {
+                            if(info.isOK()) {
+                                Log.i("qiniu", "Upload Success");
 
-                Log.v("ououou", String.valueOf(progress));
-            }
+//                                final String url = info.path;
+                                avatarP2A.setServerUrl(info.path);
 
-            @Override
-            public void onFinished(WebMsg webMsg) {
-                if (webMsg.dataIsSuccessed()) {
-                    final String url = new Gson().fromJson(webMsg.getData(), String.class);
-                    avatarP2A.setServerUrl(url);
+                                // 更新化身数据到服务器
+                                saveMirrorToServer(avatarP2A);
 
-                    // 更新化身数据到服务器
-                    saveMirrorToServer(avatarP2A);
+                            } else {
+                                Log.i("qiniu", "Upload Fail");
+                                isBusying = false;
+                            }
+                            Log.i("qiniu", key + ",\r\n " + info + ",\r\n " + res);
+                        }
+
+                    }, new UploadOptions(null, null, false,
+                        new UpProgressHandler(){
+                            public void progress(String key, double percent){
+                                Log.i("qiniu", key + ": " + percent);
+
+                            }
+                        }, null)
+                    );
+
                 } else {
                     isBusying = false;
-//                    webMsg.showMsg(SyncAvatarService.this);
-
-                    Log.v("ououou", new Gson().toJson(webMsg));
                 }
             }
         });
+
+
+
+
+        // 保存到服务器
+//        Map<String, String> map = new HashMap<>();
+//        map.put("file", "uploadFile");
+//
+//        HttpRequest.getInstance().uploadToExcute("file/upload", "uploadFile", new File(zipPath), new OnProgressListener() {
+//            @Override
+//            public void onProgress(long currentBytes, long contentLength) {
+//                int progress = (int) (currentBytes * 100 / contentLength);
+//
+//                Log.v("ououou", String.valueOf(progress));
+//            }
+//
+//            @Override
+//            public void onFinished(WebMsg webMsg) {
+//                if (webMsg.dataIsSuccessed()) {
+//                    final String url = new Gson().fromJson(webMsg.getData(), String.class);
+//                    avatarP2A.setServerUrl(url);
+//
+//                    // 更新化身数据到服务器
+//                    saveMirrorToServer(avatarP2A);
+//                } else {
+//                    isBusying = false;
+////                    webMsg.showMsg(SyncAvatarService.this);
+//
+//                    Log.v("ououou", new Gson().toJson(webMsg));
+//                }
+//            }
+//        });
 
 
 
@@ -203,6 +254,8 @@ public class SyncAvatarService extends Service {
     private void saveMirrorToServer(final AvatarP2A avatarP2A){
 
         final String avatarP2sStr = new Gson().toJson(avatarP2A);
+
+        Log.v(">>>", avatarP2A.getServerUrl());
         //
 //        HttpRequest.instance().doPost(HttpRequest.create(WebUcenterApi.class).editMirror(avatarP2sStr), new OnResultListener() {
 //            @Override

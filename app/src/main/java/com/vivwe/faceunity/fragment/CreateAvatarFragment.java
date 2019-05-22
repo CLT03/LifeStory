@@ -22,6 +22,7 @@ import com.vivwe.faceunity.controller.create.GetPhotoWayController;
 import com.vivwe.faceunity.controller.create.SelectSexController;
 import com.vivwe.faceunity.controller.create.TakePhotoController;
 import com.vivwe.faceunity.controller.listener.OnCreateAvatarListener;
+import com.vivwe.faceunity.service.SyncAvatarService;
 import com.vivwe.main.R;
 import java.io.File;
 import butterknife.BindView;
@@ -182,9 +183,9 @@ public class CreateAvatarFragment extends BaseFragment implements OnCreateAvatar
 //        CacheDataService.saveAvatarP2A(avatarP2A);
 
         // 启动服务更新最新化身到服务器上（异步的方式）
-//        Intent startIntent = new Intent(this, SyncAvatarService.class);
-//        startIntent.putExtra("dir", avatarP2A.getBundleDir());
-//        startService(startIntent);
+        Intent startIntent = new Intent(this.getContext(), SyncAvatarService.class);
+        startIntent.putExtra("dir", avatarP2A.getBundleDir());
+        this.getContext().startService(startIntent);
 
         // 退出
 //        setResult(1);

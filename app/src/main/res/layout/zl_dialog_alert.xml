@@ -2,14 +2,15 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="66000000"
+    android:background="#33000000"
     android:gravity="center"
     android:orientation="vertical">
 
     <View
-        android:id="@+id/view23"
+        android:id="@+id/v_content"
         android:layout_width="@dimen/x540"
         android:layout_height="@dimen/x270"
         android:layout_marginStart="8dp"
@@ -23,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/dialog_title_tv"
+        android:id="@+id/tv_title"
         android:layout_width="@dimen/x540"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/x30"
@@ -32,13 +33,13 @@
         android:textColor="#333333"
         android:textSize="@dimen/x34"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/view23"
+        app:layout_constraintEnd_toEndOf="@+id/v_content"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/view23"
-        app:layout_constraintTop_toTopOf="@+id/view23" />
+        app:layout_constraintStart_toStartOf="@+id/v_content"
+        app:layout_constraintTop_toTopOf="@+id/v_content" />
 
     <TextView
-        android:id="@+id/dialog_message_tv"
+        android:id="@+id/tv_message"
         android:layout_width="@dimen/x540"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/x18"
@@ -50,30 +51,30 @@
 
         android:textSize="@dimen/x30"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@+id/view23"
-        app:layout_constraintStart_toStartOf="@+id/view23"
-        app:layout_constraintTop_toBottomOf="@+id/dialog_title_tv" />
+        app:layout_constraintEnd_toEndOf="@+id/v_content"
+        app:layout_constraintStart_toStartOf="@+id/v_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <View
         android:id="@+id/view24"
         android:layout_width="@dimen/x540"
         android:layout_height="0.5dp"
         android:background="#DCDEE3"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="@+id/view23"
-        app:layout_constraintStart_toStartOf="@+id/dialog_message_tv" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_cancel"
+        app:layout_constraintEnd_toEndOf="@+id/v_content"
+        app:layout_constraintStart_toStartOf="@+id/tv_message" />
 
     <View
         android:id="@+id/view25"
         android:layout_width="0.5dp"
         android:layout_height="@dimen/x100"
         android:background="#DCDEE3"
-        app:layout_constraintBottom_toBottomOf="@+id/view23"
-        app:layout_constraintEnd_toEndOf="@+id/view23"
-        app:layout_constraintStart_toStartOf="@+id/view23" />
+        app:layout_constraintBottom_toBottomOf="@+id/v_content"
+        app:layout_constraintEnd_toEndOf="@+id/v_content"
+        app:layout_constraintStart_toStartOf="@+id/v_content" />
 
     <TextView
-        android:id="@+id/button2"
+        android:id="@+id/tv_cancel"
         android:layout_width="0dp"
         android:layout_height="@dimen/x100"
         android:background="@drawable/r30_white_left_btn"
@@ -81,13 +82,13 @@
         android:text="取消"
         android:textColor="#000000"
         android:textSize="@dimen/x32"
-        app:layout_constraintBottom_toBottomOf="@+id/view23"
+        app:layout_constraintBottom_toBottomOf="@+id/v_content"
         app:layout_constraintEnd_toStartOf="@+id/view25"
         app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toStartOf="@+id/view23" />
+        app:layout_constraintStart_toStartOf="@+id/v_content" />
 
     <TextView
-        android:id="@+id/button4"
+        android:id="@+id/tv_ok"
         android:layout_width="0dp"
         android:layout_height="@dimen/x100"
         android:background="@drawable/r30_white_right_btn"
@@ -95,8 +96,8 @@
         android:text="删除"
         android:textColor="#108EE9"
         android:textSize="@dimen/x32"
-        app:layout_constraintBottom_toBottomOf="@+id/view23"
-        app:layout_constraintEnd_toEndOf="@+id/view23"
+        app:layout_constraintBottom_toBottomOf="@+id/v_content"
+        app:layout_constraintEnd_toEndOf="@+id/v_content"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/view25" />
 

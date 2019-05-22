@@ -6,7 +6,6 @@ package com.vivwe.base.ui.alert.constant;
  * remark: 弹出框弹出按钮类型
  */
 public enum AlertDialogEnum {
-    INPUT, // 输入框
     TIP, // 提示
     CUSTOM // 自定义
 }
