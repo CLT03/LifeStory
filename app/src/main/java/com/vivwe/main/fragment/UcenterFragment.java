@@ -79,7 +79,9 @@ public class UcenterFragment extends BaseFragment {
         unbind.unbind();
     }
 
-    @OnClick({R.id.iv_setting, R.id.iv_notice, R.id.iv_attention, R.id.tv_attention, R.id.iv_fans, R.id.tv_fans, R.id.tv_purchased, R.id.tv_collected, R.id.tv_draft, R.id.tv_source, R.id.iv_more, R.id.tv_more, R.id.tv_movement, R.id.tv_video, R.id.tv_recommend, R.id.tv_author_ucenter})
+    @OnClick({R.id.iv_setting, R.id.iv_notice, R.id.iv_attention, R.id.tv_attention, R.id.iv_fans, R.id.tv_fans, R.id.tv_purchased,
+            R.id.tv_collected, R.id.tv_draft, R.id.tv_source, R.id.iv_more, R.id.tv_more, R.id.tv_video, R.id.tv_recommend,
+            R.id.tv_author_ucenter})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_setting:
@@ -111,8 +113,6 @@ public class UcenterFragment extends BaseFragment {
             case R.id.iv_more:
             case R.id.tv_more:
                 startActivity(new Intent(getActivity(), MyBrowsingHistoryActivity.class));
-                break;
-            case R.id.tv_movement:
                 break;
             case R.id.tv_video:
                 startActivity(new Intent(getActivity(), MyVideoActivity.class));
