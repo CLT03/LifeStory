@@ -63,7 +63,7 @@ public class MainFragment extends BaseFragment {
     private void init(){
         fragments.add(new HomeFragment());
         fragments.add(new RecommendFragment());
-        fragments.add(new TemplateFramgent());
+        fragments.add(new TemplateFragment());
         fragments.add(new UcenterFragment());
 
         for (BaseFragment fragment : fragments) {

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/x378"
+    android:layout_height="@dimen/x710"
+    android:background="#ffffff">
+
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="@dimen/x374"
+        android:layout_height="@dimen/x708"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textView39"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/x84"
+        android:paddingLeft="@dimen/x20"
+        android:paddingRight="@dimen/x20"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/x32"
+        android:textStyle="bold"
+        android:text="为什么漂亮的女生为什么漂亮的女生为什么漂亮的女生"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintStart_toStartOf="@+id/imageView4" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x48"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginTop="@dimen/x20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView39"
+        android:src="@mipmap/icon_logo_default" />
+
+    <TextView
+        android:id="@+id/textView79"
+        android:layout_width="@dimen/x160"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x10"
+        android:text="小逗比是我小逗比是我小逗比是我"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textSize="@dimen/x24"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
+        app:layout_constraintStart_toEndOf="@+id/imageView13"
+        app:layout_constraintTop_toTopOf="@+id/imageView13" />
+
+    <ImageView
+        android:id="@+id/imageView30"
+        android:layout_width="@dimen/x28"
+        android:layout_height="@dimen/x28"
+        android:layout_marginLeft="@dimen/x18"
+        app:layout_constraintBottom_toBottomOf="@+id/textView79"
+        app:layout_constraintStart_toEndOf="@+id/textView79"
+        app:layout_constraintTop_toTopOf="@+id/textView79"
+        android:src="@mipmap/icon_play_video" />
+
+    <TextView
+        android:id="@+id/textView80"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:paddingLeft="@dimen/x2"
+        android:singleLine="true"
+        android:text="54841111"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/x24"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView30"
+        app:layout_constraintEnd_toEndOf="@+id/textView39"
+        app:layout_constraintStart_toEndOf="@+id/imageView30"
+        app:layout_constraintTop_toTopOf="@+id/imageView30" />
+</android.support.constraint.ConstraintLayout>

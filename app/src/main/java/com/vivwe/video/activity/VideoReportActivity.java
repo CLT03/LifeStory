@@ -8,13 +8,14 @@ import com.vivwe.main.R;
 
 /**
  * ahtor: super_link
- * date: 2019/5/10 09:38
- * remark: 视频搜索页
+ * date: 2019/4/26 15:38
+ * remark: 举报与反馈
  */
-public class TempldateSearchActivity extends BaseActivity {
+public class VideoReportActivity extends BaseActivity {
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video_template_search);
+        setContentView(R.layout.activity_video_report);
     }
 }

@@ -11,7 +11,7 @@ import com.vivwe.main.R;
  * date: 2019/5/10 09:38
  * remark: 购买模板支付（3.1）
  */
-public class TempldatePayActivity extends BaseActivity {
+public class TemplatePayActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
