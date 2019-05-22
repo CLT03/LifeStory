@@ -54,5 +54,7 @@
         <activity android:name=".activity.FeebackActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name=".activity.AboutActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name=".activity.MessageActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+
+        <service android:name="com.vivwe.faceunity.service.SyncAvatarService" />
     </application>
 </manifest>

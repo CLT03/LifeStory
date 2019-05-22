@@ -1,5 +1,6 @@
 package com.vivwe.base.cache
 
+import android.util.Log
 import com.faceunity.p2a_art.entity.AvatarP2A
 import com.google.gson.GsonBuilder
 import com.mbs.sdk.db.SharedPreferences
@@ -85,6 +86,9 @@ open class UserCache : SharedPreferences() {
          */
         operator fun get(key: String): String? {
             return if (UserCache.userToken != null) {
+
+                Log.v(">>>", userToken!!.account)
+
                 DataServiceCache.getInstance().get(userToken!!.account, key)
             } else null
         }
