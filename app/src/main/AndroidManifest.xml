@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.vivwe.main">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -18,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppImmersiveTheme"
-        android:networkSecurityConfig="@xml/network_security_config">
+        android:networkSecurityConfig="@xml/network_security_config"
+        tools:ignore="GoogleAppIndexingWarning">
 
         <activity android:name=".activity.WellcomeActivity" android:theme="@style/WelcomeTheme" >
             <intent-filter >
@@ -54,5 +56,10 @@
         <activity android:name=".activity.FeebackActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name=".activity.AboutActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name=".activity.MessageActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.video.activity.VideoToShowActivity" android:theme="@style/WelcomeTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.video.activity.TemplateDetailActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.video.activity.MusicLibraryActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.author.activity.DesignerHomeActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+
     </application>
 </manifest>

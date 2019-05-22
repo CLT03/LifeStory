@@ -9,12 +9,12 @@ import com.vivwe.main.R;
 /**
  * ahtor: super_link
  * date: 2019/5/10 09:38
- * remark: 模板详情（3.1）
+ * remark: 视频搜索页
  */
-public class TempldateDetailActivity extends BaseActivity {
+public class TemplateSearchActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video_template_detail);
+        setContentView(R.layout.activity_video_template_search);
     }
 }
