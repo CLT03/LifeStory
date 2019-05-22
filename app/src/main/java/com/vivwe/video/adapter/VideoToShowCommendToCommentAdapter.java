@@ -1,4 +1,4 @@
-package com.vivwe.main.adapter;
+package com.vivwe.video.adapter;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -9,11 +9,12 @@ import android.view.ViewGroup;
 
 import com.vivwe.main.R;
 
-public class UcenterHistoryAdapter extends RecyclerView.Adapter<UcenterHistoryAdapter.ViewHolder> {
+public class VideoToShowCommendToCommentAdapter extends RecyclerView.Adapter<VideoToShowCommendToCommentAdapter.ViewHolder> {
 
     private Activity activity;
-    public UcenterHistoryAdapter(Activity activity) {
-         this.activity=activity;
+
+    public VideoToShowCommendToCommentAdapter(Activity activity) {
+        this.activity = activity;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -26,7 +27,7 @@ public class UcenterHistoryAdapter extends RecyclerView.Adapter<UcenterHistoryAd
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(activity).inflate(R.layout.item_main_ucenter, viewGroup, false);
+        View v = LayoutInflater.from(activity).inflate(R.layout.item_video_to_show_commend_to_commend, viewGroup, false);
         return new ViewHolder(v);
     }
 
@@ -37,7 +38,7 @@ public class UcenterHistoryAdapter extends RecyclerView.Adapter<UcenterHistoryAd
 
     @Override
     public int getItemCount() {
-        return 7;
+        return 10;
     }
 
 
