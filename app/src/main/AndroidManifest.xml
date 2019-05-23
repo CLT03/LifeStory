@@ -56,13 +56,13 @@
         <activity android:name=".activity.FeebackActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name=".activity.AboutActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name=".activity.MessageActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
-
-        <activity android:name="com.vivwe.video.activity.VideoPreviewActivity" android:theme="@style/WelcomeTheme" android:launchMode="singleTop" />
-        <activity android:name="com.vivwe.video.activity.VideoCreateByDynamicActivity" android:theme="@style/WelcomeTheme" android:launchMode="singleTop"/>
-        <activity android:name="com.vivwe.video.activity.VideoToShowActivity" android:theme="@style/WelcomeTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.video.activity.VideoToShowActivity" android:windowSoftInputMode="stateAlwaysHidden" android:theme="@style/WelcomeTheme" android:launchMode="singleTop"/>
         <activity android:name="com.vivwe.video.activity.TemplateDetailActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name="com.vivwe.video.activity.MusicLibraryActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name="com.vivwe.author.activity.DesignerHomeActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.video.activity.VideoSearchActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.video.activity.TemplateSearchActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.video.activity.VideoReportActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
 
 
         <activity android:name="com.vivwe.base.util.imgeloader.ImageLoadActivity" android:theme="@style/AppWhiteTheme" />

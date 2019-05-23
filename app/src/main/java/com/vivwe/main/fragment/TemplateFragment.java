@@ -1,5 +1,6 @@
 package com.vivwe.main.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,9 +16,11 @@ import android.widget.TextView;
 import com.mbs.sdk.utils.ScreenUtils;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.main.R;
+import com.vivwe.main.activity.MessageActivity;
 import com.vivwe.main.adapter.TemplateCollectionAdapter;
 import com.vivwe.personal.adapter.MyCollectedDemoAdapter;
 import com.vivwe.personal.adapter.RecommendActivityAdapter;
+import com.vivwe.video.activity.TemplateSearchActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -81,11 +84,11 @@ public class TemplateFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.tv_search:
             case R.id.iv_search:
-
+                startActivity(new Intent(getActivity(), TemplateSearchActivity.class));
                 break;
             case R.id.iv_notice:
             case R.id.tv_notice_number:
-
+                startActivity(new Intent(getActivity(), MessageActivity.class));
                 break;
             case R.id.tv_all:
             case R.id.iv_all:
