@@ -68,7 +68,7 @@
         android:src="@mipmap/icon_play_video" />
 
     <TextView
-        android:id="@+id/textView80"
+        android:id="@+id/tv_to_publish"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"

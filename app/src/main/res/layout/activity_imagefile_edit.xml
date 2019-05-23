@@ -1,0 +1,117 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack">
+
+    <ImageButton
+        android:id="@+id/tv_back"
+        android:layout_width="@dimen/x96"
+        android:layout_height="@dimen/x96"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/ra_transparent_btn"
+        android:padding="@dimen/x30"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_back_white"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView91"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center_vertical"
+        android:text="编辑图片"
+        android:textColor="#F9F9F9"
+        android:textSize="@dimen/x30"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_back" />
+
+    <TextView
+        android:id="@id/id_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x96"
+        android:background="@drawable/ra_transparent_btn"
+        android:gravity="center"
+        android:paddingLeft="@dimen/x30"
+        android:paddingRight="@dimen/x30"
+        android:text="确定"
+        android:textColor="#F9F9F9"
+        android:textSize="@dimen/x30"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_back" />
+
+    <ImageView
+        android:id="@+id/activity_imagefile_edit_image_iv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#00000000"
+        android:contentDescription="描述"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_folder"
+        app:layout_constraintBottom_toTopOf="@+id/activity_imagefile_edit_rotate_left_ibtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_back"
+        app:layout_constraintVertical_weight="1"></ImageView>
+
+    <ImageButton
+        android:id="@+id/activity_imagefile_edit_rotate_right_ibtn"
+        android:layout_width="@dimen/x75"
+        android:layout_height="@dimen/x75"
+        android:layout_marginStart="@dimen/x90"
+        android:layout_marginBottom="@dimen/x18"
+        android:background="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_rotate_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/activity_imagefile_edit_rotate_left_ibtn"
+        android:layout_width="@dimen/x75"
+        android:layout_height="@dimen/x75"
+        android:layout_marginStart="@dimen/x90"
+        android:layout_toRightOf="@id/activity_imagefile_edit_rotate_right_ibtn"
+        android:background="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_rotate_left"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_imagefile_edit_rotate_right_ibtn"
+        app:layout_constraintStart_toEndOf="@+id/activity_imagefile_edit_rotate_right_ibtn"
+        app:layout_constraintTop_toTopOf="@+id/activity_imagefile_edit_rotate_right_ibtn" />
+
+    <ImageButton
+        android:id="@+id/activity_imagefile_edit_fliplr_ibtn"
+        android:layout_width="@dimen/x75"
+        android:layout_height="@dimen/x75"
+        android:layout_marginStart="@dimen/x90"
+        android:layout_toRightOf="@id/activity_imagefile_edit_rotate_left_ibtn"
+        android:background="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_flipud"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_imagefile_edit_rotate_left_ibtn"
+        app:layout_constraintStart_toEndOf="@+id/activity_imagefile_edit_rotate_left_ibtn"
+        app:layout_constraintTop_toTopOf="@+id/activity_imagefile_edit_rotate_left_ibtn" />
+
+    <ImageButton
+        android:id="@+id/activity_imagefile_edit_flipud_ibtn"
+        android:layout_width="@dimen/x75"
+        android:layout_height="@dimen/x75"
+        android:layout_marginStart="@dimen/x90"
+        android:layout_toRightOf="@id/activity_imagefile_edit_fliplr_ibtn"
+        android:background="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_fliplr"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_imagefile_edit_fliplr_ibtn"
+        app:layout_constraintStart_toEndOf="@+id/activity_imagefile_edit_fliplr_ibtn"
+        app:layout_constraintTop_toTopOf="@+id/activity_imagefile_edit_fliplr_ibtn" />
+</android.support.constraint.ConstraintLayout>

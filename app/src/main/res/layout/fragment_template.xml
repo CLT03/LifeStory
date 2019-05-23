@@ -150,7 +150,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/recycler_view_collection" />
 
             <View
-                android:id="@+id/view27"
+                android:id="@+id/v_choose_music"
                 android:layout_width="@dimen/x8"
                 android:layout_height="@dimen/x28"
                 android:layout_marginLeft="@dimen/x32"

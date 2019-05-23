@@ -1,5 +1,6 @@
 package com.vivwe.main.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,8 @@ import com.vivwe.faceunity.fragment.EditDecorationFragment;
 import com.vivwe.faceunity.fragment.FaceToAssetsFragment;
 import com.vivwe.main.R;
 import com.vivwe.main.entity.UserInfoEntity;
+import com.vivwe.video.activity.VideoCreateByDynamicActivity;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -63,5 +66,15 @@ public class HomeFragment extends BaseFragment {
     @OnClick(R.id.iv_edit_face)
     public void toEditFaceFragment(){
         mainActivity.showFragment(EditDecorationFragment.class);
+    }
+
+    /**
+     * 用于测试
+     */
+    @OnClick(R.id.tv_username)
+    public void toTest(){
+        Intent intent = new Intent();
+        intent.setClass(this.getContext(), VideoCreateByDynamicActivity.class);
+        this.startActivity(intent);
     }
 }

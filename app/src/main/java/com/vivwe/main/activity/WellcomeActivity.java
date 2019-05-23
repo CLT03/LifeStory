@@ -27,9 +27,10 @@ public class WellcomeActivity extends BaseActivity {
         setContentView(R.layout.activity_wellcome);
 
         UserToken userToken = UserCache.Companion.getUserToken();
+        UserInfoEntity userInfo = UserCache.Companion.getUserInfo();
 
         // 用户已经登录，获取用户信息
-        if(userToken != null){
+        if(userToken != null && userInfo != null){
             HttpRequest.getInstance().excute(HttpRequest.create(WebUserInfoApi.class).getUserInfo(UserCache.Companion.getUserToken().getId()), new OnResultListener(){
                 @Override
                 public void onWebUiResult(WebMsg webMsg) {

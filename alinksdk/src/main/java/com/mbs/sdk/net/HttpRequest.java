@@ -84,7 +84,7 @@ public class HttpRequest {
             httpRequest.createRetrofix();
         }
 
-        Log.v(">>>",httpRequest.webApi );
+//        Log.v(">>>",httpRequest.webApi );
         return httpRequest;
     }
 

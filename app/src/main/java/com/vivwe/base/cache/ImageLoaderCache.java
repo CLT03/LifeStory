@@ -14,7 +14,6 @@ import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 import java.io.File;
 import com.vivwe.base.app.MyApplication;
-
 /**
  * ahtor: super_link
  * date: 2019/4/22 18:11
