@@ -23,7 +23,7 @@ public class CommonInterceptor implements Interceptor {
 
         Request oldRequest = chain.request();
 
-        Log.v(">>>Request url", oldRequest.url().host());
+        Log.v(">>>Request url", oldRequest.url().uri().getPath());
 
         HttpUrl.Builder authorizedUrlBuilder = oldRequest.url().newBuilder().scheme(oldRequest.url()
                 .scheme())

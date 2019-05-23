@@ -13,6 +13,7 @@ public class Globals extends com.mbs.sdk.core.Globals {
 
     public static String APP_KEY = "7DLF3E218C10F53CB6A439D388E1B115";
     public final static String EXIT_APP = "exit_app";
+    public static String APPLICTION_ID = "com.vivwe.main";
 
     public static final String DIR_CACHE_BASE = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "LifeStory" + File.separator;
     public static final String DIR_CACHE_BUNDLE =  DIR_CACHE_BASE + "bundle" + File.separator;

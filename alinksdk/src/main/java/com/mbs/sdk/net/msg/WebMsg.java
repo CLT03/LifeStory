@@ -22,7 +22,7 @@ public class WebMsg {
 	// 普通变量
     private Object data;
 	private int webCode = 200; // 网络错误代码
-	private String code;
+	private int code;
 	private String desc;
 
 
@@ -49,7 +49,7 @@ public class WebMsg {
 	public static WebMsg getSuccessed(){
 		WebMsg webMsg = new WebMsg();
 		webMsg.webCode = 200;
-		webMsg.code = "success";
+		webMsg.code = 200;
 		return webMsg;
 	}
 
@@ -73,11 +73,11 @@ public class WebMsg {
 		return webCode;
 	}
 
-	public String getCode() {
+	public int getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(int code) {
 		this.code = code;
 	}
 
@@ -94,7 +94,7 @@ public class WebMsg {
 	 * @return
 	 */
 	public boolean dataIsSuccessed(){
-		return "success".equals(code);
+		return code == 200;
 	}
 
 	public boolean netIsSuccessed(){

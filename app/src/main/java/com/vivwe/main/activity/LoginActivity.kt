@@ -16,6 +16,7 @@ import com.vivwe.base.cache.UserCache
 import com.mbs.sdk.net.HttpRequest
 import com.vivwe.base.entity.UserToken
 import com.mbs.sdk.net.listener.OnResultListener
+import com.mbs.sdk.net.msg.WebMsg
 import com.vivwe.main.api.WebMainApi
 import com.vivwe.main.entity.UserInfoEntity
 import com.vivwe.main.api.WebUserInfoApi
@@ -81,19 +82,23 @@ class LoginActivity : BaseActivity() {
         loginIsBusying = true
         Loading.start(this, "正在登录中...", false)
 
-        HttpRequest.getInstance().excute(HttpRequest.create(WebMainApi::class.java).login(account, password), OnResultListener { webMsg ->
-            loginIsBusying = false
+        HttpRequest.getInstance().excute(HttpRequest.create(WebMainApi::class.java).login(account, password), object: OnResultListener{
+            override fun onWebUiResult(webMsg: WebMsg?) {
+                loginIsBusying = false
 
-            if (webMsg.dataIsSuccessed()) {
-                val userToken = webMsg.getData(UserToken::class.java)
-                userToken.password = password
-                UserCache.setUserToken(userToken)
-                getWebUserInfo()
-                return@OnResultListener
-            } else if (webMsg.netIsSuccessed()) {
-                Toast.show(this@LoginActivity, webMsg.desc, 2000)
+                if (webMsg!!.dataIsSuccessed()) {
+                    val userToken = webMsg.getData(UserToken::class.java)
+                    userToken.account = account
+                    userToken.password = password
+                    UserCache.setUserToken(userToken)
+                    getWebUserInfo()
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(this@LoginActivity, webMsg.desc, 2000)
+                }
+
+                Loading.stop()
             }
-            Loading.stop()
+
         })
     }
 
