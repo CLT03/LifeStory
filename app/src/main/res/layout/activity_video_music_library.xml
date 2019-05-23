@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#F4F3F3"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F4F3F3">
 
     <TextView
         android:id="@+id/tv_title"
@@ -28,9 +28,9 @@
         android:paddingTop="@dimen/x30"
         android:paddingRight="@dimen/x36"
         android:paddingBottom="@dimen/x26"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_title"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
         app:srcCompat="@mipmap/icon_back_white" />
 
     <TextView
@@ -58,20 +58,20 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="wrap_content"
-            android:background="#ffffff"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#ffffff">
 
 
             <TextView
                 android:id="@+id/tv_title1"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:text="推荐"
-                android:textSize="@dimen/x28"
-                android:textColor="#8e8e8e"
                 android:gravity="center"
                 android:paddingLeft="@dimen/x20"
                 android:paddingRight="@dimen/x20"
+                android:text="推荐"
+                android:textColor="#8e8e8e"
+                android:textSize="@dimen/x28"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -161,6 +161,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tv_title4"
                 app:layout_constraintEnd_toEndOf="@+id/tv_title4"
                 app:layout_constraintStart_toStartOf="@+id/tv_title4" />
+
             <TextView
                 android:id="@+id/tv_title5"
                 android:layout_width="wrap_content"
@@ -185,6 +186,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tv_title5"
                 app:layout_constraintEnd_toEndOf="@+id/tv_title5"
                 app:layout_constraintStart_toStartOf="@+id/tv_title5" />
+
             <TextView
                 android:id="@+id/tv_title6"
                 android:layout_width="wrap_content"
@@ -209,6 +211,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tv_title6"
                 app:layout_constraintEnd_toEndOf="@+id/tv_title6"
                 app:layout_constraintStart_toStartOf="@+id/tv_title6" />
+
             <TextView
                 android:id="@+id/tv_title7"
                 android:layout_width="wrap_content"
@@ -233,6 +236,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tv_title7"
                 app:layout_constraintEnd_toEndOf="@+id/tv_title7"
                 app:layout_constraintStart_toStartOf="@+id/tv_title7" />
+
             <TextView
                 android:id="@+id/tv_title8"
                 android:layout_width="wrap_content"
@@ -261,17 +265,16 @@
     </HorizontalScrollView>
 
 
-
-    <EditText
-        android:id="@+id/edt_search"
+    <TextView
+        android:id="@+id/tv_search"
         android:layout_width="@dimen/x702"
         android:layout_height="@dimen/x64"
         android:layout_marginTop="@dimen/x8"
         android:background="@drawable/r4_white_normal"
-        android:hint="搜索服务器音乐"
+        android:text="搜索服务器音乐"
         android:paddingLeft="@dimen/x62"
-        android:textColor="#191919"
-        android:textColorHint="#9b9b9b"
+        android:textColor="#9b9b9b"
+        android:gravity="center_vertical"
         android:textSize="@dimen/x26"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -282,9 +285,9 @@
         android:layout_width="@dimen/x40"
         android:layout_height="@dimen/x40"
         android:layout_marginLeft="@dimen/x16"
-        app:layout_constraintBottom_toBottomOf="@+id/edt_search"
-        app:layout_constraintStart_toStartOf="@+id/edt_search"
-        app:layout_constraintTop_toTopOf="@+id/edt_search"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_search"
+        app:layout_constraintStart_toStartOf="@+id/tv_search"
+        app:layout_constraintTop_toTopOf="@+id/tv_search"
         app:srcCompat="@mipmap/icon_video_search_small" />
 
     <android.support.v4.view.ViewPager
@@ -292,11 +295,87 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/x10"
-        android:visibility="visible"
         android:background="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/tv_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_search" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_search" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x172"
+        android:background="#373842"
+        android:paddingLeft="@dimen/x34"
+        android:paddingTop="@dimen/x96"
+        android:text="Havana"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/x32"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x92"
+        android:layout_marginTop="@dimen/x36"
+        android:text="00:00"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/x24"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+    <TextView
+        android:id="@+id/tv_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x36"
+        android:layout_marginRight="@dimen/x24"
+        android:text="00:00"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/x24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+    <ImageView
+        android:id="@+id/iv_play"
+        android:layout_width="@dimen/x88"
+        android:layout_height="@dimen/x88"
+        android:layout_marginLeft="@dimen/x4"
+        android:layout_marginTop="@dimen/x10"
+        android:padding="@dimen/x20"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_name"
+        app:srcCompat="@mipmap/icon_music_pause" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x64"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="@dimen/x20"
+        android:maxHeight="@dimen/x4"
+        android:progressDrawable="@drawable/music_seekbar"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_start"
+        app:layout_constraintEnd_toStartOf="@+id/tv_end"
+        app:layout_constraintStart_toEndOf="@+id/tv_start"
+        app:layout_constraintTop_toTopOf="@+id/tv_start" />
+
+    <TextView
+        android:id="@+id/btn_use"
+        android:layout_width="@dimen/x108"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/x26"
+        android:layout_marginBottom="@dimen/x30"
+        android:background="@drawable/sign_btn"
+        android:gravity="center"
+        android:text="使用"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

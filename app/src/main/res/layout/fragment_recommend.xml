@@ -45,6 +45,7 @@
         android:paddingRight="@dimen/x22"
         android:paddingBottom="@dimen/x8"
         android:scaleType="fitXY"
+        android:background="@drawable/ra_white_btn"
         android:src="@mipmap/icon_video_search_small"
         app:layout_constraintBottom_toBottomOf="@+id/horizontalScrollView"
         app:layout_constraintEnd_toEndOf="parent"

@@ -33,7 +33,7 @@ public class MyRecyclerView extends RecyclerView {
             case MotionEvent.ACTION_DOWN:
                 y=event.getRawY();
                 startY.setStartY(y);
-                Log.e("ououou", "ACTION_DOWN" + event.getRawY());
+                //Log.e("ououou", "ACTION_DOWN" + event.getRawY());
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (event.getRawY() > y ) {//手指位置大于起始位置

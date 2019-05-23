@@ -1,20 +1,24 @@
 package com.vivwe.video.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.main.R;
 import com.vivwe.video.adapter.MusicLibraryFragmentPagerAdapter;
 import com.vivwe.video.fragment.MusicLibraryFragment;
+import com.vivwe.video.ui.IMusicPlayView;
+import com.vivwe.video.ui.MusicPlayer;
 
 import java.util.ArrayList;
 
@@ -27,7 +31,7 @@ import butterknife.OnClick;
  * date: 2019/4/26 15:38
  * remark: 音乐库
  */
-public class MusicLibraryActivity extends BaseActivity {
+public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView {
 
     @BindView(R.id.tv_title1)
     TextView tvTitle1;
@@ -61,12 +65,20 @@ public class MusicLibraryActivity extends BaseActivity {
     TextView tvTitle8;
     @BindView(R.id.view_title8)
     View viewTitle8;
-    @BindView(R.id.edt_search)
-    EditText edtSearch;
     @BindView(R.id.view_pager)
     ViewPager viewPager;
     @BindView(R.id.horizontalScrollView)
     HorizontalScrollView horizontalScrollView;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.tv_start)
+    TextView tvStart;
+    @BindView(R.id.tv_end)
+    TextView tvEnd;
+    @BindView(R.id.iv_play)
+    ImageView ivPlay;
+    @BindView(R.id.seekBar)
+    SeekBar seekBar;
     private ArrayList<TextView> tvTitles;
     private View[] viewTitles;
     private ArrayList<MusicLibraryFragment> fragments;
@@ -78,6 +90,8 @@ public class MusicLibraryActivity extends BaseActivity {
         setContentView(R.layout.activity_video_music_library);
         ButterKnife.bind(this);
         getWindow().setStatusBarColor(Color.parseColor("#181818"));
+        //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         init();
     }
 
@@ -92,7 +106,7 @@ public class MusicLibraryActivity extends BaseActivity {
         tvTitles.add(tvTitle7);
         tvTitles.add(tvTitle8);
         viewTitles = new View[]{viewTitle1, viewTitle2, viewTitle3, viewTitle4, viewTitle5, viewTitle6, viewTitle7, viewTitle8};
-        fragments=new ArrayList<>();
+        fragments = new ArrayList<>();
         for (int i = 0; i < tvTitles.size(); i++) {
             MusicLibraryFragment musicLibraryFragment = new MusicLibraryFragment();
             //Bundle bundle = new Bundle();
@@ -129,7 +143,7 @@ public class MusicLibraryActivity extends BaseActivity {
                         viewTitles[tvTitles.indexOf(v)].setVisibility(View.VISIBLE);
                         tvTitles.get(tag).setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                         viewTitles[tag].setVisibility(View.GONE);
-                        tag= tvTitles.indexOf(v);
+                        tag = tvTitles.indexOf(v);
                         horizontalScrollView.scrollTo(0, 0);
                         int w = horizontalScrollView.getWidth() / 2;
                         int gw = v.getWidth() / 2;
@@ -143,18 +157,83 @@ public class MusicLibraryActivity extends BaseActivity {
             });
             tvTitles.get(0).performClick();
         }
+        int i = getResources().getDimensionPixelOffset(R.dimen.x12);
+        seekBar.setPadding(i, 0, i, 0);//铺不满问题
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                MusicPlayer.getInstance().setProgress(seekBar.getProgress());
+            }
+        });
+        MusicPlayer.getInstance().initView(this);
     }
 
 
-
-    @OnClick({R.id.iv_back, R.id.tv_local})
+    @OnClick({R.id.iv_back, R.id.iv_play, R.id.tv_local, R.id.btn_use,R.id.tv_search})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.tv_local:
+            case R.id.iv_play:
+                MusicPlayer.getInstance().pauseOrPlay();
                 break;
+            case R.id.tv_local:
+
+                break;
+            case R.id.btn_use:
+                if (MusicPlayer.getInstance().getUrl() != null)
+                    setResult(2, new Intent().putExtra("result", MusicPlayer.getInstance().getUrl()));
+                finish();
+                break;
+            case R.id.tv_search:
+
+                break;
+
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MusicPlayer.getInstance().release();
+    }
+
+    @Override
+    public void setPlayProgress(int percentage) {
+        seekBar.setProgress(percentage);
+    }
+
+    @Override
+    public void setStartText(String text) {
+        tvStart.setText(text);
+    }
+
+    @Override
+    public void setEndText(String text) {
+        tvEnd.setText(text);
+    }
+
+    @Override
+    public void setMusicName(String name) {
+        tvName.setText(name);
+    }
+
+    @Override
+    public void setImgPlay(boolean playing) {
+        if (playing) {
+            ivPlay.setImageDrawable(getResources().getDrawable(R.mipmap.icon_music_pause));
+        } else ivPlay.setImageDrawable(getResources().getDrawable(R.mipmap.icon_music_play));
+    }
+
 }
