@@ -55,5 +55,15 @@
         app:layout_constraintStart_toStartOf="@+id/view14"
         app:layout_constraintTop_toBottomOf="@+id/imageView29" />
 
+    <com.vivwe.base.ui.CircleBarView
+        android:layout_width="@dimen/x162"
+        android:layout_height="@dimen/x162"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView29"
+        app:layout_constraintEnd_toEndOf="@+id/imageView29"
+        app:layout_constraintHorizontal_bias="0.324"
+        app:layout_constraintStart_toStartOf="@+id/imageView29"
+        app:layout_constraintTop_toTopOf="@+id/imageView29"
+        app:layout_constraintVertical_bias="0.155" />
+
 
 </android.support.constraint.ConstraintLayout>

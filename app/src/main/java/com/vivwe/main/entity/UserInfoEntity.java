@@ -60,8 +60,8 @@ public class UserInfoEntity {
         this.nickname = nickname;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public AvatarP2A getAvatar() {
+        return avatar == null ? null : new GsonBuilder().create().fromJson(avatar, AvatarP2A.class);
     }
 
     public void setAvatar(String avatar) {
