@@ -1,0 +1,28 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape>
+            <solid android:color="#ffffff"/>
+        </shape>
+    </item>
+    <!-- 我的没有第二背景，故第二背景图没有画 -->
+ <!--   <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <corners android:radius="5dip" />
+                <gradient
+                    android:startColor="#80ffd300"
+                    android:centerColor="#80ffb600"
+                    android:centerY="0.75"
+                    android:endColor="#a0ffcb00"
+                    android:angle="270"/>
+            </shape>
+        </clip>
+    </item>-->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <solid android:color="#5EC5FF"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>

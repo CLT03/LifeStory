@@ -1,6 +1,267 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x88"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:text="举报与反馈"
+        android:textColor="#191919"
+        android:textSize="@dimen/x32"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/x88"
+        android:layout_height="0dp"
+        android:background="@drawable/ra_white_btn"
+        android:paddingLeft="@dimen/x34"
+        android:paddingTop="@dimen/x30"
+        android:paddingRight="@dimen/x36"
+        android:paddingBottom="@dimen/x26"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_title"
+        app:srcCompat="@mipmap/icon_back_black" />
+
+    <TextView
+        android:id="@+id/tv_submit"
+        android:layout_width="@dimen/x100"
+        android:layout_height="@dimen/x56"
+        android:layout_marginRight="@dimen/x15"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintTop_toTopOf="@+id/tv_title" />
+
+    <TextView
+        android:id="@+id/textView91"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/x32"
+        android:layout_marginTop="@dimen/x30"
+        android:text="@string/activity_video_report"
+        android:textSize="@dimen/x28"
+        android:textColor="#676767"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <View
+        android:id="@+id/view32"
+        android:layout_width="@dimen/x688"
+        android:layout_height="@dimen/x320"
+        android:layout_marginTop="@dimen/x22"
+        android:background="@drawable/ra_white_stroke_normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView91" />
+
+    <ImageView
+        android:id="@+id/imageView44"
+        android:layout_width="@dimen/x56"
+        android:layout_height="@dimen/x56"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x12"
+        android:padding="@dimen/x14"
+        app:layout_constraintStart_toStartOf="@+id/view32"
+        app:layout_constraintTop_toTopOf="@+id/view32"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textView92"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="违法反动"
+        android:textColor="#000000"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView44"
+        app:layout_constraintStart_toEndOf="@+id/imageView44"
+        app:layout_constraintTop_toTopOf="@+id/imageView44" />
+
+    <ImageView
+        android:id="@+id/imageView47"
+        android:layout_width="@dimen/x56"
+        android:layout_height="@dimen/x56"
+        android:layout_marginLeft="@dimen/x176"
+        android:layout_marginTop="@dimen/x12"
+        android:padding="@dimen/x14"
+        app:layout_constraintStart_toEndOf="@+id/textView92"
+        app:layout_constraintTop_toTopOf="@+id/view32"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textView99"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="低俗色情"
+        android:textColor="#000000"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView47"
+        app:layout_constraintStart_toEndOf="@+id/imageView47"
+        app:layout_constraintTop_toTopOf="@+id/imageView47" />
+
+    <ImageView
+        android:id="@+id/imageView48"
+        android:layout_width="@dimen/x56"
+        android:layout_height="@dimen/x56"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x24"
+        android:padding="@dimen/x14"
+        app:layout_constraintStart_toStartOf="@+id/view32"
+        app:layout_constraintTop_toBottomOf="@+id/imageView44"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textView100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="赌博诈骗"
+        android:textColor="#000000"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView48"
+        app:layout_constraintStart_toEndOf="@+id/imageView48"
+        app:layout_constraintTop_toTopOf="@+id/imageView48" />
+
+    <ImageView
+        android:id="@+id/imageView49"
+        android:layout_width="@dimen/x56"
+        android:layout_height="@dimen/x56"
+        android:padding="@dimen/x14"
+        app:layout_constraintStart_toStartOf="@+id/imageView47"
+        app:layout_constraintTop_toTopOf="@+id/imageView48"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textView101"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="血腥暴力"
+        android:textColor="#000000"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView49"
+        app:layout_constraintStart_toEndOf="@+id/imageView49"
+        app:layout_constraintTop_toTopOf="@+id/imageView49" />
+
+    <ImageView
+        android:id="@+id/imageView50"
+        android:layout_width="@dimen/x56"
+        android:layout_height="@dimen/x56"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x24"
+        android:padding="@dimen/x14"
+        app:layout_constraintStart_toStartOf="@+id/view32"
+        app:layout_constraintTop_toBottomOf="@+id/imageView48"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textView102"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="侵权行为"
+        android:textColor="#000000"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView50"
+        app:layout_constraintStart_toEndOf="@+id/imageView50"
+        app:layout_constraintTop_toTopOf="@+id/imageView50" />
+
+    <ImageView
+        android:id="@+id/imageView51"
+        android:layout_width="@dimen/x56"
+        android:layout_height="@dimen/x56"
+        android:padding="@dimen/x14"
+        app:layout_constraintStart_toStartOf="@+id/imageView49"
+        app:layout_constraintTop_toTopOf="@+id/imageView50"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textView103"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="虚假谣言"
+        android:textColor="#000000"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView51"
+        app:layout_constraintStart_toEndOf="@+id/imageView51"
+        app:layout_constraintTop_toTopOf="@+id/imageView51" />
+
+    <ImageView
+        android:id="@+id/imageView52"
+        android:layout_width="@dimen/x56"
+        android:layout_height="@dimen/x56"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x24"
+        android:padding="@dimen/x14"
+        app:layout_constraintStart_toStartOf="@+id/view32"
+        app:layout_constraintTop_toBottomOf="@+id/imageView50"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textView104"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="其他"
+        android:textColor="#000000"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView52"
+        app:layout_constraintStart_toEndOf="@+id/imageView52"
+        app:layout_constraintTop_toTopOf="@+id/imageView52" />
+
+    <TextView
+        android:id="@+id/textView105"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/x32"
+        android:layout_marginTop="@dimen/x230"
+        android:text="更多问题及建议"
+        android:textColor="#676767"
+        android:textSize="@dimen/x28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view32" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="@dimen/x688"
+        android:layout_height="@dimen/x270"
+        android:layout_marginTop="@dimen/x20"
+        android:background="@drawable/ra_white_stroke_normal"
+        android:hint="请描述问题或建议"
+        android:paddingLeft="@dimen/x24"
+        android:paddingTop="@dimen/x28"
+        android:paddingRight="@dimen/x24"
+        android:gravity="top"
+        android:paddingBottom="@dimen/x28"
+        android:textColor="#191919"
+        android:textColorHint="#979797"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView105" />
+
+    <TextView
+        android:id="@+id/textView106"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/x8"
+        android:layout_marginBottom="@dimen/x6"
+        android:text="4-200"
+        android:textColor="#666666"
+        android:textSize="@dimen/x24"
+        app:layout_constraintBottom_toBottomOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="@+id/editText" />
+
+
+</android.support.constraint.ConstraintLayout>

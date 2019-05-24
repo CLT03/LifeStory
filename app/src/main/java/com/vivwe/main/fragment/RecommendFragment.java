@@ -1,5 +1,6 @@
 package com.vivwe.main.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.base.ui.textview.LinearGradientTextView;
 import com.vivwe.main.R;
 import com.vivwe.main.adapter.RecommendFragmentPagerAdapter;
+import com.vivwe.video.activity.VideoSearchActivity;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -137,6 +139,6 @@ public class RecommendFragment extends BaseFragment {
 
     @OnClick(R.id.iv_search)
     public void onClick() {
-
+        startActivity(new Intent(getActivity(),VideoSearchActivity.class));
     }
 }

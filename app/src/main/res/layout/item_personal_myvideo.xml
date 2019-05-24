@@ -2,91 +2,48 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/x558"
+    android:layout_width="@dimen/x250"
+    android:layout_height="@dimen/x402"
     android:background="#ffffff">
 
 
     <ImageView
-        android:id="@+id/videoView"
-        android:layout_width="0dp"
+        android:id="@+id/tv_cover"
+        android:layout_width="@dimen/x248"
         android:layout_height="@dimen/x400"
-        android:layout_marginLeft="@dimen/x20"
-        android:background="#000000"
-        android:layout_marginRight="@dimen/x20"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
 
     <ImageView
-        android:id="@+id/iv_choose"
-        android:layout_width="@dimen/x60"
-        android:layout_height="@dimen/x60"
+        android:id="@+id/imageView45"
+        android:layout_width="@dimen/x28"
+        android:layout_height="@dimen/x28"
         android:layout_marginLeft="@dimen/x20"
-        android:layout_marginTop="@dimen/x20"
-        android:padding="@dimen/x10"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@+id/videoView"
-        app:layout_constraintTop_toTopOf="@+id/videoView"
-        app:srcCompat="@mipmap/icon_checked" />
+        android:layout_marginBottom="@dimen/x16"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_cover"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/icon_video_play_count" />
 
     <TextView
-        android:id="@+id/tv_time"
+        android:id="@+id/tv_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/x28"
-        android:layout_marginBottom="@dimen/x30"
-        android:text="2019-06-12"
+        android:text="5484"
         android:textColor="#ffffff"
-        android:textSize="@dimen/x26"
-        app:layout_constraintBottom_toBottomOf="@+id/videoView"
-        app:layout_constraintEnd_toEndOf="@+id/videoView" />
-
-    <TextView
-        android:id="@+id/tv_content"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/x16"
-        android:ellipsize="end"
-        android:paddingRight="@dimen/x4"
-        android:singleLine="true"
-        android:text="旅行日记，难忘的回忆录难忘的回忆录难忘的"
-        android:textColor="#191919"
-        android:textSize="@dimen/x28"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/iv_edit"
-        app:layout_constraintStart_toStartOf="@+id/videoView"
-        app:layout_constraintTop_toBottomOf="@+id/videoView" />
+        android:textSize="@dimen/x24"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView45"
+        app:layout_constraintStart_toEndOf="@+id/imageView45"
+        app:layout_constraintTop_toTopOf="@+id/imageView45" />
 
     <ImageView
-        android:id="@+id/iv_edit"
-        android:layout_width="@dimen/x64"
-        android:layout_height="@dimen/x66"
-        android:layout_marginRight="@dimen/x74"
-        android:padding="@dimen/x16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/videoView"
-        app:srcCompat="@mipmap/icon_edit_video" />
-
-    <ImageView
-        android:id="@+id/tv_download"
-        android:layout_width="@dimen/x62"
-        android:layout_height="@dimen/x60"
-        android:layout_marginTop="@dimen/x10"
-        android:padding="@dimen/x10"
-        app:layout_constraintStart_toStartOf="@+id/tv_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_content"
-        app:srcCompat="@mipmap/icon_download_video" />
-
-    <ImageView
-        android:id="@+id/iv_share"
-        android:layout_width="@dimen/x62"
-        android:layout_height="@dimen/x60"
-        android:layout_marginLeft="@dimen/x40"
-        android:layout_marginTop="@dimen/x10"
-        android:padding="@dimen/x10"
-        app:layout_constraintStart_toEndOf="@+id/tv_download"
-        app:layout_constraintTop_toBottomOf="@+id/tv_content"
-        app:srcCompat="@mipmap/icon_share_video" />
-
+        android:id="@+id/iv_type"
+        android:layout_width="@dimen/x28"
+        android:layout_height="@dimen/x28"
+        android:layout_marginRight="@dimen/x14"
+        android:layout_marginBottom="@dimen/x16"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_cover"
+        app:layout_constraintEnd_toEndOf="@+id/tv_cover"
+        app:srcCompat="@mipmap/icon_video_protect" />
 </android.support.constraint.ConstraintLayout>

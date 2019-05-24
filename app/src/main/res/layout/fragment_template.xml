@@ -60,6 +60,7 @@
         android:layout_width="@dimen/x50"
         android:layout_height="@dimen/x48"
         android:layout_marginRight="@dimen/x32"
+        android:background="@drawable/ra_white_btn"
         android:src="@mipmap/icon_notice_template"
         app:layout_constraintBottom_toBottomOf="@+id/tv_search"
         app:layout_constraintEnd_toEndOf="parent"
@@ -150,7 +151,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/recycler_view_collection" />
 
             <View
-                android:id="@+id/v_choose_music"
+                android:id="@+id/view27"
                 android:layout_width="@dimen/x8"
                 android:layout_height="@dimen/x28"
                 android:layout_marginLeft="@dimen/x32"
