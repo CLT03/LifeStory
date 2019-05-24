@@ -8,7 +8,7 @@
     <View
         android:id="@+id/view14"
         android:layout_width="@dimen/x580"
-        android:layout_height="@dimen/x592"
+        android:layout_height="@dimen/x392"
         android:background="@drawable/r30_white_alert"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/ibtn_close"
         android:layout_width="@dimen/x80"
         android:layout_height="@dimen/x80"
         android:layout_marginTop="4dp"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="@+id/view14" />
 
     <TextView
-        android:id="@+id/textView49"
+        android:id="@+id/tv_native"
         android:layout_width="@dimen/x462"
         android:layout_height="@dimen/x88"
         android:layout_marginTop="@dimen/x32"
@@ -38,11 +38,11 @@
         android:textSize="@dimen/x36"
         app:layout_constraintEnd_toEndOf="@+id/view14"
         app:layout_constraintStart_toStartOf="@+id/view14"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/ibtn_close"
         tools:text="本地上传" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/tv_libary"
         android:layout_width="@dimen/x462"
         android:layout_height="@dimen/x88"
         android:layout_marginTop="@dimen/x18"
@@ -53,43 +53,10 @@
 
         android:textColor="#929292"
         android:textSize="@dimen/x34"
-        app:layout_constraintEnd_toEndOf="@+id/textView49"
+        app:layout_constraintEnd_toEndOf="@+id/tv_native"
         app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="@+id/textView49"
-        app:layout_constraintTop_toBottomOf="@+id/textView49" />
-
-    <TextView
-        android:id="@+id/textView75"
-        android:layout_width="@dimen/x462"
-        android:layout_height="@dimen/x88"
-        android:layout_marginTop="@dimen/x18"
-        android:background="@mipmap/icon_main_frame"
-        android:gravity="center"
-        android:lineSpacingExtra="@dimen/x16"
-        android:text="随便添加几个试试"
-
-        android:textColor="#929292"
-        android:textSize="@dimen/x34"
-        app:layout_constraintEnd_toEndOf="@+id/textView10"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    <TextView
-        android:id="@+id/textView76"
-        android:layout_width="@dimen/x462"
-        android:layout_height="@dimen/x88"
-        android:layout_marginTop="@dimen/x18"
-        android:background="@mipmap/icon_main_frame"
-        android:gravity="center"
-        android:lineSpacingExtra="@dimen/x16"
-        android:text="添加模板样片素材"
-        android:textColor="#929292"
-        android:textSize="@dimen/x34"
-        app:layout_constraintEnd_toEndOf="@+id/textView75"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView75"
-        app:layout_constraintTop_toBottomOf="@+id/textView75" />
+        app:layout_constraintStart_toStartOf="@+id/tv_native"
+        app:layout_constraintTop_toBottomOf="@+id/tv_native" />
 
     <TextView
         android:id="@+id/textView2"

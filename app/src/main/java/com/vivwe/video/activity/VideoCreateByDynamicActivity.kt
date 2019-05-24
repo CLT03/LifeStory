@@ -1,11 +1,16 @@
 package com.vivwe.video.activity
 
 import android.content.Intent
+import android.media.MediaMetadataRetriever
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
 import com.vivwe.base.ui.alert.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -16,6 +21,8 @@ import com.shixing.sxvideoengine.SXTemplate
 import com.shixing.sxvideoengine.SXTemplateRender
 import com.shixing.sxvideoengine.SXTextCanvas
 import com.vivwe.base.activity.BaseActivity
+import com.vivwe.base.ui.CircleBarView
+import com.vivwe.base.ui.alert.AlertDialog
 import com.vivwe.base.util.AssetsUtils
 import com.vivwe.base.util.imgeloader.ImageLoadActivity
 import com.vivwe.main.R
@@ -35,6 +42,10 @@ class VideoCreateByDynamicActivity: BaseActivity() {
     /** 图片显示 */
     @BindView(R.id.rcv_images)
     lateinit var imagesRcv: RecyclerView;
+    @BindView(R.id.tv_music_name)
+    lateinit var musicNameTv: TextView
+    @BindView(R.id.tv_music_duration)
+    lateinit var musicDurationTv: TextView
 
     lateinit var adapter: VideoCreateDynamicImagesAdapter
 
@@ -103,6 +114,25 @@ class VideoCreateByDynamicActivity: BaseActivity() {
             Log.v(">>>", GsonBuilder().create().toJson(paths))
 
             adapter.addDatas(paths)
+        } else if(requestCode == 2 && data != null){
+            var musicUrl = data!!.getStringExtra("result")
+
+            Log.v(">>>music", musicUrl)
+            var mmr = MediaMetadataRetriever()
+            mmr.setDataSource(musicUrl, null)
+
+            // 获取歌曲信息
+            val title = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)
+            val album = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM)
+            val duration = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
+            val pic = mmr.embeddedPicture
+
+            // 设置信息到显示
+            var date = Date()
+            date.time = duration.toLong()
+            var format = SimpleDateFormat("m:S").format(date)
+            musicNameTv.setText(title)
+            musicDurationTv.setText(format)
         }
     }
 
@@ -111,7 +141,9 @@ class VideoCreateByDynamicActivity: BaseActivity() {
      */
     @OnClick(R.id.v_choose_music)
     fun toChooseMusic(){
-
+        var intent = Intent()
+        intent.setClass(this, MusicLibraryActivity::class.java)
+        startActivityForResult(intent, 2)
     }
 
     /***
@@ -131,7 +163,7 @@ class VideoCreateByDynamicActivity: BaseActivity() {
         val template = SXTemplate(folder, SXTemplate.TemplateUsage.kForRender)
 //        val toBeStored = paths.toArray(arrayOfNulls<String>(paths.size))
         template.setReplaceableFilePaths(paths.toArray(arrayOfNulls<String>(paths.size)))
-        template.commit()
+
 
         // 获取输出目录
         val outputFilePath = getOutputFilePath()
@@ -144,28 +176,43 @@ class VideoCreateByDynamicActivity: BaseActivity() {
             val path = sxTextCanvas.saveToPath(externalCacheDir.toString() + File.separator + UUID.randomUUID() + ".png")
             template.setFileForAsset("title", path)
         }
+        template.commit()
+
+        var alert = AlertDialog.createCustom(this, R.layout.item_alert_video_merge_loading);
+        alert.show()
+
+        var progressCbv = alert.findViewById(R.id.cbv_progress) as CircleBarView
+        var progressTv = alert.findViewById(R.id.tv_progress) as TextView
 
         val sxTemplateRender = SXTemplateRender(template, "", outputFilePath)
         sxTemplateRender.setRenderListener(object : SXRenderListener {
+
+            override fun onFinish(success: Boolean, msg: String?) {
+                var intent = Intent()
+                intent.setClass(this@VideoCreateByDynamicActivity, VideoPreviewActivity::class.java)
+                intent.putExtra("path", outputFilePath)
+                this@VideoCreateByDynamicActivity.startActivity(intent)
+
+                alert.dismiss()
+            }
+
             override fun onStart() {
 
             }
 
             override fun onUpdate(progress: Int) {
+                runOnUiThread(object: Runnable {
+                    override fun run() {
+                        progressTv.setText(progress.toString() + "%")
+                        progressCbv.currentValue = progress
+                    }
+                })
+                Log.v(">>>", progress.toString())
 //                mDialog.setProgress(progress)
             }
 
-            override fun onFinish(success: Boolean) {
-//                mDialog.dismiss()
-                // 播放
-                var intent = Intent()
-                intent.setClass(this@VideoCreateByDynamicActivity, VideoPreviewActivity::class.java)
-                this@VideoCreateByDynamicActivity.startActivity(intent)
-                //VideoPlayActivity.start(this@VideoCreateByDynamicActivity, outputFilePath)
-            }
-
             override fun onCancel() {
-
+                alert.dismiss()
             }
         })
         sxTemplateRender.start()

@@ -47,7 +47,7 @@ public abstract class DBServer implements OnDBInitListener {
                 ContentValues cv = new ContentValues();
                 cv.put("value" , value);
                 cv.put("updateTime", System.currentTimeMillis());
-                String where = "label = " + label + " AND key = " + key;
+                String where = "label = '" + label + "' AND key= '" + key + "'";
 
                 db.update("table_cache", cv, where, null);
                 db.setTransactionSuccessful();

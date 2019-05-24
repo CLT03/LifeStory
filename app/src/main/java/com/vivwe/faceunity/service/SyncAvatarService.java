@@ -74,7 +74,7 @@ public class SyncAvatarService extends Service {
         Log.v("ououou", "file.isDirectory() = " + file.isDirectory());
         if(file.isDirectory()){
             /** 更新待同步的缓存文件夹，这样可以保持下次检测有最新需要同步的文件 */
-            UserCache.Companion.save("Async-Bundle-Cache", asyncDir);
+            UserCache.Companion.save("Async-Bundle-Cache", dir);
 //            BaseDataService.saveValueToSharePerference("Async-Bundle-Cache", asyncDir);
         }
 
@@ -152,10 +152,16 @@ public class SyncAvatarService extends Service {
             @Override
             public void onWebUiResult(WebMsg webMsg) {
                 if(webMsg.dataIsSuccessed()) {
+
+                    UploadToken token = webMsg.getData(UploadToken.class);
+
                     UploadManager uploadManager = new UploadManager();
-                    uploadManager.put(new File(zipPath), null, webMsg.getData(UploadToken.class).getToken(), new UpCompletionHandler() {
+                    uploadManager.put(new File(zipPath), token.getKey(), token.getToken(), new UpCompletionHandler() {
                         @Override
                         public void complete(String key, ResponseInfo info, JSONObject res) {
+
+                            Log.i("qiniu", key + ",\r\n " + info + ",\r\n " + res);
+
                             if(info.isOK()) {
                                 Log.i("qiniu", "Upload Success");
 
@@ -169,7 +175,7 @@ public class SyncAvatarService extends Service {
                                 Log.i("qiniu", "Upload Fail");
                                 isBusying = false;
                             }
-                            Log.i("qiniu", key + ",\r\n " + info + ",\r\n " + res);
+
                         }
 
                     }, new UploadOptions(null, null, false,
