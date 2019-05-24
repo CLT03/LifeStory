@@ -66,6 +66,10 @@ public class AlertDialog extends Dialog implements View.OnClickListener {
     public static AlertDialog createTip(Context context, AlertDialogEnum type, String title, String message){
 
         AlertDialog alertDialog = new AlertDialog(context);
+
+        alertDialog.setContentView(R.layout.zl_dialog_alert);
+        ButterKnife.bind(alertDialog);
+
         alertDialog.setType(type);
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
@@ -75,14 +79,12 @@ public class AlertDialog extends Dialog implements View.OnClickListener {
     /**
      * 创建一个自定义布局
      * @param context 上下文
-     * @param title 标题
      * @return
      */
-    public static AlertDialog createCustom(Context context, String title, View customView){
+    public static AlertDialog createCustom(Context context, int layoutId){
         AlertDialog alertDialog = new AlertDialog(context);
+        alertDialog.setContentView(layoutId);
         alertDialog.setType(AlertDialogEnum.CUSTOM);
-        alertDialog.setTitle(title);
-        alertDialog.setCustomViw(customView);
         return alertDialog;
     }
 
@@ -102,24 +104,6 @@ public class AlertDialog extends Dialog implements View.OnClickListener {
         this.type = type;
     }
 
-    /**
-     * 设置自定义view
-     * @param view
-     * @return
-     */
-    public AlertDialog setCustomViw(View view){
-        if(type == AlertDialogEnum.CUSTOM){
-            contentCl = this.findViewById(R.id.rl_content);
-            contentCl.removeAllViews();
-
-            contentCl.addView(view);
-            ConstraintSet set = new ConstraintSet();
-            set.connect(view.getId(), ConstraintSet.TOP, view.getId(), ConstraintSet.BOTTOM);
-            set.connect(view.getId(), ConstraintSet.LEFT, view.getId(), ConstraintSet.RIGHT);
-            set.applyTo(contentCl);
-        }
-        return this;
-    }
 
     /**
      * 设置按钮监听
@@ -136,15 +120,10 @@ public class AlertDialog extends Dialog implements View.OnClickListener {
 	 */
 	private void initUI(Context context) {
 		this.context = context;
-		setContentView(R.layout.zl_dialog_alert);
-
-		ButterKnife.bind(this);
-
 		this.setCanceledOnTouchOutside(false);
 	}
 
 
-    @Override
     public void show() {
         super.show();
     }

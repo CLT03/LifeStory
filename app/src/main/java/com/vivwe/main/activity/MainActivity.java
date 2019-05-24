@@ -31,6 +31,7 @@ import com.faceunity.p2a_art.entity.AvatarP2A;
 import com.faceunity.p2a_art.renderer.CameraRenderer;
 import com.mbs.sdk.utils.PermissionsUtil;
 import com.mbs.sdk.utils.ScreenUtils;
+import com.shixing.sxvideoengine.SXVideo;
 import com.vivwe.base.activity.BaseFragmentActivity;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.faceunity.fragment.CreateAvatarFragment;
@@ -103,7 +104,6 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
             }
         };
 
-        PermissionsUtil.checkAndRequestPermissions(this);
 
         mGLSurfaceView.setEGLContextClientVersion(3);
         mCameraRenderer = new CameraRenderer(this, mGLSurfaceView);

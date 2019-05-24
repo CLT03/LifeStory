@@ -9,69 +9,70 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk {
-            abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86', 'x86_64'
-        }
+       /* ndk {
+            abiFilters *//*'arm64-v8a',*//* 'armeabi-v7a', 'x86', 'x86_64'
+            moduleName "app"
+        }*/
     }
 
     packagingOptions {
-        doNotStrip '*/mips/*.so'
-        doNotStrip '*/mips64/*.so'
-    }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     sourceSets {
         main{
             jniLibs.srcDirs = ['libs']
         }
-        /* main.assets.srcDirs += [
-                 'src/main/assets',
-                 'src/main/ornament/expression',
-                 'src/main/ornament/glasses',
-                 'src/main/ornament/body',
-                 'src/main/ornament/head',
-                 'src/main/ornament/hair',
-                 'src/main/ornament/clothes',
-                 'src/main/ornament/filter',
-                 'src/main/ornament/beard',
-                 'src/main/ornament/hat',
-                 'src/main/ornament/eyebrow',
-                 'src/main/ornament/eyelash',
-         ]
-         main.res.srcDirs += [
-                 'src/mian/res',
-                 'src/main/ornament/expression_res',
-                 'src/main/ornament/glasses_res',
-                 'src/main/ornament/body_res',
-                 'src/main/ornament/head_res',
-                 'src/main/ornament/hair_res',
-                 'src/main/ornament/clothes_res',
-                 'src/main/ornament/filter_res',
-                 'src/main/ornament/beard_res',
-                 'src/main/ornament/hat_res',
-                 'src/main/ornament/eyebrow_res',
-                 'src/main/ornament/eyelash_res',
-         ]*/
+    }
+        /*sourceSets {
+            main{
+                jniLibs.srcDirs = ['libs']
+            }
+             main.assets.srcDirs += [
+                     'src/main/assets',
+                     'src/main/ornament/expression',
+                     'src/main/ornament/glasses',
+                     'src/main/ornament/body',
+                     'src/main/ornament/head',
+                     'src/main/ornament/hair',
+                     'src/main/ornament/clothes',
+                     'src/main/ornament/filter',
+                     'src/main/ornament/beard',
+                     'src/main/ornament/hat',
+                     'src/main/ornament/eyebrow',
+                     'src/main/ornament/eyelash',
+             ]
+             main.res.srcDirs += [
+                     'src/mian/res',
+                     'src/main/ornament/expression_res',
+                     'src/main/ornament/glasses_res',
+                     'src/main/ornament/body_res',
+                     'src/main/ornament/head_res',
+                     'src/main/ornament/hair_res',
+                     'src/main/ornament/clothes_res',
+                     'src/main/ornament/filter_res',
+                     'src/main/ornament/beard_res',
+                     'src/main/ornament/hat_res',
+                     'src/main/ornament/eyebrow_res',
+                     'src/main/ornament/eyelash_res',
+             ]*/
     }
 
     sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
 
 }
 
-repositories {
+/*repositories {
     flatDir {
         dirs './libs'
     }
-}
+}*/
 
 dependencies {
-    api fileTree(include: ['*.jar'], dir: 'libs')
+    api fileTree(dir: 'libs', include: ['*.jar'])
     api 'com.android.support:appcompat-v7:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

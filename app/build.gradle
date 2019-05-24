@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "main.vvwe.com.lifestory"
+        applicationId "com.vivwe.main"
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
@@ -27,7 +27,7 @@ android {
         }
     }
 
-    sourceSets {
+   sourceSets {
         main{
             jniLibs.srcDirs = ['libs']
         }
@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // 七牛云存储
     implementation 'com.qiniu:qiniu-android-sdk:7.3.15'

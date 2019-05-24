@@ -17,6 +17,7 @@ import com.mbs.sdk.net.HttpRequest
 import com.vivwe.base.entity.UserToken
 import com.mbs.sdk.net.listener.OnResultListener
 import com.mbs.sdk.net.msg.WebMsg
+import com.mbs.sdk.utils.PermissionsUtil
 import com.vivwe.main.api.WebMainApi
 import com.vivwe.main.entity.UserInfoEntity
 import com.vivwe.main.api.WebUserInfoApi
@@ -39,6 +40,8 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         ButterKnife.bind(this)
+
+        PermissionsUtil.checkAndRequestPermissions(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

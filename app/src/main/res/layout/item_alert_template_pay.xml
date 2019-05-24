@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/ibtn_close"
         android:layout_width="@dimen/x80"
         android:layout_height="@dimen/x80"
         android:background="@drawable/r8_white_btn"
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="@+id/view14" />
 
     <TextView
-        android:id="@+id/textView49"
+        android:id="@+id/tv_native"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/x44"
         android:layout_marginTop="@dimen/x8"
@@ -34,7 +34,7 @@
         android:textSize="@dimen/x36"
         app:layout_constraintEnd_toEndOf="@+id/view14"
         app:layout_constraintStart_toStartOf="@+id/view14"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/ibtn_close"
         tools:text="确认购买？" />
 
     <TextView
@@ -49,7 +49,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view14"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/view14"
-        app:layout_constraintTop_toBottomOf="@+id/textView49"
+        app:layout_constraintTop_toBottomOf="@+id/tv_native"
         android:text="该模板需要支付49.88元，\n购买后永久使用（规则暂定）" />
 
     <TextView

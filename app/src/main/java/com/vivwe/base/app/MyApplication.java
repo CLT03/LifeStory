@@ -7,6 +7,7 @@ import com.mbs.sdk.core.SdkContext;
 import com.mbs.sdk.net.HttpRequestConfig;
 import com.mbs.sdk.net.listener.OnWebExceptionListener;
 import com.mbs.sdk.net.msg.WebMsg;
+import com.shixing.sxvideoengine.SXVideo;
 import com.vivwe.base.cache.UserCache;
 import com.vivwe.base.entity.UserToken;
 import com.vivwe.base.ui.alert.Toast;
@@ -81,6 +82,8 @@ public class MyApplication extends Application implements OnWebExceptionListener
                 return MyApplication.this;
             }
         });
+
+
     }
 
 

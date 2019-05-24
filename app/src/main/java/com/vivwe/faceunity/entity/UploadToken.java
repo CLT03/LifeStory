@@ -8,6 +8,7 @@ package com.vivwe.faceunity.entity;
 public class UploadToken {
     private String linkAddress;
     private String token;
+    private String key;
 
     public String getLinkAddress() {
         return linkAddress;
@@ -23,5 +24,13 @@ public class UploadToken {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

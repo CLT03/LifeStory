@@ -228,7 +228,7 @@
     <View
         android:id="@+id/view28"
         android:layout_width="@dimen/x64"
-        android:layout_height="35dp"
+        android:layout_height="@dimen/x64"
         android:layout_marginStart="@dimen/x20"
         android:background="@mipmap/icon_video_music"
         app:layout_constraintBottom_toBottomOf="@+id/v_choose_music"
@@ -246,7 +246,7 @@
         app:layout_constraintTop_toTopOf="@+id/v_choose_music" />
 
     <TextView
-        android:id="@+id/textView95"
+        android:id="@+id/tv_music_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -256,13 +256,13 @@
         android:textColor="#BFBFBF"
         android:textSize="@dimen/x28"
         app:layout_constraintBottom_toBottomOf="@+id/v_choose_music"
-        app:layout_constraintEnd_toStartOf="@+id/textView96"
+        app:layout_constraintEnd_toStartOf="@+id/tv_music_duration"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/view29"
         app:layout_constraintTop_toTopOf="@+id/v_choose_music" />
 
     <TextView
-        android:id="@+id/textView96"
+        android:id="@+id/tv_music_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/x20"
