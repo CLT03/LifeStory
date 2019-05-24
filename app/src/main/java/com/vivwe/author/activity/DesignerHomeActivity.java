@@ -3,7 +3,6 @@ package com.vivwe.author.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.main.R;
 import com.vivwe.personal.adapter.MyCollectedDemoAdapter;
+import com.vivwe.personal.adapter.MyVideoAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,9 +35,15 @@ public class DesignerHomeActivity extends BaseActivity {
     TextView tvMake;
     @BindView(R.id.tv_sign)
     TextView tvSign;
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
-    private MyCollectedDemoAdapter adapter;
+    @BindView(R.id.recycler_view_template)
+    RecyclerView recyclerViewTemplate;
+    @BindView(R.id.recycler_view_video)
+    RecyclerView recyclerViewVideo;
+    @BindView(R.id.tv_template)
+    TextView tvTemplate;
+    private MyCollectedDemoAdapter adapterTemplate;
+    private MyVideoAdapter adapterVideo;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,11 +53,16 @@ public class DesignerHomeActivity extends BaseActivity {
         init();
     }
 
-    private void init(){
-        GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);
-        recyclerView.setLayoutManager(gridLayoutManager);
-        adapter=new MyCollectedDemoAdapter(this);
-        recyclerView.setAdapter(adapter);
+    private void init() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        recyclerViewTemplate.setLayoutManager(gridLayoutManager);
+        adapterTemplate = new MyCollectedDemoAdapter(this);
+        recyclerViewTemplate.setAdapter(adapterTemplate);
+
+        GridLayoutManager gridLayoutManager1 = new GridLayoutManager(this, 3);
+        recyclerViewVideo.setLayoutManager(gridLayoutManager1);
+        adapterVideo = new MyVideoAdapter(this);
+        recyclerViewVideo.setAdapter(adapterVideo);
     }
 
     @OnClick({R.id.iv_back, R.id.btn_attention, R.id.iv_change, R.id.tv_template})
@@ -64,10 +75,16 @@ public class DesignerHomeActivity extends BaseActivity {
 
                 break;
             case R.id.iv_change:
-
-                break;
             case R.id.tv_template:
-
+                if (recyclerViewTemplate.getVisibility() == View.VISIBLE) {
+                    recyclerViewTemplate.setVisibility(View.GONE);
+                    recyclerViewVideo.setVisibility(View.VISIBLE);
+                    tvTemplate.setText("视频");
+                } else {
+                    recyclerViewVideo.setVisibility(View.GONE);
+                    recyclerViewTemplate.setVisibility(View.VISIBLE);
+                    tvTemplate.setText("模板");
+                }
                 break;
         }
     }
