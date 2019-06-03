@@ -9,15 +9,24 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mbs.sdk.net.HttpRequest;
+import com.mbs.sdk.net.listener.OnResultListener;
+import com.mbs.sdk.net.msg.WebMsg;
 import com.mbs.sdk.utils.ScreenUtils;
 import com.vivwe.author.activity.CenterActivity;
 import com.vivwe.base.activity.BaseFragment;
+import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
 import com.vivwe.main.activity.MessageActivity;
 import com.vivwe.main.activity.SettingActivity;
 import com.vivwe.main.adapter.UcenterHistoryAdapter;
+import com.vivwe.main.api.WebUcenterApi;
+import com.vivwe.main.entity.UcenterInfoEntity;
+import com.vivwe.main.entity.UserInfoEntity;
+import com.vivwe.main.entity.VideoHistoryEntity;
 import com.vivwe.personal.activity.MyAssetsActivity;
 import com.vivwe.personal.activity.MyAttentionActivity;
 import com.vivwe.personal.activity.MyBrowsingHistoryActivity;
@@ -44,7 +53,30 @@ public class UcenterFragment extends BaseFragment {
     RecyclerView recyclerViewHistory;
     @BindView(R.id.tv_title)
     TextView tvTitle;
+    @BindView(R.id.tv_notice_number)
+    TextView tvNoticeNumber;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.iv_head)
+    ImageView ivHead;
+    @BindView(R.id.tv_id)
+    TextView tvId;
+    @BindView(R.id.tv_attention)
+    TextView tvAttention;
+    @BindView(R.id.tv_fans)
+    TextView tvFans;
+    @BindView(R.id.tv_like)
+    TextView tvLike;
+    @BindView(R.id.tv_purchased)
+    TextView tvPurchased;
+    @BindView(R.id.tv_collected)
+    TextView tvCollected;
+    @BindView(R.id.tv_draft)
+    TextView tvDraft;
+    @BindView(R.id.tv_source)
+    TextView tvSource;
     private UcenterHistoryAdapter adapter;
+    private VideoHistoryEntity videoHistoryEntity;
 
 
     @Override
@@ -66,10 +98,62 @@ public class UcenterFragment extends BaseFragment {
         recyclerViewHistory.setLayoutManager(linearLayoutManager);
         adapter = new UcenterHistoryAdapter(getActivity());
         recyclerViewHistory.setAdapter(adapter);
-        ViewGroup.LayoutParams layoutParams=tvTitle.getLayoutParams();
-        layoutParams.height=ScreenUtils.getStatusHeight(getContext())+getResources().getDimensionPixelOffset(R.dimen.x88);
+        ViewGroup.LayoutParams layoutParams = tvTitle.getLayoutParams();
+        layoutParams.height = ScreenUtils.getStatusHeight(getContext()) + getResources().getDimensionPixelOffset(R.dimen.x88);
         tvTitle.setLayoutParams(layoutParams);
-        tvTitle.setPadding(0,ScreenUtils.getStatusHeight(getContext()),0,0);
+        tvTitle.setPadding(0, ScreenUtils.getStatusHeight(getContext()), 0, 0);
+        getData();
+    }
+
+    private void getData() {
+        HttpRequest.getInstance().excute(HttpRequest.create(WebUcenterApi.class).getUserInfo(), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    UcenterInfoEntity userInfoEntity = webMsg.getData(UcenterInfoEntity.class);
+                    tvName.setText(userInfoEntity.getNickname());
+                    tvId.setText(String.valueOf(userInfoEntity.getId()));
+                    tvAttention.setText(String.valueOf(userInfoEntity.getSubNum()));
+                    tvFans.setText(String.valueOf(userInfoEntity.getFans()));
+                    tvLike.setText(String.valueOf(userInfoEntity.getLikeRecord()));
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(getContext(), webMsg.getDesc(), 2000);
+                }
+            }
+        });
+
+        HttpRequest.getInstance().excute(HttpRequest.create(WebUcenterApi.class).getUserRecordInfo(), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    UcenterInfoEntity userInfoEntity = webMsg.getData(UcenterInfoEntity.class);
+                    tvPurchased.setText(String.valueOf(userInfoEntity.getOrderCount()));
+                    tvCollected.setText(String.valueOf(userInfoEntity.getStarCount()));
+                    tvDraft.setText(String.valueOf(userInfoEntity.getDraftCount()));
+                    tvSource.setText(String.valueOf(userInfoEntity.getFodderCount()));
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(getContext(), webMsg.getDesc(), 2000);
+                }
+            }
+        });
+
+        HttpRequest.getInstance().excute(HttpRequest.create(WebUcenterApi.class).getVideoHistory(1,Integer.MAX_VALUE), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    videoHistoryEntity = webMsg.getData(VideoHistoryEntity.class);
+                    if(videoHistoryEntity.getMyVideoList().size()>0)
+                       adapter.setHistoryEntities(videoHistoryEntity.getMyVideoList());
+                    else recyclerViewHistory.setVisibility(View.GONE);
+                } else if (webMsg.netIsSuccessed()) {
+                    recyclerViewHistory.setVisibility(View.GONE);
+                    Toast.show(getContext(), webMsg.getDesc(), 2000);
+                }
+            }
+        });
+
+
+ 
     }
 
 
@@ -112,7 +196,9 @@ public class UcenterFragment extends BaseFragment {
                 break;
             case R.id.iv_more:
             case R.id.tv_more:
-                startActivity(new Intent(getActivity(), MyBrowsingHistoryActivity.class));
+                Bundle bundle =new Bundle();
+                bundle.putSerializable("history",videoHistoryEntity);
+                startActivity(new Intent(getActivity(), MyBrowsingHistoryActivity.class).putExtras(bundle));
                 break;
             case R.id.tv_video:
                 startActivity(new Intent(getActivity(), MyVideoActivity.class));

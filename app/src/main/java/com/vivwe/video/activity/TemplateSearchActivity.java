@@ -1,5 +1,6 @@
 package com.vivwe.video.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.Group;
@@ -7,13 +8,24 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.mbs.sdk.net.HttpRequest;
+import com.mbs.sdk.net.listener.OnResultListener;
+import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
+import com.vivwe.main.api.TemplateApi;
 import com.vivwe.personal.adapter.MyCollectedDemoAdapter;
+import com.vivwe.personal.entity.TemplateEntity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,8 +65,13 @@ public class TemplateSearchActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (count > 0) ivClear.setVisibility(View.VISIBLE);
-                else ivClear.setVisibility(View.GONE);
+                if (edtSearch.getText().toString().length() > 0)
+                    ivClear.setVisibility(View.VISIBLE);
+                else {
+                    ivClear.setVisibility(View.GONE);
+                    groupPopular.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                }
             }
 
             @Override
@@ -62,10 +79,41 @@ public class TemplateSearchActivity extends BaseActivity {
 
             }
         });
+        edtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                //判断是否是“done”键
+                if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                    getData();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
         GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(gridLayoutManager);
         demoAdapter=new MyCollectedDemoAdapter(this);
         recyclerView.setAdapter(demoAdapter);
+        edtSearch.requestFocus();
+    }
+
+    private void getData(){
+        HttpRequest.getInstance().excute(HttpRequest.create(com.vivwe.video.api.TemplateApi.class).searchTemplate(1,Integer.MAX_VALUE,edtSearch.getText().toString()), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    TemplateEntity templateEntity = webMsg.getData(TemplateEntity.class);
+                    demoAdapter.setTemplates(templateEntity.getRecords());
+                    groupPopular.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(TemplateSearchActivity.this, webMsg.getDesc(), 2000);
+                }
+            }
+        });
+
     }
 
     @OnClick({R.id.tv_cancel, R.id.iv_clear})

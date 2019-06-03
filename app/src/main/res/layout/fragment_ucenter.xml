@@ -100,7 +100,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/tv_head"
+                    android:id="@+id/iv_head"
                     android:layout_width="@dimen/x84"
                     android:layout_height="@dimen/x84"
                     android:layout_marginLeft="@dimen/x30"
@@ -117,7 +117,7 @@
                     android:layout_marginTop="@dimen/x96"
                     android:text="ID:18011707954"
                     android:textColor="#EBEBEB"
-                    app:layout_constraintStart_toEndOf="@+id/tv_head"
+                    app:layout_constraintStart_toEndOf="@+id/iv_head"
                     app:layout_constraintTop_toTopOf="@+id/tv_name" />
 
                 <ImageView
@@ -127,7 +127,7 @@
                     android:layout_marginTop="@dimen/x50"
                     android:background="@drawable/ra_transparent_btn"
                     android:src="@mipmap/icon_attention_my"
-                    app:layout_constraintStart_toEndOf="@+id/tv_head"
+                    app:layout_constraintStart_toEndOf="@+id/iv_head"
                     app:layout_constraintTop_toBottomOf="@+id/tv_id" />
 
                 <TextView
@@ -530,8 +530,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/view6" />
-
-
 
 
             </android.support.constraint.ConstraintLayout>

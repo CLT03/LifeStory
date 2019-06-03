@@ -8,9 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.vivwe.main.R;
+import com.vivwe.personal.entity.VideoEntity;
 import com.vivwe.video.activity.VideoToShowActivity;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,18 +24,38 @@ import butterknife.ButterKnife;
 public class RecommendItemAdapter extends RecyclerView.Adapter<RecommendItemAdapter.ViewHolder> {
 
 
+
     private Activity activity;
+    private RequestOptions requestOptions,requestOptions1;
+    private ArrayList<VideoEntity.Video> videos;
 
     public RecommendItemAdapter(Activity activity) {
         this.activity = activity;
+        requestOptions = new RequestOptions().centerCrop()
+                .placeholder(activity.getResources().getDrawable(R.drawable.ic_launcher_background));
+        requestOptions1= new RequestOptions().circleCrop()
+                .placeholder(activity.getResources().getDrawable(R.drawable.ic_launcher_background));
+    }
+
+    public void setVideos(ArrayList<VideoEntity.Video> videos) {
+        this.videos = videos;
+        notifyDataSetChanged();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.imageView4)
-        ImageView imageView4;
+        @BindView(R.id.iv_cover)
+        ImageView ivCover;
+        @BindView(R.id.tv_title)
+        TextView tvTitle;
+        @BindView(R.id.iv_head)
+        ImageView ivHead;
+        @BindView(R.id.tv_name)
+        TextView tvName;
+        @BindView(R.id.tv_number)
+        TextView tvNumber;
         ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 
@@ -41,18 +67,24 @@ public class RecommendItemAdapter extends RecyclerView.Adapter<RecommendItemAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.imageView4.setOnClickListener(new View.OnClickListener() {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
+        Glide.with(activity).load(videos.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
+        Glide.with(activity).load(videos.get(i).getAvatar()).apply(requestOptions1).into(holder.ivHead);
+        holder.tvName.setText(videos.get(i).getNickname());
+        holder.tvNumber.setText(String.valueOf(videos.get(i).getPlayCount()));
+        holder.tvTitle.setText(videos.get(i).getVideoTitle());
+        holder.ivCover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.startActivity(new Intent(activity,VideoToShowActivity.class));
+                activity.startActivity(new Intent(activity, VideoToShowActivity.class)
+                        .putExtra("videoId",videos.get(holder.getAdapterPosition()).getVid()));
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return videos==null?0:videos.size();
     }
 
 
