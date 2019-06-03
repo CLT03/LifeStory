@@ -94,7 +94,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView81" />
 
     <TextView
-        android:id="@+id/textView84"
+        android:id="@+id/tv_images_add"
         android:layout_width="@dimen/x132"
         android:layout_height="@dimen/x64"
         android:layout_marginStart="@dimen/x32"
@@ -117,9 +117,9 @@
         android:text="添加文字"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/x24"
-        app:layout_constraintBottom_toBottomOf="@+id/textView84"
-        app:layout_constraintStart_toEndOf="@+id/textView84"
-        app:layout_constraintTop_toTopOf="@+id/textView84" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_images_add"
+        app:layout_constraintStart_toEndOf="@+id/tv_images_add"
+        app:layout_constraintTop_toTopOf="@+id/tv_images_add" />
 
     <TextView
         android:id="@+id/textView86"
@@ -131,9 +131,9 @@
         android:text="复制"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/x24"
-        app:layout_constraintBottom_toBottomOf="@+id/textView84"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_images_add"
         app:layout_constraintStart_toEndOf="@+id/textView85"
-        app:layout_constraintTop_toTopOf="@+id/textView84"
+        app:layout_constraintTop_toTopOf="@+id/tv_images_add"
         app:layout_constraintVertical_bias="0.0" />
 
     <View
@@ -146,9 +146,9 @@
         android:text="移除"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/x24"
-        app:layout_constraintBottom_toBottomOf="@+id/textView84"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_images_add"
         app:layout_constraintStart_toEndOf="@+id/textView86"
-        app:layout_constraintTop_toTopOf="@+id/textView84"
+        app:layout_constraintTop_toTopOf="@+id/tv_images_add"
         app:layout_constraintVertical_bias="0.0" />
 
 
@@ -178,16 +178,16 @@
 
 
     <View
-        android:id="@+id/textView88"
+        android:id="@+id/tv_images_clear"
         android:layout_width="@dimen/x132"
         android:layout_height="@dimen/x64"
         android:layout_marginStart="@dimen/x8"
         android:background="@drawable/r8_video_create_btn"
         android:gravity="center"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/textView84"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_images_add"
         app:layout_constraintStart_toEndOf="@+id/textView87"
-        app:layout_constraintTop_toTopOf="@+id/textView84"
+        app:layout_constraintTop_toTopOf="@+id/tv_images_add"
         app:layout_constraintVertical_bias="0.0" />
 
 
@@ -198,9 +198,9 @@
         android:layout_marginStart="@dimen/x22"
         android:background="@mipmap/icon_video_del"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/textView88"
-        app:layout_constraintStart_toStartOf="@+id/textView88"
-        app:layout_constraintTop_toTopOf="@+id/textView88" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_images_clear"
+        app:layout_constraintStart_toStartOf="@+id/tv_images_clear"
+        app:layout_constraintTop_toTopOf="@+id/tv_images_clear" />
 
     <TextView
         android:id="@+id/textView94"
