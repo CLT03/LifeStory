@@ -4,16 +4,26 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.Group;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.TextView;
 
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.ui.textview.LinearGradientTextView;
 import com.vivwe.main.R;
 import com.vivwe.personal.adapter.MyCollectedDemoAdapter;
 import com.vivwe.personal.adapter.MyCollectedVideoAdapter;
+import com.vivwe.personal.adapter.MycollectedPagerAdapter;
+import com.vivwe.personal.fragment.MycollectedFragment;
+import com.vivwe.video.adapter.VideoSearchPagerAdapter;
+import com.vivwe.video.fragment.VideoSearchFragment;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,10 +36,6 @@ import butterknife.OnClick;
  */
 public class MyCollectedActivity extends BaseActivity {
 
-    @BindView(R.id.recycler_view_purchased_demo)
-    RecyclerView recyclerViewPurchasedDemo;
-    @BindView(R.id.recycler_view_purchased_video)
-    RecyclerView recyclerViewPurchasedVideo;
     @BindView(R.id.group_edit)
     Group groupEdit;
     @BindView(R.id.tv_demo)
@@ -40,8 +46,10 @@ public class MyCollectedActivity extends BaseActivity {
     TextView tvVideo;
     @BindView(R.id.view_video)
     View viewVideo;
-    private MyCollectedDemoAdapter demoAdapter;
-    private MyCollectedVideoAdapter videoAdapter;
+    @BindView(R.id.view_pager)
+    ViewPager viewPager;
+    ArrayList<MycollectedFragment> fragments = new ArrayList<>();
+    TextView textViewTag;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,15 +60,38 @@ public class MyCollectedActivity extends BaseActivity {
     }
 
     private void init() {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
-        recyclerViewPurchasedDemo.setLayoutManager(gridLayoutManager);
-        demoAdapter = new MyCollectedDemoAdapter(this);
-        recyclerViewPurchasedDemo.setAdapter(demoAdapter);
-        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this);
-        linearLayoutManager1.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerViewPurchasedVideo.setLayoutManager(linearLayoutManager1);
-        videoAdapter = new MyCollectedVideoAdapter(this);
-        recyclerViewPurchasedVideo.setAdapter(videoAdapter);
+        textViewTag=tvDemo;
+        for (int i = 0; i < 2; i++) {
+            MycollectedFragment mycollectedFragment = new MycollectedFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("tag", i);
+            mycollectedFragment.setArguments(bundle);
+            fragments.add(mycollectedFragment);
+        }
+        viewPager.setAdapter(new MycollectedPagerAdapter(getSupportFragmentManager(), fragments));
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                switch (i){
+                    case 0:
+                        tvDemo.performClick();
+                        break;
+                    case 1:
+                        tvVideo.performClick();
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
 
 
@@ -77,8 +108,7 @@ public class MyCollectedActivity extends BaseActivity {
                 break;
             case R.id.tv_demo:
             case R.id.view_demo:
-                recyclerViewPurchasedDemo.setVisibility(View.VISIBLE);
-                recyclerViewPurchasedVideo.setVisibility(View.GONE);
+                viewPager.setCurrentItem(0);
                 tvDemo.setTextColor(Color.parseColor("#FF5F22"));
                 tvVideo.setTextColor(Color.parseColor("#262626"));
                 viewDemo.setVisibility(View.VISIBLE);
@@ -86,8 +116,7 @@ public class MyCollectedActivity extends BaseActivity {
                 break;
             case R.id.tv_video:
             case R.id.view_video:
-                recyclerViewPurchasedVideo.setVisibility(View.VISIBLE);
-                recyclerViewPurchasedDemo.setVisibility(View.GONE);
+                viewPager.setCurrentItem(1);
                 tvVideo.setTextColor(Color.parseColor("#FF5F22"));
                 tvDemo.setTextColor(Color.parseColor("#262626"));
                 viewDemo.setVisibility(View.GONE);

@@ -255,19 +255,20 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/x64"
         android:layout_marginLeft="@dimen/x30"
-        android:layout_marginRight="@dimen/x30"
         android:layout_marginTop="@dimen/x16"
+        android:layout_marginRight="@dimen/x30"
         android:background="@drawable/r16_gray_normal"
         android:hint="说点什么..."
         android:inputType="textPersonName"
         android:paddingLeft="@dimen/x20"
+        android:paddingRight="@dimen/x20"
         android:singleLine="false"
         android:textColor="#191919"
         android:textColorHint="#C2C2C2"
         android:textSize="@dimen/x24"
-        app:layout_constraintTop_toTopOf="@+id/view_comment"
         app:layout_constraintEnd_toEndOf="@+id/view_comment"
-        app:layout_constraintStart_toStartOf="@+id/view_comment" />
+        app:layout_constraintStart_toStartOf="@+id/view_comment"
+        app:layout_constraintTop_toTopOf="@+id/view_comment" />
 
     <android.support.constraint.Group
         android:id="@+id/group_comment"

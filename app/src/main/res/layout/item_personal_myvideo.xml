@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/tv_cover"
+        android:id="@+id/iv_cover"
         android:layout_width="@dimen/x248"
         android:layout_height="@dimen/x400"
         android:scaleType="fitXY"
@@ -22,7 +22,7 @@
         android:layout_height="@dimen/x28"
         android:layout_marginLeft="@dimen/x20"
         android:layout_marginBottom="@dimen/x16"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_cover"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_cover"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@mipmap/icon_video_play_count" />
 
@@ -43,7 +43,7 @@
         android:layout_height="@dimen/x28"
         android:layout_marginRight="@dimen/x14"
         android:layout_marginBottom="@dimen/x16"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_cover"
-        app:layout_constraintEnd_toEndOf="@+id/tv_cover"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_cover"
+        app:layout_constraintEnd_toEndOf="@+id/iv_cover"
         app:srcCompat="@mipmap/icon_video_protect" />
 </android.support.constraint.ConstraintLayout>
