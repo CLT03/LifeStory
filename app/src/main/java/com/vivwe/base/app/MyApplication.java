@@ -2,6 +2,7 @@ package com.vivwe.base.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import com.mbs.sdk.core.SdkContext;
 import com.mbs.sdk.net.HttpRequestConfig;
@@ -10,7 +11,10 @@ import com.mbs.sdk.net.msg.WebMsg;
 import com.shixing.sxvideoengine.SXVideo;
 import com.vivwe.base.cache.UserCache;
 import com.vivwe.base.entity.UserToken;
+import com.vivwe.base.ui.alert.AlertDialog;
 import com.vivwe.base.ui.alert.Toast;
+import com.vivwe.base.ui.alert.constant.AlertDialogEnum;
+import com.vivwe.main.activity.LoginActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -97,7 +101,15 @@ public class MyApplication extends Application implements OnWebExceptionListener
             case 500:
                 Toast.show(this, "网络开了小差，请稍后重试！", 3000);
                 break;
-
+            case 401:
+                Toast.show(this, "您的登录已经失效!", 3000);
+                // 清空缓存
+                UserCache.Companion.loginOut();
+                Intent intent = new Intent();
+                intent.setClass(this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                break;
         }
     }
 

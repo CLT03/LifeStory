@@ -1,13 +1,7 @@
 package com.mbs.sdk.net.msg;
 
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.List;
-
-import retrofit2.adapter.rxjava.HttpException;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
+import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 
 
 /**
