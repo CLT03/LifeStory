@@ -7,9 +7,6 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.LinearLayout
 import android.widget.TextView
 import com.vivwe.base.ui.alert.Toast
 import butterknife.BindView
@@ -47,9 +44,12 @@ class VideoCreateByDynamicActivity: BaseActivity() {
     @BindView(R.id.tv_music_duration)
     lateinit var musicDurationTv: TextView
 
+
     lateinit var adapter: VideoCreateDynamicImagesAdapter
 
     private var mFolder: File? = null
+    /** 当前音乐 */
+    private var currentAudioPath:String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,16 +84,12 @@ class VideoCreateByDynamicActivity: BaseActivity() {
         adapter!!.setListener(object: OnVideoCreateImageItemClicListener {
             override fun onItemClick(path: String, postion: Int) {
                 Toast.show(this@VideoCreateByDynamicActivity, "图片被点击了", 3000)
-
             }
 
             override fun onAddClick() {
                 Toast.show(this@VideoCreateByDynamicActivity, "新增图片", 3000)
 
-                var intent = Intent()
-                intent.setClass(this@VideoCreateByDynamicActivity, ImageLoadActivity::class.java)
-                intent.putExtra("choose_count", 10)
-                this@VideoCreateByDynamicActivity.startActivityForResult(intent, 1)
+                addImages()
 
             }
 
@@ -137,6 +133,25 @@ class VideoCreateByDynamicActivity: BaseActivity() {
     }
 
     /**
+     * 清空所有图片
+     */
+    @OnClick(R.id.tv_images_clear)
+    fun clearAll(){
+        adapter.datas = null
+    }
+
+    /**
+     * 添加图片
+     */
+    @OnClick(R.id.tv_images_add)
+    fun addImages(){
+        var intent = Intent()
+        intent.setClass(this@VideoCreateByDynamicActivity, ImageLoadActivity::class.java)
+        intent.putExtra("choose_count", 10)
+        this@VideoCreateByDynamicActivity.startActivityForResult(intent, 1)
+    }
+
+    /**
      * 选择音乐
      */
     @OnClick(R.id.v_choose_music)
@@ -175,6 +190,7 @@ class VideoCreateByDynamicActivity: BaseActivity() {
             sxTextCanvas.adjustSize()
             val path = sxTextCanvas.saveToPath(externalCacheDir.toString() + File.separator + UUID.randomUUID() + ".png")
             template.setFileForAsset("title", path)
+
         }
         template.commit()
 
@@ -184,7 +200,7 @@ class VideoCreateByDynamicActivity: BaseActivity() {
         var progressCbv = alert.findViewById(R.id.cbv_progress) as CircleBarView
         var progressTv = alert.findViewById(R.id.tv_progress) as TextView
 
-        val sxTemplateRender = SXTemplateRender(template, "", outputFilePath)
+        val sxTemplateRender = SXTemplateRender(template, currentAudioPath, outputFilePath)
         sxTemplateRender.setRenderListener(object : SXRenderListener {
 
             override fun onFinish(success: Boolean, msg: String?) {

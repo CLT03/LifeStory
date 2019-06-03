@@ -23,7 +23,11 @@ class VideoCreateDynamicImagesAdapter(context: Context) : RecyclerView.Adapter<V
 
     var datas: ArrayList<String>?  = ArrayList()
     set(value) {
-        field = value
+        if(value == null){
+            field?.clear()
+        } else {
+            field = value
+        }
         notifyDataSetChanged()
     }
 

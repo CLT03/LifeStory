@@ -66,7 +66,7 @@
         app:layout_constraintTop_toTopOf="@+id/iv_head" />
 
     <TextView
-        android:id="@+id/textView84"
+        android:id="@+id/tv_images_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="主题"
@@ -83,9 +83,9 @@
         android:text="274"
         android:textColor="#3a3a3b"
         android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@+id/textView84"
-        app:layout_constraintStart_toEndOf="@+id/textView84"
-        app:layout_constraintTop_toTopOf="@+id/textView84" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_images_add"
+        app:layout_constraintStart_toEndOf="@+id/tv_images_add"
+        app:layout_constraintTop_toTopOf="@+id/tv_images_add" />
 
     <TextView
         android:id="@+id/textView89"
