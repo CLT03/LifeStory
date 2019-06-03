@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.main.R;
 import com.vivwe.personal.adapter.MyDraftAdapter;
-import com.vivwe.personal.adapter.MyPurchasedAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

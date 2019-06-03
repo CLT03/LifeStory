@@ -53,13 +53,13 @@ public class CenterActivity extends BaseActivity {
                 startActivity(new Intent(this, IncomeActivity.class));
                 break;
             case R.id.tv_had_publish:
-                startActivity(new Intent(this, TemplateApprovedActivity.class));
+                startActivity(new Intent(this, TemplateApprovedActivity.class).putExtra("tag",0));
                 break;
             case R.id.tv_wait_review:
-                startActivity(new Intent(this, TemplateApprovedActivity.class));
+                startActivity(new Intent(this, TemplateApprovedActivity.class).putExtra("tag",1));
                 break;
             case R.id.tv_no_pass:
-                startActivity(new Intent(this, TemplateApprovedActivity.class));
+                startActivity(new Intent(this, TemplateApprovedActivity.class).putExtra("tag",2));
                 break;
         }
     }

@@ -26,7 +26,7 @@ public class SettingActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.iv_back, R.id.tv_user_info, R.id.tv_change_psw, R.id.tv_help, R.id.tv_update, R.id.tv_about})
+    @OnClick({R.id.iv_back, R.id.tv_user_info, R.id.tv_change_psw, R.id.tv_change_phone, R.id.tv_help, R.id.tv_update, R.id.tv_about ,R.id.btn_exit})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -38,6 +38,9 @@ public class SettingActivity extends BaseActivity {
             case R.id.tv_change_psw:
                 startActivity(new Intent(this,ResetPasswordActivity.class));
                 break;
+            case R.id.tv_change_phone:
+                startActivity(new Intent(this,ResetPhoneActivity.class));
+                break;
             case R.id.tv_help:
                 startActivity(new Intent(this,FeebackActivity.class));
                 break;
@@ -46,6 +49,9 @@ public class SettingActivity extends BaseActivity {
                 break;
             case R.id.tv_about:
                 startActivity(new Intent(this,AboutActivity.class));
+                break;
+            case R.id.btn_exit:
+
                 break;
         }
     }

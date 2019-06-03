@@ -60,9 +60,11 @@
         <activity android:name="com.vivwe.video.activity.TemplateDetailActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name="com.vivwe.video.activity.MusicLibraryActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name="com.vivwe.author.activity.DesignerHomeActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
-        <activity android:name="com.vivwe.video.activity.VideoSearchActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
-        <activity android:name="com.vivwe.video.activity.TemplateSearchActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.video.activity.VideoSearchActivity" android:windowSoftInputMode="stateVisible" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.video.activity.TemplateSearchActivity" android:windowSoftInputMode="stateVisible" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name="com.vivwe.video.activity.VideoReportActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.video.activity.AllTemplateActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.main.activity.ResetPhoneActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
 
 
         <activity android:name="com.vivwe.base.util.imgeloader.ImageLoadActivity" android:theme="@style/AppWhiteTheme" />
