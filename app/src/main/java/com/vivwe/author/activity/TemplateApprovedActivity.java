@@ -4,20 +4,23 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.Group;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.vivwe.author.adapter.TemplateApprovedPagerAdapter;
 import com.vivwe.author.adapter.TemplateNoPassAdapter;
 import com.vivwe.author.adapter.TemplatePublishAdapter;
 import com.vivwe.author.adapter.TemplateWaitReviewAdapter;
+import com.vivwe.author.fragment.TemplateApprovedFragment;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.base.ui.textview.LinearGradientTextView;
 import com.vivwe.main.R;
-import com.vivwe.personal.adapter.MyCollectedDemoAdapter;
-import com.vivwe.personal.adapter.MyCollectedVideoAdapter;
+import com.vivwe.personal.adapter.MycollectedPagerAdapter;
+import com.vivwe.personal.fragment.MycollectedFragment;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,17 +45,13 @@ public class TemplateApprovedActivity extends BaseActivity {
     LinearGradientTextView tvNoPass;
     @BindView(R.id.view_no_pass)
     View viewNoPass;
-    @BindView(R.id.recycler_view_publish)
-    RecyclerView recyclerViewPublish;
-    @BindView(R.id.recycler_view_wait_review)
-    RecyclerView recyclerViewWaitReview;
-    @BindView(R.id.recycler_view_no_pass)
-    RecyclerView recyclerViewNoPass;
     @BindView(R.id.group_edit)
     Group groupEdit;
-    private TemplatePublishAdapter publishAdapter;
-    private TemplateWaitReviewAdapter waitReviewAdapter;
-    private TemplateNoPassAdapter noPassAdapter;
+    @BindView(R.id.view_pager)
+    ViewPager viewPager;
+    ArrayList<TemplateApprovedFragment> fragments = new ArrayList<>();
+    LinearGradientTextView textViewTag;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,27 +61,58 @@ public class TemplateApprovedActivity extends BaseActivity {
         init();
     }
 
-
     private void init() {
-        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this);
-        linearLayoutManager1.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerViewPublish.setLayoutManager(linearLayoutManager1);
-        publishAdapter = new TemplatePublishAdapter(this);
-        recyclerViewPublish.setAdapter(publishAdapter);
+        for (int i = 0; i < 3; i++) {
+            TemplateApprovedFragment templateApprovedFragment = new TemplateApprovedFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("tag", i);
+            templateApprovedFragment.setArguments(bundle);
+            fragments.add(templateApprovedFragment);
+        }
+        viewPager.setAdapter(new TemplateApprovedPagerAdapter(getSupportFragmentManager(), fragments));
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
 
-        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this);
-        linearLayoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerViewWaitReview.setLayoutManager(linearLayoutManager2);
-        waitReviewAdapter = new TemplateWaitReviewAdapter(this);
-        recyclerViewWaitReview.setAdapter(waitReviewAdapter);
+            }
 
-        LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(this);
-        linearLayoutManager3.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerViewNoPass.setLayoutManager(linearLayoutManager3);
-        noPassAdapter = new TemplateNoPassAdapter(this);
-        recyclerViewNoPass.setAdapter(noPassAdapter);
+            @Override
+            public void onPageSelected(int i) {
+                switch (i){
+                    case 0:
+                        tvPublish.performClick();
+                        break;
+                    case 1:
+                        tvWaitReview.performClick();
+                        break;
+                    case 2:
+                        tvNoPass.performClick();
+                        break;
+                }
+            }
 
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
+        switch (getIntent().getIntExtra("tag",-1)){
+            case 0:
+                textViewTag=tvPublish;
+                tvPublish.performClick();
+                break;
+            case 1:
+                textViewTag=tvWaitReview;
+                tvWaitReview.performClick();
+                break;
+            case 2:
+                textViewTag=tvNoPass;
+                tvNoPass.performClick();
+                break;
+        }
     }
+
+
 
     @OnClick({R.id.iv_back, R.id.tv_edit, R.id.tv_publish, R.id.view_publish, R.id.tv_wait_review, R.id.view_wait_review, R.id.tv_no_pass, R.id.view_no_pass, R.id.tv_all, R.id.tv_delete})
     public void onClick(View view) {
@@ -97,39 +127,33 @@ public class TemplateApprovedActivity extends BaseActivity {
                 break;
             case R.id.tv_publish:
             case R.id.view_publish:
-                recyclerViewPublish.setVisibility(View.VISIBLE);
-                recyclerViewNoPass.setVisibility(View.GONE);
-                recyclerViewWaitReview.setVisibility(View.GONE);
                 viewPublish.setVisibility(View.VISIBLE);
                 viewNoPass.setVisibility(View.GONE);
                 viewWaitReview.setVisibility(View.GONE);
-                tvPublish.setTextColor(Color.parseColor("#52D3FF"),Color.parseColor("#B35CFF"));
+                tvPublish.setTextColor(Color.parseColor("#52D3FF"), Color.parseColor("#B35CFF"));
                 tvWaitReview.setTextColor(Color.parseColor("#262626"));
                 tvNoPass.setTextColor(Color.parseColor("#262626"));
+                viewPager.setCurrentItem(0);
                 break;
             case R.id.tv_wait_review:
             case R.id.view_wait_review:
-                recyclerViewPublish.setVisibility(View.GONE);
-                recyclerViewNoPass.setVisibility(View.GONE);
-                recyclerViewWaitReview.setVisibility(View.VISIBLE);
                 viewPublish.setVisibility(View.GONE);
                 viewNoPass.setVisibility(View.GONE);
                 viewWaitReview.setVisibility(View.VISIBLE);
-                tvWaitReview.setTextColor(Color.parseColor("#52D3FF"),Color.parseColor("#B35CFF"));
+                tvWaitReview.setTextColor(Color.parseColor("#52D3FF"), Color.parseColor("#B35CFF"));
                 tvPublish.setTextColor(Color.parseColor("#262626"));
                 tvNoPass.setTextColor(Color.parseColor("#262626"));
+                viewPager.setCurrentItem(1);
                 break;
             case R.id.tv_no_pass:
             case R.id.view_no_pass:
-                recyclerViewPublish.setVisibility(View.GONE);
-                recyclerViewNoPass.setVisibility(View.VISIBLE);
-                recyclerViewWaitReview.setVisibility(View.GONE);
                 viewPublish.setVisibility(View.GONE);
                 viewNoPass.setVisibility(View.VISIBLE);
                 viewWaitReview.setVisibility(View.GONE);
-                tvNoPass.setTextColor(Color.parseColor("#52D3FF"),Color.parseColor("#B35CFF"));
+                tvNoPass.setTextColor(Color.parseColor("#52D3FF"), Color.parseColor("#B35CFF"));
                 tvWaitReview.setTextColor(Color.parseColor("#262626"));
                 tvPublish.setTextColor(Color.parseColor("#262626"));
+                viewPager.setCurrentItem(2);
                 break;
             case R.id.tv_all:
 

@@ -4,15 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.mbs.sdk.net.HttpRequest;
+import com.mbs.sdk.net.listener.OnResultListener;
+import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.author.activity.TransactionRecordActivity;
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
-import com.vivwe.personal.adapter.MyFansAdapter;
-import com.vivwe.personal.adapter.MyPurchasedAdapter;
+import com.vivwe.personal.adapter.MyCollectedDemoAdapter;
+import com.vivwe.personal.api.PersonalApi;
+import com.vivwe.personal.entity.TemplateEntity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,7 +31,7 @@ public class MyPurchasedActivity extends BaseActivity {
 
     @BindView(R.id.recycler_view_purchased)
     RecyclerView recyclerViewPurchased;
-    private MyPurchasedAdapter adapter;
+    private MyCollectedDemoAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,8 +44,23 @@ public class MyPurchasedActivity extends BaseActivity {
     private void init(){
         GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);
         recyclerViewPurchased.setLayoutManager(gridLayoutManager);
-        adapter=new MyPurchasedAdapter(this);
+        adapter=new MyCollectedDemoAdapter(this);
         recyclerViewPurchased.setAdapter(adapter);
+        getData();
+    }
+
+    private void getData(){
+        HttpRequest.getInstance().excute(HttpRequest.create(PersonalApi.class).getMyPurchased(1,Integer.MAX_VALUE), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    TemplateEntity templateEntity = webMsg.getData(TemplateEntity.class);
+                    adapter.setTemplates(templateEntity.getRecords());
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(MyPurchasedActivity.this, webMsg.getDesc(), 2000);
+                }
+            }
+        });
     }
 
     @OnClick({R.id.iv_back, R.id.tv_record})

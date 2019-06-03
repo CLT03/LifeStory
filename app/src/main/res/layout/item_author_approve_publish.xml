@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#FAFAFA"
-    android:layout_height="@dimen/x268">
+    android:layout_height="@dimen/x268"
+    android:background="#FAFAFA">
 
     <TextView
         android:id="@+id/tv_title"
@@ -26,7 +26,7 @@
     <ImageView
         android:id="@+id/iv_cover"
         android:layout_width="@dimen/x160"
-        android:layout_height="@dimen/x90"
+        android:layout_height="@dimen/x200"
         android:layout_marginLeft="@dimen/x20"
         android:layout_marginTop="@dimen/x30"
         android:scaleType="fitXY"
@@ -50,14 +50,14 @@
         android:id="@+id/imageView31"
         android:layout_width="@dimen/x38"
         android:layout_height="@dimen/x32"
-        android:layout_marginTop="@dimen/x6"
+        android:layout_marginTop="@dimen/x16"
         android:padding="@dimen/x8"
         app:layout_constraintStart_toStartOf="@+id/tv_money"
         app:layout_constraintTop_toBottomOf="@+id/tv_money"
         app:srcCompat="@mipmap/icon_property_template" />
 
     <TextView
-        android:id="@+id/textView67"
+        android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="30分钟"
@@ -73,12 +73,12 @@
         android:layout_height="@dimen/x32"
         android:layout_marginLeft="@dimen/x128"
         android:padding="@dimen/x8"
-        app:layout_constraintStart_toStartOf="@+id/textView67"
+        app:layout_constraintStart_toStartOf="@+id/tv_time"
         app:layout_constraintTop_toTopOf="@+id/imageView31"
         app:srcCompat="@mipmap/icon_property_template" />
 
     <TextView
-        android:id="@+id/textView68"
+        android:id="@+id/tv_material"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="299个素材"
@@ -89,59 +89,16 @@
         app:layout_constraintTop_toTopOf="@+id/imageView32" />
 
     <ImageView
-        android:id="@+id/imageView33"
-        android:layout_width="@dimen/x38"
-        android:layout_height="@dimen/x32"
-        android:layout_marginLeft="@dimen/x162"
-        android:padding="@dimen/x8"
-        app:layout_constraintStart_toStartOf="@+id/textView68"
-        app:layout_constraintTop_toTopOf="@+id/imageView31"
-        app:srcCompat="@mipmap/icon_property_template" />
-
-    <TextView
-        android:id="@+id/textView69"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="横竖排"
-        android:textColor="#666666"
-        android:textSize="@dimen/x24"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView33"
-        app:layout_constraintStart_toEndOf="@+id/imageView33"
-        app:layout_constraintTop_toTopOf="@+id/imageView33" />
-
-    <ImageView
-        android:id="@+id/imageView34"
-        android:layout_width="@dimen/x38"
-        android:layout_height="@dimen/x32"
-        android:layout_marginTop="@dimen/x6"
-        android:padding="@dimen/x8"
-        app:layout_constraintStart_toStartOf="@+id/tv_money"
-        app:layout_constraintTop_toBottomOf="@+id/imageView31"
-        app:srcCompat="@mipmap/icon_property_template" />
-
-    <TextView
-        android:id="@+id/textView70"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="文字颜色"
-        android:textColor="#666666"
-        android:textSize="@dimen/x24"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView34"
-        app:layout_constraintStart_toEndOf="@+id/imageView34"
-        app:layout_constraintTop_toTopOf="@+id/imageView34" />
-
-    <ImageView
         android:id="@+id/imageView35"
         android:layout_width="@dimen/x26"
         android:layout_height="@dimen/x20"
-        android:layout_marginLeft="@dimen/x8"
         android:layout_marginTop="@dimen/x20"
         app:layout_constraintStart_toStartOf="@+id/tv_money"
-        app:layout_constraintTop_toBottomOf="@+id/imageView34"
+        app:layout_constraintTop_toBottomOf="@+id/tv_time"
         app:srcCompat="@mipmap/icon_used_template" />
 
     <TextView
-        android:id="@+id/textView71"
+        android:id="@+id/tv_use"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/x16"
@@ -163,7 +120,7 @@
         app:srcCompat="@mipmap/icon_collect_template" />
 
     <TextView
-        android:id="@+id/textView72"
+        android:id="@+id/tv_collected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/x16"
@@ -174,8 +131,18 @@
         app:layout_constraintStart_toEndOf="@+id/imageView36"
         app:layout_constraintTop_toTopOf="@+id/imageView36" />
 
+    <ImageView
+        android:id="@+id/imageView37"
+        android:layout_width="@dimen/x28"
+        android:layout_height="@dimen/x18"
+        android:layout_marginLeft="@dimen/x132"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView35"
+        app:layout_constraintStart_toStartOf="@+id/tv_collected"
+        app:layout_constraintTop_toTopOf="@+id/imageView35"
+        app:srcCompat="@mipmap/icon_browse_template" />
+
     <TextView
-        android:id="@+id/textView73"
+        android:id="@+id/tv_click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/x16"
@@ -185,16 +152,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView37"
         app:layout_constraintStart_toEndOf="@+id/imageView37"
         app:layout_constraintTop_toTopOf="@+id/imageView37" />
-
-    <ImageView
-        android:id="@+id/imageView37"
-        android:layout_width="@dimen/x28"
-        android:layout_height="@dimen/x18"
-        android:layout_marginLeft="@dimen/x132"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView35"
-        app:layout_constraintStart_toStartOf="@+id/textView72"
-        app:layout_constraintTop_toTopOf="@+id/imageView35"
-        app:srcCompat="@mipmap/icon_browse_template" />
 
     <ImageView
         android:id="@+id/iv_choose"

@@ -13,13 +13,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mbs.sdk.net.HttpRequest;
+import com.mbs.sdk.net.listener.OnResultListener;
+import com.mbs.sdk.net.msg.WebMsg;
 import com.mbs.sdk.utils.ScreenUtils;
 import com.vivwe.base.activity.BaseFragment;
+import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
 import com.vivwe.main.activity.MessageActivity;
 import com.vivwe.main.adapter.TemplateCollectionAdapter;
+import com.vivwe.main.api.TemplateApi;
 import com.vivwe.personal.adapter.MyCollectedDemoAdapter;
-import com.vivwe.personal.adapter.RecommendActivityAdapter;
+import com.vivwe.personal.entity.TemplateEntity;
+import com.vivwe.video.activity.AllTemplateActivity;
 import com.vivwe.video.activity.TemplateSearchActivity;
 
 import butterknife.BindView;
@@ -71,6 +77,22 @@ public class TemplateFragment extends BaseFragment {
         recyclerViewTemplate.setLayoutManager(gridLayoutManager);
         demoAdapter = new MyCollectedDemoAdapter(getActivity());
         recyclerViewTemplate.setAdapter(demoAdapter);
+        getData();
+    }
+
+    private void getData(){
+        HttpRequest.getInstance().excute(HttpRequest.create(TemplateApi.class).getRecommendTemplate(1,Integer.MAX_VALUE,5), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    TemplateEntity templateEntity = webMsg.getData(TemplateEntity.class);
+                    demoAdapter.setTemplates(templateEntity.getRecords());
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(getContext(), webMsg.getDesc(), 2000);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -92,7 +114,7 @@ public class TemplateFragment extends BaseFragment {
                 break;
             case R.id.tv_all:
             case R.id.iv_all:
-
+                startActivity(new Intent(getActivity(), AllTemplateActivity.class));
                 break;
         }
     }

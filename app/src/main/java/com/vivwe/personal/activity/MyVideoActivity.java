@@ -2,16 +2,23 @@ package com.vivwe.personal.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.constraint.Group;
+
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.mbs.sdk.net.HttpRequest;
+import com.mbs.sdk.net.listener.OnResultListener;
+import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
-import com.vivwe.personal.adapter.MyFansAdapter;
+
+
 import com.vivwe.personal.adapter.MyVideoAdapter;
+import com.vivwe.personal.api.PersonalApi;
+import com.vivwe.personal.entity.VideoEntity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,6 +48,22 @@ public class MyVideoActivity extends BaseActivity {
         recyclerViewVideo.setLayoutManager(gridLayoutManager);
         adapter=new MyVideoAdapter(this);
         recyclerViewVideo.setAdapter(adapter);
+        getData();
+    }
+
+    private void getData(){
+        HttpRequest.getInstance().excute(HttpRequest.create(PersonalApi.class).getVideoList(1,Integer.MAX_VALUE,
+                16), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    VideoEntity myVideoEntity= webMsg.getData(VideoEntity.class);
+                    adapter.setData(myVideoEntity.getMyVideoList());
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(MyVideoActivity.this, webMsg.getDesc(), 2000);
+                }
+            }
+        });
     }
 
 

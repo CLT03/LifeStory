@@ -31,7 +31,7 @@ public class MusicPlayer {
         this.iMusicPlayView=iMusicPlayView;
     }
 
-    public void playMusic(String url,String name) {
+    public void playMusic(String url,String name){
         if (mediaPlayer == null) {
             this.url=url;
             iMusicPlayView.setMusicName(name);
@@ -81,7 +81,7 @@ public class MusicPlayer {
                         long position = mediaPlayer.getCurrentPosition();
                         iMusicPlayView.setStartText(changeTime(position));
                         iMusicPlayView.setPlayProgress(mDuration == 0 ? 0 : (int) (position * 100 / mDuration));//+1是解决seekTo不准确的
-                        Log.e("ououou","setPlayProgress"+position * 100 / mDuration + " "+position);
+                       // Log.e("ououou","setPlayProgress"+position * 100 / mDuration + " "+position);
                     }
                 });
     }
