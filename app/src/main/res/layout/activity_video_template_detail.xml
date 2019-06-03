@@ -30,6 +30,7 @@
         android:text="陪你去太空看流星雨陪你去太空看流星雨"
         android:textColor="#313131"
         android:textSize="@dimen/x32"
+        android:gravity="center"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/iv_back"
         app:layout_constraintEnd_toEndOf="parent"

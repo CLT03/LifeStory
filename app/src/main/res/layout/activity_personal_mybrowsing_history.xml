@@ -131,21 +131,22 @@
                 android:id="@+id/group_today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:constraint_referenced_ids="textView51,recycler_view_today" />
 
             <android.support.constraint.Group
                 android:id="@+id/group_yesterday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:constraint_referenced_ids="recycler_view_yesterday,textView52" />
 
             <android.support.constraint.Group
                 android:id="@+id/group_earlier"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="tv_decoration,recyclerView5" />
+                android:visibility="gone"
+                app:constraint_referenced_ids="tv_decoration,recycler_view_earlier" />
 
 
         </android.support.constraint.ConstraintLayout>

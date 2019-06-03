@@ -273,4 +273,18 @@
         app:layout_constraintBottom_toBottomOf="@id/tv_sign"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <TextView
+        android:id="@+id/tv_save"
+        android:layout_width="@dimen/x100"
+        android:layout_height="@dimen/x50"
+        android:layout_marginEnd="@dimen/x12"
+        android:gravity="center"
+        android:text="保存"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/x28"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_back" />
+
 </android.support.constraint.ConstraintLayout>

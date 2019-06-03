@@ -24,11 +24,11 @@
         android:id="@+id/iv_back"
         android:layout_width="@dimen/x88"
         android:layout_height="0dp"
+        android:background="@drawable/ra_white_btn"
         android:paddingLeft="@dimen/x34"
         android:paddingTop="@dimen/x30"
         android:paddingRight="@dimen/x36"
         android:paddingBottom="@dimen/x26"
-        android:background="@drawable/ra_white_btn"
         app:layout_constraintBottom_toBottomOf="@+id/tv_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_title"
@@ -138,6 +138,62 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
+        android:id="@+id/tv_change_phone"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x88"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/x120"
+        android:paddingRight="@dimen/x106"
+        android:text="更改手机号"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_change_psw" />
+
+    <ImageView
+        android:id="@+id/imageView261"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x48"
+        android:layout_marginLeft="@dimen/x50"
+        android:padding="@dimen/x6"
+        android:src="@mipmap/icon_upwd_setting"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_change_phone"
+        app:layout_constraintStart_toStartOf="@+id/tv_change_phone"
+        app:layout_constraintTop_toTopOf="@+id/tv_change_phone" />
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/x12"
+        android:text="1263782432"
+        android:textColor="#b7b7b7"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toTopOf="@+id/view90"
+        app:layout_constraintEnd_toStartOf="@+id/imageView201"
+        app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+    <ImageView
+        android:id="@+id/imageView201"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x48"
+        android:layout_marginRight="@dimen/x16"
+        android:src="@mipmap/icon_enter_ucenter"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_change_phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_change_phone" />
+
+    <View
+        android:id="@+id/view90"
+        android:layout_width="@dimen/x720"
+        android:layout_height="@dimen/x2"
+        android:background="#F2F2F2"
+        app:layout_constraintBottom_toBottomOf="@id/tv_change_phone"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
         android:id="@+id/textView43"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -147,7 +203,7 @@
         android:textColor="#666666"
         android:textSize="@dimen/x24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view7" />
+        app:layout_constraintTop_toBottomOf="@+id/view90" />
 
     <TextView
         android:id="@+id/tv_help"
@@ -238,9 +294,9 @@
         android:text="0.0.0.1"
         android:textColor="#b7b7b7"
         android:textSize="@dimen/x28"
-        app:layout_constraintTop_toTopOf="@+id/tv_update"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_update"
         app:layout_constraintEnd_toStartOf="@+id/imageView24"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_update" />
+        app:layout_constraintTop_toTopOf="@+id/tv_update" />
 
     <View
         android:id="@+id/view9"
@@ -293,6 +349,20 @@
         android:background="#F2F2F2"
         app:layout_constraintBottom_toBottomOf="@id/tv_about"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btn_exit"
+        android:layout_width="@dimen/x530"
+        android:layout_height="@dimen/x92"
+        android:layout_marginBottom="@dimen/x174"
+        android:background="@drawable/sign_btn"
+        android:text="退出登录"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/x32"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

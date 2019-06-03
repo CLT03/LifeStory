@@ -8,9 +8,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.mbs.sdk.net.HttpRequest;
+import com.mbs.sdk.net.listener.OnResultListener;
+import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.author.activity.DesignerHomeActivity;
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
+import com.vivwe.video.entity.TemplateDetailEntity;
+import com.vivwe.video.api.TemplateApi;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,12 +42,41 @@ public class TemplateDetailActivity extends BaseActivity {
     TextView tvName;
     @BindView(R.id.btn_buy)
     Button btnBuy;
+    @BindView(R.id.iv_star)
+    ImageView ivStar;
+    private RequestOptions requestOptions;
+    private int isStarted;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_template_detail);
         ButterKnife.bind(this);
+        init();
+    }
+
+    private void init() {
+            requestOptions = new RequestOptions().circleCrop()
+                    .placeholder(getResources().getDrawable(R.drawable.ic_launcher_background));
+        HttpRequest.getInstance().excute(HttpRequest.create(TemplateApi.class).getTemplateDetail(getIntent().getIntExtra("templateId", 0)), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    TemplateDetailEntity templateDetailEntity = webMsg.getData(TemplateDetailEntity.class);
+                    tvTitle.setText(templateDetailEntity.getTitle());
+                    tvContent.setText(templateDetailEntity.getDescription());
+                    tvName.setText(templateDetailEntity.getNickname());
+                    btnBuy.setText("¥" + templateDetailEntity.getPrice() + "/次");
+                    if (templateDetailEntity.getIsStared() == 1) {
+                        isStarted=templateDetailEntity.getIsStared();
+                        ivStar.setImageDrawable(getResources().getDrawable(R.mipmap.icon_collect_template));
+                    }
+                    Glide.with(TemplateDetailActivity.this).load(templateDetailEntity.getAvatar()).apply(requestOptions).into(ivHead);
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(TemplateDetailActivity.this, webMsg.getDesc(), 2000);
+                }
+            }
+        });
     }
 
     @OnClick({R.id.iv_back, R.id.iv_star, R.id.iv_share, R.id.iv_head, R.id.btn_buy})
@@ -49,17 +86,40 @@ public class TemplateDetailActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.iv_star:
-                startActivity(new Intent(this,MusicLibraryActivity.class));
+                // startActivity(new Intent(this,MusicLibraryActivity.class));
+                collectedTemplate();
                 break;
             case R.id.iv_share:
 
                 break;
             case R.id.iv_head:
-                startActivity(new Intent(this,DesignerHomeActivity.class));
+                startActivity(new Intent(this, DesignerHomeActivity.class));
                 break;
             case R.id.btn_buy:
 
                 break;
         }
     }
+
+    private void collectedTemplate(){
+        HttpRequest.getInstance().excute(HttpRequest.create(TemplateApi.class).collectedTemplate(getIntent().getIntExtra("templateId", 0),
+                2,16,null), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    Toast.show(TemplateDetailActivity.this, webMsg.getDesc(), 2000);
+                    if(isStarted==0) {
+                        isStarted=1;
+                        ivStar.setImageDrawable(getResources().getDrawable(R.mipmap.icon_collect_template));
+                    } else {
+                        isStarted=0;
+                        ivStar.setImageDrawable(getResources().getDrawable(R.mipmap.icon_collect_template_add));
+                    }
+                }else {
+                    Toast.show(TemplateDetailActivity.this, webMsg.getDesc(), 2000);
+                }
+            }
+        });
+    }
+
 }
