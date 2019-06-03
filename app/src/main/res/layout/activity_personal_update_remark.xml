@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <EditText
-        android:id="@+id/edt_nickname"
+        android:id="@+id/edt_sign"
         android:layout_width="0dp"
         android:layout_height="@dimen/x240"
         android:background="#ffffff"

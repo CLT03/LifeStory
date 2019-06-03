@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#FAFAFA"
-    android:layout_height="@dimen/x222">
+    android:layout_height="@dimen/x264"
+    android:background="#FAFAFA">
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="0dp"
-        android:layout_height="@dimen/x218"
+        android:layout_height="0dp"
         android:background="#ffffff"
         android:ellipsize="end"
         android:paddingLeft="@dimen/x200"
@@ -19,6 +19,7 @@
         android:text="冰雪奇缘超炫酷特效模板冰雪奇缘超炫酷特效模板"
         android:textColor="#191919"
         android:textSize="@dimen/x32"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +27,7 @@
     <ImageView
         android:id="@+id/iv_cover"
         android:layout_width="@dimen/x160"
-        android:layout_height="@dimen/x90"
+        android:layout_height="@dimen/x200"
         android:layout_marginLeft="@dimen/x20"
         android:layout_marginTop="@dimen/x30"
         android:scaleType="fitXY"
@@ -64,14 +65,14 @@
         android:id="@+id/imageView31"
         android:layout_width="@dimen/x38"
         android:layout_height="@dimen/x32"
-        android:layout_marginTop="@dimen/x6"
+        android:layout_marginTop="@dimen/x4"
         android:padding="@dimen/x8"
         app:layout_constraintStart_toStartOf="@+id/tv_money"
         app:layout_constraintTop_toBottomOf="@+id/tv_money"
         app:srcCompat="@mipmap/icon_property_template" />
 
     <TextView
-        android:id="@+id/textView67"
+        android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="30分钟"
@@ -87,12 +88,12 @@
         android:layout_height="@dimen/x32"
         android:layout_marginLeft="@dimen/x128"
         android:padding="@dimen/x8"
-        app:layout_constraintStart_toStartOf="@+id/textView67"
+        app:layout_constraintStart_toStartOf="@+id/tv_time"
         app:layout_constraintTop_toTopOf="@+id/imageView31"
         app:srcCompat="@mipmap/icon_property_template" />
 
     <TextView
-        android:id="@+id/textView68"
+        android:id="@+id/tv_material"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="299个素材"
@@ -101,47 +102,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView32"
         app:layout_constraintStart_toEndOf="@+id/imageView32"
         app:layout_constraintTop_toTopOf="@+id/imageView32" />
-
-    <ImageView
-        android:id="@+id/imageView33"
-        android:layout_width="@dimen/x38"
-        android:layout_height="@dimen/x32"
-        android:layout_marginLeft="@dimen/x162"
-        android:padding="@dimen/x8"
-        app:layout_constraintStart_toStartOf="@+id/textView68"
-        app:layout_constraintTop_toTopOf="@+id/imageView31"
-        app:srcCompat="@mipmap/icon_property_template" />
-
-    <TextView
-        android:id="@+id/textView69"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="横竖排"
-        android:textColor="#666666"
-        android:textSize="@dimen/x24"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView33"
-        app:layout_constraintStart_toEndOf="@+id/imageView33"
-        app:layout_constraintTop_toTopOf="@+id/imageView33" />
-
-    <ImageView
-        android:id="@+id/imageView34"
-        android:layout_width="@dimen/x38"
-        android:layout_height="@dimen/x32"
-        android:layout_marginTop="@dimen/x6"
-        android:padding="@dimen/x8"
-        app:layout_constraintStart_toStartOf="@+id/tv_money"
-        app:layout_constraintTop_toBottomOf="@+id/imageView31"
-        app:srcCompat="@mipmap/icon_property_template" />
-
-    <TextView
-        android:id="@+id/textView70"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="文字颜色"
-        android:textColor="#666666"
-        android:textSize="@dimen/x24"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView34"
-        app:layout_constraintStart_toEndOf="@+id/imageView34"
-        app:layout_constraintTop_toTopOf="@+id/imageView34" />
 
 </android.support.constraint.ConstraintLayout>

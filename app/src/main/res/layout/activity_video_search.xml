@@ -10,12 +10,14 @@
     <EditText
         android:id="@+id/edt_search"
         android:layout_width="@dimen/x604"
-        android:layout_height="@dimen/x64"
+        android:layout_height="31dp"
         android:layout_marginLeft="@dimen/x30"
         android:layout_marginTop="@dimen/x20"
         android:background="@drawable/r16_gray_normal"
         android:hint="搜索视频"
+        android:imeOptions="actionSearch"
         android:paddingLeft="@dimen/x62"
+        android:singleLine="true"
         android:textColor="#191919"
         android:textColorHint="#c2c2c2"
         android:textSize="@dimen/x28"
@@ -86,7 +88,7 @@
         android:id="@+id/group_popular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         app:constraint_referenced_ids="textView87,view31" />
 
     <com.vivwe.base.ui.textview.LinearGradientTextView
@@ -143,6 +145,7 @@
         android:id="@+id/group_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:constraint_referenced_ids="tv_template,tv_video,tv_user,view_pager" />
 
 </android.support.constraint.ConstraintLayout>

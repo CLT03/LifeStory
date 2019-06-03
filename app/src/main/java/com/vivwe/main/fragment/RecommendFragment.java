@@ -14,12 +14,17 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
+import com.mbs.sdk.net.HttpRequest;
+import com.mbs.sdk.net.listener.OnResultListener;
+import com.mbs.sdk.net.msg.WebMsg;
 import com.mbs.sdk.utils.ScreenUtils;
 import com.vivwe.base.activity.BaseFragment;
+import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.base.ui.textview.LinearGradientTextView;
 import com.vivwe.main.R;
 import com.vivwe.main.adapter.RecommendFragmentPagerAdapter;
 import com.vivwe.video.activity.VideoSearchActivity;
+import com.vivwe.video.api.VideoApi;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -129,6 +134,20 @@ public class RecommendFragment extends BaseFragment {
             });
             linearGradientTextViews.add(linearGradientTextView);
         }
+      //  getVideoTypeList();
+    }
+
+    private void getVideoTypeList(){
+        HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).getVideoTypeList(), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    Toast.show(getContext(), webMsg.getDesc(), 2000);
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(getContext(), webMsg.getDesc(), 2000);
+                }
+            }
+        });
     }
 
     @Override
