@@ -1,6 +1,7 @@
 package com.mbs.sdk.net;
 
 import android.util.Log;
+
 import com.google.gson.Gson;
 import com.mbs.sdk.core.Globals;
 import com.mbs.sdk.core.SdkContext;
@@ -11,6 +12,7 @@ import com.mbs.sdk.net.listener.OnProgressListener;
 import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -19,6 +21,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -48,7 +51,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class HttpRequest {
 
     private static HttpRequest httpRequest;
-    private static OkHttpClient httpClient;
+//    private static OkHttpClient httpClient;
     private Retrofit retrofit;
     private String webApi = "";
 
@@ -58,7 +61,7 @@ public class HttpRequest {
         }
     }
 
-    private void createRetrofix(){
+    private void createRetrofix() {
         webApi = SdkContext.getSdkContext().getHttpRequestConfig().getBaseUrl();
         retrofit = new Retrofit.Builder()
                 .baseUrl(webApi)
@@ -79,8 +82,9 @@ public class HttpRequest {
             httpRequest = new HttpRequest();
         }
 
+
         // 当url有变化或者对象为空时, 重新构造Retrofit
-        if(!httpRequest.webApi.equals(SdkContext.getSdkContext().getHttpRequestConfig().getBaseUrl())){
+        if (!httpRequest.webApi.equals(SdkContext.getSdkContext().getHttpRequestConfig().getBaseUrl())) {
             httpRequest.createRetrofix();
         }
 
@@ -99,17 +103,17 @@ public class HttpRequest {
         return getInstance().retrofit.create(cls);
     }
 
-    public static RequestBody create(Map<String,String> params, Map<String, File> files){
+    public static RequestBody create(Map<String, String> params, Map<String, File> files) {
         MultipartBody.Builder muBuilder = new MultipartBody.Builder();
 
         // 设置文件到请求体中
-        for(String key: files.keySet()){
-            muBuilder.addFormDataPart(key, files.get(key).getName(), RequestBody.create(MediaType.parse("multipart/form-data"),files.get(key) ));
+        for (String key : files.keySet()) {
+            muBuilder.addFormDataPart(key, files.get(key).getName(), RequestBody.create(MediaType.parse("multipart/form-data"), files.get(key)));
         }
 
         // 设置参数到请求体中
-        if(params != null){
-            for(String key : params.keySet()){
+        if (params != null) {
+            for (String key : params.keySet()) {
                 muBuilder.addFormDataPart(key, params.get(key));
             }
         }
@@ -129,18 +133,19 @@ public class HttpRequest {
 
     /**
      * 多文件上传
-     * @param url 上传路径
-     * @param params 参数
-     * @param files 文件组
+     *
+     * @param url      上传路径
+     * @param params   参数
+     * @param files    文件组
      * @param listener 监听
      */
-    public void uploadToExcute(String url, Map<String,String> params, Map<String, File> files, final OnProgressListener listener) {
+    public void uploadToExcute(String url, Map<String, String> params, Map<String, File> files, final OnProgressListener listener) {
 
         MultipartBody.Builder muBuilder = new MultipartBody.Builder();
-        for(String key: files.keySet()){
-            muBuilder.addFormDataPart(key, files.get(key).getName(), RequestBody.create(MediaType.parse("multipart/form-data"),files.get(key) ));
+        for (String key : files.keySet()) {
+            muBuilder.addFormDataPart(key, files.get(key).getName(), RequestBody.create(MediaType.parse("multipart/form-data"), files.get(key)));
         }
-        for(String key : params.keySet()){
+        for (String key : params.keySet()) {
             muBuilder.addFormDataPart(key, params.get(key));
         }
         RequestBody requestBody = muBuilder.build();
@@ -152,26 +157,27 @@ public class HttpRequest {
         List<MultipartBody.Part> parts = new ArrayList<>();
 
         // 添加参数
-        if(params!=null){
-            for(String key : params.keySet()){
+        if (params != null) {
+            for (String key : params.keySet()) {
                 parts.add(MultipartBody.Part.createFormData(key, params.get(key)));
             }
         }
 
-        for(String key : params.keySet()){
+        for (String key : params.keySet()) {
             parts.add(MultipartBody.Part.createFormData(key, files.get(key).getName(), body));
         }
 
         Call<WebMsg> call = retrofit.create(UploadService.class).uploadFiles(url, parts);
 
-        new Excute().upload(call,listener);
+        new Excute().upload(call, listener);
     }
 
     /**
      * 单文件上传
-     * @param url 上传地址
+     *
+     * @param url      上传地址
      * @param fileName 文件名称
-     * @param file 文件
+     * @param file     文件
      * @param listener 监听
      */
     public void uploadToExcute(String url, String fileName, File file, final OnProgressListener listener) {
@@ -188,15 +194,31 @@ public class HttpRequest {
 
     /**
      * 下载文件执行
-     * @param url 下载路径
+     *
+     * @param url      下载Url
+     * @param path     下载路径
      * @param savePath 保存路径
      * @param listener 监听
      */
-    public void downloadToExcute(String url, String savePath, final OnProgressListener listener){
+    public void downloadToExcute(String url, String path, String savePath, final OnProgressListener listener) {
+        DownloadService downloadService = retrofit.create(DownloadService.class);
+        Call<ResponseBody> responseBodyCall = downloadService.downloadFile(url, path);
+        new Excute().download(responseBodyCall, savePath, listener);
+    }
+
+    /**
+     * 下载文件执行
+     *
+     * @param url      下载路径
+     * @param savePath 保存路径
+     * @param listener 监听
+     */
+    public void downloadToExcute(String url, String savePath, final OnProgressListener listener) {
         DownloadService downloadService = retrofit.create(DownloadService.class);
         Call<ResponseBody> responseBodyCall = downloadService.downloadFile(url);
         new Excute().download(responseBodyCall, savePath, listener);
     }
+
     /**
      * 网络执行
      */
@@ -204,10 +226,11 @@ public class HttpRequest {
 
         /**
          * 上传文件
+         *
          * @param call
          * @param listener 监听
          */
-        public void upload(Call<WebMsg> call,  final OnProgressListener listener) {
+        public void upload(Call<WebMsg> call, final OnProgressListener listener) {
             call.enqueue(new Callback<WebMsg>() {
                 @Override
                 public void onResponse(Call<WebMsg> call, Response<WebMsg> response) {
@@ -225,72 +248,83 @@ public class HttpRequest {
 
         /**
          * 下载文件
+         *
          * @param call
-         * @param path 保存路径
+         * @param path     保存路径
          * @param listener 监听
          */
-        public void download(Call<ResponseBody> call, String path, final OnProgressListener listener){
+        public void download(Call<ResponseBody> call, String path, final OnProgressListener listener) {
 
-            Observable.create(new ObservableOnSubscribe<ProgressModel>() {
-                @Override
-                public void subscribe(ObservableEmitter<ProgressModel> emitter) throws Exception {
-                    call.enqueue(new Callback<ResponseBody>() {
-                        @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                            long currentLength = 0L;
-                            OutputStream os =null;
-                            InputStream is = response.body().byteStream();
-                            long totalLength =response.body().contentLength();
+            call.enqueue(new Callback<ResponseBody>() {
+                 @Override
 
-                            //建立一个文件
-                            final File file = new File(path);
-                            try{
-                                if(!file.isFile()) {
-                                    file.createNewFile();
-                                }
+                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                     Observable.create(new ObservableOnSubscribe<ProgressModel>() {
+                         @Override
+                         public void subscribe(ObservableEmitter<ProgressModel> emitter) throws Exception {
+                             long currentLength = 0L;
+                             OutputStream os = null;
+                             InputStream is = response.body().byteStream();
+                             long totalLength =response.body().contentLength();
 
-                                os = new FileOutputStream(file);
-                                int len ;
-                                byte [] buff = new byte[1024];
-                                while((len=is.read(buff))!=-1){
-                                    os.write(buff,0,len);
-                                    currentLength+=len;
-                                    Log.d("Request","当前进度:"+currentLength);
-                                    emitter.onNext(new ProgressModel(currentLength, totalLength));
-                                }
-                                emitter.onComplete();
-                            } catch (IOException e){
-                                emitter.onError(e);
-                            }
-                        }
+                             //建立一个文件
+                             final File file = new File(path);
+                             try{
+                                 if(!file.isFile()) {
+                                     file.createNewFile();
+                                 }
 
-                        @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            emitter.onError(t);
-                        }
-                    });
-                }
-            }).observeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<ProgressModel>() {
-                        @Override
-                        public void onSubscribe(Disposable d) { }
+                                 os = new FileOutputStream(file);
+                                 int len ;
+                                 byte [] buff = new byte[1024];
+                                 while((len=is.read(buff))!=-1){
+                                     os.write(buff,0,len);
+                                     currentLength+=len;
+                                     Log.v(">>>download", String.valueOf(currentLength) + ":" + String.valueOf(totalLength));
+                                     emitter.onNext(new ProgressModel(currentLength, totalLength));
+                                 }
+                                 emitter.onComplete();
+                             } catch (IOException e){
+                                 if(Globals.isDebug){
+                                     Log.e(">>>download", e.toString());
+                                 }
+                                 emitter.onError(e);
+                             }
+                         }
+                     })
+                     .subscribeOn(Schedulers.io())
+                     .observeOn(AndroidSchedulers.mainThread())
+                     .subscribe(new Observer<ProgressModel>() {
+                         @Override
+                         public void onSubscribe(Disposable d) {
+                         }
 
-                        @Override
-                        public void onNext(ProgressModel progressModel) {
-                            listener.onProgress(progressModel.getCurrentLength(), progressModel.getTotalLength());
-                        }
+                         @Override
+                         public void onNext(ProgressModel progressModel) {
+                             listener.onProgress(progressModel.getCurrentLength(), progressModel.getTotalLength());
+                         }
 
-                        @Override
-                        public void onError(Throwable e) {
-                            listener.onFinished(WebMsg.getFailed(e));
-                        }
+                         @Override
+                         public void onError(Throwable e) {
+                             if (Globals.isDebug) {
+                                 Log.e(">>>download", e.toString());
+                             }
+                             listener.onFinished(WebMsg.getFailed(e));
+                         }
 
-                        @Override
-                        public void onComplete() {
-                            listener.onFinished(WebMsg.getSuccessed());
-                        }
-                    });
+                         @Override
+                         public void onComplete() {
+                             listener.onFinished(WebMsg.getSuccessed());
+                         }
+                     });
+                 }
+
+                 @Override
+                 public void onFailure(Call<ResponseBody> call, Throwable e) {
+//                     emitter.onError(t);
+                     listener.onFinished(WebMsg.getFailed(e));
+                 }
+             });
         }
 
         /**
@@ -306,12 +340,13 @@ public class HttpRequest {
                     .subscribe(new Observer<WebMsg>() {
 
                         @Override
-                        public void onSubscribe(Disposable d) { }
+                        public void onSubscribe(Disposable d) {
+                        }
 
                         @Override
                         public void onNext(WebMsg webMsg) {
 
-                            if(Globals.isDebug){
+                            if (Globals.isDebug) {
                                 Log.v(">>>request", new Gson().toJson(webMsg));
                             }
 
@@ -321,20 +356,21 @@ public class HttpRequest {
                         @Override
                         public void onError(Throwable e) {
 
-                            if(Globals.isDebug){
+                            if (Globals.isDebug) {
                                 Log.v(">>>request::error", e.toString());
                             }
 
                             WebMsg webMsg = WebMsg.getFailed(e);
                             listener.onWebUiResult(webMsg);
-                            if(SdkContext.getSdkContext().getHttpRequestConfig().onWebExceptionListener() != null){
+                            if (SdkContext.getSdkContext().getHttpRequestConfig().onWebExceptionListener() != null) {
                                 SdkContext.getSdkContext().getHttpRequestConfig().onWebExceptionListener().onNetError(webMsg);
                             }
 
                         }
 
                         @Override
-                        public void onComplete() {}
+                        public void onComplete() {
+                        }
 
 
                     });
