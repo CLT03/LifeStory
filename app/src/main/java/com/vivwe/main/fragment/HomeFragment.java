@@ -4,10 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.google.gson.GsonBuilder;
+import com.mbs.sdk.net.HttpRequest;
+import com.mbs.sdk.net.listener.OnProgressListener;
+import com.mbs.sdk.net.listener.OnResultListener;
+import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.base.cache.UserCache;
 import com.vivwe.faceunity.fragment.CreateAvatarFragment;
@@ -16,6 +23,8 @@ import com.vivwe.faceunity.fragment.FaceToAssetsFragment;
 import com.vivwe.main.R;
 import com.vivwe.main.entity.UserInfoEntity;
 import com.vivwe.video.activity.VideoCreateByDynamicActivity;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,8 +82,29 @@ public class HomeFragment extends BaseFragment {
      */
     @OnClick(R.id.tv_username)
     public void toTest(){
-        Intent intent = new Intent();
-        intent.setClass(this.getContext(), VideoCreateByDynamicActivity.class);
-        this.startActivity(intent);
+//        Intent intent = new Intent();
+//        intent.setClass(this.getContext(), VideoCreateByDynamicActivity.class);
+//        this.startActivity(intent);
+
+        String url = "http://192.168.0.253:8083/api/template/downloadTemplate";
+        String filename = "qT6vf1Vnu7PJeAQnfbMjfXiu9IY6Riel";
+        String path = this.getContext().getExternalFilesDir("temp").getPath();
+
+        File file = new File(path);
+        if(file.isDirectory()){
+            file.mkdirs();
+        }
+
+        HttpRequest.getInstance().downloadToExcute(url, filename, path + "/test.zip", new OnProgressListener() {
+            @Override
+            public void onProgress(long currentBytes, long contentLength) {
+
+            }
+
+            @Override
+            public void onFinished(WebMsg webMsg) {
+                Log.v(">>>download", new GsonBuilder().create().toJson(webMsg));
+            }
+        });
     }
 }

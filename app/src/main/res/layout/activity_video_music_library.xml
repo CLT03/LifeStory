@@ -46,223 +46,19 @@
         app:layout_constraintEnd_toEndOf="@+id/tv_title"
         app:layout_constraintTop_toTopOf="@+id/tv_title" />
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_type"
         android:layout_width="0dp"
         android:layout_height="@dimen/x88"
+        android:background="@color/colorWhite"
         android:overScrollMode="never"
+        android:orientation="horizontal"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="#ffffff">
-
-
-            <TextView
-                android:id="@+id/tv_title1"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:paddingLeft="@dimen/x20"
-                android:paddingRight="@dimen/x20"
-                android:text="推荐"
-                android:textColor="#8e8e8e"
-                android:textSize="@dimen/x28"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/view_title1"
-                android:layout_width="@dimen/x28"
-                android:layout_height="@dimen/x4"
-                android:layout_marginBottom="@dimen/x14"
-                android:background="@drawable/app_bg_h"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_title1"
-                app:layout_constraintEnd_toEndOf="@+id/tv_title1"
-                app:layout_constraintStart_toStartOf="@+id/tv_title1" />
-
-            <TextView
-                android:id="@+id/tv_title2"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:paddingLeft="@dimen/x20"
-                android:paddingRight="@dimen/x20"
-                android:text="舞蹈"
-                android:textColor="#8e8e8e"
-                android:textSize="@dimen/x28"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_title1"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/view_title2"
-                android:layout_width="@dimen/x28"
-                android:layout_height="@dimen/x4"
-                android:layout_marginBottom="@dimen/x14"
-                android:background="@drawable/app_bg_h"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_title2"
-                app:layout_constraintEnd_toEndOf="@+id/tv_title2"
-                app:layout_constraintStart_toStartOf="@+id/tv_title2" />
-
-            <TextView
-                android:id="@+id/tv_title3"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:paddingLeft="@dimen/x20"
-                android:paddingRight="@dimen/x20"
-                android:text="软萌"
-                android:textColor="#8e8e8e"
-                android:textSize="@dimen/x28"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_title2"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/view_title3"
-                android:layout_width="@dimen/x28"
-                android:layout_height="@dimen/x4"
-                android:layout_marginBottom="@dimen/x14"
-                android:background="@drawable/app_bg_h"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_title3"
-                app:layout_constraintEnd_toEndOf="@+id/tv_title3"
-                app:layout_constraintStart_toStartOf="@+id/tv_title3" />
-
-            <TextView
-                android:id="@+id/tv_title4"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:paddingLeft="@dimen/x20"
-                android:paddingRight="@dimen/x20"
-                android:text="爱情"
-                android:textColor="#8e8e8e"
-                android:textSize="@dimen/x28"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_title3"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/view_title4"
-                android:layout_width="@dimen/x28"
-                android:layout_height="@dimen/x4"
-                android:layout_marginBottom="@dimen/x14"
-                android:background="@drawable/app_bg_h"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_title4"
-                app:layout_constraintEnd_toEndOf="@+id/tv_title4"
-                app:layout_constraintStart_toStartOf="@+id/tv_title4" />
-
-            <TextView
-                android:id="@+id/tv_title5"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:paddingLeft="@dimen/x20"
-                android:paddingRight="@dimen/x20"
-                android:text="搞怪"
-                android:textColor="#8e8e8e"
-                android:textSize="@dimen/x28"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_title4"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/view_title5"
-                android:layout_width="@dimen/x28"
-                android:layout_height="@dimen/x4"
-                android:layout_marginBottom="@dimen/x14"
-                android:background="@drawable/app_bg_h"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_title5"
-                app:layout_constraintEnd_toEndOf="@+id/tv_title5"
-                app:layout_constraintStart_toStartOf="@+id/tv_title5" />
-
-            <TextView
-                android:id="@+id/tv_title6"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:paddingLeft="@dimen/x20"
-                android:paddingRight="@dimen/x20"
-                android:text="表演"
-                android:textColor="#8e8e8e"
-                android:textSize="@dimen/x28"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_title5"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/view_title6"
-                android:layout_width="@dimen/x28"
-                android:layout_height="@dimen/x4"
-                android:layout_marginBottom="@dimen/x14"
-                android:background="@drawable/app_bg_h"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_title6"
-                app:layout_constraintEnd_toEndOf="@+id/tv_title6"
-                app:layout_constraintStart_toStartOf="@+id/tv_title6" />
-
-            <TextView
-                android:id="@+id/tv_title7"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:paddingLeft="@dimen/x20"
-                android:paddingRight="@dimen/x20"
-                android:text="流行"
-                android:textColor="#8e8e8e"
-                android:textSize="@dimen/x28"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_title6"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/view_title7"
-                android:layout_width="@dimen/x28"
-                android:layout_height="@dimen/x4"
-                android:layout_marginBottom="@dimen/x14"
-                android:background="@drawable/app_bg_h"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_title7"
-                app:layout_constraintEnd_toEndOf="@+id/tv_title7"
-                app:layout_constraintStart_toStartOf="@+id/tv_title7" />
-
-            <TextView
-                android:id="@+id/tv_title8"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:paddingLeft="@dimen/x20"
-                android:paddingRight="@dimen/x20"
-                android:text="电音"
-                android:textColor="#8e8e8e"
-                android:textSize="@dimen/x28"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_title7"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/view_title8"
-                android:layout_width="@dimen/x28"
-                android:layout_height="@dimen/x4"
-                android:layout_marginBottom="@dimen/x14"
-                android:background="@drawable/app_bg_h"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_title8"
-                app:layout_constraintEnd_toEndOf="@+id/tv_title8"
-                app:layout_constraintStart_toStartOf="@+id/tv_title8" />
-        </android.support.constraint.ConstraintLayout>
-    </HorizontalScrollView>
+    </android.support.v7.widget.RecyclerView>
 
 
     <TextView
@@ -278,7 +74,7 @@
         android:textSize="@dimen/x26"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+        app:layout_constraintTop_toBottomOf="@+id/rcv_type" />
 
     <ImageView
         android:id="@+id/imageView42"

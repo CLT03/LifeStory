@@ -67,8 +67,6 @@ public class MyApplication extends Application implements OnWebExceptionListener
                 UserToken userToken = UserCache.Companion.getUserToken();
                 if(userToken != null){
                     // 当用户登录后，将token作为header方式传参
-
-                    Log.v(">>>Authorization", "token " + userToken.getToken());
                     Map<String,String> params = new HashMap<>();
                     params.put("Authorization", "token " + userToken.getToken());
                     return params;
