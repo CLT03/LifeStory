@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,10 @@ import com.faceunity.p2a_art.entity.AvatarP2A;
 import com.faceunity.p2a_art.utils.BitmapUtil;
 import com.faceunity.p2a_art.utils.FileUtil;
 import com.faceunity.p2a_art.utils.ToastUtil;
+import com.google.gson.GsonBuilder;
 import com.vivwe.base.activity.BaseFragment;
+import com.vivwe.base.cache.UserCache;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.faceunity.constant.CreateAvatarTypeEnum;
 import com.vivwe.faceunity.controller.create.CreateAvatarController;
 import com.vivwe.faceunity.controller.create.GetPhotoWayController;
@@ -27,6 +31,7 @@ import com.vivwe.main.R;
 import java.io.File;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /***
  * 创建化身
@@ -124,7 +129,6 @@ public class CreateAvatarFragment extends BaseFragment implements OnCreateAvatar
     @Override
     public void onSexResult(int sex) {
         this.sex = sex;
-
 //        if(type == CreateAvatarTypeEnum.FILE){ // 从相册里选择照片作为化身
 //            Intent intent = new Intent();
 //            intent.setClass(this, ImageLoadActivity.class);
@@ -180,7 +184,11 @@ public class CreateAvatarFragment extends BaseFragment implements OnCreateAvatar
     public void onFinished(final AvatarP2A avatarP2A) {
 
         // 保存最新化身到本地
+        if(Globals.isDebug){
+            Log.v(">>>onFinished", new GsonBuilder().create().toJson(avatarP2A));
+        }
 //        CacheDataService.saveAvatarP2A(avatarP2A);
+        UserCache.Companion.saveAvatarP2A(avatarP2A);
 
         // 启动服务更新最新化身到服务器上（异步的方式）
         Intent startIntent = new Intent(this.getContext(), SyncAvatarService.class);
@@ -193,6 +201,7 @@ public class CreateAvatarFragment extends BaseFragment implements OnCreateAvatar
         onBackPressed();
     }
 
+//    @OnClick(R.id.iv_cancel)
     @Override
     public void onFinished() {
         // 退出

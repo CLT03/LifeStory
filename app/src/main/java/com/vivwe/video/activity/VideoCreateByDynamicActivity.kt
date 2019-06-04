@@ -1,6 +1,7 @@
 package com.vivwe.video.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.media.MediaMetadataRetriever
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
@@ -43,6 +44,34 @@ class VideoCreateByDynamicActivity: BaseActivity() {
     lateinit var musicNameTv: TextView
     @BindView(R.id.tv_music_duration)
     lateinit var musicDurationTv: TextView
+
+    @BindView(R.id.tv_video_time)
+    lateinit var videoTimeTv: TextView
+    // 编辑
+    @BindView(R.id.tv_edit)
+    lateinit var editTv: TextView
+    // 添加素材
+    @BindView(R.id.tv_images_add)
+    lateinit var addAssetsTv: TextView
+    // 添加文字
+    @BindView(R.id.tv_add_text)
+    lateinit var addTextTv: TextView
+    // 复制图片
+    @BindView(R.id.tv_copy_images)
+    lateinit var copyImagesTv: TextView
+    // 删除图片
+    @BindView(R.id.tv_del_images_label)
+    lateinit var delImagesLabelTv: TextView
+    // 清空
+    @BindView(R.id.tv_clear_label)
+    lateinit var clearAllLabelTv: TextView
+    // 保存草稿
+    @BindView(R.id.tv_save_todraft)
+    lateinit var saveToDraftTv: TextView
+    // 下一步
+    @BindView(R.id.tv_next)
+    lateinit var nextTv: TextView
+
 
 
     lateinit var adapter: VideoCreateDynamicImagesAdapter
@@ -135,8 +164,9 @@ class VideoCreateByDynamicActivity: BaseActivity() {
     /**
      * 清空所有图片
      */
-    @OnClick(R.id.tv_images_clear)
+    @OnClick(R.id.tv_clear)
     fun clearAll(){
+        if(!adapter.isEdit) return
         adapter.datas = null
     }
 
@@ -152,6 +182,44 @@ class VideoCreateByDynamicActivity: BaseActivity() {
     }
 
     /**
+     *
+     * 拷贝图片
+     */
+    @OnClick(R.id.tv_copy_images)
+    fun copyImages(){
+
+        if(!adapter.isEdit) return
+
+        var chooseImages = ArrayList<String>()
+
+        adapter.chooseIndexs.forEachIndexed { index, value ->
+            if(value){
+                chooseImages.add(adapter.datas!!.get(index))
+            }
+        }
+
+        adapter.addDatas(chooseImages)
+    }
+
+    /**
+     * 删除图片
+     */
+    @OnClick(R.id.tv_del_images)
+    fun delImages(){
+        if(!adapter.isEdit) return
+
+        var chooseImages = ArrayList<String>()
+
+        adapter.datas!!.forEachIndexed { index, value ->
+            if(!adapter.chooseIndexs.get(index)){
+                chooseImages.add(adapter.datas!!.get(index))
+            }
+        }
+
+        adapter.datas = chooseImages
+    }
+
+    /**
      * 选择音乐
      */
     @OnClick(R.id.v_choose_music)
@@ -161,24 +229,59 @@ class VideoCreateByDynamicActivity: BaseActivity() {
         startActivityForResult(intent, 2)
     }
 
+    @OnClick(R.id.tv_edit)
+    fun toEdit(){
+        adapter.isEdit = !adapter.isEdit
+
+        addAssetsTv.setTextColor(Color.parseColor(if(adapter.isEdit) "#C0C0C0" else "#FFFFFF"))
+        addTextTv.setTextColor(Color.parseColor(if(adapter.isEdit) "#C0C0C0" else "#FFFFFF"))
+        nextTv.setTextColor(Color.parseColor(if(adapter.isEdit) "#C0C0C0" else "#FFFFFF"))
+
+        editTv.setTextColor(Color.parseColor(if(adapter.isEdit) "#FFFFFF" else "#999999"))
+        copyImagesTv.setTextColor(Color.parseColor(if(adapter.isEdit) "#FFFFFF" else "#999999"))
+        delImagesLabelTv.setTextColor(Color.parseColor(if(adapter.isEdit) "#FFFFFF" else "#999999"))
+        clearAllLabelTv.setTextColor(Color.parseColor(if(adapter.isEdit) "#FFFFFF" else "#999999"))
+    }
+
+
+    lateinit var template: SXTemplate
+    fun createrTemplate(){
+        val paths = adapter.datas
+
+        val folder = File(mFolder, "Chinese Style").getPath()
+
+        if(template == null){
+            template = SXTemplate(folder, SXTemplate.TemplateUsage.kForRender)
+        }
+
+        template.setReplaceableFilePaths(paths!!.toArray(arrayOfNulls<String>(paths.size)))
+
+
+        var duration:Int = template.realDuration()
+        videoTimeTv.setText("" + duration)
+    }
+
     /***
      * 生成视频
      *
      */
-    @OnClick(R.id.tv_to_publish)
+    @OnClick(R.id.tv_next)
     fun generatorVideo(){
-        val paths = adapter.datas
 
-        if(paths!!.size < 3){
+        if(adapter.isEdit) return;
+
+//        val paths = adapter.datas
+
+        if(adapter.datas!!.size < 3){
             Toast.show(this, "至少需要三张图片哦！", 3000)
             return
         }
 
-        val folder = File(mFolder, "Chinese Style").getPath()
-        val template = SXTemplate(folder, SXTemplate.TemplateUsage.kForRender)
+//        val folder = File(mFolder, "Chinese Style").getPath()
+//        val template = SXTemplate(folder, SXTemplate.TemplateUsage.kForRender)
 //        val toBeStored = paths.toArray(arrayOfNulls<String>(paths.size))
-        template.setReplaceableFilePaths(paths.toArray(arrayOfNulls<String>(paths.size)))
-
+//        template.setReplaceableFilePaths(paths.toArray(arrayOfNulls<String>(paths.size)))
+        createrTemplate()
 
         // 获取输出目录
         val outputFilePath = getOutputFilePath()

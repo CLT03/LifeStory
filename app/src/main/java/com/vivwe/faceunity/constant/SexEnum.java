@@ -6,7 +6,7 @@ package com.vivwe.faceunity.constant;
  * remark: 性别
  */
 public enum SexEnum {
-    MALE("男", 1), FEMALE("女", 2);
+    MALE("男", 0), FEMALE("女", 1);
 
     // 成员变量
     private String value;

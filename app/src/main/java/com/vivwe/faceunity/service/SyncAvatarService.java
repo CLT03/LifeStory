@@ -166,7 +166,10 @@ public class SyncAvatarService extends Service {
                                 Log.i("qiniu", "Upload Success");
 
 //                                final String url = info.path;
-                                avatarP2A.setServerUrl(info.path);
+
+                                final String url = "http://" + info.ip + info.path;
+
+                                avatarP2A.setServerUrl(url);
 
                                 // 更新化身数据到服务器
                                 saveMirrorToServer(avatarP2A);
@@ -260,7 +263,6 @@ public class SyncAvatarService extends Service {
     private void saveMirrorToServer(final AvatarP2A avatarP2A){
 
         final String avatarP2sStr = new Gson().toJson(avatarP2A);
-
         Log.v(">>>", avatarP2A.getServerUrl());
         //
 //        HttpRequest.instance().doPost(HttpRequest.create(WebUcenterApi.class).editMirror(avatarP2sStr), new OnResultListener() {

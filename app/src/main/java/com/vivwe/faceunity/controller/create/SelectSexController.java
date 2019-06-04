@@ -39,13 +39,13 @@ public class SelectSexController {
         listener.onFinished();
     }
 
-    @OnClick({R.id.iv_cancel, R.id.btn_boy, R.id.btn_take_photo})
+    @OnClick({R.id.iv_cancel, R.id.btn_male, R.id.btn_female})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_boy: // 男
+            case R.id.btn_male: // 男
                 listener.onSexResult(SexEnum.MALE.getIndex());
                 break;
-            case R.id.btn_take_photo: // 女
+            case R.id.btn_female: // 女
                 listener.onSexResult(SexEnum.FEMALE.getIndex());
                 break;
             case R.id.iv_cancel:

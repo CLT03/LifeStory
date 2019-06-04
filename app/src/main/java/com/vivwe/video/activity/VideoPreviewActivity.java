@@ -100,7 +100,7 @@ public class VideoPreviewActivity extends BaseActivity {
     /**
      * 去发布视频
      */
-    @OnClick(R.id.tv_to_publish)
+    @OnClick(R.id.tv_next)
     public void publish(){
 
 
