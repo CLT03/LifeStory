@@ -32,7 +32,7 @@
         android:src="@mipmap/icon_cancel_black" />
 
     <Button
-        android:id="@+id/btn_boy"
+        android:id="@+id/btn_male"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/x70"
@@ -43,12 +43,12 @@
         android:text="男生"
         android:textColor="#191919"
         android:textSize="@dimen/x32"
-        app:layout_constraintBottom_toTopOf="@+id/btn_take_photo"
+        app:layout_constraintBottom_toTopOf="@+id/btn_female"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_take_photo"
+        android:id="@+id/btn_female"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/x70"

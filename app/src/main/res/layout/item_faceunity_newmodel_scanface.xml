@@ -10,11 +10,12 @@
         android:id="@+id/iv_cancel"
         android:layout_width="@dimen/x168"
         android:layout_height="@dimen/x168"
+        android:layout_marginTop="24dp"
         android:background="@drawable/ra_transparent_btn"
         android:padding="@dimen/x66"
+        android:src="@mipmap/icon_cancel_black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@mipmap/icon_cancel_black" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/iv_loading"

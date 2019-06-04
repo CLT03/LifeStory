@@ -29,11 +29,14 @@ import com.faceunity.p2a_art.core.FUP2ARenderer;
 import com.faceunity.p2a_art.core.P2ACore;
 import com.faceunity.p2a_art.entity.AvatarP2A;
 import com.faceunity.p2a_art.renderer.CameraRenderer;
+import com.google.gson.GsonBuilder;
 import com.mbs.sdk.utils.PermissionsUtil;
 import com.mbs.sdk.utils.ScreenUtils;
 import com.shixing.sxvideoengine.SXVideo;
 import com.vivwe.base.activity.BaseFragmentActivity;
 import com.vivwe.base.activity.BaseFragment;
+import com.vivwe.base.cache.UserCache;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.faceunity.fragment.CreateAvatarFragment;
 import com.vivwe.faceunity.fragment.EditDecorationFragment;
 import com.vivwe.faceunity.fragment.EditFaceFragment;
@@ -169,7 +172,9 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
      * 设置并显示化身数据
      */
     private void setMShowAvatarP2A(){
-
+        if(Globals.isDebug) {
+            Log.v(">>>showAvatarP2A", new GsonBuilder().create().toJson(getShowAvatarP2A()));
+        }
         mAvatarHandle.setAvatar(getShowAvatarP2A(), new Runnable() {
             @Override
             public void run() {
@@ -190,10 +195,11 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
     public AvatarP2A getShowAvatarP2A() {
 
         // 如果转换失败的话创建一个默认的
-        if(avatarP2A == null){
-            avatarP2A = new AvatarP2A(AvatarP2A.style_art, R.drawable.head_1_male, AvatarP2A.gender_boy, "head_1/head.bundle",
-                    AvatarConstant.hairBundle("head_1", AvatarP2A.gender_boy), 2, 0);
-        }
+//        if(avatarP2A == null){
+//            avatarP2A = new AvatarP2A(AvatarP2A.style_art, R.drawable.head_1_male, AvatarP2A.gender_boy, "head_1/head.bundle",
+//                    AvatarConstant.hairBundle("head_1", AvatarP2A.gender_boy), 2, 0);
+            avatarP2A = UserCache.Companion.getAvatarP2A();
+//        }
 
         return avatarP2A;
     }
@@ -323,6 +329,7 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
 
             // 显示主页
             showHomeFragment(transaction);
+            loadAvatarP2A();
         } else {
             Log.v("----", "B");
 

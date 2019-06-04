@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_to_publish"
+        android:id="@+id/tv_next"
         android:layout_width="@dimen/x140"
         android:layout_height="@dimen/x96"
         android:gravity="center"

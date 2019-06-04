@@ -1,7 +1,9 @@
 package com.vivwe.main.entity;
 
+import com.faceunity.p2a_art.constant.AvatarConstant;
 import com.faceunity.p2a_art.entity.AvatarP2A;
 import com.google.gson.GsonBuilder;
+import com.vivwe.main.R;
 
 import java.math.BigDecimal;
 
@@ -20,7 +22,7 @@ public class UserInfoEntity {
      */
     private String nickname;
     /**
-     * 地址
+     * 头像
      */
     private String avatar;
     /**
@@ -60,8 +62,11 @@ public class UserInfoEntity {
         this.nickname = nickname;
     }
 
-    public AvatarP2A getAvatar() {
-        return avatar == null ? null : new GsonBuilder().create().fromJson(avatar, AvatarP2A.class);
+    public String getAvatar() {
+//        return avatar == null ? new AvatarP2A(AvatarP2A.style_art, R.drawable.head_1_male, AvatarP2A.gender_boy,
+//                "head_1/head.bundle", AvatarConstant.hairBundle("head_1", AvatarP2A.gender_boy),
+//                2, 0) : new GsonBuilder().create().fromJson(avatar, AvatarP2A.class);
+        return avatar;
     }
 
     public void setAvatar(String avatar) {

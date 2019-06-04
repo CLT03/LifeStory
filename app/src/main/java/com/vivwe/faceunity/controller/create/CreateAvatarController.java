@@ -73,7 +73,7 @@ public class CreateAvatarController {
         mLoadingAnimation.start();
 
         // 创建化身（由于SDK的性别0为男1为女，app中的男女-1刚好能对应上）
-        createAvatar(dir, sex - 1, 1);
+        createAvatar(dir, sex, 1);
 //        createAvatar(filepath, sex == );
     }
 

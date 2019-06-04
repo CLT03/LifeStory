@@ -1,10 +1,12 @@
 package com.vivwe.base.cache
 
 import android.util.Log
+import com.faceunity.p2a_art.constant.AvatarConstant
 import com.faceunity.p2a_art.entity.AvatarP2A
 import com.google.gson.GsonBuilder
 import com.mbs.sdk.db.SharedPreferences
 import com.vivwe.base.entity.UserToken
+import com.vivwe.main.R
 import com.vivwe.main.entity.UserInfoEntity
 
 /**
@@ -15,9 +17,30 @@ import com.vivwe.main.entity.UserInfoEntity
 open class UserCache : SharedPreferences() {
     companion object {
 
-
         private var userToken: UserToken? = null
         private var userInfoEntity: UserInfoEntity? = null
+        private var avatarP2A: AvatarP2A? = null;
+
+        /**
+         * 保存用户化身数据
+         */
+        fun saveAvatarP2A(avatarP2A: AvatarP2A) {
+            UserCache.avatarP2A = avatarP2A
+            userInfoEntity!!.setAvatar(GsonBuilder().create().toJson(avatarP2A))
+            userInfo = userInfoEntity
+        }
+
+        /**
+         * 获取用户化身数据
+         */
+        fun getAvatarP2A(): AvatarP2A {
+            if(UserCache.avatarP2A == null){
+                UserCache.avatarP2A = AvatarP2A(AvatarP2A.style_art, R.drawable.head_1_male, AvatarP2A.gender_boy,
+                "head_1/head.bundle", AvatarConstant.hairBundle("head_1", AvatarP2A.gender_boy),
+                2, 0)
+            }
+            return UserCache.avatarP2A!!
+        }
 
         /**
          * 获取当前登录用户信息
