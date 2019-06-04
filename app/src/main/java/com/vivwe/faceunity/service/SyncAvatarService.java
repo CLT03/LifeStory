@@ -146,7 +146,7 @@ public class SyncAvatarService extends Service {
      * @param zipPath zip文件路径
      */
     private void zipToServer(final String zipPath){
-        final AvatarP2A avatarP2A = UserCache.Companion.getUserInfo().getAvatar();
+//        final AvatarP2A avatarP2A = UserCache.Companion.getUserInfo().getAvatar();
 
         HttpRequest.getInstance().excute(HttpRequest.create(WebMainApi.class).getToken(), new OnResultListener() {
             @Override
@@ -165,14 +165,12 @@ public class SyncAvatarService extends Service {
                             if(info.isOK()) {
                                 Log.i("qiniu", "Upload Success");
 
-//                                final String url = info.path;
-
                                 final String url = "http://" + info.ip + info.path;
 
-                                avatarP2A.setServerUrl(url);
+//                                avatarP2A.setServerUrl(url);
 
                                 // 更新化身数据到服务器
-                                saveMirrorToServer(avatarP2A);
+//                                saveMirrorToServer(avatarP2A);
 
                             } else {
                                 Log.i("qiniu", "Upload Fail");
