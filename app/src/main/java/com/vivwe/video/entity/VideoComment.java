@@ -15,6 +15,15 @@ public class VideoComment {
     private int isLiked; //是否点赞 0-否 *1-是
     private ArrayList<CommentCommentEntity> vdrList;
     private boolean isOpen;//是否展开
+    private int newAddReplyNumber;//新加的回复数量 在展开的时候需要去掉 因为展开获取回来的还有他们
+
+    public void addReplyNumber(){
+        newAddReplyNumber++;
+    }
+
+    public int getNewAddReplyNumber() {
+        return newAddReplyNumber;
+    }
 
     public boolean isOpen() {
         return isOpen;

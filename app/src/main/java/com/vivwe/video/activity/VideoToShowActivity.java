@@ -390,6 +390,7 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
                                 commentCommentEntity.setGmtReplyTime(simpleDateFormat.format(date));
                                 //videoCommentEntity.getVdList().get(mVideoCommentIndex).setVdrCount(videoCommentEntity.getVdList().get(mVideoCommentIndex).getVdrCount()+1);//刷新展开还有多少条
                                 videoCommentEntity.getVdList().get(mVideoCommentIndex).getVdrList().add(commentCommentEntity);
+                                videoCommentEntity.getVdList().get(mVideoCommentIndex).addReplyNumber();
                                 adapterComment.setCommentEntities(videoCommentEntity.getVdList());
                                 //videoCommentEntity.getPageItem().setTotal(videoCommentEntity.getPageItem().getTotal()+1);
                                 //tvCommentNumber.setText(videoCommentEntity.getPageItem().getTotal()+"条评论");

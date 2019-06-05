@@ -70,6 +70,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:scrollbars="none"
         app:layout_constraintEnd_toStartOf="@+id/iv_like"
         app:layout_constraintStart_toStartOf="@+id/tv_comment"
         app:layout_constraintTop_toBottomOf="@+id/tv_comment" />
