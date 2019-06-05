@@ -130,10 +130,10 @@ public class TemplateDetailActivity extends BaseActivity {
                         file.delete();
                         if(templateDetailEntity.getStyle()==1){
                             startActivity(new Intent(TemplateDetailActivity.this,VideoCreateByStandardActivity.class)
-                                    .putExtra("path",fileDest.getPath()));
+                                    .putExtra("path",fileDest.getPath()+"/"+fileDest.list()[0]));
                         }else{
                             startActivity(new Intent(TemplateDetailActivity.this,VideoCreateByDynamicActivity.class)
-                                    .putExtra("path",fileDest.getPath()));
+                                    .putExtra("path",fileDest.getPath()+"/"+fileDest.list()[0]));
                         }
                         btnBuy.setText("¥" + templateDetailEntity.getPrice() + "/次");
                     } catch (Exception e) {
@@ -144,10 +144,10 @@ public class TemplateDetailActivity extends BaseActivity {
         }else {
             if(templateDetailEntity.getStyle()==1){
                 startActivity(new Intent(TemplateDetailActivity.this,VideoCreateByStandardActivity.class)
-                        .putExtra("path",fileDest.getPath()));
+                        .putExtra("path",fileDest.getPath()+"/"+fileDest.list()[0]));
             }else{
                 startActivity(new Intent(TemplateDetailActivity.this,VideoCreateByDynamicActivity.class)
-                        .putExtra("path",fileDest.getPath()));
+                        .putExtra("path",fileDest.getPath()+"/"+fileDest.list()[0]));
             }
         }
     }
