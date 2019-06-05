@@ -6,31 +6,31 @@
     android:layout_height="wrap_content"
     android:background="#ffffff">
 
+
     <ImageView
-        android:id="@+id/tv_cover"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/x204"
-        android:paddingLeft="@dimen/x24"
-        android:paddingTop="@dimen/x30"
-        android:paddingEnd="@dimen/x582"
-        android:background="@drawable/ra_white_btn"
-        android:paddingBottom="@dimen/x30"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/iv_cover"
+        android:layout_width="@dimen/x144"
+        android:layout_height="@dimen/x144"
+        android:layout_marginStart="@dimen/x24"
+        android:layout_marginTop="@dimen/x30"
+        android:layout_marginBottom="@dimen/x30"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        android:src="@mipmap/icon_video_music" />
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x194"
-        android:layout_marginTop="@dimen/x56"
+        android:layout_marginStart="@dimen/x26"
+        android:layout_marginTop="@dimen/x61"
         android:text="去年夏天"
         android:textColor="#49494A"
         android:textSize="@dimen/x32"
-        app:layout_constraintStart_toStartOf="@+id/tv_cover"
-        app:layout_constraintTop_toTopOf="@+id/tv_cover" />
+        app:layout_constraintStart_toEndOf="@+id/iv_cover"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_time"
@@ -51,5 +51,4 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_cover"
         app:layout_constraintEnd_toEndOf="@+id/tv_cover"
         app:layout_constraintStart_toStartOf="@+id/tv_cover" />
-
 </android.support.constraint.ConstraintLayout>

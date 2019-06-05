@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.constraint.Group;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.vivwe.main.R;
 import com.vivwe.video.entity.MusicTypeEntity;
+import com.vivwe.video.listener.OnMusicTypeItemClick;
 import com.vivwe.video.ui.MusicPlayer;
 
 import java.util.ArrayList;
@@ -29,10 +31,17 @@ public class MusicLibraryTypeAdapter extends RecyclerView.Adapter<MusicLibraryTy
     private List<MusicTypeEntity> datas = new ArrayList<>();
     /** 选中下标 */
     private int currentIndex = 0;
+    /** item点击事件 */
+    private ViewPager.OnPageChangeListener onPageChangeListener;
 
 
-    public MusicLibraryTypeAdapter(Context context) {
+    public MusicLibraryTypeAdapter(Context context, ViewPager.OnPageChangeListener onPageChangeListener) {
         this.context = context;
+        this.onPageChangeListener = onPageChangeListener;
+    }
+
+    public List<MusicTypeEntity> getDatas() {
+        return datas;
     }
 
     /***
@@ -49,6 +58,15 @@ public class MusicLibraryTypeAdapter extends RecyclerView.Adapter<MusicLibraryTy
         notifyDataSetChanged();
     }
 
+    /**
+     * 设置选中
+     * @param currentIndex
+     */
+    public void setCurrentIndex(int currentIndex){
+        this.currentIndex = currentIndex;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -57,9 +75,19 @@ public class MusicLibraryTypeAdapter extends RecyclerView.Adapter<MusicLibraryTy
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.lineV.setVisibility(position == currentIndex ? View.VISIBLE: View.GONE);
         holder.nameTv.setText(datas.get(position).getTypeName());
+        holder.contentV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(currentIndex != position){
+                    currentIndex = position;
+                    onPageChangeListener.onPageSelected(position);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -75,8 +103,11 @@ public class MusicLibraryTypeAdapter extends RecyclerView.Adapter<MusicLibraryTy
         @BindView(R.id.v_line)
         View lineV;
 
+        View contentV;
+
         ViewHolder(View view) {
             super(view);
+            contentV = view;
             ButterKnife.bind(this,view);
         }
     }

@@ -12,8 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vivwe.base.activity.BaseFragment;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.main.R;
 import com.vivwe.video.adapter.MusicLibraryAdapter;
+import com.vivwe.video.entity.MusicEntity;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +29,11 @@ public class MusicLibraryFragment extends Fragment {
     RecyclerView recyclerView;
     Unbinder unbinder;
     private MusicLibraryAdapter adapter;
+
+    /** 数据 */
+//    private List<MusicEntity> datas;
+    /** 页码 */
+    private int pageNum = 0;
 
     @Nullable
     @Override
@@ -39,13 +48,36 @@ public class MusicLibraryFragment extends Fragment {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        adapter=new MusicLibraryAdapter(getActivity());
+
+        if(adapter == null){
+            adapter=new MusicLibraryAdapter(getActivity());
+        }
         recyclerView.setAdapter(adapter);
+    }
+
+    public MusicLibraryAdapter getAdapter() {
+        return adapter;
+    }
+
+    public int getPageNum() {
+        return pageNum;
+    }
+
+    public int getNextPageNum(){
+        return pageNum + 1;
+    }
+
+    public void setNextPageNum() {
+        pageNum ++;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
+        if(Globals.isDebug){
+            Log.v(">>>MusicLibraryFragment","destoryView");
+        }
         unbinder.unbind();
     }
 }
