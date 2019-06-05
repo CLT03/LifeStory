@@ -99,6 +99,7 @@ class VideoCreateDynamicImagesAdapter(context: Context) : RecyclerView.Adapter<V
 
             // 设置图片
             ImageLoader.getInstance().loadImage(path, viewHolder.image)
+
             if(isEdit){
                 viewHolder.chooseIv.visibility = View.VISIBLE
                 viewHolder.editIv.visibility = View.GONE

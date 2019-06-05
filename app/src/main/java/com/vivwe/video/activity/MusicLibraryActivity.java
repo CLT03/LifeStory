@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,12 +22,17 @@ import com.google.gson.reflect.TypeToken;
 import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.base.ui.alert.Loading;
 import com.vivwe.main.R;
 import com.vivwe.video.adapter.MusicLibraryFragmentPagerAdapter;
 import com.vivwe.video.adapter.MusicLibraryTypeAdapter;
 import com.vivwe.video.api.WebMusicApi;
+import com.vivwe.video.entity.MusicEntity;
 import com.vivwe.video.entity.MusicTypeEntity;
 import com.vivwe.video.fragment.MusicLibraryFragment;
 import com.vivwe.video.ui.IMusicPlayView;
@@ -44,13 +50,21 @@ import butterknife.OnClick;
  * date: 2019/4/26 15:38
  * remark: 音乐库
  */
-public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView {
+public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView, ViewPager.OnPageChangeListener {
 
     /** 音乐分类 */
     @BindView(R.id.rcv_type)
     RecyclerView typeRcv;
     /** 音乐分类适配器 */
     MusicLibraryTypeAdapter typeAdapter;
+    /** 当前对应音乐分类显示页面下标 */
+    private int currentIndex = 0;
+
+    /** 上拉刷新 */
+    @BindView(R.id.srl_refresh)
+    SmartRefreshLayout refreshSrl;
+
+    private ArrayList<MusicLibraryFragment> fragments;
 
     @BindView(R.id.view_pager)
     ViewPager viewPager;
@@ -64,7 +78,7 @@ public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView
     ImageView ivPlay;
     @BindView(R.id.seekBar)
     SeekBar seekBar;
-    private ArrayList<MusicLibraryFragment> fragments;
+
     private int tag = 0;
 
     @Override
@@ -80,7 +94,7 @@ public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView
     private void init() {
         // 初始化音乐分类
         typeRcv.setLayoutManager(new GridLayoutManager(this, 1, GridLayoutManager.HORIZONTAL, false));
-        typeAdapter = new MusicLibraryTypeAdapter(this);
+        typeAdapter = new MusicLibraryTypeAdapter(this, this);
         typeRcv.setAdapter(typeAdapter);
 
         loadMusicType();
@@ -102,6 +116,8 @@ public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView
                 if(webMsg.dataIsSuccessed()){
                     List<MusicTypeEntity> datas = new GsonBuilder().create().fromJson(webMsg.getData(), new TypeToken<List<MusicTypeEntity>>(){}.getType());
                     typeAdapter.setDatas(datas);
+
+                    loadMusicModuleUI();
                 } else if(webMsg.netIsSuccessed()){
                     Toast.makeText(MusicLibraryActivity.this, webMsg.getDesc(), Toast.LENGTH_LONG).show();
                 }
@@ -109,29 +125,19 @@ public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView
         });
     }
 
-    private void loadMusicModule(){
+    /***
+     * 加载音乐模块UI
+     */
+    private void loadMusicModuleUI(){
         fragments = new ArrayList<>();
         for (int i = 0; i < typeAdapter.getItemCount(); i ++){
             fragments.add(new MusicLibraryFragment());
+
         }
+
         viewPager.setAdapter(new MusicLibraryFragmentPagerAdapter(getSupportFragmentManager(), fragments));
 
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-
-            }
-
-            @Override
-            public void onPageSelected(int poisition) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
-            }
-        });
+        viewPager.addOnPageChangeListener(this);
 
         int i = getResources().getDimensionPixelOffset(R.dimen.x12);
         seekBar.setPadding(i, 0, i, 0);//铺不满问题
@@ -153,6 +159,32 @@ public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView
         });
 
         MusicPlayer.getInstance().initView(this);
+
+        refreshSrl.setEnableLoadMore(true);
+        refreshSrl.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                loadMusic(true);
+                Toast.makeText(MusicLibraryActivity.this, "加载更多...", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        loadMusic(false);
+    }
+
+    /***
+     * 加载音乐
+     */
+    private void loadMusic(boolean loadMore){
+
+        int pageNum = fragments.get(currentIndex).getNextPageNum();
+
+        if(!loadMore && pageNum != 1){
+            return;
+        }
+
+
+
     }
 
 
@@ -287,4 +319,80 @@ public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView
         } else ivPlay.setImageDrawable(getResources().getDrawable(R.mipmap.icon_music_play));
     }
 
+    @Override
+    public void onPageScrolled(int i, float v, int i1) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        if(currentIndex != position){
+            currentIndex = position;
+            loadMusic(false);
+            typeAdapter.setCurrentIndex(position);
+            viewPager.setCurrentItem(position);
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int i) {
+
+    }
+
+    class LoadMusic {
+        private List<MusicEntity> records;
+        private int total;
+        private int size;
+        private int current;
+        private boolean searchCount;
+        private int pages;
+
+        public List<MusicEntity> getRecords() {
+            return records;
+        }
+
+        public void setRecords(List<MusicEntity> records) {
+            this.records = records;
+        }
+
+        public int getTotal() {
+            return total;
+        }
+
+        public void setTotal(int total) {
+            this.total = total;
+        }
+
+        public int getSize() {
+            return size;
+        }
+
+        public void setSize(int size) {
+            this.size = size;
+        }
+
+        public int getCurrent() {
+            return current;
+        }
+
+        public void setCurrent(int current) {
+            this.current = current;
+        }
+
+        public boolean isSearchCount() {
+            return searchCount;
+        }
+
+        public void setSearchCount(boolean searchCount) {
+            this.searchCount = searchCount;
+        }
+
+        public int getPages() {
+            return pages;
+        }
+
+        public void setPages(int pages) {
+            this.pages = pages;
+        }
+    }
 }
