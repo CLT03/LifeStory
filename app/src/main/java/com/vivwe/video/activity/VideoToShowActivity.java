@@ -2,6 +2,7 @@ package com.vivwe.video.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -93,11 +94,11 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
     @BindView(R.id.iv_attention)
     ImageView ivAttention;
     private float y = 0;//起始y坐标
-    private TranslateAnimation mHiddenAction, mShowAction;
+    private TranslateAnimation mHiddenAction, mShowAction;//评论隐藏、显示的动作
     private VideoToShowCommendAdapter adapterComment;
     private boolean once = true;//输入框显示的位置只需要计算一次
     private RequestOptions requestOptions;
-    private int isLike;
+    private int isLike;//是否点赞
     private VideoDetailEntity videoDetailEntity;
     private VideoCommentEntity videoCommentEntity;
     private int mCommentType;//0 是评论视频 1回复视频评论
@@ -205,7 +206,7 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
                 attention();
                 break;
             case R.id.iv_share:
-
+                startActivity(new Intent(this,MusicLibraryActivity.class));
                 break;
             case R.id.iv_like:
                 newLike();
@@ -387,7 +388,7 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
                                 @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
                                 Date date = new Date(System.currentTimeMillis());
                                 commentCommentEntity.setGmtReplyTime(simpleDateFormat.format(date));
-                                videoCommentEntity.getVdList().get(mVideoCommentIndex).setVdrCount(videoCommentEntity.getVdList().get(mVideoCommentIndex).getVdrCount()+1);//刷新展开还有多少条
+                                //videoCommentEntity.getVdList().get(mVideoCommentIndex).setVdrCount(videoCommentEntity.getVdList().get(mVideoCommentIndex).getVdrCount()+1);//刷新展开还有多少条
                                 videoCommentEntity.getVdList().get(mVideoCommentIndex).getVdrList().add(commentCommentEntity);
                                 adapterComment.setCommentEntities(videoCommentEntity.getVdList());
                                 //videoCommentEntity.getPageItem().setTotal(videoCommentEntity.getPageItem().getTotal()+1);
