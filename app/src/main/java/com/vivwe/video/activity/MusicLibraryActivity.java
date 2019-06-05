@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.mbs.sdk.net.HttpRequest;
+import com.mbs.sdk.net.listener.OnProgressListener;
 import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -27,6 +29,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.base.ui.alert.Loading;
 import com.vivwe.main.R;
 import com.vivwe.video.adapter.MusicLibraryFragmentPagerAdapter;
@@ -38,6 +41,7 @@ import com.vivwe.video.fragment.MusicLibraryFragment;
 import com.vivwe.video.ui.IMusicPlayView;
 import com.vivwe.video.ui.MusicPlayer;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -275,6 +279,35 @@ public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView
 
                 break;
             case R.id.btn_use:
+
+                if(Globals.isDebug){
+                    Log.v(">>>chooseSong", MusicPlayer.getInstance().getUrl());
+                }
+
+                Loading.start(this, "正在缓存文件，请稍等...", false);
+
+                File file = getExternalFilesDir("music");
+                if(!file.isDirectory()){
+                    file.mkdirs();
+                }
+
+                HttpRequest.getInstance().downloadToExcute(MusicPlayer.getInstance().getUrl(), file.getPath() + MusicPlayer.getInstance().getName(), new OnProgressListener() {
+                    @Override
+                    public void onProgress(long currentBytes, long contentLength) {
+
+                    }
+
+                    @Override
+                    public void onFinished(WebMsg webMsg) {
+                        Loading.stop();
+                        if(webMsg.dataIsSuccessed()){
+                            if(Globals.isDebug){
+                                Log.v(">>>DownloadSong", new GsonBuilder().create().toJson(webMsg));
+                            }
+                        }
+                    }
+                });
+
                 if (MusicPlayer.getInstance().getUrl() != null)
                     setResult(2, new Intent().putExtra("result", MusicPlayer.getInstance().getUrl()));
                 finish();

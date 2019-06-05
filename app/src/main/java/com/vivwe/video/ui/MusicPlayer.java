@@ -18,6 +18,7 @@ import io.reactivex.schedulers.Schedulers;
 public class MusicPlayer {
     private MediaPlayer mediaPlayer;
     private static MusicPlayer musicPlayer=new MusicPlayer();
+    private String name;
     private String url="";
     private IMusicPlayView iMusicPlayView;
     private long mDuration;
@@ -34,6 +35,7 @@ public class MusicPlayer {
     public void playMusic(String url,String name){
         if (mediaPlayer == null) {
             this.url=url;
+            this.name = name;
             iMusicPlayView.setMusicName(name);
             mediaPlayer = new MediaPlayer();
             try {
@@ -130,5 +132,9 @@ public class MusicPlayer {
 
     public String getUrl() {
         return url;
+    }
+
+    public String getName() {
+        return name;
     }
 }
