@@ -9,9 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mbs.sdk.net.HttpRequest;
+import com.mbs.sdk.net.listener.OnResultListener;
+import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseFragment;
+import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
 import com.vivwe.main.adapter.RecommendItemAdapter;
+import com.vivwe.personal.entity.VideoEntity;
+import com.vivwe.video.api.VideoApi;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +29,7 @@ public class RecommendItemFragment extends BaseFragment {
     RecyclerView recyclerView;
     Unbinder unbinder;
     RecommendItemAdapter adapter;
+    private VideoEntity videoEntity;
 
     @Nullable
     @Override
@@ -38,6 +45,25 @@ public class RecommendItemFragment extends BaseFragment {
         recyclerView.setLayoutManager(gridLayoutManager);
         adapter = new RecommendItemAdapter(getActivity());
         recyclerView.setAdapter(adapter);
+        getData();
+    }
+
+    private void getData(){
+        if(videoEntity!=null){
+            adapter.setVideos(videoEntity.getMyVideoList());
+        }else if (getArguments() != null) {
+            HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).getVideoByType(1,Integer.MAX_VALUE,getArguments().getInt("tag")), new OnResultListener() {
+                @Override
+                public void onWebUiResult(WebMsg webMsg) {
+                    if (webMsg.dataIsSuccessed()) {
+                        videoEntity = webMsg.getData(VideoEntity.class);
+                        adapter.setVideos(videoEntity.getMyVideoList());
+                    } else if (webMsg.netIsSuccessed()) {
+                        Toast.show(getContext(), webMsg.getDesc(), 2000);
+                    }
+                }
+            });
+        }
     }
 
 

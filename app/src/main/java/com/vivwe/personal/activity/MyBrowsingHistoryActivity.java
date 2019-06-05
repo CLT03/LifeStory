@@ -13,7 +13,6 @@ import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.main.R;
 import com.vivwe.main.entity.VideoHistoryEntity;
 import com.vivwe.personal.adapter.MyBrowsingHistoryAdapter;
-import com.vivwe.personal.adapter.MyFansAdapter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -115,8 +114,7 @@ public class MyBrowsingHistoryActivity extends BaseActivity {
         long day;
         try {
             // 获得两个时间的毫秒时间差异
-            diff = sd.parse(endTime).getTime()
-                    - System.currentTimeMillis();
+            diff = System.currentTimeMillis()-sd.parse(endTime).getTime();
             day = diff / nd;// 计算差多少天
             return day;
             //System.out.println("时间相差：" + day );

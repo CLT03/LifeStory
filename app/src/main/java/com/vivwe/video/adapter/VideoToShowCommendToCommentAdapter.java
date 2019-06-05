@@ -6,21 +6,47 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.vivwe.main.R;
+import com.vivwe.video.entity.CommentCommentEntity;
+
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class VideoToShowCommendToCommentAdapter extends RecyclerView.Adapter<VideoToShowCommendToCommentAdapter.ViewHolder> {
 
+
     private Activity activity;
+    private RequestOptions requestOptions;
+    private ArrayList<CommentCommentEntity> commentEntities;
 
     public VideoToShowCommendToCommentAdapter(Activity activity) {
         this.activity = activity;
+        requestOptions = new RequestOptions().circleCrop()
+                .placeholder(activity.getResources().getDrawable(R.drawable.ic_launcher_background));
+    }
+
+    public void setCommentEntities(ArrayList<CommentCommentEntity> commentEntities) {
+        this.commentEntities = commentEntities;
+        notifyDataSetChanged();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-
+        @BindView(R.id.iv_head)
+        ImageView ivHead;
+        @BindView(R.id.tv_name)
+        TextView tvName;
+        @BindView(R.id.tv_content)
+        TextView tvContent;
         ViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this,itemView);
         }
     }
 
@@ -32,13 +58,15 @@ public class VideoToShowCommendToCommentAdapter extends RecyclerView.Adapter<Vid
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
+    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
+        Glide.with(activity).load(commentEntities.get(i).getFromAvatar()).apply(requestOptions).into(holder.ivHead);
+        holder.tvName.setText(commentEntities.get(i).getFromNickname());
+        holder.tvContent.setText(commentEntities.get(i).getContent());
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return commentEntities==null?0:commentEntities.size();
     }
 
 

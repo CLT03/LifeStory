@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyCollectedDemoAdapter extends RecyclerView.Adapter<MyCollectedDemoAdapter.ViewHolder> {
+public class TemplateAdapter extends RecyclerView.Adapter<TemplateAdapter.ViewHolder> {
 
 
 
@@ -29,7 +30,7 @@ public class MyCollectedDemoAdapter extends RecyclerView.Adapter<MyCollectedDemo
     private ArrayList<TemplateEntity.Template> templates;
     private RequestOptions requestOptions;
 
-    public MyCollectedDemoAdapter(Activity activity) {
+    public TemplateAdapter(Activity activity) {
         this.activity = activity;
         requestOptions = new RequestOptions().centerCrop()
                 .placeholder(activity.getResources().getDrawable(R.drawable.ic_launcher_background));

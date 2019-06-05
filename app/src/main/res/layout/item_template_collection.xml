@@ -6,11 +6,24 @@
     android:layout_height="@dimen/x224">
 
     <ImageView
-        android:id="@+id/imageView40"
+        android:id="@+id/iv_cover"
         android:layout_width="@dimen/x184"
         android:layout_height="@dimen/x180"
+        android:src="@drawable/ic_launcher_background"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_launcher_background" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/x18"
+        android:text="舞蹈"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/x28"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_cover"
+        app:layout_constraintEnd_toEndOf="@+id/iv_cover"
+        app:layout_constraintStart_toStartOf="@+id/iv_cover" />
 
 </android.support.constraint.ConstraintLayout>

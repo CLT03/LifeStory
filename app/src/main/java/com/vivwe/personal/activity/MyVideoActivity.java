@@ -12,6 +12,7 @@ import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.cache.UserCache;
 import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
 
@@ -53,7 +54,7 @@ public class MyVideoActivity extends BaseActivity {
 
     private void getData(){
         HttpRequest.getInstance().excute(HttpRequest.create(PersonalApi.class).getVideoList(1,Integer.MAX_VALUE,
-                16), new OnResultListener() {
+                UserCache.Companion.getUserInfo().getId()), new OnResultListener() {
             @Override
             public void onWebUiResult(WebMsg webMsg) {
                 if (webMsg.dataIsSuccessed()) {

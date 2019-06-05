@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import com.vivwe.author.adapter.IncomeAdapter;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.main.R;
-import com.vivwe.personal.adapter.MyFansAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
