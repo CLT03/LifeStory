@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
@@ -22,11 +24,14 @@ import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
 import com.vivwe.main.activity.MessageActivity;
 import com.vivwe.main.adapter.TemplateCollectionAdapter;
-import com.vivwe.main.api.TemplateApi;
-import com.vivwe.personal.adapter.MyCollectedDemoAdapter;
+import com.vivwe.personal.adapter.TemplateAdapter;
+import com.vivwe.video.api.TemplateApi;
 import com.vivwe.personal.entity.TemplateEntity;
 import com.vivwe.video.activity.AllTemplateActivity;
 import com.vivwe.video.activity.TemplateSearchActivity;
+import com.vivwe.video.entity.TemplateTypeEntity;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,7 +57,7 @@ public class TemplateFragment extends BaseFragment {
     View view;
     Unbinder unbinder;
     private TemplateCollectionAdapter adapterCollection;
-    private MyCollectedDemoAdapter demoAdapter;
+    private TemplateAdapter demoAdapter;
 
 
     @Nullable
@@ -75,12 +80,14 @@ public class TemplateFragment extends BaseFragment {
         recyclerViewCollection.setAdapter(adapterCollection);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         recyclerViewTemplate.setLayoutManager(gridLayoutManager);
-        demoAdapter = new MyCollectedDemoAdapter(getActivity());
+        demoAdapter = new TemplateAdapter(getActivity());
         recyclerViewTemplate.setAdapter(demoAdapter);
-        getData();
+        getTemplate();
+        getCollection();
     }
 
-    private void getData(){
+    //获取推荐模板
+    private void getTemplate(){
         HttpRequest.getInstance().excute(HttpRequest.create(TemplateApi.class).getRecommendTemplate(1,Integer.MAX_VALUE,5), new OnResultListener() {
             @Override
             public void onWebUiResult(WebMsg webMsg) {
@@ -92,7 +99,21 @@ public class TemplateFragment extends BaseFragment {
                 }
             }
         });
+    }
 
+    //获取推荐合集
+    private void getCollection(){
+        HttpRequest.getInstance().excute(HttpRequest.create(TemplateApi.class).getTemplateType(), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    ArrayList<TemplateTypeEntity> templateTypeEntities = new GsonBuilder().create().fromJson(webMsg.getData(),new TypeToken<ArrayList<TemplateTypeEntity>>(){}.getType());
+                    adapterCollection.setTemplateTypeEntities(templateTypeEntities);
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(getContext(), webMsg.getDesc(), 2000);
+                }
+            }
+        });
     }
 
     @Override

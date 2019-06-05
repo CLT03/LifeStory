@@ -10,9 +10,16 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface VideoApi {
-    @FormUrlEncoded
+    //获取视频分类
     @POST("api/video-type/searchVideoTypeList")
     Observable<WebMsg> getVideoTypeList();
+
+    //根据视频分类获取视频
+    @FormUrlEncoded
+    @POST("api/video/searchVideoListByType")
+    Observable<WebMsg> getVideoByType(@Field("pageNum") int pageNum,
+                                   @Field("pageSize") int pageSize,
+                                   @Field("typeId") int typeId);
 
     //搜索视频
     @FormUrlEncoded
@@ -37,7 +44,7 @@ public interface VideoApi {
                                       @Field("videoId") int videoId);
 
 
-    //获取视频详情
+    //获取视频评论列表
     @FormUrlEncoded
     @POST("api/video-discuss/getVideoDiscussList")
     Observable<WebMsg> getVideoCommentList(@Field("pageNum") int pageNum,
@@ -61,4 +68,34 @@ public interface VideoApi {
                                @Field("videoDiscussId") Integer videoDiscussId,
                                @Field("videoDiscussReplyId") Integer videoDiscussReplyId,
                                @Field("videoId") Integer videoId);
+
+    //新的视频评论
+    @FormUrlEncoded
+    @POST("api/video-discuss/addVideoDiscuss")
+    Observable<WebMsg> newComment(@Field("content") String content,
+                               @Field("userId") int userId,
+                               @Field("videoId") int videoId);
+
+    //新的回复视频评论
+    @FormUrlEncoded
+    @POST("api/video-discuss-reply/addVideoDiscussReply")
+    Observable<WebMsg> newReplyComment(@Field("content") String content,
+                                  @Field("fromUserId") int fromUserId,
+                                  @Field("toUserId") int toUserId,
+                                  @Field("videoDiscussId") int videoDiscussId);
+
+
+
+    /**
+     * 获取更多视频评论的回复
+     * @param userId
+     * @param vdrId 视频评论回复id：用于排除最新一条
+     * @param videoDiscussId 视频评论id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api/video-discuss-reply/searchVDRListItem")
+    Observable<WebMsg> getMoreReply(@Field("userId") int userId,
+                                       @Field("vdrId") int vdrId,
+                                       @Field("videoDiscussId") int videoDiscussId);
 }

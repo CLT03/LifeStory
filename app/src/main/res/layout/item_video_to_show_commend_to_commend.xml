@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView38"
+        android:id="@+id/iv_head"
         android:layout_width="@dimen/x40"
         android:layout_height="@dimen/x40"
         android:layout_marginTop="@dimen/x34"
@@ -15,18 +15,18 @@
         app:srcCompat="@mipmap/icon_logo_default" />
 
     <TextView
-        android:id="@+id/tv_save_todraft"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/x12"
         android:text="美美哒"
         android:textColor="#555555"
         android:textSize="@dimen/x24"
-        app:layout_constraintStart_toEndOf="@+id/imageView38"
-        app:layout_constraintTop_toTopOf="@+id/imageView38" />
+        app:layout_constraintStart_toEndOf="@+id/iv_head"
+        app:layout_constraintTop_toTopOf="@+id/iv_head" />
 
     <TextView
-        android:id="@+id/textView82"
+        android:id="@+id/tv_content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingRight="@dimen/x20"
@@ -34,6 +34,6 @@
         android:textColor="#191919"
         android:textSize="@dimen/x28"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_save_todraft"
-        app:layout_constraintTop_toBottomOf="@+id/tv_save_todraft" />
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 </android.support.constraint.ConstraintLayout>

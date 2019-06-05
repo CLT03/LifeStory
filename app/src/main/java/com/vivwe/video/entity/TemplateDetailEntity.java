@@ -16,6 +16,15 @@ public class TemplateDetailEntity {
     private int isPublishing;//是否上架0否1是
     private int isStared; //是否收藏 0-否 *1-是
     private int starId; //收藏id
+    private int style;//模板样式 *1-标准模板 2-动态模板 3-混合模板
+
+    public int getStyle() {
+        return style;
+    }
+
+    public void setStyle(int style) {
+        this.style = style;
+    }
 
     public int getIsStared() {
         return isStared;

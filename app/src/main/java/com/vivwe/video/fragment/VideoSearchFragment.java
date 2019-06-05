@@ -1,6 +1,5 @@
 package com.vivwe.video.fragment;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,19 +15,16 @@ import android.view.ViewGroup;
 import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
+import com.vivwe.base.cache.UserCache;
 import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
 import com.vivwe.main.adapter.RecommendItemAdapter;
-import com.vivwe.main.api.TemplateApi;
-import com.vivwe.personal.adapter.MyCollectedDemoAdapter;
-import com.vivwe.personal.adapter.MyFansAdapter;
+import com.vivwe.personal.adapter.TemplateAdapter;
+import com.vivwe.video.adapter.VideoSearchUserAdapter;
 import com.vivwe.personal.entity.TemplateEntity;
 import com.vivwe.personal.entity.UserEntity;
 import com.vivwe.personal.entity.VideoEntity;
-import com.vivwe.video.activity.VideoSearchActivity;
 import com.vivwe.video.api.VideoApi;
-
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,8 +35,8 @@ public class VideoSearchFragment extends Fragment {
     RecyclerView recyclerView;
     Unbinder unbinder;
     private RecommendItemAdapter adapterVideo;
-    private MyCollectedDemoAdapter adapterDemo;
-    private MyFansAdapter adapterUser;
+    private TemplateAdapter adapterDemo;
+    private VideoSearchUserAdapter adapterUser;
     private VideoEntity videoEntity;
     private UserEntity userEntity;
     private TemplateEntity templateEntity;
@@ -70,7 +66,7 @@ public class VideoSearchFragment extends Fragment {
                     GridLayoutManager gridLayoutManager1 = new GridLayoutManager(getContext(), 2);
                     recyclerView.setLayoutManager(gridLayoutManager1);
                     if (adapterDemo == null)
-                        adapterDemo = new MyCollectedDemoAdapter(getActivity());
+                        adapterDemo = new TemplateAdapter(getActivity());
                     recyclerView.setAdapter(adapterDemo);
                     recyclerView.setPadding(getResources().getDimensionPixelOffset(R.dimen.x32),
                             getResources().getDimensionPixelOffset(R.dimen.x24), 0, 0);
@@ -80,7 +76,7 @@ public class VideoSearchFragment extends Fragment {
                     linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                     recyclerView.setLayoutManager(linearLayoutManager);
                     if (adapterUser == null)
-                        adapterUser = new MyFansAdapter(getActivity());
+                        adapterUser = new VideoSearchUserAdapter(getActivity());
                     recyclerView.setAdapter(adapterUser);
                     break;
             }
@@ -131,7 +127,7 @@ public class VideoSearchFragment extends Fragment {
 
     private void searchVideo(String keyWord) {
         HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).searchVideo(1, Integer.MAX_VALUE, keyWord,
-                2, 16), new OnResultListener() {
+                2, UserCache.Companion.getUserInfo().getId()), new OnResultListener() {
             @Override
             public void onWebUiResult(WebMsg webMsg) {
                 if (webMsg.dataIsSuccessed()) {
@@ -146,7 +142,7 @@ public class VideoSearchFragment extends Fragment {
 
     private void searchUser(String keyWord) {
         HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).searchUser(1, Integer.MAX_VALUE, keyWord,
-                16), new OnResultListener() {
+                UserCache.Companion.getUserInfo().getId()), new OnResultListener() {
             @Override
             public void onWebUiResult(WebMsg webMsg) {
                 if (webMsg.dataIsSuccessed()) {
