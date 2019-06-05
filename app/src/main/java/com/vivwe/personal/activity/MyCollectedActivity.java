@@ -5,23 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.Group;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.TextView;
 
 import com.vivwe.base.activity.BaseActivity;
-import com.vivwe.base.ui.textview.LinearGradientTextView;
 import com.vivwe.main.R;
-import com.vivwe.personal.adapter.MyCollectedDemoAdapter;
-import com.vivwe.personal.adapter.MyCollectedVideoAdapter;
 import com.vivwe.personal.adapter.MycollectedPagerAdapter;
 import com.vivwe.personal.fragment.MycollectedFragment;
-import com.vivwe.video.adapter.VideoSearchPagerAdapter;
-import com.vivwe.video.fragment.VideoSearchFragment;
 
 import java.util.ArrayList;
 

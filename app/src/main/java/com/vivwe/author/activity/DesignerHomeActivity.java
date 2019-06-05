@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.main.R;
-import com.vivwe.personal.adapter.MyCollectedDemoAdapter;
+import com.vivwe.personal.adapter.TemplateAdapter;
 import com.vivwe.personal.adapter.MyVideoAdapter;
 
 import butterknife.BindView;
@@ -41,7 +41,7 @@ public class DesignerHomeActivity extends BaseActivity {
     RecyclerView recyclerViewVideo;
     @BindView(R.id.tv_template)
     TextView tvTemplate;
-    private MyCollectedDemoAdapter adapterTemplate;
+    private TemplateAdapter adapterTemplate;
     private MyVideoAdapter adapterVideo;
 
 
@@ -56,7 +56,7 @@ public class DesignerHomeActivity extends BaseActivity {
     private void init() {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         recyclerViewTemplate.setLayoutManager(gridLayoutManager);
-        adapterTemplate = new MyCollectedDemoAdapter(this);
+        adapterTemplate = new TemplateAdapter(this);
         recyclerViewTemplate.setAdapter(adapterTemplate);
 
         GridLayoutManager gridLayoutManager1 = new GridLayoutManager(this, 3);

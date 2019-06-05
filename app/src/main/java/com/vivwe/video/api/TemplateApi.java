@@ -10,6 +10,12 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface TemplateApi {
+    //获取推荐模板
+    @GET("api/template/listTemplate")
+    Observable<WebMsg> getRecommendTemplate(@Query("pageNum") int pageNum,
+                                            @Query("pageSize") int pageSize,
+                                            @Query("queryId") int queryId);
+
     //获取模板详情
     @GET("api/template/getAndroidTemplate")
     Observable<WebMsg> getTemplateDetail(@Query("templateId") int templateId);
@@ -35,5 +41,16 @@ public interface TemplateApi {
     Observable<WebMsg> searchTemplate(@Query("pageNum") int pageNum,
                                       @Query("pageSize") int pageSize,
                                       @Query("searchName") String searchName);
+
+
+    //获取模板类型（或者叫合集吧）
+    @GET("api/template-type/listTemplateType")
+    Observable<WebMsg> getTemplateType();
+
+   //购买模板其实就是全部模板了
+   @GET("api/template/listTemplate")
+   Observable<WebMsg> getTemplateByType(@Query("pageNum") int pageNum,
+                                      @Query("pageSize") int pageSize,
+                                      @Query("id") int id);
 
 }

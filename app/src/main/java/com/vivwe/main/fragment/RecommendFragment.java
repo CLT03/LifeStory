@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
@@ -23,6 +25,7 @@ import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.base.ui.textview.LinearGradientTextView;
 import com.vivwe.main.R;
 import com.vivwe.main.adapter.RecommendFragmentPagerAdapter;
+import com.vivwe.video.entity.VideoTypeEntity;
 import com.vivwe.video.activity.VideoSearchActivity;
 import com.vivwe.video.api.VideoApi;
 
@@ -48,7 +51,7 @@ public class RecommendFragment extends BaseFragment {
     ViewPager viewPager;
     @BindView(R.id.view)
     View view;
-    String[] titles = new String[]{"推荐", "搞笑", "舞蹈", "游戏", "音乐", "旅行", "宠物", "搞笑", "舞蹈", "游戏", "音乐", "旅行", "宠物"};
+    //String[] titles = new String[]{"推荐", "搞笑", "舞蹈", "游戏", "音乐", "旅行", "宠物", "搞笑", "舞蹈", "游戏", "音乐", "旅行", "宠物"};
     ArrayList<LinearGradientTextView> linearGradientTextViews = new ArrayList<>();
     ArrayList<RecommendItemFragment> fragments = new ArrayList<>();
     int tag = 0;
@@ -68,10 +71,29 @@ public class RecommendFragment extends BaseFragment {
         ViewGroup.LayoutParams layoutParams1 = view.getLayoutParams();
         layoutParams1.height = ScreenUtils.getStatusHeight(getContext());
         view.setLayoutParams(layoutParams1);
-        for (String title : titles) {
+        getVideoTypeList();
+    }
+
+    private void getVideoTypeList(){
+        HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).getVideoTypeList(), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    ArrayList<VideoTypeEntity> arrayVideoType = new GsonBuilder().create().fromJson(webMsg.getData(), new TypeToken<ArrayList<VideoTypeEntity>>() {}.getType());
+                    initTitle(arrayVideoType);
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(getContext(), webMsg.getDesc(), 2000);
+                }
+            }
+        });
+    }
+
+
+    private void initTitle(ArrayList<VideoTypeEntity> videoTypeEntities){
+        for (VideoTypeEntity videoTypeEntity : videoTypeEntities) {
             RecommendItemFragment recommendItemFragment = new RecommendItemFragment();
             Bundle bundle = new Bundle();
-            bundle.putString("tag", title);
+            bundle.putInt("tag", videoTypeEntity.getId());
             recommendItemFragment.setArguments(bundle);
             fragments.add(recommendItemFragment);
         }
@@ -94,12 +116,13 @@ public class RecommendFragment extends BaseFragment {
             }
         });
 
-        for (int i = 0; i < titles.length; i++) {
+        for (int i = 0; i < videoTypeEntities.size(); i++) {
             final LinearGradientTextView linearGradientTextView = new LinearGradientTextView(getContext());
             ViewGroup.LayoutParams layoutParams;
-            layoutParams = new LinearLayout.LayoutParams(getResources().getDimensionPixelOffset(R.dimen.x94),
+            layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.MATCH_PARENT);
-            linearGradientTextView.setText(titles[i]);
+            ((LinearLayout.LayoutParams) layoutParams).setMargins(getResources().getDimensionPixelSize(R.dimen.x15),0,getResources().getDimensionPixelSize(R.dimen.x15),0);
+            linearGradientTextView.setText(videoTypeEntities.get(i).getName());
             linearGradientTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             linearGradientTextView.setTextColor(Color.parseColor("#ffffff"));
 
@@ -134,21 +157,8 @@ public class RecommendFragment extends BaseFragment {
             });
             linearGradientTextViews.add(linearGradientTextView);
         }
-      //  getVideoTypeList();
     }
 
-    private void getVideoTypeList(){
-        HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).getVideoTypeList(), new OnResultListener() {
-            @Override
-            public void onWebUiResult(WebMsg webMsg) {
-                if (webMsg.dataIsSuccessed()) {
-                    Toast.show(getContext(), webMsg.getDesc(), 2000);
-                } else if (webMsg.netIsSuccessed()) {
-                    Toast.show(getContext(), webMsg.getDesc(), 2000);
-                }
-            }
-        });
-    }
 
     @Override
     public void onDestroyView() {

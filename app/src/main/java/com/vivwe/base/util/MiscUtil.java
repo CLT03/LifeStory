@@ -1,5 +1,6 @@
 package com.vivwe.base.util;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -39,6 +40,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -56,8 +58,39 @@ public class MiscUtil {
 
     private static boolean isDebug = false;
     private static String TAG = MiscUtil.class.getSimpleName();
-
     public static boolean VERBOSE_LOG = true;
+
+    public static String getDistanceFromDate(String date){
+        Log.e("ou",date);
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long time;
+        long preYear = 365 * 24 * 60 * 60 * 1000;
+        long preMonth = 30 * 24 * 60 * 60 * 1000;
+        long preDay = 24 * 60 * 60 * 1000;
+        long preHour = 60 * 60 * 1000;
+        long preMinute =  60 * 1000;
+        try {
+            time=System.currentTimeMillis()-sd.parse(date).getTime();
+            if(time / preYear > 0){
+                return time/preYear + "年前";
+            }
+            if(time / preMonth > 0){
+                return time/preMonth + "月前";
+            }
+            if(time / preDay > 0){
+                return time/preDay + "天前";
+            }
+            if(time / preHour > 0){
+                return time/preHour + "小时前";
+            }
+            if(time / preMinute > 0){
+                return time/preMinute + "分钟前";
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+       return "刚刚";
+    }
 
     public static String stringToUnicode(String s) {
         StringBuilder str = new StringBuilder();
@@ -758,58 +791,48 @@ public class MiscUtil {
         });
     }
 
-    /***
-     *
-     * @param filePath 压缩文件的路径
-     * @param location
-     * @throws IOException
+
+    /**
+     * 解压zip到指定的路径
+     * @param zipFileString  ZIP的路径
+     * @param outPathString   要解压缩路径
+     * @throws Exception
      */
-    public static void unzip(String filePath, String location) throws IOException {
-        Logger(TAG, "unzip filePath " + filePath + " location " + location, true);
-        try {
-            File f = new File(location);
-            if(!f.isDirectory()) {
-                f.mkdirs();
-            }
-            ZipInputStream zin = new ZipInputStream(new FileInputStream(filePath));
-            try {
-                ZipEntry ze = null;
-                byte[] buffer = new byte[1024];
-                while ((ze = zin.getNextEntry()) != null) {
-                    String path = location + ze.getName();
-                    Logger(TAG, "path " + path, true);
-                    if (ze.isDirectory()) {
-                        Logger(TAG, "isDirectory", true);
-                        File unzipFile = new File(path);
-                        if(!unzipFile.isDirectory()) {
-                            unzipFile.mkdirs();
-                        }
-                    }
-                    else {
-                        FileOutputStream fout = new FileOutputStream(path, false);
-                        Logger(TAG, "write", true);
-                        try {
-                            for (int c = zin.read(buffer); c != -1; c = zin.read()) {
-                                fout.write(buffer, 0, c);
-                            }
-                            //zin.closeEntry();
-                        }
-                        finally {
-                            Logger(TAG, "write over", true);
-                            fout.close();
-                        }
-                    }
+    public static void UnZipFolder(String zipFileString, String outPathString) throws Exception {
+        ZipInputStream inZip = new ZipInputStream(new FileInputStream(zipFileString));
+        ZipEntry zipEntry;
+        String  szName = "";
+        while ((zipEntry = inZip.getNextEntry()) != null) {
+            szName = zipEntry.getName();
+            if (zipEntry.isDirectory()) {
+                //获取部件的文件夹名
+                szName = szName.substring(0, szName.length() - 1);
+                File folder = new File(outPathString + File.separator + szName);
+                folder.mkdirs();
+            } else {
+                Log.e(TAG,outPathString + File.separator + szName);
+                File file = new File(outPathString + File.separator + szName);
+                if (!file.exists()){
+                    Log.e(TAG, "Create the file:" + outPathString + File.separator + szName);
+                    file.getParentFile().mkdirs();
+                    file.createNewFile();
                 }
-            }
-            finally {
-                Logger(TAG, "finally unzip", true);
-                zin.close();
+                // 获取文件的输出流
+                FileOutputStream out = new FileOutputStream(file);
+                int len;
+                byte[] buffer = new byte[1024];
+                // 读取（字节）字节到缓冲区
+                while ((len = inZip.read(buffer)) != -1) {
+                    // 从缓冲区（0）位置写入（字节）字节
+                    out.write(buffer, 0, len);
+                    out.flush();
+                }
+                out.close();
             }
         }
-        catch (Exception e) {
-            Log.e(TAG, "Unzip exception", e);
-        }
+        inZip.close();
     }
+
 
     public static float sumArray(float[] array) {
         float res = 0;
