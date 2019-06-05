@@ -14,16 +14,26 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.mbs.sdk.net.HttpRequest;
+import com.mbs.sdk.net.listener.OnResultListener;
+import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.ui.alert.Loading;
 import com.vivwe.main.R;
 import com.vivwe.video.adapter.MusicLibraryFragmentPagerAdapter;
 import com.vivwe.video.adapter.MusicLibraryTypeAdapter;
+import com.vivwe.video.api.WebMusicApi;
+import com.vivwe.video.entity.MusicTypeEntity;
 import com.vivwe.video.fragment.MusicLibraryFragment;
 import com.vivwe.video.ui.IMusicPlayView;
 import com.vivwe.video.ui.MusicPlayer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,8 +54,6 @@ public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView
 
     @BindView(R.id.view_pager)
     ViewPager viewPager;
-    @BindView(R.id.horizontalScrollView)
-    HorizontalScrollView horizontalScrollView;
     @BindView(R.id.tv_name)
     TextView tvName;
     @BindView(R.id.tv_start)
@@ -65,20 +73,88 @@ public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView
         setContentView(R.layout.activity_video_music_library);
         ButterKnife.bind(this);
         getWindow().setStatusBarColor(Color.parseColor("#181818"));
-        //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         init();
     }
 
     private void init() {
-
         // 初始化音乐分类
         typeRcv.setLayoutManager(new GridLayoutManager(this, 1, GridLayoutManager.HORIZONTAL, false));
         typeAdapter = new MusicLibraryTypeAdapter(this);
         typeRcv.setAdapter(typeAdapter);
 
-
+        loadMusicType();
     }
+
+    /**
+     * 加载音乐分类
+     */
+    private void loadMusicType(){
+
+        Loading.start(this, false);
+
+        HttpRequest.getInstance().excute(HttpRequest.create(WebMusicApi.class).listMusicType(), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+
+                Loading.stop();
+
+                if(webMsg.dataIsSuccessed()){
+                    List<MusicTypeEntity> datas = new GsonBuilder().create().fromJson(webMsg.getData(), new TypeToken<List<MusicTypeEntity>>(){}.getType());
+                    typeAdapter.setDatas(datas);
+                } else if(webMsg.netIsSuccessed()){
+                    Toast.makeText(MusicLibraryActivity.this, webMsg.getDesc(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    private void loadMusicModule(){
+        fragments = new ArrayList<>();
+        for (int i = 0; i < typeAdapter.getItemCount(); i ++){
+            fragments.add(new MusicLibraryFragment());
+        }
+        viewPager.setAdapter(new MusicLibraryFragmentPagerAdapter(getSupportFragmentManager(), fragments));
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int poisition) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
+
+        int i = getResources().getDimensionPixelOffset(R.dimen.x12);
+        seekBar.setPadding(i, 0, i, 0);//铺不满问题
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                MusicPlayer.getInstance().setProgress(seekBar.getProgress());
+            }
+        });
+
+        MusicPlayer.getInstance().initView(this);
+    }
+
 
     private void temp(){
 //        fragments = new ArrayList<>();

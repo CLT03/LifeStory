@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vivwe.main.R;
+import com.vivwe.video.entity.MusicTypeEntity;
 import com.vivwe.video.ui.MusicPlayer;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class MusicLibraryTypeAdapter extends RecyclerView.Adapter<MusicLibraryTy
     /** 上下文 */
     private Context context;
     /** 数据 */
-    private List<String> datas = new ArrayList<>();
+    private List<MusicTypeEntity> datas = new ArrayList<>();
     /** 选中下标 */
     private int currentIndex = 0;
 
@@ -38,7 +39,7 @@ public class MusicLibraryTypeAdapter extends RecyclerView.Adapter<MusicLibraryTy
      * 设置显示数据
      * @param datas
      */
-    public void setDatas(List<String> datas) {
+    public void setDatas(List<MusicTypeEntity> datas) {
         if(datas == null){
             this.datas.clear();
         } else {
@@ -58,7 +59,7 @@ public class MusicLibraryTypeAdapter extends RecyclerView.Adapter<MusicLibraryTy
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.lineV.setVisibility(position == currentIndex ? View.VISIBLE: View.GONE);
-        holder.nameTv.setText(datas.get(position));
+        holder.nameTv.setText(datas.get(position).getTypeName());
     }
 
     @Override

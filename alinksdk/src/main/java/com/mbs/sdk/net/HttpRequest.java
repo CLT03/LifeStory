@@ -280,7 +280,9 @@ public class HttpRequest {
                                  while((len=is.read(buff))!=-1){
                                      os.write(buff,0,len);
                                      currentLength+=len;
-                                     Log.v(">>>download", String.valueOf(currentLength) + ":" + String.valueOf(totalLength));
+                                     if(Globals.isDebug){
+                                         Log.v(">>>download", String.valueOf(currentLength) + ":" + String.valueOf(totalLength));
+                                     }
                                      emitter.onNext(new ProgressModel(currentLength, totalLength));
                                  }
                                  emitter.onComplete();
