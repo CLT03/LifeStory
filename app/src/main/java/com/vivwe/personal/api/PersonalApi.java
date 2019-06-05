@@ -56,4 +56,14 @@ public interface PersonalApi {
     @FormUrlEncoded
     @POST("api/subscription/insertSubscription")
     Observable<WebMsg> attentionOrCancel(@Field("toUserId") int toUserId);
+
+    //获取关注列表
+    @GET("api/subscription/listSubscriptionUserInfo")
+    Observable<WebMsg> getAttentionList(@Query("pageNum") int pageNum,
+                                            @Query("pageSize") int pageSize);
+
+    //获取粉丝列表
+    @GET("api/subscription/listFansInfo")
+    Observable<WebMsg> getFansList(@Query("pageNum") int pageNum,
+                                        @Query("pageSize") int pageSize);
 }

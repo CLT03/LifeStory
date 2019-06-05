@@ -1,6 +1,5 @@
 package com.vivwe.video.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.Group;
@@ -8,11 +7,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,8 +20,7 @@ import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
-import com.vivwe.main.api.TemplateApi;
-import com.vivwe.personal.adapter.MyCollectedDemoAdapter;
+import com.vivwe.personal.adapter.TemplateAdapter;
 import com.vivwe.personal.entity.TemplateEntity;
 
 import butterknife.BindView;
@@ -45,7 +41,8 @@ public class TemplateSearchActivity extends BaseActivity {
     RecyclerView recyclerView;
     @BindView(R.id.iv_clear)
     ImageView ivClear;
-    private MyCollectedDemoAdapter demoAdapter;
+    private TemplateAdapter demoAdapter;
+
 
 
     @Override
@@ -94,7 +91,7 @@ public class TemplateSearchActivity extends BaseActivity {
 
         GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(gridLayoutManager);
-        demoAdapter=new MyCollectedDemoAdapter(this);
+        demoAdapter=new TemplateAdapter(this);
         recyclerView.setAdapter(demoAdapter);
         edtSearch.requestFocus();
     }

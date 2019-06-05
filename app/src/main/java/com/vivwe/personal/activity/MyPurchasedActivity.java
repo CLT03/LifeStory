@@ -14,7 +14,7 @@ import com.vivwe.author.activity.TransactionRecordActivity;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
-import com.vivwe.personal.adapter.MyCollectedDemoAdapter;
+import com.vivwe.personal.adapter.TemplateAdapter;
 import com.vivwe.personal.api.PersonalApi;
 import com.vivwe.personal.entity.TemplateEntity;
 
@@ -31,7 +31,7 @@ public class MyPurchasedActivity extends BaseActivity {
 
     @BindView(R.id.recycler_view_purchased)
     RecyclerView recyclerViewPurchased;
-    private MyCollectedDemoAdapter adapter;
+    private TemplateAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class MyPurchasedActivity extends BaseActivity {
     private void init(){
         GridLayoutManager gridLayoutManager=new GridLayoutManager(this,2);
         recyclerViewPurchased.setLayoutManager(gridLayoutManager);
-        adapter=new MyCollectedDemoAdapter(this);
+        adapter=new TemplateAdapter(this);
         recyclerViewPurchased.setAdapter(adapter);
         getData();
     }

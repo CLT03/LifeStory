@@ -1,4 +1,4 @@
-package com.vivwe.personal.adapter;
+package com.vivwe.video.adapter;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyFansAdapter extends RecyclerView.Adapter<MyFansAdapter.ViewHolder> {
+public class VideoSearchUserAdapter extends RecyclerView.Adapter<VideoSearchUserAdapter.ViewHolder> {
 
 
     private Activity activity;
@@ -34,7 +34,7 @@ public class MyFansAdapter extends RecyclerView.Adapter<MyFansAdapter.ViewHolder
 
 
 
-    public MyFansAdapter(Activity activity) {
+    public VideoSearchUserAdapter(Activity activity) {
         this.activity = activity;
         requestOptions = new RequestOptions().circleCrop()
                 .placeholder(activity.getResources().getDrawable(R.drawable.ic_launcher_background));

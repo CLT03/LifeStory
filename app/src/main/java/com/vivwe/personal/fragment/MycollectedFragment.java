@@ -15,7 +15,7 @@ import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
-import com.vivwe.personal.adapter.MyCollectedDemoAdapter;
+import com.vivwe.personal.adapter.TemplateAdapter;
 import com.vivwe.personal.adapter.MyCollectedVideoAdapter;
 import com.vivwe.personal.api.PersonalApi;
 import com.vivwe.personal.entity.TemplateEntity;
@@ -32,7 +32,7 @@ public class MycollectedFragment extends Fragment {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     Unbinder unbinder;
-    private MyCollectedDemoAdapter demoAdapter;
+    private TemplateAdapter demoAdapter;
     private MyCollectedVideoAdapter videoAdapter;
 
     @Nullable
@@ -51,7 +51,7 @@ public class MycollectedFragment extends Fragment {
                 case 0:
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
                     recyclerView.setLayoutManager(gridLayoutManager);
-                    demoAdapter = new MyCollectedDemoAdapter(Objects.requireNonNull(getActivity()));
+                    demoAdapter = new TemplateAdapter(Objects.requireNonNull(getActivity()));
                     recyclerView.setAdapter(demoAdapter);
                     recyclerView.setPadding(getResources().getDimensionPixelOffset(R.dimen.x32), 0,
                             getResources().getDimensionPixelOffset(R.dimen.x6), 0);

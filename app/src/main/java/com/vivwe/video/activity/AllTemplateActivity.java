@@ -6,17 +6,28 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.mbs.sdk.net.HttpRequest;
+import com.mbs.sdk.net.listener.OnResultListener;
+import com.mbs.sdk.net.msg.WebMsg;
 import com.mbs.sdk.utils.ScreenUtils;
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.base.ui.textview.LinearGradientTextView;
 import com.vivwe.main.R;
 import com.vivwe.video.adapter.TempalteFragmentPagerAdapter;
+import com.vivwe.video.api.TemplateApi;
+import com.vivwe.video.api.VideoApi;
+import com.vivwe.video.entity.TemplateTypeEntity;
+import com.vivwe.video.entity.VideoTypeEntity;
 import com.vivwe.video.fragment.TemplateItemFragment;
 
 import java.util.ArrayList;
@@ -24,6 +35,8 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.vivwe.base.app.MyApplication.getContext;
 
 /**
  * ahtor: super_link
@@ -37,7 +50,6 @@ public class AllTemplateActivity extends BaseActivity {
     HorizontalScrollView horizontalScrollView;
     @BindView(R.id.view_pager)
     ViewPager viewPager;
-    String[] titles = new String[]{"推荐", "搞笑", "舞蹈", "游戏", "音乐", "旅行", "宠物", "搞笑", "舞蹈", "游戏", "音乐", "旅行", "宠物"};
     ArrayList<LinearGradientTextView> linearGradientTextViews = new ArrayList<>();
     ArrayList<TemplateItemFragment> fragments = new ArrayList<>();
     int tag = 0;
@@ -47,14 +59,29 @@ public class AllTemplateActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_all_template);
         ButterKnife.bind(this);
-        init();
+        getTemplateType();
     }
 
-    private void init() {
-        for (String title : titles) {
+    private void getTemplateType(){
+        HttpRequest.getInstance().excute(HttpRequest.create(TemplateApi.class).getTemplateType(), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    ArrayList<TemplateTypeEntity> templateTypeEntities = new GsonBuilder().create().fromJson(webMsg.getData(),new TypeToken<ArrayList<TemplateTypeEntity>>(){}.getType());
+                    initTitle(templateTypeEntities);
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(getContext(), webMsg.getDesc(), 2000);
+                }
+            }
+        });
+    }
+
+    private void initTitle(ArrayList<TemplateTypeEntity> templateTypeEntities){
+        //tag=getIntent().getIntExtra("tag",0);
+        for (TemplateTypeEntity templateTypeEntity: templateTypeEntities) {
             TemplateItemFragment templateItemFragment = new TemplateItemFragment();
             Bundle bundle = new Bundle();
-            bundle.putString("tag", title);
+            bundle.putInt("tag", templateTypeEntity.getId());
             templateItemFragment.setArguments(bundle);
             fragments.add(templateItemFragment);
         }
@@ -77,17 +104,18 @@ public class AllTemplateActivity extends BaseActivity {
             }
         });
 
-        for (int i = 0; i < titles.length; i++) {
+        for (int i = 0; i < templateTypeEntities.size(); i++) {
             final LinearGradientTextView linearGradientTextView = new LinearGradientTextView(this);
             ViewGroup.LayoutParams layoutParams;
-            layoutParams = new LinearLayout.LayoutParams(getResources().getDimensionPixelOffset(R.dimen.x94),
+            layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.MATCH_PARENT);
-            linearGradientTextView.setText(titles[i]);
+            ((LinearLayout.LayoutParams) layoutParams).setMargins(getResources().getDimensionPixelSize(R.dimen.x15),0,getResources().getDimensionPixelSize(R.dimen.x15),0);
+            linearGradientTextView.setText(templateTypeEntities.get(i).getName());
             linearGradientTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             linearGradientTextView.setTextColor(Color.parseColor("#ffffff"));
 
             // linearGradientTextView.setGravity(Gravity.CENTER);
-            if (i == 0) {
+            if (i == tag) {
                 linearGradientTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.x40));
                 linearGradientTextView.setTextColor(0xFF52D3FF, 0xFFB35CFF);
             } else {
@@ -117,8 +145,16 @@ public class AllTemplateActivity extends BaseActivity {
             });
             linearGradientTextViews.add(linearGradientTextView);
         }
-        //  getVideoTypeList();
+        viewPager.post(new Runnable() {
+            @Override
+            public void run() {
+                linearGradientTextViews.get(getIntent().getIntExtra("tag",0)).performClick();
+                //viewPager.setCurrentItem(getIntent().getIntExtra("tag",0));
+            }
+        });
     }
+
+
 
 
     @OnClick({R.id.iv_back, R.id.iv_search})

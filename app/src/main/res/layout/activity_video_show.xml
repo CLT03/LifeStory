@@ -259,6 +259,7 @@
         android:layout_marginRight="@dimen/x30"
         android:background="@drawable/r16_gray_normal"
         android:hint="说点什么..."
+        android:imeOptions="actionSend"
         android:inputType="textPersonName"
         android:paddingLeft="@dimen/x20"
         android:paddingRight="@dimen/x20"
