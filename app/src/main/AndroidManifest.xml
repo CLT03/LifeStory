@@ -68,6 +68,10 @@
         <activity android:name="com.vivwe.video.activity.VideoPreviewActivity" android:theme="@style/WelcomeTheme" />
         <activity android:name="com.vivwe.video.activity.AllTemplateActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name="com.vivwe.main.activity.ResetPhoneActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.video.activity.VideoPublishActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.video.activity.VideoPulishedActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.video.activity.VideoChoosePermissionActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.video.activity.VideoChooseTypeActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
 
         <activity android:name="com.vivwe.base.util.imgeloader.ImageLoadActivity" android:theme="@style/AppWhiteTheme" />
         <activity android:name="com.vivwe.base.util.imgeloader.ImageEditActivity" android:theme="@style/AppWhiteTheme" />

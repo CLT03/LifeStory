@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#fafafa"
+    android:layout_height="@dimen/x100">
+
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x96"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/x30"
+        android:text="搞笑"
+        android:textColor="#191919"
+        android:background="@drawable/ra_white_btn"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_choose"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x36"
+        android:layout_marginRight="@dimen/x30"
+        android:padding="@dimen/x6"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_type"
+        app:layout_constraintEnd_toEndOf="@+id/tv_type"
+        app:layout_constraintTop_toTopOf="@+id/tv_type"
+        app:srcCompat="@mipmap/icon_selected" />
+</android.support.constraint.ConstraintLayout>
