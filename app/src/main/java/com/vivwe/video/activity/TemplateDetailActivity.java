@@ -141,6 +141,14 @@ public class TemplateDetailActivity extends BaseActivity {
                     }
                 }
             });
+        }else {
+            if(templateDetailEntity.getStyle()==1){
+                startActivity(new Intent(TemplateDetailActivity.this,VideoCreateByStandardActivity.class)
+                        .putExtra("path",fileDest.getPath()));
+            }else{
+                startActivity(new Intent(TemplateDetailActivity.this,VideoCreateByDynamicActivity.class)
+                        .putExtra("path",fileDest.getPath()));
+            }
         }
     }
 

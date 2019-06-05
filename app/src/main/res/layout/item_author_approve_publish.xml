@@ -89,7 +89,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView32" />
 
     <ImageView
-        android:id="@+id/imageView35"
+        android:id="@+id/iv_private"
         android:layout_width="@dimen/x26"
         android:layout_height="@dimen/x20"
         android:layout_marginTop="@dimen/x20"
@@ -105,18 +105,18 @@
         android:text="9626次"
         android:textColor="#666666"
         android:textSize="@dimen/x24"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView35"
-        app:layout_constraintStart_toEndOf="@+id/imageView35"
-        app:layout_constraintTop_toTopOf="@+id/imageView35" />
+        app:layout_constraintBottom_toBottomOf="@+id/iv_private"
+        app:layout_constraintStart_toEndOf="@+id/iv_private"
+        app:layout_constraintTop_toTopOf="@+id/iv_private" />
 
     <ImageView
         android:id="@+id/imageView36"
         android:layout_width="@dimen/x24"
         android:layout_height="@dimen/x24"
         android:layout_marginLeft="@dimen/x138"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView35"
-        app:layout_constraintStart_toEndOf="@+id/imageView35"
-        app:layout_constraintTop_toTopOf="@+id/imageView35"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_private"
+        app:layout_constraintStart_toEndOf="@+id/iv_private"
+        app:layout_constraintTop_toTopOf="@+id/iv_private"
         app:srcCompat="@mipmap/icon_collect_template" />
 
     <TextView
@@ -136,9 +136,9 @@
         android:layout_width="@dimen/x28"
         android:layout_height="@dimen/x18"
         android:layout_marginLeft="@dimen/x132"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView35"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_private"
         app:layout_constraintStart_toStartOf="@+id/tv_collected"
-        app:layout_constraintTop_toTopOf="@+id/imageView35"
+        app:layout_constraintTop_toTopOf="@+id/iv_private"
         app:srcCompat="@mipmap/icon_browse_template" />
 
     <TextView

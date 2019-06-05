@@ -36,7 +36,7 @@ public class MyRecyclerView extends RecyclerView {
                 y=event.getRawY();//只记一次起始位置，当recyclerview中的item绑定了onclick事情 会不走这里
                 startY.setStartY(y);
                // firstScroll=false;
-                //Log.e("ououou", "ACTION_DOWN" + event.getRawY());
+                Log.e("ououou", "ACTION_DOWN" + event.getRawY());
                 break;
             case MotionEvent.ACTION_MOVE:
                 if(firstScroll){
@@ -44,7 +44,7 @@ public class MyRecyclerView extends RecyclerView {
                     y=event.getRawY();//只记一次起始位置
                 }
                 if (event.getRawY() > y ) {//手指位置大于起始位置 向下滑
-                    //Log.e("ououou","手指位置大于起始位置");
+                    Log.e("ououou","手指位置大于起始位置");
                     if(!canScrollVertically(-1)){//向下滑动到顶部
                         if(firstReachToTop){//第一次recyclerview到顶部 需要更新起始y
                             firstReachToTop =false;
@@ -56,7 +56,7 @@ public class MyRecyclerView extends RecyclerView {
                 } else {//手指位置小于起始位置 向上滑
                     intercept=true;
                     firstReachToTop =true;
-                    //Log.e("ououou","手指位置小于起始位置");
+                    Log.e("ououou","手指位置小于起始位置");
                 }
                  //Log.e("ououou", "dsf" + event.getRawY()+" "+y);
                 break;
