@@ -2,6 +2,7 @@ package com.vivwe.video.adapter;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,8 @@ import butterknife.ButterKnife;
 public class VideoToShowCommendToCommentAdapter extends RecyclerView.Adapter<VideoToShowCommendToCommentAdapter.ViewHolder> {
 
 
+    @BindView(R.id.cl)
+    ConstraintLayout cl;
     private Activity activity;
     private RequestOptions requestOptions;
     private ArrayList<CommentCommentEntity> commentEntities;
@@ -44,9 +47,10 @@ public class VideoToShowCommendToCommentAdapter extends RecyclerView.Adapter<Vid
         TextView tvName;
         @BindView(R.id.tv_content)
         TextView tvContent;
+
         ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 
@@ -66,7 +70,7 @@ public class VideoToShowCommendToCommentAdapter extends RecyclerView.Adapter<Vid
 
     @Override
     public int getItemCount() {
-        return commentEntities==null?0:commentEntities.size();
+        return commentEntities == null ? 0 : commentEntities.size();
     }
 
 

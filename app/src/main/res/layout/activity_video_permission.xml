@@ -6,4 +6,161 @@
     android:layout_height="match_parent"
     android:background="#fafafa">
 
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x88"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:text="权限设置"
+        android:textColor="#191919"
+        android:textSize="@dimen/x32"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/x88"
+        android:layout_height="0dp"
+        android:background="@drawable/ra_white_btn"
+        android:paddingLeft="@dimen/x34"
+        android:paddingTop="@dimen/x30"
+        android:paddingRight="@dimen/x36"
+        android:paddingBottom="@dimen/x26"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_title"
+        app:srcCompat="@mipmap/icon_back_black" />
+
+    <TextView
+        android:id="@+id/tv_sure"
+        android:layout_width="@dimen/x100"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/x10"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintTop_toTopOf="@+id/tv_title" />
+
+    <TextView
+        android:id="@+id/tv_open"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x114"
+        android:layout_marginTop="@dimen/x4"
+        android:background="@drawable/ra_white_btn"
+        android:paddingLeft="@dimen/x30"
+        android:paddingTop="@dimen/x20"
+        android:text="公开"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginBottom="@dimen/x20"
+        android:text="所有人可见"
+        android:textSize="@dimen/x24"
+        android:textColor="#666666"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_open"
+        app:layout_constraintStart_toStartOf="@+id/tv_open" />
+
+    <ImageView
+        android:id="@+id/iv_open"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x36"
+        android:layout_marginRight="@dimen/x30"
+        android:padding="@dimen/x6"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_open"
+        app:layout_constraintEnd_toEndOf="@+id/tv_open"
+        app:layout_constraintTop_toTopOf="@+id/tv_open"
+        app:srcCompat="@mipmap/icon_selected" />
+
+    <TextView
+        android:id="@+id/tv_friend"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x114"
+        android:layout_marginTop="@dimen/x4"
+        android:background="@drawable/ra_white_btn"
+        android:paddingLeft="@dimen/x30"
+        android:paddingTop="@dimen/x20"
+        android:text="好友"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_open" />
+
+    <TextView
+        android:id="@+id/textView51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginBottom="@dimen/x20"
+        android:text="相互关注好友可见"
+        android:textColor="#666666"
+        android:textSize="@dimen/x24"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_friend"
+        app:layout_constraintStart_toStartOf="@+id/tv_friend" />
+
+    <ImageView
+        android:id="@+id/iv_friend"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x36"
+        android:layout_marginRight="@dimen/x30"
+        android:padding="@dimen/x6"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_friend"
+        app:layout_constraintEnd_toEndOf="@+id/tv_friend"
+        app:layout_constraintTop_toTopOf="@+id/tv_friend"
+        app:srcCompat="@mipmap/icon_selected" />
+
+    <TextView
+        android:id="@+id/tv_private"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x114"
+        android:layout_marginTop="@dimen/x4"
+        android:background="@drawable/ra_white_btn"
+        android:paddingLeft="@dimen/x30"
+        android:paddingTop="@dimen/x20"
+        android:text="私密"
+        android:textColor="#191919"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_friend" />
+
+    <TextView
+        android:id="@+id/textView52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginBottom="@dimen/x20"
+        android:text="仅自己可见"
+        android:textColor="#666666"
+        android:textSize="@dimen/x24"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_private"
+        app:layout_constraintStart_toStartOf="@+id/tv_private" />
+
+    <ImageView
+        android:id="@+id/iv_private"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x36"
+        android:layout_marginRight="@dimen/x30"
+        android:padding="@dimen/x6"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_private"
+        app:layout_constraintEnd_toEndOf="@+id/tv_private"
+        app:layout_constraintTop_toTopOf="@+id/tv_private"
+        app:srcCompat="@mipmap/icon_selected" />
+
 </android.support.constraint.ConstraintLayout>
