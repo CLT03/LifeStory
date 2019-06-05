@@ -114,7 +114,7 @@ public class VideoToShowCommendAdapter extends RecyclerView.Adapter<VideoToShowC
             holder.recyclerView.setLayoutManager(linearLayoutManager);
             final VideoToShowCommendToCommentAdapter adapter = new VideoToShowCommendToCommentAdapter(activity);
             holder.recyclerView.setAdapter(adapter);
-            adapter.setCommentEntities(commentEntities.get(i).getVdrList());
+            adapter.setCommentEntities(commentEntities.get(i).getVdrList(),holder.getAdapterPosition());
             holder.recyclerView.setVisibility(View.VISIBLE);
             if(!commentEntities.get(i).isOpen()) {
                 //Log.e("ououou","sdf"+commentEntities.get(i).getVdrCount());
@@ -125,13 +125,19 @@ public class VideoToShowCommendAdapter extends RecyclerView.Adapter<VideoToShowC
                     holder.tvOpen.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            getMoreReply(commentEntities.get(holder.getAdapterPosition()).getVdrList().get(0).getVdrId(),
-                                    commentEntities.get(holder.getAdapterPosition()).getVdId(),
-                                    adapter, commentEntities.get(holder.getAdapterPosition()), holder.groupOpen);
+                            if(commentEntities.get(holder.getAdapterPosition()).isOpen()){//已展开 那就是收起
+                                //commentEntities.get(holder.getAdapterPosition()).getVdrList()
+                            }else {//未展开 那就是展开
+                                getMoreReply(commentEntities.get(holder.getAdapterPosition()).getVdrList().get(0).getVdrId(),
+                                        commentEntities.get(holder.getAdapterPosition()).getVdId(),
+                                        adapter, commentEntities.get(holder.getAdapterPosition()), holder.groupOpen);
+                            }
                         }
                     });
                 } else holder.groupOpen.setVisibility(View.GONE);
-            }else holder.groupOpen.setVisibility(View.GONE);
+            }else {
+                holder.tvOpen.setText("收起");
+            }
         } else {
             holder.groupOpen.setVisibility(View.GONE);
             holder.recyclerView.setVisibility(View.GONE);
@@ -166,7 +172,8 @@ public class VideoToShowCommendAdapter extends RecyclerView.Adapter<VideoToShowC
      * @param videoComment
      * @param group 展开更多的组
      */
-    private void getMoreReply(int vdrId, int videoDiscussId, final VideoToShowCommendToCommentAdapter adapter, final VideoComment videoComment, final Group group){
+    private void getMoreReply(int vdrId, int videoDiscussId, final VideoToShowCommendToCommentAdapter adapter,
+                              final VideoComment videoComment, final Group group ){
         HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).getMoreReply(UserCache.Companion.getUserInfo().getId(),
                 vdrId ,videoDiscussId), new OnResultListener() {
             @Override
@@ -174,6 +181,9 @@ public class VideoToShowCommendAdapter extends RecyclerView.Adapter<VideoToShowC
                 if (webMsg.dataIsSuccessed()) {
                     videoComment.setOpen(true);
                     ArrayList<CommentCommentEntity> commentCommentEntities=new GsonBuilder().create().fromJson(webMsg.getData(),new TypeToken<ArrayList<CommentCommentEntity>>(){}.getType());
+                    for(int i=0;i<videoComment.getNewAddReplyNumber();i++){//去掉新加的回复
+                        commentCommentEntities.remove(commentCommentEntities.size()-1);
+                    }
                     videoComment.getVdrList().addAll(commentCommentEntities);
                     adapter.setCommentEntities(videoComment.getVdrList());
                     group.setVisibility(View.GONE);
