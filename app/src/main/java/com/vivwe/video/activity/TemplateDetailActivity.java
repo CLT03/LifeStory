@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -18,15 +19,11 @@ import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.author.activity.DesignerHomeActivity;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.base.cache.UserCache;
-import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.base.util.MiscUtil;
 import com.vivwe.main.R;
 import com.vivwe.video.entity.TemplateDetailEntity;
 import com.vivwe.video.api.TemplateApi;
-
 import java.io.File;
-import java.io.IOException;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -82,7 +79,7 @@ public class TemplateDetailActivity extends BaseActivity {
                     }
                     Glide.with(TemplateDetailActivity.this).load(templateDetailEntity.getAvatar()).apply(requestOptions).into(ivHead);
                 } else if (webMsg.netIsSuccessed()) {
-                    Toast.show(TemplateDetailActivity.this, webMsg.getDesc(), 2000);
+                    Toast.makeText(TemplateDetailActivity.this, webMsg.getDesc(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -126,18 +123,24 @@ public class TemplateDetailActivity extends BaseActivity {
                 @Override
                 public void onFinished(WebMsg webMsg) {
                     try {
-                        MiscUtil.UnZipFolder(file.getPath(),fileDest.getPath());//解压
-                        file.delete();
-                        if(templateDetailEntity.getStyle()==1){
-                            startActivity(new Intent(TemplateDetailActivity.this,VideoCreateByStandardActivity.class)
-                                    .putExtra("path",fileDest.getPath()+"/"+fileDest.list()[0]));
-                        }else{
-                            startActivity(new Intent(TemplateDetailActivity.this,VideoCreateByDynamicActivity.class)
-                                    .putExtra("path",fileDest.getPath()+"/"+fileDest.list()[0]));
+                        if(webMsg.dataIsSuccessed()){
+                                MiscUtil.UnZipFolder(file.getPath(),fileDest.getPath());//解压
+                                file.delete();
+                                if(templateDetailEntity.getStyle()==1){
+                                    startActivity(new Intent(TemplateDetailActivity.this,VideoCreateByStandardActivity.class)
+                                            .putExtra("path",fileDest.getPath()+"/"+fileDest.list()[0]));
+                                }else{
+                                    startActivity(new Intent(TemplateDetailActivity.this,VideoCreateByDynamicActivity.class)
+                                            .putExtra("path",fileDest.getPath()+"/"+fileDest.list()[0]));
+                                }
+                        } else {
+                            btnBuy.setText("¥" + templateDetailEntity.getPrice() + "/次");
+                            Toast.makeText(TemplateDetailActivity.this, "缓存失败，请请重试！", Toast.LENGTH_LONG).show();
                         }
-                        btnBuy.setText("¥" + templateDetailEntity.getPrice() + "/次");
                     } catch (Exception e) {
                         e.printStackTrace();
+                    } finally {
+                        btnBuy.setText("¥" + templateDetailEntity.getPrice() + "/次");
                     }
                 }
             });
@@ -160,7 +163,7 @@ public class TemplateDetailActivity extends BaseActivity {
             @Override
             public void onWebUiResult(WebMsg webMsg) {
                 if (webMsg.dataIsSuccessed()) {
-                    Toast.show(TemplateDetailActivity.this, webMsg.getDesc(), 2000);
+                    Toast.makeText(TemplateDetailActivity.this, "操作成功！", Toast.LENGTH_LONG).show();
                     if(isStarted==0) {
                         isStarted=1;
                         ivStar.setImageDrawable(getResources().getDrawable(R.mipmap.icon_collect_template));
@@ -168,8 +171,8 @@ public class TemplateDetailActivity extends BaseActivity {
                         isStarted=0;
                         ivStar.setImageDrawable(getResources().getDrawable(R.mipmap.icon_collect_template_add));
                     }
-                }else {
-                    Toast.show(TemplateDetailActivity.this, webMsg.getDesc(), 2000);
+                } else if(webMsg.netIsSuccessed()){
+                    Toast.makeText(TemplateDetailActivity.this, webMsg.getDesc(), Toast.LENGTH_LONG).show();
                 }
             }
         });
