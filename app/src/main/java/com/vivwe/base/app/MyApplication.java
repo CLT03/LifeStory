@@ -11,6 +11,7 @@ import com.mbs.sdk.net.msg.WebMsg;
 import com.shixing.sxvideoengine.SXVideo;
 import com.vivwe.base.cache.UserCache;
 import com.vivwe.base.entity.UserToken;
+import com.vivwe.base.exception.CrashCollectHandler;
 import com.vivwe.base.ui.alert.AlertDialog;
 import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.base.ui.alert.constant.AlertDialogEnum;
@@ -32,6 +33,10 @@ public class MyApplication extends Application implements OnWebExceptionListener
     public void onCreate() {
         super.onCreate();
         myApplication = this;
+
+        //设置该CrashHandler为程序的默认处理器
+        CrashCollectHandler catchExcep = new CrashCollectHandler();
+        catchExcep.init(this);
 
         initSdk();
         //更新

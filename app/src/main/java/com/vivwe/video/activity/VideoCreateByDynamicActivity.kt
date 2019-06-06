@@ -2,14 +2,14 @@ package com.vivwe.video.activity
 
 import android.content.Intent
 import android.graphics.Color
-import android.media.MediaMetadataRetriever
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
-import com.vivwe.base.ui.alert.Toast
+import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
@@ -19,9 +19,12 @@ import com.shixing.sxvideoengine.SXTemplate
 import com.shixing.sxvideoengine.SXTemplateRender
 import com.shixing.sxvideoengine.SXTextCanvas
 import com.vivwe.base.activity.BaseActivity
+import com.vivwe.base.cache.ImageLoaderCache
+import com.vivwe.base.constant.Globals
 import com.vivwe.base.ui.CircleBarView
 import com.vivwe.base.ui.alert.AlertDialog
 import com.vivwe.base.util.AssetsUtils
+import com.vivwe.base.util.TimeUtils
 import com.vivwe.base.util.imgeloader.ImageLoadActivity
 import com.vivwe.main.R
 import com.vivwe.video.adapter.VideoCreateDynamicImagesAdapter
@@ -44,6 +47,8 @@ class VideoCreateByDynamicActivity: BaseActivity() {
     lateinit var musicNameTv: TextView
     @BindView(R.id.tv_music_duration)
     lateinit var musicDurationTv: TextView
+    @BindView(R.id.iv_cover)
+    lateinit var coverIv: ImageView
 
     @BindView(R.id.tv_video_time)
     lateinit var videoTimeTv: TextView
@@ -72,8 +77,6 @@ class VideoCreateByDynamicActivity: BaseActivity() {
     @BindView(R.id.tv_next)
     lateinit var nextTv: TextView
 
-
-
     lateinit var adapter: VideoCreateDynamicImagesAdapter
 
     private var mFolder: File? = null
@@ -91,19 +94,22 @@ class VideoCreateByDynamicActivity: BaseActivity() {
 
     fun init(){
 
-        // 获取APP内缓存目录
-        mFolder = getExternalFilesDir("dynamic")
+//        // 获取APP内缓存目录
+//        mFolder = getExternalFilesDir("dynamic")
+//        val folder = File(mFolder, "Chinese Style")
 
-        // 创建缓存中对应该模板的File
-        val folder = File(mFolder, "Chinese Style")
 
-        if (!folder.exists()) { // 当模板不在临时文件夹，拷贝模板到临时文件夹
-            Thread (object: Runnable {
-                override fun run() {
-                    // 因为这是测试，所以文件一定不会不存在，如果正式时需要判断是否成功！
-                    AssetsUtils.copyDirFromAssets(this@VideoCreateByDynamicActivity, "dynamic" + File.separator + "Chinese Style", folder.path)
-                }
-            }).start()
+        mFolder = File(intent.getStringExtra("path"))
+
+        if (!mFolder!!.exists()) { // 当模板不在临时文件夹，拷贝模板到临时文件夹
+            Toast.makeText(this, "非法模板！", Toast.LENGTH_LONG).show()
+            finish()
+//            Thread (object: Runnable {
+//                override fun run() {
+//                    // 因为这是测试，所以文件一定不会不存在，如果正式时需要判断是否成功！
+//                    AssetsUtils.copyDirFromAssets(this@VideoCreateByDynamicActivity, "dynamic" + File.separator + "Chinese Style", folder.path)
+//                }
+//            }).start()
         }
 
         adapter = VideoCreateDynamicImagesAdapter(this)
@@ -112,18 +118,18 @@ class VideoCreateByDynamicActivity: BaseActivity() {
 
         adapter!!.setListener(object: OnVideoCreateImageItemClicListener {
             override fun onItemClick(path: String, postion: Int) {
-                Toast.show(this@VideoCreateByDynamicActivity, "图片被点击了", 3000)
+                Toast.makeText(this@VideoCreateByDynamicActivity, "图片被点击了", Toast.LENGTH_LONG).show()
             }
 
             override fun onAddClick() {
-                Toast.show(this@VideoCreateByDynamicActivity, "新增图片", 3000)
+                Toast.makeText(this@VideoCreateByDynamicActivity, "新增图片", Toast.LENGTH_LONG).show()
 
                 addImages()
 
             }
 
             override fun onEditClick(path: String, postion: Int) {
-                Toast.show(this@VideoCreateByDynamicActivity, "编辑图片", 3000)
+                Toast.makeText(this@VideoCreateByDynamicActivity, "编辑图片", Toast.LENGTH_LONG).show()
             }
 
         })
@@ -136,28 +142,22 @@ class VideoCreateByDynamicActivity: BaseActivity() {
         /** 添加照片 */
         if(requestCode == 1 && data != null) {
             var paths: ArrayList<String> = data!!.getStringArrayListExtra("result")
-            Log.v(">>>", GsonBuilder().create().toJson(paths))
+            if(Globals.isDebug){
+                Log.v(">>>", GsonBuilder().create().toJson(paths))
+            }
 
             adapter.addDatas(paths)
         } else if(requestCode == 2 && data != null){
-            var musicUrl = data!!.getStringExtra("result")
-
-            Log.v(">>>music", musicUrl)
-            var mmr = MediaMetadataRetriever()
-            mmr.setDataSource(musicUrl, null)
 
             // 获取歌曲信息
-            val title = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)
-            val album = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM)
-            val duration = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
-            val pic = mmr.embeddedPicture
+            currentAudioPath = data!!.getStringExtra("path")
+            val title = data!!.getStringExtra("name")
+            val cover = data!!.getStringExtra("cover")
+            val duration = data!!.getLongExtra("duration", 0)
 
-            // 设置信息到显示
-            var date = Date()
-            date.time = duration.toLong()
-            var format = SimpleDateFormat("m:S").format(date)
             musicNameTv.setText(title)
-            musicDurationTv.setText(format)
+            musicDurationTv.setText(TimeUtils.toMusicFormatTime(duration))
+            ImageLoaderCache.getInstance().displayImage(cover, coverIv)
         }
     }
 
@@ -244,20 +244,30 @@ class VideoCreateByDynamicActivity: BaseActivity() {
     }
 
 
-    lateinit var template: SXTemplate
+    var template: SXTemplate? = null
     fun createrTemplate(){
         val paths = adapter.datas
 
-        val folder = File(mFolder, "Chinese Style").getPath()
+//        val folder = File(mFolder, "Chinese Style").getPath()
 
         if(template == null){
-            template = SXTemplate(folder, SXTemplate.TemplateUsage.kForRender)
+            template = SXTemplate(mFolder!!.path, SXTemplate.TemplateUsage.kForRender)
+
+            val title = template!!.getAssetJsonForUIKey("title")
+            if (!TextUtils.isEmpty(title)) {
+                val sxTextCanvas = SXTextCanvas(title)
+                val format = SimpleDateFormat("制作日期：\nyyyy年M月d日", Locale.US)
+                sxTextCanvas.setContent(format.format(Date()))
+                sxTextCanvas.adjustSize()
+                val path = sxTextCanvas.saveToPath(externalCacheDir.toString() + File.separator + UUID.randomUUID() + ".png")
+                template!!.setFileForAsset("title", path)
+
+            }
         }
 
-        template.setReplaceableFilePaths(paths!!.toArray(arrayOfNulls<String>(paths.size)))
+        template!!.setReplaceableFilePaths(paths!!.toArray(arrayOfNulls<String>(paths.size)))
 
-
-        var duration:Int = template.realDuration()
+        var duration:Int = template!!.realDuration()
         videoTimeTv.setText("" + duration)
     }
 
@@ -268,20 +278,22 @@ class VideoCreateByDynamicActivity: BaseActivity() {
     @OnClick(R.id.tv_next)
     fun generatorVideo(){
 
-        if(adapter.isEdit) return;
-
-//        val paths = adapter.datas
-
-        if(adapter.datas!!.size < 3){
-            Toast.show(this, "至少需要三张图片哦！", 3000)
+        val paths = adapter.datas
+        if(paths!!.size < 3){
+            Toast.makeText(this, "至少需要三张图片哦！", Toast.LENGTH_LONG).show()
             return
         }
+        val folder = mFolder!!.getPath()
+        if(Globals.isDebug){
+            Log.v(">>>generatorVideo", folder)
+            Log.v(">>>currentAudioPath", currentAudioPath)
+        }
 
-//        val folder = File(mFolder, "Chinese Style").getPath()
-//        val template = SXTemplate(folder, SXTemplate.TemplateUsage.kForRender)
+        val template = SXTemplate(folder, SXTemplate.TemplateUsage.kForRender)
 //        val toBeStored = paths.toArray(arrayOfNulls<String>(paths.size))
-//        template.setReplaceableFilePaths(paths.toArray(arrayOfNulls<String>(paths.size)))
-        createrTemplate()
+        template.setReplaceableFilePaths(paths.toArray(arrayOfNulls<String>(paths.size)))
+        template.commit()
+
 
         // 获取输出目录
         val outputFilePath = getOutputFilePath()
@@ -293,7 +305,6 @@ class VideoCreateByDynamicActivity: BaseActivity() {
             sxTextCanvas.adjustSize()
             val path = sxTextCanvas.saveToPath(externalCacheDir.toString() + File.separator + UUID.randomUUID() + ".png")
             template.setFileForAsset("title", path)
-
         }
         template.commit()
 
@@ -331,6 +342,7 @@ class VideoCreateByDynamicActivity: BaseActivity() {
             }
 
             override fun onCancel() {
+
                 alert.dismiss()
             }
         })
