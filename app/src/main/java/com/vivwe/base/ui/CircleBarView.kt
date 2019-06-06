@@ -72,7 +72,7 @@ class CircleBarView: View {
 
         var sweepAngle = currentValue.toFloat() * 360 / maxValue.toFloat()
 
-        Log.v(">>>angle",sweepAngle.toString());
+        //Log.v(">>>angle",sweepAngle.toString());
 
         canvas.drawArc(rectF, 0f, 360f, false, tatalProgressPaint)
         canvas.drawArc(rectF,-90f,sweepAngle.toFloat(),false,progressPaint);//这里角度0对应的是三点钟方向，顺时针方向递增
