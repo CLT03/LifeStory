@@ -64,15 +64,19 @@ public class MusicLibraryAdapter extends RecyclerView.Adapter<MusicLibraryAdapte
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+
+        final String title = datas.get(position).getMusicTitle();
+        final String cover = "http://prj0w0ymc.bkt.clouddn.com/" + datas.get(position).getImageUrl();
+        final String url = "http://prj0w0ymc.bkt.clouddn.com/"+datas.get(position).getMusicUrl();
+
         holder.tvName.setText(datas.get(position).getMusicTitle());
-        ImageLoaderCache.getInstance().displayImage("http://prj0w0ymc.bkt.clouddn.com/" + datas.get(position).getImageUrl(), holder.tvCover);
+        ImageLoaderCache.getInstance().displayImage(cover, holder.tvCover);
         holder.tvTime.setText(String.valueOf(datas.get(position).getSize()));
 
         holder.tvCover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "http://prj0w0ymc.bkt.clouddn.com/"+datas.get(position).getMusicUrl();
-                MusicPlayer.getInstance().playMusic(url,holder.tvName.getText().toString());
+                MusicPlayer.getInstance().playMusic(cover, url, title);
             }
         });
     }

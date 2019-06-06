@@ -225,8 +225,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_copy_images" />
 
-    <View
-        android:id="@+id/view28"
+    <ImageView
+        android:id="@+id/iv_cover"
         android:layout_width="@dimen/x64"
         android:layout_height="@dimen/x64"
         android:layout_marginStart="@dimen/x20"
@@ -242,7 +242,7 @@
         android:layout_marginStart="@dimen/x20"
         android:background="@mipmap/icon_video_refresh"
         app:layout_constraintBottom_toBottomOf="@+id/v_choose_music"
-        app:layout_constraintStart_toEndOf="@+id/view28"
+        app:layout_constraintStart_toEndOf="@+id/iv_cover"
         app:layout_constraintTop_toTopOf="@+id/v_choose_music" />
 
     <TextView

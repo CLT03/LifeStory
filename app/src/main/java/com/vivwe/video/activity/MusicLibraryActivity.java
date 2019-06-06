@@ -187,7 +187,23 @@ public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView
             return;
         }
 
+        HttpRequest.getInstance().excute(HttpRequest.create(WebMusicApi.class).listMusics(pageNum, 15, typeAdapter.getDatas().get(currentIndex).getId()), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
 
+                if(webMsg.dataIsSuccessed()){
+                    LoadMusic data = webMsg.getData(LoadMusic.class);
+                    fragments.get(currentIndex).getAdapter().addDatas(data.getRecords());
+                    fragments.get(currentIndex).setNextPageNum();
+
+                    if(data.getRecords() == null || data.getRecords().size() == 0){
+                        refreshSrl.finishLoadMoreWithNoMoreData();
+                        return;
+                    }
+                }
+                refreshSrl.finishLoadMore(webMsg.dataIsSuccessed());
+            }
+        });
 
     }
 
@@ -280,6 +296,9 @@ public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView
                 break;
             case R.id.btn_use:
 
+                if(MusicPlayer.getInstance().getUrl() == null){
+                    return;
+                }
                 if(Globals.isDebug){
                     Log.v(">>>chooseSong", MusicPlayer.getInstance().getUrl());
                 }
@@ -291,7 +310,10 @@ public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView
                     file.mkdirs();
                 }
 
-                HttpRequest.getInstance().downloadToExcute(MusicPlayer.getInstance().getUrl(), file.getPath() + MusicPlayer.getInstance().getName(), new OnProgressListener() {
+                final String url = MusicPlayer.getInstance().getUrl();
+                final String filePath = file.getPath() + File.separator + MusicPlayer.getInstance().getName() + ".mp3";
+
+                HttpRequest.getInstance().downloadToExcute(url, filePath, new OnProgressListener() {
                     @Override
                     public void onProgress(long currentBytes, long contentLength) {
 
@@ -304,13 +326,23 @@ public class MusicLibraryActivity extends BaseActivity implements IMusicPlayView
                             if(Globals.isDebug){
                                 Log.v(">>>DownloadSong", new GsonBuilder().create().toJson(webMsg));
                             }
+
+                            Intent intent = new Intent();
+                            intent.putExtra("path", filePath);
+                            intent.putExtra("duration", MusicPlayer.getInstance().getmDuration());
+                            intent.putExtra("name", MusicPlayer.getInstance().getName());
+                            intent.putExtra("cover", MusicPlayer.getInstance().getCover());
+                            setResult(2, intent);
+                            finish();
+                        } else {
+                            Toast.makeText(MusicLibraryActivity.this, "缓冲失败，请重试...", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
 
-                if (MusicPlayer.getInstance().getUrl() != null)
-                    setResult(2, new Intent().putExtra("result", MusicPlayer.getInstance().getUrl()));
-                finish();
+//                if (MusicPlayer.getInstance().getUrl() != null)
+//                    setResult(2, new Intent().putExtra("result", MusicPlayer.getInstance().getUrl()));
+//                finish();
                 break;
             case R.id.tv_search:
 

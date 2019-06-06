@@ -2,8 +2,8 @@ package com.vivwe.video.ui;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.util.Log;
 
+import com.vivwe.base.util.TimeUtils;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -18,6 +18,7 @@ import io.reactivex.schedulers.Schedulers;
 public class MusicPlayer {
     private MediaPlayer mediaPlayer;
     private static MusicPlayer musicPlayer=new MusicPlayer();
+    private String cover;
     private String name;
     private String url="";
     private IMusicPlayView iMusicPlayView;
@@ -32,7 +33,7 @@ public class MusicPlayer {
         this.iMusicPlayView=iMusicPlayView;
     }
 
-    public void playMusic(String url,String name){
+    public void playMusic(String cover, String url,String name){
         if (mediaPlayer == null) {
             this.url=url;
             this.name = name;
@@ -53,14 +54,14 @@ public class MusicPlayer {
                     // 装载完毕回调
                     mediaPlayer.start();
                     mDuration=mediaPlayer.getDuration();
-                    iMusicPlayView.setEndText(changeTime(mDuration));
+                    iMusicPlayView.setEndText(TimeUtils.toMusicFormatTime(mDuration));
                     iMusicPlayView.setImgPlay(true);
                     updatePlayProgress();
                 }
             });
         } else {
             release();
-            playMusic(url,name);
+            playMusic(url, cover, name);
         }
     }
 
@@ -81,7 +82,7 @@ public class MusicPlayer {
                     @Override
                     public void accept(Long aLong)  {
                         long position = mediaPlayer.getCurrentPosition();
-                        iMusicPlayView.setStartText(changeTime(position));
+                        iMusicPlayView.setStartText(TimeUtils.toMusicFormatTime(position));
                         iMusicPlayView.setPlayProgress(mDuration == 0 ? 0 : (int) (position * 100 / mDuration));//+1是解决seekTo不准确的
                        // Log.e("ououou","setPlayProgress"+position * 100 / mDuration + " "+position);
                     }
@@ -116,25 +117,19 @@ public class MusicPlayer {
         }
     }
 
-    private String changeTime(long time) {
-        long hour = time / 1000 / 60;
-        long minute = time / 1000 % 60;
-        String minute1;
-        String hour1;
-        if (hour >= 10) {
-            hour1 = String.valueOf(hour);
-        } else hour1 = "0" + hour;
-        if (minute >= 10) {
-            minute1 = String.valueOf(minute);
-        } else minute1 = "0" + minute;
-        return hour1 + ":" + minute1;
-    }
-
     public String getUrl() {
         return url;
     }
 
     public String getName() {
         return name;
+    }
+
+    public long getmDuration() {
+        return mDuration;
+    }
+
+    public String getCover() {
+        return cover;
     }
 }

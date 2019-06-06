@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.mbs.sdk.ui.refresh.GifView
+    <com.vivwe.base.ui.GifView
         android:id="@+id/util_loading_pgb"
         android:layout_width="@dimen/x100"
         android:layout_height="@dimen/x100"
@@ -39,7 +39,7 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/prompt_loading"
-        android:textColor="#3c3c3c"
+        android:textColor="#ffffff"
         android:textSize="@dimen/x24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
