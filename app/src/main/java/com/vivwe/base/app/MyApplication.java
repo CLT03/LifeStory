@@ -36,7 +36,7 @@ public class MyApplication extends Application implements OnWebExceptionListener
 
         //设置该CrashHandler为程序的默认处理器
         CrashCollectHandler catchExcep = new CrashCollectHandler();
-        catchExcep.init(this);
+//        catchExcep.init(this);
 
         initSdk();
         //更新
@@ -63,7 +63,7 @@ public class MyApplication extends Application implements OnWebExceptionListener
         SdkContext.getSdkContext().setHttpRequestConfig(new HttpRequestConfig() {
             @Override
             public String getBaseUrl() {
-                return "http://192.168.0.253:8083/";
+                return "http://112.74.164.53:8083/";
             }
 
             @Override

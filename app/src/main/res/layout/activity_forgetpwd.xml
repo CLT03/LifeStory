@@ -1,364 +1,311 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorWhite"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
 
-    <!--<com.sdk.views.Menu.TopMenuView
-        android:id="@id/id_menu"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x38"
-        android:background="@color/colorWhite"
-        app:centerText="@string/title_register"
-        app:textColor="#404040"
-        app:leftIcon="@drawable/icon_back" />-->
-    <RelativeLayout
-        android:id="@id/id_top"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_login_noaccount"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/x70">
+        android:layout_marginStart="@dimen/x70"
+        android:layout_marginTop="@dimen/x105"
+        android:layout_toRightOf="@id/login_tv"
+        android:text="@string/action_unforget_pasword"
+        android:textColor="#333333"
+        android:textSize="@dimen/x40"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_login_noaccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/x38"
-            android:layout_toRightOf="@id/login_tv"
-            android:text="@string/action_unforget_pasword"
-            android:textColor="#333333"
-            android:textSize="@dimen/x38"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="@dimen/x42"
+        android:layout_height="@dimen/x8"
+        android:layout_below="@id/tv_login_noaccount"
+        android:layout_alignRight="@+id/tv_login_noaccount"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/sign_underline"
+        android:text="@string/title_login"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tv_login_noaccount"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="@+id/tv_login_noaccount"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login_noaccount" />
 
-        <TextView
-            android:layout_width="@dimen/x47"
-            android:layout_height="4dp"
-            android:layout_below="@id/tv_login_noaccount"
-            android:layout_alignRight="@+id/tv_login_noaccount"
-            android:layout_marginTop="@dimen/x9"
-            android:layout_marginRight="@dimen/x51"
-            android:background="@drawable/sign_underline"
-            android:text="@string/title_login"
-            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_exit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:paddingLeft="@dimen/x9"
-            android:paddingRight="@dimen/x9"
-            android:text="╳"
-            android:textColor="#404040"
-            android:textSize="@dimen/x42"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rl_account"
-        android:layout_width="@dimen/x563"
+    <TextView
+        android:id="@+id/tv_exit"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/id_top"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/x84"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:gravity="center">
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:padding="@dimen/x56"
+        android:text="╳"
+        android:textColor="#404040"
+        android:textSize="@dimen/x42"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_login_noaccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_login_noaccount" />
 
-        <ImageView
-            android:id="@+id/icon_account_code"
-            android:layout_width="@dimen/x38"
-            android:layout_height="@dimen/x38"
-            android:layout_marginRight="@dimen/x6"
-            android:src="@mipmap/sign_phone" />
+    <ImageView
+        android:id="@+id/icon_account_code"
+        android:layout_width="@dimen/x40"
+        android:layout_height="@dimen/x40"
+        android:layout_marginStart="@dimen/x90"
+        android:layout_marginTop="@dimen/x320"
+        android:src="@mipmap/sign_phone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/icon_account_code"
-            android:gravity="center_vertical"
-            android:text="手机号码"
-            android:textColor="#404040"
-            android:textSize="@dimen/x28" />
-
-        <EditText
-            android:id="@+id/id_account"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x84"
-            android:layout_below="@id/icon_account_code"
-            android:inputType="phone"
-            android:layout_toRightOf="@id/icon_account_code"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:hint="输入手机号码"
-            android:singleLine="true"
-            android:textColorHint="#CCCCCC"
-            android:textSize="@dimen/x28" />
-
-        <TextView
-            android:id="@+id/tv_under"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_below="@id/id_account"
-            android:layout_toRightOf="@id/icon_account_code"
-            android:background="@color/colorLightBlack" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rl_verification_code"
-        android:layout_width="@dimen/x563"
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_account"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/x28"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:gravity="center">
+        android:layout_marginStart="@dimen/x20"
+        android:layout_toRightOf="@id/icon_account_code"
+        android:gravity="center_vertical"
+        android:text="手机号码"
+        android:textColor="#404040"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/icon_account_code"
+        app:layout_constraintStart_toEndOf="@+id/icon_account_code"
+        app:layout_constraintTop_toTopOf="@+id/icon_account_code" />
 
-        <ImageView
-            android:id="@+id/icon_verification_code"
-            android:layout_width="@dimen/x38"
-            android:layout_height="@dimen/x38"
-            android:layout_marginRight="@dimen/x6"
-            android:src="@mipmap/icon_verification_code" />
+    <EditText
+        android:id="@+id/id_account"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x90"
+        android:layout_below="@id/icon_account_code"
+        android:layout_marginEnd="@dimen/x90"
+        android:layout_toRightOf="@id/icon_account_code"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="输入手机号码"
+        android:inputType="phone"
+        android:singleLine="true"
+        android:textColorHint="#CCCCCC"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="@+id/textView32"
+        app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/icon_verification_code"
-            android:gravity="center_vertical"
-            android:text="验证码"
-            android:textColor="#404040"
-            android:textSize="@dimen/x28" />
+    <View
+        android:id="@+id/tv_under"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/id_account"
+        android:layout_toRightOf="@id/icon_account_code"
+        android:background="@color/colorLightBlack"
+        app:layout_constraintEnd_toEndOf="@+id/id_account"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="@+id/id_account"
+        app:layout_constraintTop_toBottomOf="@+id/id_account" />
 
-        <EditText
-            android:id="@+id/id_code"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x84"
-            android:layout_below="@id/icon_verification_code"
-            android:inputType="number"
-            android:layout_marginRight="@dimen/x28"
-            android:layout_toLeftOf="@+id/tv_send"
-            android:layout_toRightOf="@id/icon_verification_code"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:hint="输入你的验证码"
-            android:singleLine="true"
-            android:textColorHint="#CCCCCC"
-            android:textSize="@dimen/x28" />
+    <ImageView
+        android:id="@+id/icon_verification_code"
+        android:layout_width="@dimen/x40"
+        android:layout_height="@dimen/x40"
+        android:layout_marginTop="@dimen/x26"
+        android:src="@mipmap/icon_verification_code"
+        app:layout_constraintEnd_toEndOf="@+id/icon_account_code"
+        app:layout_constraintStart_toStartOf="@+id/icon_account_code"
+        app:layout_constraintTop_toBottomOf="@+id/id_account" />
 
-        <TextView
-            android:id="@+id/tv_send"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/x70"
-            android:layout_marginTop="@dimen/x9"
-            android:layout_below="@id/icon_verification_code"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/r8_black_btn"
-            android:gravity="center"
-            android:paddingLeft="@dimen/x8"
-            android:paddingRight="@dimen/x8"
-            android:text="获取验证码"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/x28" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_below="@id/id_code"
-            android:layout_marginRight="@dimen/x28"
-            android:layout_toLeftOf="@id/tv_send"
-            android:layout_toRightOf="@id/icon_verification_code"
-            android:background="@color/colorLightBlack" />
-    </RelativeLayout>
-
-    <!--<RelativeLayout
-        android:id="@+id/rl_title"
-        android:layout_width="@dimen/x563"
-        android:layout_height="@dimen/x34"
-        android:layout_below="@+id/id_menu"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/x60"
-        android:background="@drawable/rl_edt_bg"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:gravity="center">
-
-        <EditText
-            android:id="@id/id_account"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/rl_edt_bg"
-            android:gravity="center_vertical"
-            android:hint="请输入手机号 / 邮箱"
-            android:padding="@dimen/x6"
-            android:singleLine="true"
-            android:textColorHint="@color/colorHintGray"
-            android:textSize="@dimen/x14" />
-    </RelativeLayout>-->
-
-
-    <RelativeLayout
-        android:id="@+id/rl_password"
-        android:layout_width="@dimen/x563"
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_verification_code"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/x28"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:gravity="center">
+        android:layout_marginStart="@dimen/x20"
+        android:layout_toRightOf="@id/icon_verification_code"
+        android:gravity="center_vertical"
+        android:text="验证码"
+        android:textColor="#404040"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/icon_verification_code"
+        app:layout_constraintStart_toEndOf="@+id/icon_verification_code"
+        app:layout_constraintTop_toTopOf="@+id/icon_verification_code" />
 
-        <ImageView
-            android:id="@+id/icon_iv_password"
-            android:layout_width="@dimen/x38"
-            android:layout_height="@dimen/x38"
-            android:layout_marginRight="@dimen/x6"
-            android:src="@mipmap/icon_password" />
+    <EditText
+        android:id="@+id/edt_code"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x90"
+        android:layout_below="@id/icon_verification_code"
+        android:layout_marginEnd="@dimen/x14"
+        android:layout_toLeftOf="@+id/tv_code_obtain"
+        android:layout_toRightOf="@id/icon_verification_code"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="输入你的验证码"
+        android:inputType="number"
+        android:singleLine="true"
+        android:textColorHint="#CCCCCC"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toStartOf="@+id/tv_code_obtain"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="@+id/textView33"
+        app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/icon_iv_password"
-            android:gravity="center_vertical"
-            android:text="设置密码"
-            android:textColor="#404040"
-            android:textSize="@dimen/x28" />
+    <TextView
+        android:id="@+id/tv_code_obtain"
+        android:layout_width="@dimen/x180"
+        android:layout_height="@dimen/x70"
+        android:layout_below="@id/icon_verification_code"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="@dimen/x90"
+        android:background="@drawable/r8_black_btn"
+        android:gravity="center"
+        android:paddingLeft="@dimen/x19"
+        android:paddingRight="@dimen/x19"
+        android:text="获取验证码"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toTopOf="@+id/textView68"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edt_code" />
 
-        <EditText
-            android:id="@+id/id_password"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x84"
-            android:layout_below="@id/icon_iv_password"
-            android:inputType="textPassword"
-            android:layout_toRightOf="@id/icon_iv_password"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:hint="请输入你的密码"
-            android:singleLine="true"
-            android:textColorHint="#CCCCCC"
-            android:textSize="@dimen/x28" />
+    <TextView
+        android:id="@+id/textView68"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/edt_code"
+        android:layout_toLeftOf="@id/tv_code_obtain"
+        android:layout_toRightOf="@id/icon_verification_code"
+        android:background="@color/colorLightBlack"
+        app:layout_constraintEnd_toEndOf="@+id/edt_code"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="@+id/edt_code"
+        app:layout_constraintTop_toBottomOf="@+id/edt_code" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_below="@id/id_password"
-            android:layout_toRightOf="@id/icon_iv_password"
-            android:background="@color/colorLightBlack" />
-    </RelativeLayout>
-    <!--<RelativeLayout
-        android:id="@+id/r2"
-        android:layout_width="@dimen/x563"
-        android:layout_height="@dimen/x34"
-        android:layout_below="@+id/rl_title"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/x15"
-        android:background="@drawable/rl_edt_bg"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:gravity="center">
+    <ImageView
+        android:id="@+id/icon_iv_password"
+        android:layout_width="@dimen/x40"
+        android:layout_height="@dimen/x40"
+        android:layout_marginTop="@dimen/x26"
+        android:src="@mipmap/icon_password"
+        app:layout_constraintEnd_toEndOf="@+id/icon_verification_code"
+        app:layout_constraintStart_toStartOf="@+id/icon_verification_code"
+        app:layout_constraintTop_toBottomOf="@+id/edt_code" />
 
-        <EditText
-            android:id="@id/id_password"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/rl_edt_bg"
-            android:gravity="center_vertical"
-            android:hint="请输入密码"
-            android:inputType="textPassword"
-            android:padding="@dimen/x6"
-            android:singleLine="true"
-            android:textColorHint="@color/colorHintGray"
-            android:textSize="@dimen/x14" />
-    </RelativeLayout>-->
-
-    <RelativeLayout
-        android:id="@+id/rl_ok_password"
-        android:layout_width="@dimen/x563"
+    <TextView
+        android:id="@+id/textView69"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_password"
+        android:layout_marginStart="@dimen/x20"
+        android:layout_toRightOf="@id/icon_iv_password"
+        android:gravity="center_vertical"
+        android:text="设置密码"
+        android:textColor="#404040"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/icon_iv_password"
+        app:layout_constraintStart_toEndOf="@+id/icon_iv_password"
+        app:layout_constraintTop_toTopOf="@+id/icon_iv_password" />
+
+    <EditText
+        android:id="@+id/id_password"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x90"
+        android:layout_below="@id/icon_iv_password"
+        android:layout_marginEnd="@dimen/x90"
+        android:layout_toRightOf="@id/icon_iv_password"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="请输入你的密码"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:textColorHint="#CCCCCC"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="@+id/textView69"
+        app:layout_constraintTop_toBottomOf="@+id/textView69" />
+
+    <TextView
+        android:id="@+id/textView71"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/id_password"
+        android:layout_toRightOf="@id/icon_iv_password"
+        android:background="@color/colorLightBlack"
+        app:layout_constraintEnd_toEndOf="@+id/id_password"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="@+id/id_password"
+        app:layout_constraintTop_toBottomOf="@+id/id_password" />
+
+    <ImageView
+        android:id="@+id/icon_iv_ok_password"
+        android:layout_width="@dimen/x40"
+        android:layout_height="@dimen/x40"
+        android:layout_marginTop="@dimen/x26"
+        android:src="@mipmap/icon_password"
+        app:layout_constraintEnd_toEndOf="@+id/icon_iv_password"
+        app:layout_constraintStart_toStartOf="@+id/icon_iv_password"
+        app:layout_constraintTop_toBottomOf="@+id/id_password" />
+
+    <TextView
+        android:id="@+id/textView70"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/x20"
+        android:layout_toRightOf="@id/icon_iv_ok_password"
+        android:gravity="center_vertical"
+        android:text="重复密码"
+        android:textColor="#404040"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@+id/icon_iv_ok_password"
+        app:layout_constraintStart_toEndOf="@+id/icon_iv_ok_password"
+        app:layout_constraintTop_toTopOf="@+id/icon_iv_ok_password" />
+
+
+    <EditText
+        android:id="@+id/id_password_new"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x90"
+        android:layout_below="@id/icon_iv_ok_password"
+        android:layout_marginEnd="@dimen/x90"
+        android:layout_toRightOf="@id/icon_iv_ok_password"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="请输入你的密码"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:textColorHint="#CCCCCC"
+        android:textSize="@dimen/x28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="@+id/textView70"
+        app:layout_constraintTop_toBottomOf="@+id/textView70" />
+
+    <TextView
+        android:id="@+id/tv_password_under"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/id_password_new"
+        android:layout_toRightOf="@id/icon_iv_ok_password"
+        android:background="@color/colorLightBlack"
+        app:layout_constraintEnd_toEndOf="@+id/id_password_new"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="@+id/id_password_new"
+        app:layout_constraintTop_toBottomOf="@+id/id_password_new" />
+
+    <TextView
+        android:id="@+id/id_ok"
+        android:layout_width="@dimen/x520"
+        android:layout_height="@dimen/x79"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/x28"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:gravity="center">
+        android:layout_marginTop="8dp"
+        android:background="@drawable/r60_black_btn"
+        android:gravity="center"
+        android:text="修改密码"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/x33"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/id_password_new"
+        app:layout_constraintStart_toStartOf="@+id/icon_iv_ok_password"
+        app:layout_constraintTop_toBottomOf="@+id/tv_password_under" />
 
-        <ImageView
-            android:id="@+id/icon_iv_ok_password"
-            android:layout_width="@dimen/x38"
-            android:layout_height="@dimen/x38"
-            android:layout_marginRight="@dimen/x6"
-            android:src="@mipmap/icon_password" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/icon_iv_ok_password"
-            android:gravity="center_vertical"
-            android:text="重复密码"
-            android:textColor="#404040"
-            android:textSize="@dimen/x28" />
-
-        <EditText
-            android:id="@+id/id_password_new"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x84"
-            android:layout_below="@id/icon_iv_ok_password"
-            android:inputType="textPassword"
-            android:layout_toRightOf="@id/icon_iv_ok_password"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:hint="请输入你的密码"
-            android:singleLine="true"
-            android:textColorHint="#CCCCCC"
-            android:textSize="@dimen/x28" />
-
-        <TextView
-            android:id="@+id/tv_password_under"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_below="@id/id_password_new"
-            android:layout_toRightOf="@id/icon_iv_ok_password"
-            android:background="@color/colorLightBlack" />
-
-        <TextView
-            android:id="@+id/tv_error_msg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_password_under"
-            android:layout_toRightOf="@id/icon_iv_ok_password"
-            android:layout_marginTop="@dimen/x6"
-            android:text=""
-            android:textColor="#F15C3A"
-            android:textSize="@dimen/x10" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/rl_ok_password">
-
-        <TextView
-            android:id="@+id/id_ok"
-            android:layout_width="@dimen/x520"
-            android:layout_height="@dimen/x79"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/x38"
-            android:background="@drawable/r60_black_btn"
-            android:gravity="center"
-            android:text="修改密码"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/x33" />
-
-    </RelativeLayout>
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
