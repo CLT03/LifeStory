@@ -36,76 +36,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_save_todraft"
+        android:id="@+id/tv_edit"
         android:layout_width="@dimen/x140"
         android:layout_height="@dimen/x96"
-
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:text="存草稿"
-        android:textColor="#8C8C8C"
-        android:textSize="@dimen/x32"
-        app:layout_constraintEnd_toStartOf="@+id/tv_next"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/view26"
-        android:layout_width="@dimen/x220"
-        android:layout_height="@dimen/x68"
-        android:background="@drawable/ra_black_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_back" />
-
-    <View
-        android:id="@+id/view23"
-        android:layout_width="@dimen/x34"
-        android:layout_height="@dimen/x34"
-        android:layout_marginLeft="@dimen/x32"
-        android:background="@mipmap/icon_video_create_add"
-        app:layout_constraintBottom_toBottomOf="@+id/view26"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view26" />
-
-    <TextView
-        android:id="@+id/textView82"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/x8"
-        android:text="批量导入"
-        android:textColor="#F9F9F9"
-        android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@+id/view23"
-        app:layout_constraintStart_toEndOf="@+id/view23"
-        app:layout_constraintTop_toTopOf="@+id/view23"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/tv_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/x68"
         android:background="@drawable/ra_black_btn"
         android:gravity="center"
         android:paddingLeft="@dimen/x30"
         android:paddingRight="@dimen/x30"
         android:text="编辑"
         android:textColor="#999999"
-        android:textSize="@dimen/x28"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_save_todraft" />
+        android:textSize="@dimen/x32"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_next"
+        app:layout_constraintEnd_toStartOf="@+id/tv_next"
+        app:layout_constraintTop_toTopOf="@+id/tv_next" />
 
     <TextView
-        android:id="@+id/tv_images_add"
+        android:id="@+id/tv_assets_add"
         android:layout_width="@dimen/x132"
         android:layout_height="@dimen/x64"
         android:layout_marginStart="@dimen/x32"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/x18"
         android:background="@drawable/r8_video_create_btn"
         android:gravity="center"
         android:text="添加素材"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/x24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view26" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_back" />
 
     <TextView
         android:id="@+id/tv_add_text"
@@ -117,9 +74,9 @@
         android:text="添加文字"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/x24"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_images_add"
-        app:layout_constraintStart_toEndOf="@+id/tv_images_add"
-        app:layout_constraintTop_toTopOf="@+id/tv_images_add" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_assets_add"
+        app:layout_constraintStart_toEndOf="@+id/tv_assets_add"
+        app:layout_constraintTop_toTopOf="@+id/tv_assets_add" />
 
     <TextView
         android:id="@+id/tv_copy_images"
@@ -131,9 +88,9 @@
         android:text="复制"
         android:textColor="#C0C0C0"
         android:textSize="@dimen/x24"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_images_add"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_assets_add"
         app:layout_constraintStart_toEndOf="@+id/tv_add_text"
-        app:layout_constraintTop_toTopOf="@+id/tv_images_add"
+        app:layout_constraintTop_toTopOf="@+id/tv_assets_add"
         app:layout_constraintVertical_bias="0.0" />
 
     <View
@@ -146,9 +103,9 @@
         android:text="移除"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/x24"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_images_add"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_assets_add"
         app:layout_constraintStart_toEndOf="@+id/tv_copy_images"
-        app:layout_constraintTop_toTopOf="@+id/tv_images_add"
+        app:layout_constraintTop_toTopOf="@+id/tv_assets_add"
         app:layout_constraintVertical_bias="0.0" />
 
 
@@ -185,9 +142,9 @@
         android:background="@drawable/r8_video_create_btn"
         android:gravity="center"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_images_add"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_assets_add"
         app:layout_constraintStart_toEndOf="@+id/tv_del_images"
-        app:layout_constraintTop_toTopOf="@+id/tv_images_add"
+        app:layout_constraintTop_toTopOf="@+id/tv_assets_add"
         app:layout_constraintVertical_bias="0.0" />
 
 
@@ -300,13 +257,16 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView97"
+        android:id="@+id/tv_save_todraft"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/x32"
-        android:text="更改模板"
+        android:layout_height="@dimen/x110"
+        android:background="@drawable/r8_video_create_btn"
+        android:gravity="center"
+        android:paddingLeft="@dimen/x28"
+        android:paddingRight="@dimen/x28"
+        android:text="存草稿"
+        android:textColor="#8C8C8C"
         android:textSize="@dimen/x32"
-        android:textColor="#C2C2C2"
         app:layout_constraintBottom_toBottomOf="@+id/view30"
         app:layout_constraintStart_toStartOf="@+id/view30"
         app:layout_constraintTop_toTopOf="@+id/view30" />
@@ -314,10 +274,13 @@
     <TextView
         android:id="@+id/tv_video_time"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_height="@dimen/x110"
+        android:gravity="center"
+        android:paddingLeft="@dimen/x28"
+        android:paddingRight="@dimen/x28"
         android:text="估计时长：1:20"
         android:textColor="#C2C2C2"
+        android:background="@drawable/r8_video_create_btn"
         android:textSize="@dimen/x32"
         app:layout_constraintBottom_toBottomOf="@+id/view30"
         app:layout_constraintEnd_toEndOf="@+id/view30"

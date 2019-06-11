@@ -98,6 +98,11 @@ public class CreateAvatarController {
         scanTv.setText("扫描照片中,请稍后...");
         final long createAvatarTime = System.nanoTime();
 
+
+        Log.v(">>>createAvatar", "file : " + dir + AvatarP2A.FILE_NAME_CLIENT_DATA_ORIGIN_PHOTO);
+        Log.v(">>>createAvatar", "gender : " + gender);
+        Log.v(">>>createAvatar", "style : " + style);
+
         // 上传图片到服务器解析
         OkHttpUtils.createAvatarRequest(dir + AvatarP2A.FILE_NAME_CLIENT_DATA_ORIGIN_PHOTO, gender, style, new Callback() {
             @Override
