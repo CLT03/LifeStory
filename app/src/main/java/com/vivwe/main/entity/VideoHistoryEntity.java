@@ -16,6 +16,24 @@ public class VideoHistoryEntity implements Serializable {
         private String imageUrl;
         private String videoTitle;
         private String gmtModified;
+        private int id;//视频id
+        private int playHistoryId;//播放历史id
+
+        public int getPlayHistoryId() {
+            return playHistoryId;
+        }
+
+        public void setGmtModified(String gmtModified) {
+            this.gmtModified = gmtModified;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
 
         public String getGmtModified() {
             return gmtModified;

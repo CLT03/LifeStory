@@ -178,7 +178,7 @@
         android:layout_height="@dimen/x128"
         android:background="@drawable/ra_gray_btn"
         android:gravity="center"
-        android:text="删除"
+        android:text="下架"
         android:textColor="#FF5F22"
         android:textSize="@dimen/x32"
         app:layout_constraintBottom_toBottomOf="parent"

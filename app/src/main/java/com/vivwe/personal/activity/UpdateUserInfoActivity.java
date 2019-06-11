@@ -11,6 +11,7 @@ import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.ui.alert.AlertDialog;
 import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
 import com.vivwe.main.entity.UcenterInfoEntity;
@@ -39,6 +40,8 @@ public class UpdateUserInfoActivity extends BaseActivity {
     TextView tvCity;
     @BindView(R.id.tv_sign)
     TextView tvSign;
+    private AlertDialog alertDialog;
+    private UcenterInfoEntity userInfoEntity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +64,7 @@ public class UpdateUserInfoActivity extends BaseActivity {
                         .putExtra("name",tvName.getText().toString()), 1);
                 break;
             case R.id.tv_gender:
+               // chooseGender();
                 break;
             case R.id.tv_birthday:
                 break;
@@ -75,6 +79,35 @@ public class UpdateUserInfoActivity extends BaseActivity {
                 update();
                 break;
         }
+    }
+
+
+
+
+    private void chooseGender(){
+        if (alertDialog==null){
+            alertDialog=AlertDialog.createCustom(this, R.layout.item_alert_video_merge_loading);
+            alertDialog.show();
+            alertDialog.findViewById(R.id.iv_male).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tvGender.setText("男性");
+                }
+            });
+            alertDialog.findViewById(R.id.iv_female).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tvGender.setText("女性");
+                }
+            });
+            alertDialog.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                }
+            });
+        }else alertDialog.show();
+
     }
 
     @Override
@@ -99,7 +132,7 @@ public class UpdateUserInfoActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private UcenterInfoEntity userInfoEntity;
+
 
     private void getData(){
         HttpRequest.getInstance().excute(HttpRequest.create(PersonalApi.class).getUserInfo(), new OnResultListener() {
