@@ -30,6 +30,12 @@ public interface WebMainApi {
                                            @Field("confirmedPassword") String confirmedPassword,
                                            @Field("captcha") String captcha);
 
+    @FormUrlEncoded
+    @POST("api/user/updateUserPassWord")
+    public Observable<WebMsg> resetPwd(@Field("phoneNumber") String phoneNumber,
+                                       @Field("password") String password,
+                                       @Field("captcha") String captcha);
+
     /**
      * 通过手机获取验证码
      * @param phoneNumber 手机号

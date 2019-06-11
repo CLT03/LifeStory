@@ -15,7 +15,7 @@ import com.vivwe.main.R;
 /**
  * ahtor: super_link
  * date: 2019/5/9 11:27
- * remark:
+ * remark: 渐变按钮
  */
 public class LinearGradientTextView extends AppCompatTextView {
 

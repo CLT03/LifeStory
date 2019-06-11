@@ -55,10 +55,24 @@ class LoginActivity : BaseActivity() {
         }
     }
 
+    /**
+     * 注册
+     */
     @OnClick(R.id.tv_register)
-    fun toRegister() {
+    fun enterRegister() {
         var intent = Intent()
         intent.setClass(this, RegisterActivity::class.java)
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        this.startActivityForResult(intent, 1)
+    }
+
+    /**
+     * 重置密码
+     */
+    @OnClick(R.id.tv_login_forget)
+    fun enterResetPassword(){
+        var intent = Intent()
+        intent.setClass(this, ResetForgetPasswordActivity::class.java)
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         this.startActivityForResult(intent, 1)
     }

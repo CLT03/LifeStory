@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -124,7 +125,7 @@ class VideoCreateByDynamicActivity: BaseActivity() {
             override fun onAddClick() {
                 Toast.makeText(this@VideoCreateByDynamicActivity, "新增图片", Toast.LENGTH_LONG).show()
 
-                addImages()
+                addImagesByNative()
 
             }
 
@@ -173,12 +174,41 @@ class VideoCreateByDynamicActivity: BaseActivity() {
     /**
      * 添加图片
      */
-    @OnClick(R.id.tv_images_add)
-    fun addImages(){
+    fun addImagesByNative(){
         var intent = Intent()
         intent.setClass(this@VideoCreateByDynamicActivity, ImageLoadActivity::class.java)
         intent.putExtra("choose_count", 10)
         this@VideoCreateByDynamicActivity.startActivityForResult(intent, 1)
+    }
+
+    /**
+     * 素材库中选择图片
+     */
+    fun addImagesByLibaray(){
+
+    }
+
+    @OnClick(R.id.tv_assets_add)
+    fun addAssetsUI(){
+
+        var alert = AlertDialog.createCustom(this@VideoCreateByDynamicActivity, R.layout.item_alert_video_addassets);
+
+        // 本地库选择图片
+        alert.findViewById<TextView>(R.id.tv_native).setOnClickListener(View.OnClickListener {
+            alert.dismiss()
+            addImagesByNative()
+        })
+
+        // 素材库中选择图片
+        alert.findViewById<TextView>(R.id.tv_libary).setOnClickListener(View.OnClickListener {
+            alert.dismiss()
+            addImagesByLibaray()
+        })
+
+        // 关闭窗口
+        alert.findViewById<TextView>(R.id.ibtn_close).setOnClickListener(View.OnClickListener {
+            alert.dismiss()
+        })
     }
 
     /**
@@ -276,7 +306,7 @@ class VideoCreateByDynamicActivity: BaseActivity() {
      *
      */
     @OnClick(R.id.tv_next)
-    fun generatorVideo(){
+    fun generatorVideo() {
 
         val paths = adapter.datas
         if(paths!!.size < 3){
