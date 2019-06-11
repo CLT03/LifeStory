@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView91" />
 
     <ImageView
-        android:id="@+id/imageView44"
+        android:id="@+id/iv_illegal"
         android:layout_width="@dimen/x56"
         android:layout_height="@dimen/x56"
         android:layout_marginLeft="@dimen/x10"
@@ -79,7 +79,7 @@
         android:padding="@dimen/x14"
         app:layout_constraintStart_toStartOf="@+id/view32"
         app:layout_constraintTop_toTopOf="@+id/view32"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@mipmap/icon_report_checked" />
 
     <TextView
         android:id="@+id/textView92"
@@ -88,12 +88,12 @@
         android:text="违法反动"
         android:textColor="#000000"
         android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView44"
-        app:layout_constraintStart_toEndOf="@+id/imageView44"
-        app:layout_constraintTop_toTopOf="@+id/imageView44" />
+        app:layout_constraintBottom_toBottomOf="@+id/iv_illegal"
+        app:layout_constraintStart_toEndOf="@+id/iv_illegal"
+        app:layout_constraintTop_toTopOf="@+id/iv_illegal" />
 
     <ImageView
-        android:id="@+id/imageView47"
+        android:id="@+id/iv_yellow"
         android:layout_width="@dimen/x56"
         android:layout_height="@dimen/x56"
         android:layout_marginLeft="@dimen/x176"
@@ -101,7 +101,7 @@
         android:padding="@dimen/x14"
         app:layout_constraintStart_toEndOf="@+id/textView92"
         app:layout_constraintTop_toTopOf="@+id/view32"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@mipmap/icon_report_check" />
 
     <TextView
         android:id="@+id/textView99"
@@ -110,20 +110,20 @@
         android:text="低俗色情"
         android:textColor="#000000"
         android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView47"
-        app:layout_constraintStart_toEndOf="@+id/imageView47"
-        app:layout_constraintTop_toTopOf="@+id/imageView47" />
+        app:layout_constraintBottom_toBottomOf="@+id/iv_yellow"
+        app:layout_constraintStart_toEndOf="@+id/iv_yellow"
+        app:layout_constraintTop_toTopOf="@+id/iv_yellow" />
 
     <ImageView
-        android:id="@+id/imageView48"
+        android:id="@+id/iv_gambling"
         android:layout_width="@dimen/x56"
         android:layout_height="@dimen/x56"
         android:layout_marginLeft="@dimen/x10"
         android:layout_marginTop="@dimen/x24"
         android:padding="@dimen/x14"
         app:layout_constraintStart_toStartOf="@+id/view32"
-        app:layout_constraintTop_toBottomOf="@+id/imageView44"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_illegal"
+        app:srcCompat="@mipmap/icon_report_check" />
 
     <TextView
         android:id="@+id/textView100"
@@ -132,18 +132,18 @@
         android:text="赌博诈骗"
         android:textColor="#000000"
         android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView48"
-        app:layout_constraintStart_toEndOf="@+id/imageView48"
-        app:layout_constraintTop_toTopOf="@+id/imageView48" />
+        app:layout_constraintBottom_toBottomOf="@+id/iv_gambling"
+        app:layout_constraintStart_toEndOf="@+id/iv_gambling"
+        app:layout_constraintTop_toTopOf="@+id/iv_gambling" />
 
     <ImageView
-        android:id="@+id/imageView49"
+        android:id="@+id/iv_violence"
         android:layout_width="@dimen/x56"
         android:layout_height="@dimen/x56"
         android:padding="@dimen/x14"
-        app:layout_constraintStart_toStartOf="@+id/imageView47"
-        app:layout_constraintTop_toTopOf="@+id/imageView48"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:layout_constraintStart_toStartOf="@+id/iv_yellow"
+        app:layout_constraintTop_toTopOf="@+id/iv_gambling"
+        app:srcCompat="@mipmap/icon_report_check" />
 
     <TextView
         android:id="@+id/textView101"
@@ -152,20 +152,20 @@
         android:text="血腥暴力"
         android:textColor="#000000"
         android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView49"
-        app:layout_constraintStart_toEndOf="@+id/imageView49"
-        app:layout_constraintTop_toTopOf="@+id/imageView49" />
+        app:layout_constraintBottom_toBottomOf="@+id/iv_violence"
+        app:layout_constraintStart_toEndOf="@+id/iv_violence"
+        app:layout_constraintTop_toTopOf="@+id/iv_violence" />
 
     <ImageView
-        android:id="@+id/imageView50"
+        android:id="@+id/iv_tort"
         android:layout_width="@dimen/x56"
         android:layout_height="@dimen/x56"
         android:layout_marginLeft="@dimen/x10"
         android:layout_marginTop="@dimen/x24"
         android:padding="@dimen/x14"
         app:layout_constraintStart_toStartOf="@+id/view32"
-        app:layout_constraintTop_toBottomOf="@+id/imageView48"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_gambling"
+        app:srcCompat="@mipmap/icon_report_check" />
 
     <TextView
         android:id="@+id/textView102"
@@ -174,18 +174,18 @@
         android:text="侵权行为"
         android:textColor="#000000"
         android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView50"
-        app:layout_constraintStart_toEndOf="@+id/imageView50"
-        app:layout_constraintTop_toTopOf="@+id/imageView50" />
+        app:layout_constraintBottom_toBottomOf="@+id/iv_tort"
+        app:layout_constraintStart_toEndOf="@+id/iv_tort"
+        app:layout_constraintTop_toTopOf="@+id/iv_tort" />
 
     <ImageView
-        android:id="@+id/imageView51"
+        android:id="@+id/iv_rumor"
         android:layout_width="@dimen/x56"
         android:layout_height="@dimen/x56"
         android:padding="@dimen/x14"
-        app:layout_constraintStart_toStartOf="@+id/imageView49"
-        app:layout_constraintTop_toTopOf="@+id/imageView50"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:layout_constraintStart_toStartOf="@+id/iv_violence"
+        app:layout_constraintTop_toTopOf="@+id/iv_tort"
+        app:srcCompat="@mipmap/icon_report_check" />
 
     <TextView
         android:id="@+id/textView103"
@@ -194,20 +194,20 @@
         android:text="虚假谣言"
         android:textColor="#000000"
         android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView51"
-        app:layout_constraintStart_toEndOf="@+id/imageView51"
-        app:layout_constraintTop_toTopOf="@+id/imageView51" />
+        app:layout_constraintBottom_toBottomOf="@+id/iv_rumor"
+        app:layout_constraintStart_toEndOf="@+id/iv_rumor"
+        app:layout_constraintTop_toTopOf="@+id/iv_rumor" />
 
     <ImageView
-        android:id="@+id/imageView52"
+        android:id="@+id/iv_other"
         android:layout_width="@dimen/x56"
         android:layout_height="@dimen/x56"
         android:layout_marginLeft="@dimen/x10"
         android:layout_marginTop="@dimen/x24"
         android:padding="@dimen/x14"
         app:layout_constraintStart_toStartOf="@+id/view32"
-        app:layout_constraintTop_toBottomOf="@+id/imageView50"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_tort"
+        app:srcCompat="@mipmap/icon_report_check" />
 
     <TextView
         android:id="@+id/textView104"
@@ -216,9 +216,9 @@
         android:text="其他"
         android:textColor="#000000"
         android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView52"
-        app:layout_constraintStart_toEndOf="@+id/imageView52"
-        app:layout_constraintTop_toTopOf="@+id/imageView52" />
+        app:layout_constraintBottom_toBottomOf="@+id/iv_other"
+        app:layout_constraintStart_toEndOf="@+id/iv_other"
+        app:layout_constraintTop_toTopOf="@+id/iv_other" />
 
     <TextView
         android:id="@+id/textView105"
@@ -243,6 +243,7 @@
         android:paddingTop="@dimen/x28"
         android:paddingRight="@dimen/x24"
         android:gravity="top"
+        android:maxLength="200"
         android:paddingBottom="@dimen/x28"
         android:textColor="#191919"
         android:textColorHint="#979797"
@@ -252,7 +253,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView105" />
 
     <TextView
-        android:id="@+id/textView106"
+        android:id="@+id/tv_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/x8"

@@ -7,6 +7,16 @@
     android:background="@drawable/ra_white_btn"
     android:layout_height="wrap_content">
 
+    <View
+        android:id="@+id/view_click"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ra_white_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_head" />
+
     <ImageView
         android:id="@+id/iv_head"
         android:layout_width="@dimen/x40"
@@ -38,4 +48,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
 </android.support.constraint.ConstraintLayout>

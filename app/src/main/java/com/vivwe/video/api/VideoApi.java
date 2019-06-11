@@ -18,8 +18,8 @@ public interface VideoApi {
     @FormUrlEncoded
     @POST("api/video/searchVideoListByType")
     Observable<WebMsg> getVideoByType(@Field("pageNum") int pageNum,
-                                   @Field("pageSize") int pageSize,
-                                   @Field("typeId") int typeId);
+                                      @Field("pageSize") int pageSize,
+                                      @Field("typeId") int typeId);
 
     //搜索视频
     @FormUrlEncoded
@@ -73,29 +73,53 @@ public interface VideoApi {
     @FormUrlEncoded
     @POST("api/video-discuss/addVideoDiscuss")
     Observable<WebMsg> newComment(@Field("content") String content,
-                               @Field("userId") int userId,
-                               @Field("videoId") int videoId);
+                                  @Field("userId") int userId,
+                                  @Field("videoId") int videoId);
 
     //新的回复视频评论
     @FormUrlEncoded
     @POST("api/video-discuss-reply/addVideoDiscussReply")
     Observable<WebMsg> newReplyComment(@Field("content") String content,
-                                  @Field("fromUserId") int fromUserId,
-                                  @Field("toUserId") int toUserId,
-                                  @Field("videoDiscussId") int videoDiscussId);
-
+                                       @Field("fromUserId") int fromUserId,
+                                       @Field("toUserId") int toUserId,
+                                       @Field("videoDiscussId") int videoDiscussId);
 
 
     /**
      * 获取更多视频评论的回复
+     *
      * @param userId
-     * @param vdrId 视频评论回复id：用于排除最新一条
+     * @param vdrId          视频评论回复id：用于排除最新一条
      * @param videoDiscussId 视频评论id
      * @return
      */
     @FormUrlEncoded
     @POST("api/video-discuss-reply/searchVDRListItem")
     Observable<WebMsg> getMoreReply(@Field("userId") int userId,
-                                       @Field("vdrId") int vdrId,
-                                       @Field("videoDiscussId") int videoDiscussId);
+                                    @Field("vdrId") int vdrId,
+                                    @Field("videoDiscussId") int videoDiscussId);
+
+
+    /**
+     * 新的回复视频评论
+     * @param videoId 视频id
+     * @param videoDiscussId 视频评论id
+     * @param type 	类型 1-视频举报 2-评论举报 3-用户举报
+     * @param reportUserId 用户id
+     * @param reason 举报原因 *1-违法反动 2-低俗色情 3-赌博诈骗 4-血腥暴力 5-侵权行为 6-虚假谣言 7-其他
+     * @param description  描述
+     * @param beReportUserId 被举报者用户id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api/report/addReport")
+    Observable<WebMsg> addReport(@Field("videoId") Integer videoId,
+                                 @Field("videoDiscussId") Integer videoDiscussId,
+                                 @Field("type") int type,
+                                 @Field("reportUserId") int reportUserId,
+                                 @Field("reason") int reason,
+                                 @Field("description") String description,
+                                 @Field("beReportUserId") Integer beReportUserId);
+
+
 }

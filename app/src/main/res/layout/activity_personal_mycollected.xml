@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="#ffffff">
 
     <TextView
         android:id="@+id/tv_title"
@@ -24,14 +24,14 @@
         android:id="@+id/iv_back"
         android:layout_width="@dimen/x88"
         android:layout_height="0dp"
+        android:background="@drawable/ra_white_btn"
         android:paddingLeft="@dimen/x34"
         android:paddingTop="@dimen/x30"
         android:paddingRight="@dimen/x36"
         android:paddingBottom="@dimen/x26"
-        android:background="@drawable/ra_white_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_title"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
         app:srcCompat="@mipmap/icon_back_black" />
 
     <TextView
@@ -39,10 +39,10 @@
         android:layout_width="@dimen/x80"
         android:layout_height="@dimen/x56"
         android:layout_marginRight="@dimen/x15"
+        android:background="@drawable/ra_white_btn"
         android:gravity="center"
         android:text="编辑"
         android:textColor="#191919"
-        android:background="@drawable/ra_white_btn"
         android:textSize="@dimen/x28"
         app:layout_constraintBottom_toBottomOf="@+id/tv_title"
         app:layout_constraintEnd_toEndOf="@+id/tv_title"
@@ -95,7 +95,7 @@
         app:layout_constraintEnd_toEndOf="@+id/tv_video"
         app:layout_constraintStart_toStartOf="@+id/tv_video" />
 
-<!--    <android.support.v7.widget.RecyclerView
+    <!--    <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_purchased_demo"
         android:layout_width="0dp"
         android:layout_height="0dp"

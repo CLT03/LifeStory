@@ -5,20 +5,21 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.Group;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.mbs.sdk.net.HttpRequest;
+import com.mbs.sdk.net.listener.OnResultListener;
+import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.author.adapter.TemplateApprovedPagerAdapter;
-import com.vivwe.author.adapter.TemplateNoPassAdapter;
-import com.vivwe.author.adapter.TemplatePublishAdapter;
-import com.vivwe.author.adapter.TemplateWaitReviewAdapter;
+import com.vivwe.author.api.AuthorApi;
 import com.vivwe.author.fragment.TemplateApprovedFragment;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.base.ui.textview.LinearGradientTextView;
 import com.vivwe.main.R;
-import com.vivwe.personal.adapter.MycollectedPagerAdapter;
-import com.vivwe.personal.fragment.MycollectedFragment;
+import com.vivwe.personal.activity.MyAssetsActivity;
+import com.vivwe.personal.api.PersonalApi;
 
 import java.util.ArrayList;
 
@@ -49,8 +50,11 @@ public class TemplateApprovedActivity extends BaseActivity {
     Group groupEdit;
     @BindView(R.id.view_pager)
     ViewPager viewPager;
+    @BindView(R.id.tv_edit)
+    TextView tvEdit;
     ArrayList<TemplateApprovedFragment> fragments = new ArrayList<>();
     LinearGradientTextView textViewTag;
+    private boolean ifAllChoose;//是否全选
 
 
     @Override
@@ -81,12 +85,19 @@ public class TemplateApprovedActivity extends BaseActivity {
                 switch (i){
                     case 0:
                         tvPublish.performClick();
+                        tvEdit.setVisibility(View.VISIBLE);
                         break;
                     case 1:
                         tvWaitReview.performClick();
+                        groupEdit.setVisibility(View.GONE);
+                        fragments.get(2).templateEdit(false);
+                        fragments.get(0).templateEdit(false);
+                        tvEdit.setText("编辑");
+                        tvEdit.setVisibility(View.GONE);
                         break;
                     case 2:
                         tvNoPass.performClick();
+                        tvEdit.setVisibility(View.VISIBLE);
                         break;
                 }
             }
@@ -123,7 +134,13 @@ public class TemplateApprovedActivity extends BaseActivity {
             case R.id.tv_edit:
                 if (groupEdit.getVisibility() == View.VISIBLE) {
                     groupEdit.setVisibility(View.GONE);
-                } else groupEdit.setVisibility(View.VISIBLE);
+                    fragments.get(viewPager.getCurrentItem()).templateEdit(false);
+                    tvEdit.setText("编辑");
+                } else {
+                    groupEdit.setVisibility(View.VISIBLE);
+                    fragments.get(viewPager.getCurrentItem()).templateEdit(true);
+                    tvEdit.setText("取消");
+                }
                 break;
             case R.id.tv_publish:
             case R.id.view_publish:
@@ -156,11 +173,43 @@ public class TemplateApprovedActivity extends BaseActivity {
                 viewPager.setCurrentItem(2);
                 break;
             case R.id.tv_all:
-
+                if (ifAllChoose) {
+                    fragments.get(viewPager.getCurrentItem()).allChoose(false);
+                    ifAllChoose = false;
+                } else {
+                    fragments.get(viewPager.getCurrentItem()).allChoose(true);
+                    ifAllChoose = true;
+                }
                 break;
             case R.id.tv_delete:
-
+                delete();
                 break;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        if (groupEdit.getVisibility() == View.VISIBLE) {
+            groupEdit.setVisibility(View.GONE);
+            fragments.get(viewPager.getCurrentItem()).templateEdit(false);
+            tvEdit.setText("编辑");
+        } else super.onBackPressed();
+    }
+
+    private void delete() {
+        if (fragments.get(viewPager.getCurrentItem()).getChooseIdList().size() > 0) {
+            HttpRequest.getInstance().excute(HttpRequest.create(AuthorApi.class).soldOutTemplates(fragments.get(viewPager.getCurrentItem()).getChooseIdList()), new OnResultListener() {
+                @Override
+                public void onWebUiResult(WebMsg webMsg) {
+                    if (webMsg.dataIsSuccessed()) {
+                        com.vivwe.base.ui.alert.Toast.show(TemplateApprovedActivity.this, webMsg.getDesc(), 2000);
+                        fragments.get(viewPager.getCurrentItem()).deleteSuccess();
+                    } else if (webMsg.netIsSuccessed()) {
+                        com.vivwe.base.ui.alert.Toast.show(TemplateApprovedActivity.this, webMsg.getDesc(), 2000);
+                    }
+                }
+            });
+        } else Toast.makeText(this, "选择不能为空！", Toast.LENGTH_SHORT).show();
+    }
+
 }
