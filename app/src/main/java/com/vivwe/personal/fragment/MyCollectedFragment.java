@@ -21,18 +21,19 @@ import com.vivwe.personal.api.PersonalApi;
 import com.vivwe.personal.entity.TemplateEntity;
 import com.vivwe.personal.entity.VideoEntity;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class MycollectedFragment extends Fragment {
+public class MyCollectedFragment extends Fragment {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     Unbinder unbinder;
-    private TemplateAdapter demoAdapter;
+    private TemplateAdapter templateAdapter;
     private MyCollectedVideoAdapter videoAdapter;
 
     @Nullable
@@ -51,10 +52,9 @@ public class MycollectedFragment extends Fragment {
                 case 0:
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
                     recyclerView.setLayoutManager(gridLayoutManager);
-                    demoAdapter = new TemplateAdapter(Objects.requireNonNull(getActivity()));
-                    recyclerView.setAdapter(demoAdapter);
-                    recyclerView.setPadding(getResources().getDimensionPixelOffset(R.dimen.x32), 0,
-                            getResources().getDimensionPixelOffset(R.dimen.x6), 0);
+                    templateAdapter = new TemplateAdapter(Objects.requireNonNull(getActivity()));
+                    recyclerView.setAdapter(templateAdapter);
+                    recyclerView.setPadding(getResources().getDimensionPixelOffset(R.dimen.x32), 0, getResources().getDimensionPixelOffset(R.dimen.x6), 0);
                     getTemplateCollected();
                     break;
                 case 1:
@@ -74,7 +74,7 @@ public class MycollectedFragment extends Fragment {
             public void onWebUiResult(WebMsg webMsg) {
                 if (webMsg.dataIsSuccessed()) {
                     TemplateEntity templateEntity = webMsg.getData(TemplateEntity.class);
-                    demoAdapter.setTemplates(templateEntity.getRecords());
+                    templateAdapter.setTemplates(templateEntity.getRecords());
                 } else if (webMsg.netIsSuccessed()) {
                     Toast.show(getContext(), webMsg.getDesc(), 2000);
                 }
@@ -94,6 +94,68 @@ public class MycollectedFragment extends Fragment {
                 }
             }
         });
+    }
+
+
+    public void templateEdit(boolean ifEdit){
+        switch (getArguments().getInt("tag")) {
+            case 0:
+                if(templateAdapter!=null){
+                    templateAdapter.setIfEdit(ifEdit);
+                }
+                break;
+            case 1:
+                if(videoAdapter!=null){
+                    videoAdapter.setIfEdit(ifEdit);
+                }
+                break;
+        }
+    }
+
+    public ArrayList<Integer> getChooseIdList(){
+        switch (getArguments().getInt("tag")) {
+            case 0:
+                if(templateAdapter!=null){
+                    return templateAdapter.getChooseIdList();
+                }
+                break;
+            case 1:
+                if(videoAdapter!=null){
+                    return videoAdapter.getChooseIdList();
+                }
+                break;
+        }
+        return new ArrayList<>();
+    }
+
+    public void allChoose(boolean ifAllChoose){
+        switch (getArguments().getInt("tag")) {
+            case 0:
+                if(templateAdapter!=null){
+                    templateAdapter.allChoose(ifAllChoose);
+                }
+                break;
+            case 1:
+                if(videoAdapter!=null){
+                     videoAdapter.allChoose(ifAllChoose);
+                }
+                break;
+        }
+    }
+
+    public void deleteSuccess(){
+        switch (getArguments().getInt("tag")) {
+            case 0:
+                if(templateAdapter!=null){
+                    templateAdapter.deleteSuccess();
+                }
+                break;
+            case 1:
+                if(videoAdapter!=null){
+                    videoAdapter.deleteSuccess();
+                }
+                break;
+        }
     }
 
 

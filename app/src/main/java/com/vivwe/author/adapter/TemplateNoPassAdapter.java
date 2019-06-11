@@ -24,6 +24,8 @@ public class TemplateNoPassAdapter extends RecyclerView.Adapter<TemplateNoPassAd
     private Activity activity;
     private ArrayList<TemplateEntity.Template> templates;
     private RequestOptions requestOptions;
+    private boolean ifEdit;//是否编辑
+    private ArrayList<TemplateEntity.Template> waitDeleteTemplates;//要删除的模板
 
     public TemplateNoPassAdapter(Activity activity) {
         this.activity = activity;
@@ -33,6 +35,7 @@ public class TemplateNoPassAdapter extends RecyclerView.Adapter<TemplateNoPassAd
 
     public void setTemplates(ArrayList<TemplateEntity.Template> templates) {
         this.templates = templates;
+        if(waitDeleteTemplates==null) waitDeleteTemplates=new ArrayList<>();
         notifyDataSetChanged();
     }
 
@@ -65,13 +68,31 @@ public class TemplateNoPassAdapter extends RecyclerView.Adapter<TemplateNoPassAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
         Glide.with(activity).load(templates.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
         holder.tvMaterial.setText(templates.get(i).getMax_material_count()+"个素材");
         holder.tvMoney.setText("¥"+templates.get(i).getPrice()+"元");
         holder.tvTime.setText(templates.get(i).getMax_duration()+"秒");
         holder.tvTitle.setText(templates.get(i).getTitle());
         holder.tvReason.setText(templates.get(i).getReason());
+        if(ifEdit){
+            holder.ivChoose.setVisibility(View.VISIBLE);
+            if(waitDeleteTemplates.contains(templates.get(i))) holder.ivChoose.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_checked));
+            else holder.ivChoose.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_check));
+        }else holder.ivChoose.setVisibility(View.GONE);
+
+        holder.ivChoose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(waitDeleteTemplates.contains(templates.get(holder.getAdapterPosition()))){
+                    holder.ivChoose.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_check));
+                    waitDeleteTemplates.remove(templates.get(holder.getAdapterPosition()));
+                }else{
+                    holder.ivChoose.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_checked));
+                    waitDeleteTemplates.add(templates.get(holder.getAdapterPosition()));
+                }
+            }
+        });
     }
 
     @Override
@@ -79,5 +100,36 @@ public class TemplateNoPassAdapter extends RecyclerView.Adapter<TemplateNoPassAd
         return templates == null ? 0 : templates.size();
     }
 
+    public void setIfEdit(boolean ifEdit) {
+        this.ifEdit = ifEdit;
+        notifyDataSetChanged();
+    }
 
+    public void allChoose(boolean ifAllChoose){
+        if(waitDeleteTemplates!=null){
+            if(ifAllChoose){
+                waitDeleteTemplates.clear();
+            }else{
+                waitDeleteTemplates.clear();
+                waitDeleteTemplates.addAll(templates);
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public ArrayList<Integer> getChooseIdList() {
+        ArrayList<Integer> chooseIdList=new ArrayList<>();
+        if(waitDeleteTemplates!=null) {
+            for (int i = 0; i < waitDeleteTemplates.size(); i++) {
+                chooseIdList.add(waitDeleteTemplates.get(i).getId());
+            }
+        }
+        return chooseIdList;
+    }
+
+    public void deleteSuccess(){
+        templates.removeAll(waitDeleteTemplates);
+        waitDeleteTemplates.clear();
+        notifyDataSetChanged();
+    }
 }

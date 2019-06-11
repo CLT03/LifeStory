@@ -10,12 +10,21 @@ public class VideoEntity {
     }
 
     public class Video {
-        private int vid;
+        private int vid;//视频id
         private String avatar;
         private String nickname;
         private String imageUrl;
         private int playCount;
         private String videoTitle;
+        private int starId;//收藏id
+
+        public int getStarId() {
+            return starId;
+        }
+
+        public void setStarId(int starId) {
+            this.starId = starId;
+        }
 
         public int getVid() {
             return vid;

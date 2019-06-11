@@ -22,6 +22,8 @@ import com.vivwe.main.R;
 
 import com.vivwe.personal.entity.TemplateEntity;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -128,7 +130,66 @@ public class TemplateApprovedFragment extends Fragment {
         });
     }
 
+    public void templateEdit(boolean ifEdit){
+        switch (getArguments().getInt("tag")) {
+            case 0:
+                if(publishAdapter!=null){
+                    publishAdapter.setIfEdit(ifEdit);
+                }
+                break;
+            case 2:
+                if(noPassAdapter!=null){
+                    noPassAdapter.setIfEdit(ifEdit);
+                }
+                break;
+        }
+    }
 
+    public ArrayList<Integer> getChooseIdList(){
+        switch (getArguments().getInt("tag")) {
+            case 0:
+                if(publishAdapter!=null){
+                    return publishAdapter.getChooseIdList();
+                }
+                break;
+            case 2:
+                if(noPassAdapter!=null){
+                    return noPassAdapter.getChooseIdList();
+                }
+                break;
+        }
+        return new ArrayList<>();
+    }
+
+    public void allChoose(boolean ifAllChoose){
+        switch (getArguments().getInt("tag")) {
+            case 0:
+                if(publishAdapter!=null){
+                    publishAdapter.allChoose(ifAllChoose);
+                }
+                break;
+            case 2:
+                if(noPassAdapter!=null){
+                    noPassAdapter.allChoose(ifAllChoose);
+                }
+                break;
+        }
+    }
+
+    public void deleteSuccess(){
+        switch (getArguments().getInt("tag")) {
+            case 0:
+                if(publishAdapter!=null){
+                    publishAdapter.deleteSuccess();
+                }
+                break;
+            case 2:
+                if(noPassAdapter!=null){
+                    noPassAdapter.deleteSuccess();
+                }
+                break;
+        }
+    }
 
 
     @Override

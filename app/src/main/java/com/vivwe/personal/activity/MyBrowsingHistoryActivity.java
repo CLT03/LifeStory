@@ -8,11 +8,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.mbs.sdk.net.HttpRequest;
+import com.mbs.sdk.net.listener.OnResultListener;
+import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.main.R;
 import com.vivwe.main.entity.VideoHistoryEntity;
 import com.vivwe.personal.adapter.MyBrowsingHistoryAdapter;
+import com.vivwe.personal.api.PersonalApi;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -45,6 +51,9 @@ public class MyBrowsingHistoryActivity extends BaseActivity {
     Group groupEarlier;
     @BindView(R.id.group_edit)
     Group groupEdit;
+    @BindView(R.id.tv_edit)
+    TextView tvEdit;
+    private boolean ifAllChoose;//是否全选
     private MyBrowsingHistoryAdapter todayAdapter,yesterdayAdapter,earlierAdapter;
 
     @Override
@@ -93,11 +102,11 @@ public class MyBrowsingHistoryActivity extends BaseActivity {
                 groupToday.setVisibility(View.VISIBLE);
             }
             if(yesterdayHistory.size()>0){
-                yesterdayAdapter.setHistoryEntities(todayHistory);
+                yesterdayAdapter.setHistoryEntities(yesterdayHistory);
                 groupYesterday.setVisibility(View.VISIBLE);
             }
             if(earlierHistory.size()>0){
-                earlierAdapter.setHistoryEntities(todayHistory);
+                earlierAdapter.setHistoryEntities(earlierHistory);
                 groupEarlier.setVisibility(View.VISIBLE);
             }
         }
@@ -133,14 +142,64 @@ public class MyBrowsingHistoryActivity extends BaseActivity {
             case R.id.tv_edit:
                 if (groupEdit.getVisibility() == View.VISIBLE) {
                     groupEdit.setVisibility(View.GONE);
-                } else groupEdit.setVisibility(View.VISIBLE);
+                    todayAdapter.setIfEdit(false);
+                    yesterdayAdapter.setIfEdit(false);
+                    earlierAdapter.setIfEdit(false);
+                    tvEdit.setText("编辑");
+                } else {
+                    groupEdit.setVisibility(View.VISIBLE);
+                    todayAdapter.setIfEdit(true);
+                    yesterdayAdapter.setIfEdit(true);
+                    earlierAdapter.setIfEdit(true);
+                    tvEdit.setText("取消");
+                }
                 break;
             case R.id.tv_all:
-
+                if (ifAllChoose) {
+                    todayAdapter.setIfEdit(false);
+                    yesterdayAdapter.setIfEdit(false);
+                    earlierAdapter.setIfEdit(false);
+                    ifAllChoose = false;
+                } else {
+                    todayAdapter.setIfEdit(true);
+                    yesterdayAdapter.setIfEdit(true);
+                    earlierAdapter.setIfEdit(true);
+                    ifAllChoose = true;
+                }
                 break;
             case R.id.tv_delete:
-
+                delete();
                 break;
         }
+    }
+
+    private void delete() {
+        ArrayList<Integer> chooseIdList = new ArrayList<>(todayAdapter.getChooseIdList());
+        chooseIdList.addAll(yesterdayAdapter.getChooseIdList());
+        chooseIdList.addAll(earlierAdapter.getChooseIdList());
+        if (chooseIdList.size() > 0) {
+            HttpRequest.getInstance().excute(HttpRequest.create(PersonalApi.class).deleteVidoeHistory(chooseIdList), new OnResultListener() {
+                @Override
+                public void onWebUiResult(WebMsg webMsg) {
+                    if (webMsg.dataIsSuccessed()) {
+                        com.vivwe.base.ui.alert.Toast.show(MyBrowsingHistoryActivity.this, webMsg.getDesc(), 2000);
+                        todayAdapter.deleteSuccess();
+                        yesterdayAdapter.deleteSuccess();
+                        earlierAdapter.deleteSuccess();
+                        if(todayAdapter.getHistoryEntities().size()==0){
+                            groupToday.setVisibility(View.GONE);
+                        }
+                        if(yesterdayAdapter.getHistoryEntities().size()==0){
+                            groupYesterday.setVisibility(View.GONE);
+                        }
+                        if(earlierAdapter.getHistoryEntities().size()==0){
+                            groupEarlier.setVisibility(View.GONE);
+                        }
+                    } else if (webMsg.netIsSuccessed()) {
+                        com.vivwe.base.ui.alert.Toast.show(MyBrowsingHistoryActivity.this, webMsg.getDesc(), 2000);
+                    }
+                }
+            });
+        } else Toast.makeText(this, "选择不能为空！", Toast.LENGTH_SHORT).show();
     }
 }

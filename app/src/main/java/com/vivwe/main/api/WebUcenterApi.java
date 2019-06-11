@@ -17,7 +17,7 @@ public interface WebUcenterApi {
     Observable<WebMsg> getUserRecordInfo();
 
     //获取历史记录
-    @GET("api/user/listPlayHistory")
+    @GET("api/play-history/listPlayHistoryInfo")
     Observable<WebMsg> getVideoHistory(@Query("pageNum") int pageNum,
                                        @Query("pageSize") int pageSize);
 }
