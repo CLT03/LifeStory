@@ -16,7 +16,8 @@ public class TemplateEntity {
     }
 
     public class Template {
-        private int id;
+        private int starId;//收藏id
+        private int id;//模板id
         private String title;
         private String imageUrl;
         private String price;//价格
@@ -28,6 +29,14 @@ public class TemplateEntity {
         private String max_duration; //最大时长 单位秒
         private int numberOfUsers; //使用人数
         private String reason; //未通过原因
+
+        public int getStarId() {
+            return starId;
+        }
+
+        public void setStarId(int starId) {
+            this.starId = starId;
+        }
 
         public String getReason() {
             return reason;

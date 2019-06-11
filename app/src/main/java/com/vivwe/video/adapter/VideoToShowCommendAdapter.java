@@ -11,7 +11,6 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,12 +28,11 @@ import com.vivwe.base.cache.UserCache;
 import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.base.util.MiscUtil;
 import com.vivwe.main.R;
-import com.vivwe.personal.entity.UserEntity;
+import com.vivwe.personal.entity.VideoEntity;
 import com.vivwe.video.activity.VideoToShowActivity;
 import com.vivwe.video.api.VideoApi;
 import com.vivwe.video.entity.CommentCommentEntity;
 import com.vivwe.video.entity.VideoComment;
-import com.vivwe.video.entity.VideoCommentEntity;
 import com.vivwe.video.ui.MyRecyclerViewInner;
 
 import java.util.ArrayList;
@@ -43,6 +41,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class VideoToShowCommendAdapter extends RecyclerView.Adapter<VideoToShowCommendAdapter.ViewHolder> {
+
 
 
     private Activity activity;
@@ -77,8 +76,9 @@ public class VideoToShowCommendAdapter extends RecyclerView.Adapter<VideoToShowC
         TextView tvOpen;
         @BindView(R.id.group_open)
         Group groupOpen;
-        @BindView(R.id.cl)
-        ConstraintLayout cl;
+        @BindView(R.id.view_click)
+        View viewClick;
+
         ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -94,64 +94,84 @@ public class VideoToShowCommendAdapter extends RecyclerView.Adapter<VideoToShowC
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
-        Glide.with(activity).load(commentEntities.get(i).getAvatar()).apply(requestOptions).into(holder.ivHead);
-        holder.tvName.setText(commentEntities.get(i).getNickName());
+        final VideoComment videoComment = commentEntities.get(i);
+        Glide.with(activity).load(videoComment.getAvatar()).apply(requestOptions).into(holder.ivHead);
+        holder.tvName.setText(videoComment.getNickName());
         //设置评论内容加时间
-        SpannableString sStr=new SpannableString(commentEntities.get(i).getContent()+"  "+MiscUtil.getDistanceFromDate(commentEntities.get(i).getGmtCreate()));
-        sStr.setSpan(new AbsoluteSizeSpan(activity.getResources().getDimensionPixelSize(R.dimen.x24)), commentEntities.get(i).getContent().length(), sStr.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sStr.setSpan(new ForegroundColorSpan(Color.parseColor("#999999")), commentEntities.get(i).getContent().length(), sStr.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        SpannableString sStr = new SpannableString(videoComment.getContent() + "  " + MiscUtil.getDistanceFromDate(videoComment.getGmtCreate()));
+        sStr.setSpan(new AbsoluteSizeSpan(activity.getResources().getDimensionPixelSize(R.dimen.x24)), videoComment.getContent().length(), sStr.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sStr.setSpan(new ForegroundColorSpan(Color.parseColor("#999999")), videoComment.getContent().length(), sStr.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         holder.tvComment.setText(sStr);
 
-        if (commentEntities.get(i).getIsLiked() == 1) {//是否点赞
+        if (videoComment.getIsLiked() == 1) {//是否点赞
             holder.ivLike.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_like_my));
-        } else holder.ivLike.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_like_video));
-        holder.tvLike.setText(String.valueOf(commentEntities.get(i).getLrCount()));
+        } else
+            holder.ivLike.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_like_video));
+        holder.tvLike.setText(String.valueOf(videoComment.getLrCount()));
 
         //没展开且不为空
-        if (commentEntities.get(i).getVdrList() != null && commentEntities.get(i).getVdrList().size() > 0) {//评论的回复
+        if (videoComment.getVdrList() != null && videoComment.getVdrList().size() > 0) {//评论的回复
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             holder.recyclerView.setLayoutManager(linearLayoutManager);
             final VideoToShowCommendToCommentAdapter adapter = new VideoToShowCommendToCommentAdapter(activity);
             holder.recyclerView.setAdapter(adapter);
-            adapter.setCommentEntities(commentEntities.get(i).getVdrList(),holder.getAdapterPosition());
+            adapter.setCommentEntities(videoComment.getVdrList(), holder.getAdapterPosition(), videoComment.getUserId());
             holder.recyclerView.setVisibility(View.VISIBLE);
-            if(!commentEntities.get(i).isOpen()) {
-                //Log.e("ououou","sdf"+commentEntities.get(i).getVdrCount());
-                if (commentEntities.get(i).getVdrCount() > 0) {
-                    holder.tvOpen.setText("展开" + commentEntities.get(i).getVdrCount() + "条回复");
+            if (!videoComment.isOpen()) {
+                //Log.e("ououou","sdf"+videoComment.getVdrCount());
+                if (videoComment.getVdrCount() > 0) {
+                    holder.tvOpen.setText("展开" + videoComment.getVdrCount() + "条回复");
                     holder.groupOpen.setVisibility(View.VISIBLE);
-                    //展开更多
-                    holder.tvOpen.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if(commentEntities.get(holder.getAdapterPosition()).isOpen()){//已展开 那就是收起
-                                //commentEntities.get(holder.getAdapterPosition()).getVdrList()
-                            }else {//未展开 那就是展开
-                                getMoreReply(commentEntities.get(holder.getAdapterPosition()).getVdrList().get(0).getVdrId(),
-                                        commentEntities.get(holder.getAdapterPosition()).getVdId(),
-                                        adapter, commentEntities.get(holder.getAdapterPosition()), holder.groupOpen);
-                            }
-                        }
-                    });
                 } else holder.groupOpen.setVisibility(View.GONE);
-            }else {
+            } else {
                 holder.tvOpen.setText("收起");
+                holder.groupOpen.setVisibility(View.VISIBLE);
             }
+            holder.tvOpen.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    VideoComment videoComment = commentEntities.get(holder.getAdapterPosition());
+                    if (videoComment.isOpen()) {//已展开 那就是收起
+                        videoComment.setTempVdrList();
+                        videoComment.setOpen(false);
+                        adapter.setCommentEntities(videoComment.getVdrList());
+                        holder.tvOpen.setText("展开" + videoComment.getTempVdrList().size() + "条回复");
+                    } else {//未展开 那就是展开
+                        if (videoComment.getTempVdrList() != null) {
+                            videoComment.getVdrList().addAll(commentEntities.get(holder.getAdapterPosition()).getTempVdrList());
+                            videoComment.setOpen(true);
+                            adapter.setCommentEntities(videoComment.getVdrList());
+                            holder.tvOpen.setText("收起");
+                        } else {
+                            getMoreReply(videoComment.getVdrList().get(0).getVdrId(),
+                                    videoComment.getVdId(),
+                                    adapter, videoComment, holder.tvOpen);
+                        }
+                    }
+                }
+            });
         } else {
             holder.groupOpen.setVisibility(View.GONE);
             holder.recyclerView.setVisibility(View.GONE);
         }
 
         //点击回复视频评论
-        holder.cl.setOnClickListener(new View.OnClickListener() {
+        holder.viewClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((VideoToShowActivity)activity).setCommentData(1,
+                ((VideoToShowActivity) activity).setCommentData(1,
                         commentEntities.get(holder.getAdapterPosition()).getVdId(),
                         commentEntities.get(holder.getAdapterPosition()).getUserId(),
                         commentEntities.get(holder.getAdapterPosition()).getNickName(),
                         holder.getAdapterPosition());
+            }
+        });
+
+        holder.ivLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newLike(videoComment,holder.ivLike,holder.tvLike);
             }
         });
 
@@ -165,28 +185,52 @@ public class VideoToShowCommendAdapter extends RecyclerView.Adapter<VideoToShowC
 
 
     /**
-     *
-     * @param vdrId 第一条回复的id
+     * @param vdrId          第一条回复的id
      * @param videoDiscussId 改视频评论的id
      * @param adapter
      * @param videoComment
-     * @param group 展开更多的组
      */
     private void getMoreReply(int vdrId, int videoDiscussId, final VideoToShowCommendToCommentAdapter adapter,
-                              final VideoComment videoComment, final Group group ){
+                              final VideoComment videoComment, final TextView tvOpen) {
         HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).getMoreReply(UserCache.Companion.getUserInfo().getId(),
-                vdrId ,videoDiscussId), new OnResultListener() {
+                vdrId, videoDiscussId), new OnResultListener() {
             @Override
             public void onWebUiResult(WebMsg webMsg) {
                 if (webMsg.dataIsSuccessed()) {
                     videoComment.setOpen(true);
-                    ArrayList<CommentCommentEntity> commentCommentEntities=new GsonBuilder().create().fromJson(webMsg.getData(),new TypeToken<ArrayList<CommentCommentEntity>>(){}.getType());
-                    for(int i=0;i<videoComment.getNewAddReplyNumber();i++){//去掉新加的回复
-                        commentCommentEntities.remove(commentCommentEntities.size()-1);
+                    ArrayList<CommentCommentEntity> commentCommentEntities = new GsonBuilder().create().fromJson(webMsg.getData(), new TypeToken<ArrayList<CommentCommentEntity>>() {
+                    }.getType());
+                    for (int i = 0; i < videoComment.getNewAddReplyNumber(); i++) {//去掉新加的回复
+                        commentCommentEntities.remove(commentCommentEntities.size() - 1);
                     }
                     videoComment.getVdrList().addAll(commentCommentEntities);
                     adapter.setCommentEntities(videoComment.getVdrList());
-                    group.setVisibility(View.GONE);
+                    tvOpen.setText("收起");
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(activity, webMsg.getDesc(), 2000);
+                }
+            }
+        });
+    }
+
+    //点赞取消点赞
+    private void newLike(final VideoComment videoComment,final ImageView ivLike,final TextView tvLike) {
+        HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).newLike(2, UserCache.Companion.getUserInfo().getId(),
+                videoComment.getVdId(), null, null), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    if (videoComment.getIsLiked() == 1) {
+                        videoComment.setIsLiked(0);
+                        ivLike.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_like_video));
+                        videoComment.setLrCount(videoComment.getLrCount()-1);
+                        tvLike.setText(String.valueOf(videoComment.getLrCount()));
+                    } else {
+                        videoComment.setIsLiked(1);
+                        ivLike.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_like_my));
+                        videoComment.setLrCount(videoComment.getLrCount()+1);
+                        tvLike.setText(String.valueOf(videoComment.getLrCount()));
+                    }
                 } else if (webMsg.netIsSuccessed()) {
                     Toast.show(activity, webMsg.getDesc(), 2000);
                 }

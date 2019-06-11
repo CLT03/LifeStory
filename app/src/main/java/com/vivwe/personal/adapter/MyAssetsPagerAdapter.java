@@ -1,17 +1,18 @@
-package com.vivwe.author.adapter;
+package com.vivwe.personal.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.vivwe.author.fragment.TemplateApprovedFragment;
+import com.vivwe.personal.fragment.MyAssetsFragment;
+import com.vivwe.personal.fragment.MyCollectedFragment;
 
 import java.util.ArrayList;
 
-public class TemplateApprovedPagerAdapter extends FragmentPagerAdapter {
-    private ArrayList<TemplateApprovedFragment> fragments;
+public class MyAssetsPagerAdapter extends FragmentPagerAdapter {
+    private ArrayList<MyAssetsFragment> fragments;
 
-    public TemplateApprovedPagerAdapter(FragmentManager fm, ArrayList<TemplateApprovedFragment> fragments) {
+    public MyAssetsPagerAdapter(FragmentManager fm, ArrayList<MyAssetsFragment> fragments) {
         super(fm);
         this.fragments=fragments;
     }

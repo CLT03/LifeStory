@@ -40,4 +40,16 @@
         app:layout_constraintTop_toTopOf="@+id/iv_cover"
         android:src="@mipmap/icon_fee_red" />
 
+    <ImageView
+        android:id="@+id/iv_choose"
+        android:layout_width="@dimen/x80"
+        android:layout_height="@dimen/x80"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:padding="@dimen/x20"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_cover"
+        app:srcCompat="@mipmap/icon_check" />
+
 </android.support.constraint.ConstraintLayout>

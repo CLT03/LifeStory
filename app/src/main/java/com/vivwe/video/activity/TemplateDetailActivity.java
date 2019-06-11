@@ -98,7 +98,7 @@ public class TemplateDetailActivity extends BaseActivity {
 
                 break;
             case R.id.iv_head:
-                startActivity(new Intent(this, DesignerHomeActivity.class));
+                startActivity(new Intent(this, DesignerHomeActivity.class).putExtra("userId",templateDetailEntity.getUserId()));
                 break;
             case R.id.btn_buy:
                 downLoadTemplate();
