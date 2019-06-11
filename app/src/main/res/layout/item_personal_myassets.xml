@@ -7,7 +7,7 @@
     android:layout_height="@dimen/x334">
 
     <ImageView
-        android:id="@+id/iv_cover"
+        android:id="@+id/iv_image"
         android:layout_width="@dimen/x248"
         android:layout_height="@dimen/x332"
         android:scaleType="fitXY"
@@ -24,8 +24,8 @@
         android:text="04-22 16:19"
         android:textColor="#f9f9f9"
         android:textSize="@dimen/x22"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_cover"
-        app:layout_constraintStart_toStartOf="@+id/iv_cover" />
+        app:layout_constraintBottom_toBottomOf="@+id/iv_image"
+        app:layout_constraintStart_toStartOf="@+id/iv_image" />
 
     <ImageView
         android:id="@+id/iv_choose"
@@ -34,6 +34,6 @@
         android:padding="@dimen/x20"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iv_cover"
+        app:layout_constraintTop_toTopOf="@+id/iv_image"
         app:srcCompat="@mipmap/icon_checked" />
 </android.support.constraint.ConstraintLayout>

@@ -273,9 +273,6 @@ public class ImageLoadActivity extends Activity implements ListImageDirPopupWind
 				if(ImageLoadActivity.CHOOSE_IMAGES.size() == 0){
 					Toast.show(ImageLoadActivity.this, "最少选择一张图！", 1500);
 				} else {
-
-					Log.v(">>>", new GsonBuilder().create().toJson(CHOOSE_IMAGES));
-
 					if(CHOOSE_ISCUT) { // 图片需要裁剪
 						editImage(CHOOSE_IMAGES.get(0));
 					} else {
