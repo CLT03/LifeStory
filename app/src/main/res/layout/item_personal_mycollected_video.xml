@@ -16,4 +16,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_background" />
 
+    <ImageView
+        android:id="@+id/iv_choose"
+        android:layout_width="@dimen/x80"
+        android:layout_height="@dimen/x80"
+        android:padding="@dimen/x20"
+        app:layout_constraintEnd_toEndOf="@+id/iv_cover"
+        app:layout_constraintTop_toTopOf="@+id/iv_cover"
+        app:srcCompat="@mipmap/icon_check" />
+
 </android.support.constraint.ConstraintLayout>

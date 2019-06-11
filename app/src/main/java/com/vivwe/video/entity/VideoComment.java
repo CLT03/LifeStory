@@ -16,6 +16,18 @@ public class VideoComment {
     private ArrayList<CommentCommentEntity> vdrList;
     private boolean isOpen;//是否展开
     private int newAddReplyNumber;//新加的回复数量 在展开的时候需要去掉 因为展开获取回来的还有他们
+    private ArrayList<CommentCommentEntity> tempVdrList;//收起时用来保存展开时拿到的回复，收起后下次展开不用在请求
+
+    public ArrayList<CommentCommentEntity> getTempVdrList() {
+        return tempVdrList;
+    }
+
+    public void setTempVdrList() {
+        tempVdrList=new ArrayList<>();
+        tempVdrList.addAll(vdrList);
+        tempVdrList.remove(0);//去掉第一个
+        vdrList.removeAll(tempVdrList);
+    }
 
     public void addReplyNumber(){
         newAddReplyNumber++;

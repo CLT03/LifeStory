@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.cache.UserCache;
 import com.vivwe.main.R;
 
 import butterknife.ButterKnife;

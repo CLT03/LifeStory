@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.vivwe.main.R;
+import com.vivwe.personal.entity.AssetsEntity;
 import com.vivwe.personal.entity.TemplateEntity;
 
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ public class TemplatePublishAdapter extends RecyclerView.Adapter<TemplatePublish
     private Activity activity;
     private ArrayList<TemplateEntity.Template> templates;
     private RequestOptions requestOptions;
+    private boolean ifEdit;//是否编辑
+    private ArrayList<TemplateEntity.Template> waitDeleteTemplates;//要删除的模板
 
     public TemplatePublishAdapter(Activity activity) {
         this.activity = activity;
@@ -34,6 +37,7 @@ public class TemplatePublishAdapter extends RecyclerView.Adapter<TemplatePublish
 
     public void setTemplates(ArrayList<TemplateEntity.Template> templates) {
         this.templates = templates;
+        if(waitDeleteTemplates==null) waitDeleteTemplates=new ArrayList<>();
         notifyDataSetChanged();
     }
 
@@ -70,7 +74,7 @@ public class TemplatePublishAdapter extends RecyclerView.Adapter<TemplatePublish
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
         Glide.with(activity).load(templates.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
         holder.tvClick.setText(String.valueOf(templates.get(i).getClickCount()));
         holder.tvCollected.setText(String.valueOf(templates.get(i).getCollectNumber()));
@@ -79,6 +83,24 @@ public class TemplatePublishAdapter extends RecyclerView.Adapter<TemplatePublish
         holder.tvTime.setText(templates.get(i).getMax_duration()+"秒");
         holder.tvUse.setText(templates.get(i).getNumberOfUsers()+"次");
         holder.tvTitle.setText(templates.get(i).getTitle());
+        if(ifEdit){
+            holder.ivChoose.setVisibility(View.VISIBLE);
+            if(waitDeleteTemplates.contains(templates.get(i))) holder.ivChoose.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_checked));
+            else holder.ivChoose.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_check));
+        }else holder.ivChoose.setVisibility(View.GONE);
+
+        holder.ivChoose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(waitDeleteTemplates.contains(templates.get(holder.getAdapterPosition()))){
+                    holder.ivChoose.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_check));
+                    waitDeleteTemplates.remove(templates.get(holder.getAdapterPosition()));
+                }else{
+                    holder.ivChoose.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_checked));
+                    waitDeleteTemplates.add(templates.get(holder.getAdapterPosition()));
+                }
+            }
+        });
     }
 
     @Override
@@ -86,5 +108,37 @@ public class TemplatePublishAdapter extends RecyclerView.Adapter<TemplatePublish
         return templates == null ? 0 : templates.size();
     }
 
+    public void setIfEdit(boolean ifEdit) {
+        this.ifEdit = ifEdit;
+        notifyDataSetChanged();
+    }
+
+    public void allChoose(boolean ifAllChoose){
+        if(waitDeleteTemplates!=null){
+            if(ifAllChoose){
+                waitDeleteTemplates.clear();
+            }else{
+                waitDeleteTemplates.clear();
+                waitDeleteTemplates.addAll(templates);
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public ArrayList<Integer> getChooseIdList() {
+        ArrayList<Integer> chooseIdList=new ArrayList<>();
+        if(waitDeleteTemplates!=null) {
+            for (int i = 0; i < waitDeleteTemplates.size(); i++) {
+                 chooseIdList.add(waitDeleteTemplates.get(i).getId());
+            }
+        }
+        return chooseIdList;
+    }
+
+    public void deleteSuccess(){
+        templates.removeAll(waitDeleteTemplates);
+        waitDeleteTemplates.clear();
+        notifyDataSetChanged();
+    }
 
 }

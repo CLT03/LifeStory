@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/cl"
     android:layout_height="match_parent"
     android:background="#ffffff">
 
@@ -28,9 +29,9 @@
         android:paddingTop="@dimen/x30"
         android:paddingRight="@dimen/x36"
         android:paddingBottom="@dimen/x26"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_title"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
         app:srcCompat="@mipmap/icon_back_black" />
 
     <ImageView
@@ -116,11 +117,11 @@
         android:layout_width="@dimen/x110"
         android:layout_height="@dimen/x52"
         android:layout_marginLeft="@dimen/x20"
-        android:text="+关注"
+        android:background="@drawable/r13_orange_btn"
         android:gravity="center"
-        android:textSize="@dimen/x24"
+        android:text="+关注"
         android:textColor="#ffffff"
-        android:background="@drawable/r13_orange_normal"
+        android:textSize="@dimen/x24"
         app:layout_constraintBottom_toBottomOf="@+id/tv_name"
         app:layout_constraintStart_toEndOf="@+id/tv_name"
         app:layout_constraintTop_toTopOf="@+id/tv_name" />
@@ -130,7 +131,7 @@
         android:layout_width="@dimen/x56"
         android:layout_height="@dimen/x56"
         android:layout_marginRight="@dimen/x18"
-        android:padding="@dimen/x12"
+        android:padding="@dimen/x8"
         app:layout_constraintBottom_toBottomOf="@+id/btn_attention"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btn_attention"
@@ -168,8 +169,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sign"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/tv_sign" />
 
 
     <android.support.v7.widget.RecyclerView
