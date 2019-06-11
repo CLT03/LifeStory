@@ -7,6 +7,18 @@
     android:layout_height="wrap_content"
     android:background="@drawable/ra_white_btn">
 
+    <View
+        android:id="@+id/view_click"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ra_white_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_comment"
+        app:layout_constraintEnd_toEndOf="@+id/tv_comment"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/iv_head"
+        app:layout_constraintTop_toTopOf="@+id/iv_head" />
+
     <ImageView
         android:id="@+id/iv_head"
         android:layout_width="@dimen/x64"
@@ -60,11 +72,12 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_like" />
 
     <View
+        android:id="@+id/view35"
         android:layout_width="0dp"
         android:layout_height="@dimen/x32"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_comment"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_comment" />
 
     <com.vivwe.video.ui.MyRecyclerViewInner
         android:id="@+id/recyclerView"
@@ -78,10 +91,10 @@
     <TextView
         android:id="@+id/tv_open"
         android:layout_width="wrap_content"
-        android:background="@drawable/ra_white_btn"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/x52"
         android:layout_marginTop="@dimen/x30"
+        android:background="@drawable/ra_white_btn"
         android:text="展开1条回复"
         android:textColor="#999999"
         android:textSize="@dimen/x24"
@@ -90,10 +103,10 @@
 
     <ImageView
         android:id="@+id/imageView41"
-        android:layout_width="@dimen/x12"
-        android:layout_height="@dimen/x8"
+        android:layout_width="@dimen/x20"
+        android:layout_height="@dimen/x20"
         android:layout_marginLeft="@dimen/x4"
-        android:layout_marginTop="@dimen/x14"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_open"
         app:layout_constraintStart_toEndOf="@+id/tv_open"
         app:layout_constraintTop_toTopOf="@+id/tv_open"
         app:srcCompat="@mipmap/icon_back_gray" />
@@ -103,4 +116,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="tv_open,imageView41" />
+
 </android.support.constraint.ConstraintLayout>

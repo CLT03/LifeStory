@@ -10,6 +10,7 @@ import android.support.constraint.Group;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,7 +32,9 @@ import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.base.cache.UserCache;
+import com.vivwe.base.ui.alert.PopWindow;
 import com.vivwe.base.ui.alert.Toast;
+import com.vivwe.base.ui.alert.adapter.BottomMenuSpinerAdapter;
 import com.vivwe.main.R;
 import com.vivwe.personal.api.PersonalApi;
 import com.vivwe.video.adapter.VideoToShowCommendAdapter;
@@ -181,6 +184,7 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
                     tvTitle.setText(videoDetailEntity.getVideoTitle());
                     tvLike.setText(String.valueOf(videoDetailEntity.getLrcount()));
                     tvComment.setText(String.valueOf(videoDetailEntity.getVdcount()));
+                    tvCommentNumber.setText(videoDetailEntity.getVdcount()+"条评论");
                     tvShare.setText(String.valueOf(videoDetailEntity.getShareCount()));
                     isLike = videoDetailEntity.getIsLiked();
                     if (isLike == 1) {//已点赞
@@ -286,7 +290,6 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
                 if (webMsg.dataIsSuccessed()) {
                     videoCommentEntity= webMsg.getData(VideoCommentEntity.class);
                     adapterComment.setCommentEntities(videoCommentEntity.getVdList());
-                    tvCommentNumber.setText(videoCommentEntity.getPageItem().getTotal()+"条评论");
                 } else if (webMsg.netIsSuccessed()) {
                     Toast.show(VideoToShowActivity.this, webMsg.getDesc(), 2000);
                 }
@@ -357,9 +360,9 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
                                 videoComment.setGmtCreate(simpleDateFormat.format(date));
                                 videoCommentEntity.getVdList().add(videoComment);
                                 adapterComment.setCommentEntities(videoCommentEntity.getVdList());
-                                videoCommentEntity.getPageItem().setTotal(videoCommentEntity.getPageItem().getTotal()+1);
-                                tvCommentNumber.setText(videoCommentEntity.getPageItem().getTotal()+"条评论");
-                                tvComment.setText(String.valueOf(videoCommentEntity.getPageItem().getTotal()));
+                                videoDetailEntity.setVdcount(videoDetailEntity.getVdcount()+1);
+                                tvCommentNumber.setText(videoDetailEntity.getVdcount()+"条评论");
+                                tvComment.setText(String.valueOf(videoDetailEntity.getVdcount()));
                             } else if (webMsg.netIsSuccessed()) {
                                 Toast.show(VideoToShowActivity.this, webMsg.getDesc(), 2000);
                             }
@@ -392,6 +395,9 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
                                 videoCommentEntity.getVdList().get(mVideoCommentIndex).getVdrList().add(commentCommentEntity);
                                 videoCommentEntity.getVdList().get(mVideoCommentIndex).addReplyNumber();
                                 adapterComment.setCommentEntities(videoCommentEntity.getVdList());
+                                videoDetailEntity.setVdcount(videoDetailEntity.getVdcount()+1);
+                                tvCommentNumber.setText(videoDetailEntity.getVdcount()+"条评论");
+                                tvComment.setText(String.valueOf(videoDetailEntity.getVdcount()));
                                 //videoCommentEntity.getPageItem().setTotal(videoCommentEntity.getPageItem().getTotal()+1);
                                 //tvCommentNumber.setText(videoCommentEntity.getPageItem().getTotal()+"条评论");
                                 //tvComment.setText(String.valueOf(videoCommentEntity.getPageItem().getTotal()));
@@ -419,5 +425,15 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
             imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        if(cl.getVisibility()==View.VISIBLE){
+            cl.startAnimation(mHiddenAction);
+            cl.setVisibility(View.GONE);
+            view1.setVisibility(View.GONE);
+        }else super.onBackPressed();
+    }
+
 
 }

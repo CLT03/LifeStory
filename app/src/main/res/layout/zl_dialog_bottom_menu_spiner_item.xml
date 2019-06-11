@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@color/transparent"
     android:gravity="center_vertical"
-    android:minHeight="@dimen/x22"
+    android:minHeight="@dimen/x66"
     android:orientation="vertical">
 
     <LinearLayout
@@ -21,11 +21,11 @@
             android:layout_gravity="center"
             android:background="@drawable/ra_white_btn"
             android:gravity="center"
-            android:padding="@dimen/x12"
+            android:padding="@dimen/x26"
             android:singleLine="true"
             android:text="手机拍照"
             android:textColor="@color/colorBlack"
-            android:textSize="@dimen/x14" />
+            android:textSize="@dimen/x26" />
 
         <View
             android:id="@+id/id_item_solid"
@@ -40,11 +40,11 @@
             android:layout_gravity="center"
             android:background="@drawable/ra_white_btn"
             android:gravity="center"
-            android:padding="@dimen/x12"
+            android:padding="@dimen/x26"
             android:singleLine="true"
             android:text="文件选择"
             android:textColor="@color/colorBlack"
-            android:textSize="@dimen/x14" />
+            android:textSize="@dimen/x26" />
     </LinearLayout>
 
 
@@ -56,11 +56,11 @@
         android:layout_marginTop="@dimen/x8"
         android:background="@drawable/ra_white_btn"
         android:gravity="center"
-        android:padding="@dimen/x12"
+        android:padding="@dimen/x26"
         android:singleLine="true"
         android:text="取消"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/x14" />
+        android:textSize="@dimen/x26" />
 
 
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.cache.UserCache;
 import com.vivwe.main.R;
 import com.vivwe.personal.activity.UpdateUserInfoActivity;
 
@@ -51,7 +52,8 @@ public class SettingActivity extends BaseActivity {
                 startActivity(new Intent(this,AboutActivity.class));
                 break;
             case R.id.btn_exit:
-
+                UserCache.Companion.loginOut();
+                startActivity(new Intent(this,LoginActivity.class));
                 break;
         }
     }

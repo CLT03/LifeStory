@@ -152,8 +152,6 @@ public class UcenterFragment extends BaseFragment {
             }
         });
 
-
- 
     }
 
 
@@ -192,7 +190,7 @@ public class UcenterFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), MyDraftActivity.class));
                 break;
             case R.id.tv_source:
-                startActivity(new Intent(getActivity(), MyAssetsActivity.class));
+                startActivity(new Intent(getActivity(), MyAssetsActivity.class).putExtra("tag",1));
                 break;
             case R.id.iv_more:
             case R.id.tv_more:

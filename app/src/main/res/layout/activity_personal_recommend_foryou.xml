@@ -71,10 +71,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/x54"
                 android:layout_marginTop="@dimen/x14"
-                android:text="查看更多"
-                android:textSize="@dimen/x24"
-                android:textColor="#9d9d9d"
+                android:layout_marginRight="@dimen/x8"
                 android:gravity="center"
+                android:text="换一换"
+                android:textColor="#9d9d9d"
+                android:textSize="@dimen/x24"
                 app:layout_constraintEnd_toStartOf="@+id/iv_demo_more"
                 app:layout_constraintTop_toBottomOf="@+id/recycler_view_activity" />
 
@@ -86,7 +87,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tv_demo_more"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_demo_more"
-                app:srcCompat="@mipmap/icon_more" />
+                app:srcCompat="@mipmap/icon_refresh" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_demo"
@@ -116,8 +117,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/x54"
                 android:layout_marginTop="@dimen/x40"
+                android:layout_marginRight="@dimen/x8"
                 android:gravity="center"
-                android:text="查看更多"
+                android:text="换一换"
                 android:textColor="#9d9d9d"
                 android:textSize="@dimen/x24"
                 app:layout_constraintEnd_toStartOf="@+id/iv_designer_more"
@@ -131,7 +133,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tv_designer_more"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_designer_more"
-                app:srcCompat="@mipmap/icon_more" />
+                app:srcCompat="@mipmap/icon_refresh" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_designer"
@@ -160,8 +162,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/x54"
                 android:layout_marginTop="@dimen/x52"
+                android:layout_marginRight="@dimen/x8"
                 android:gravity="center"
-                android:text="查看更多"
+                android:text="换一换"
                 android:textColor="#9d9d9d"
                 android:textSize="@dimen/x24"
                 app:layout_constraintEnd_toStartOf="@+id/iv_video_more"
@@ -175,7 +178,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tv_video_more"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_video_more"
-                app:srcCompat="@mipmap/icon_more" />
+                app:srcCompat="@mipmap/icon_refresh" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_video"
@@ -205,8 +208,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/x54"
                 android:layout_marginTop="@dimen/x52"
+                android:layout_marginRight="@dimen/x8"
                 android:gravity="center"
-                android:text="查看更多"
+                android:text="换一换"
                 android:textColor="#9d9d9d"
                 android:textSize="@dimen/x24"
                 app:layout_constraintEnd_toStartOf="@+id/iv_user_more"
@@ -220,7 +224,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tv_user_more"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_user_more"
-                app:srcCompat="@mipmap/icon_more" />
+                app:srcCompat="@mipmap/icon_refresh" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_user"

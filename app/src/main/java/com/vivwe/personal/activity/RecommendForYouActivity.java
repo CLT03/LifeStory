@@ -107,4 +107,17 @@ public class RecommendForYouActivity extends BaseActivity {
                 break;
         }
     }
+
+    private void getRecommendVideo(){
+
+    }
+    private void getRecommendTemplate(){
+
+    }
+    private void getRecommendUser(){
+
+    }
+    private void getRecommendDesigner(){
+
+    }
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/x290"
+    android:background="@drawable/r6_white_top_normal">
+
+    <View
+        android:id="@+id/view28"
+        android:layout_width="@dimen/x750"
+        android:layout_height="@dimen/x290"
+        android:background="@drawable/r6_white_top_normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_report"
+        android:layout_width="@dimen/x126"
+        android:layout_height="@dimen/x132"
+        android:layout_marginLeft="@dimen/x12"
+        android:layout_marginTop="@dimen/x32"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center_horizontal|bottom"
+        android:text="举报"
+        android:textColor="#666666"
+        android:textSize="@dimen/x28"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/view28"
+        app:layout_constraintTop_toTopOf="@id/view28" />
+
+    <ImageView
+        android:id="@+id/imageView33"
+        android:layout_width="@dimen/x86"
+        android:layout_height="@dimen/x86"
+        android:layout_marginTop="@dimen/x32"
+        app:layout_constraintEnd_toEndOf="@+id/tv_report"
+        app:layout_constraintStart_toStartOf="@+id/tv_report"
+        app:layout_constraintTop_toTopOf="@id/view28"
+        app:srcCompat="@mipmap/icon_report_designer" />
+
+    <View
+        android:id="@+id/view37"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x2"
+        android:layout_marginTop="@dimen/x20"
+        android:background="#EBEBEB"
+        app:layout_constraintEnd_toEndOf="@id/view28"
+        app:layout_constraintStart_toStartOf="@id/view28"
+        app:layout_constraintTop_toBottomOf="@+id/tv_report" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ra_white_btn"
+        android:text="取消"
+        android:textColor="#666666"
+        android:textSize="@dimen/x28"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/view28"
+        app:layout_constraintEnd_toEndOf="@id/view28"
+        app:layout_constraintStart_toStartOf="@id/view28"
+        app:layout_constraintTop_toBottomOf="@+id/view37" />
+
+</android.support.constraint.ConstraintLayout>
