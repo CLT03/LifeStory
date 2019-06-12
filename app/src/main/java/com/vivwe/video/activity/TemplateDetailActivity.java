@@ -114,7 +114,7 @@ public class TemplateDetailActivity extends BaseActivity {
         if(!fileDest.exists()){
             final File file=new File(templateDetailEntity.getStyle()==1?getExternalFilesDir("standard"):getExternalFilesDir("dynamic"),
                     templateDetailEntity.getTitle()+".zip");
-            HttpRequest.getInstance().downloadToExcute(Globals.WEB_URL + "api/template/downloadTemplate",templateDetailEntity.getTemplatePath(),
+            HttpRequest.getInstance().downloadToExcute(Globals.URL_WEB + "api/template/downloadTemplate",templateDetailEntity.getTemplatePath(),
                     file.getPath(), new OnProgressListener() {
                 @Override
                 public void onProgress(long currentBytes, long contentLength) {

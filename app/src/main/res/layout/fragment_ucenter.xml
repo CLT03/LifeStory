@@ -187,7 +187,25 @@
                     app:layout_constraintStart_toEndOf="@+id/iv_like"
                     app:layout_constraintTop_toTopOf="@+id/iv_like" />
 
-                <Button
+                <com.vivwe.base.ui.cardstack.CardStack
+                    android:id="@+id/cs_adv"
+                    android:layout_width="@dimen/x704"
+                    android:layout_height="@dimen/x156"
+                    android:layout_marginTop="@dimen/x48"
+                    android:text="广告"
+                    app:card_enable_loop="true"
+                    app:card_enable_rotation="true"
+                    app:card_gravity="top"
+                    app:card_margin="6dp"
+                    android:clickable="true"
+                    app:card_stack_size="3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_fans">
+
+                </com.vivwe.base.ui.cardstack.CardStack>
+
+                <!--<Button
                     android:id="@+id/button"
                     android:layout_width="@dimen/x704"
                     android:layout_height="@dimen/x156"
@@ -195,7 +213,7 @@
                     android:text="广告"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_fans" />
+                    app:layout_constraintTop_toBottomOf="@+id/iv_fans" />-->
 
                 <TextView
                     android:id="@+id/tv_purchased"
@@ -213,7 +231,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/tv_collected"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button" />
+                    app:layout_constraintTop_toBottomOf="@+id/cs_adv" />
 
                 <TextView
                     android:id="@+id/textView29"
