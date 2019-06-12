@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vivwe.base.cache.ImageLoaderCache;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.main.R;
 import com.vivwe.video.activity.MusicLibraryActivity;
 import com.vivwe.video.entity.MusicEntity;
@@ -66,8 +67,8 @@ public class MusicLibraryAdapter extends RecyclerView.Adapter<MusicLibraryAdapte
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
         final String title = datas.get(position).getMusicTitle();
-        final String cover = "http://prj0w0ymc.bkt.clouddn.com/" + datas.get(position).getImageUrl();
-        final String url = "http://prj0w0ymc.bkt.clouddn.com/"+datas.get(position).getMusicUrl();
+        final String cover = Globals.URL_QINIU + datas.get(position).getImageUrl();
+        final String url = Globals.URL_QINIU+datas.get(position).getMusicUrl();
 
         holder.tvName.setText(datas.get(position).getMusicTitle());
         ImageLoaderCache.getInstance().displayImage(cover, holder.tvCover);

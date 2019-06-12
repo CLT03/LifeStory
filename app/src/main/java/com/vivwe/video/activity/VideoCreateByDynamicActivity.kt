@@ -57,7 +57,7 @@ class VideoCreateByDynamicActivity: BaseActivity() {
     @BindView(R.id.tv_edit)
     lateinit var editTv: TextView
     // 添加素材
-    @BindView(R.id.tv_images_add)
+    @BindView(R.id.tv_assets_add)
     lateinit var addAssetsTv: TextView
     // 添加文字
     @BindView(R.id.tv_add_text)

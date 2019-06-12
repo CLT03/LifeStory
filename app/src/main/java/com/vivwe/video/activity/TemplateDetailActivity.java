@@ -19,6 +19,7 @@ import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.author.activity.DesignerHomeActivity;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.base.cache.UserCache;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.base.util.MiscUtil;
 import com.vivwe.main.R;
 import com.vivwe.video.entity.TemplateDetailEntity;
@@ -113,7 +114,7 @@ public class TemplateDetailActivity extends BaseActivity {
         if(!fileDest.exists()){
             final File file=new File(templateDetailEntity.getStyle()==1?getExternalFilesDir("standard"):getExternalFilesDir("dynamic"),
                     templateDetailEntity.getTitle()+".zip");
-            HttpRequest.getInstance().downloadToExcute("http://112.74.164.53:8083/api/template/downloadTemplate",templateDetailEntity.getTemplatePath(),
+            HttpRequest.getInstance().downloadToExcute(Globals.WEB_URL + "api/template/downloadTemplate",templateDetailEntity.getTemplatePath(),
                     file.getPath(), new OnProgressListener() {
                 @Override
                 public void onProgress(long currentBytes, long contentLength) {

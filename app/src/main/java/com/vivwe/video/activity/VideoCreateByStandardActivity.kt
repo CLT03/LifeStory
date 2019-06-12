@@ -87,6 +87,7 @@ class VideoCreateByStandardActivity : BaseActivity(), AssetDelegate {
 
         })
 
+        mTemplateViews = ArrayList()
         loadTemplate(mFolder!!.path)
     }
 

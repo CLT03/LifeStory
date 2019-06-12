@@ -12,6 +12,9 @@ import java.io.File;
 public class Globals extends com.mbs.sdk.core.Globals {
 
     public static String APP_KEY = "7DLF3E218C10F53CB6A439D388E1B115";
+    public static String URL_WEB = "http://112.74.164.53:8083/";
+    public static String URL_QINIU = "http://prj0w0ymc.bkt.clouddn.com/";
+
     public final static String EXIT_APP = "exit_app";
     public static String APPLICTION_ID = "com.vivwe.main";
 

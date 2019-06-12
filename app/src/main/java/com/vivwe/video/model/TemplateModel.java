@@ -1,7 +1,11 @@
 package com.vivwe.video.model;
 
 import android.support.annotation.WorkerThread;
+import android.util.Log;
 import android.util.SparseArray;
+
+import com.google.gson.GsonBuilder;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.base.util.FileUtils;
 import com.vivwe.video.AssetDelegate;
 import org.json.JSONArray;
@@ -50,6 +54,9 @@ public class TemplateModel {
                     groups.put(group, groupModel);
                 }
 
+                if(Globals.isDebug){
+                    //Log.v(">>>TemplateModel", new GsonBuilder().create().toJson(assetModel.ui));
+                }
                 groupModel.add(assetModel);
             }
         }
