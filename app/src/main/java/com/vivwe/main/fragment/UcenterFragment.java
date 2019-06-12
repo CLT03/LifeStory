@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +20,11 @@ import com.mbs.sdk.utils.ScreenUtils;
 import com.vivwe.author.activity.CenterActivity;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.base.ui.alert.Toast;
+import com.vivwe.base.ui.cardstack.CardStack;
 import com.vivwe.main.R;
 import com.vivwe.main.activity.MessageActivity;
 import com.vivwe.main.activity.SettingActivity;
+import com.vivwe.main.adapter.UcenterAdvAdapter;
 import com.vivwe.main.adapter.UcenterHistoryAdapter;
 import com.vivwe.main.api.WebUcenterApi;
 import com.vivwe.main.entity.UcenterInfoEntity;
@@ -77,7 +80,11 @@ public class UcenterFragment extends BaseFragment {
     TextView tvSource;
     private UcenterHistoryAdapter adapter;
     private VideoHistoryEntity videoHistoryEntity;
+    @BindView(R.id.cs_adv)
+    CardStack advCs;
 
+    // 广告Adatper
+    private UcenterAdvAdapter advAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -93,6 +100,25 @@ public class UcenterFragment extends BaseFragment {
     }
 
     private void init() {
+
+        // 初始化广告
+        advAdapter = new UcenterAdvAdapter(this.getContext());
+        advAdapter.add("test1");
+        advAdapter.add("test2");
+        advAdapter.add("test3");
+        advCs.setContentResource(R.layout.fragment_ucenter_adv);
+        advCs.setAdapter(advAdapter);
+
+        if (advCs.getAdapter() != null) {
+            Log.i("MyActivity", "Card Stack size: " + advCs.getAdapter().getCount());
+        }
+
+        advCs.reset(true);
+        if(advAdapter.getCount() > 1) {
+            advCs.startTimer();
+        }
+
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerViewHistory.setLayoutManager(linearLayoutManager);
