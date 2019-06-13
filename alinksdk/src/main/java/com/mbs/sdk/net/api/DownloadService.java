@@ -20,7 +20,7 @@ public interface DownloadService {
     @Streaming //大文件时要加不然会OOM
     @FormUrlEncoded
     @POST
-    Call<ResponseBody> downloadFile(@Url String fileUrl, @Field("path") String path);
+    Call<ResponseBody> downloadFile(@Url String fileUrl, @Field("id") String id);
 
     @Streaming //大文件时要加不然会OOM
     @GET
