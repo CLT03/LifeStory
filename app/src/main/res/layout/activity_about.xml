@@ -29,7 +29,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_title1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_title1"
-        app:srcCompat="@mipmap/icon_cancel_black" />
+        android:src="@mipmap/icon_cancel_black" />
 
     <TextView
         android:id="@+id/tv_title"
@@ -38,6 +38,18 @@
         android:paddingLeft="@dimen/x40"
         android:gravity="center_vertical"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_title1"/>
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x110"
+        android:paddingLeft="@dimen/x40"
+        android:text="标题"
+        android:visibility="gone"
+        android:gravity="center_vertical"
         android:textColor="#191919"
         android:textSize="@dimen/x36"
         android:textStyle="bold"
@@ -62,5 +74,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/x40"
+        android:paddingTop="@dimen/x6"
+        android:paddingRight="@dimen/x40"
+        android:visibility="gone"
+        android:paddingBottom="@dimen/x48"
+        android:textSize="@dimen/x28"
+        android:textColor="#6a6a6a"
+        android:background="#ffffff"
+        android:text="文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
 </android.support.constraint.ConstraintLayout>

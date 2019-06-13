@@ -8,16 +8,11 @@ import com.mbs.sdk.core.SdkContext;
 import com.mbs.sdk.net.HttpRequestConfig;
 import com.mbs.sdk.net.listener.OnWebExceptionListener;
 import com.mbs.sdk.net.msg.WebMsg;
-import com.shixing.sxvideoengine.SXVideo;
 import com.vivwe.base.cache.UserCache;
-import com.vivwe.base.constant.Globals;
 import com.vivwe.base.entity.UserToken;
 import com.vivwe.base.exception.CrashCollectHandler;
-import com.vivwe.base.ui.alert.AlertDialog;
 import com.vivwe.base.ui.alert.Toast;
-import com.vivwe.base.ui.alert.constant.AlertDialogEnum;
 import com.vivwe.main.activity.LoginActivity;
-
 import java.util.HashMap;
 import java.util.Map;
 

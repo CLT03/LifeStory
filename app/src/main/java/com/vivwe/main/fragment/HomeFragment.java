@@ -4,17 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.google.gson.GsonBuilder;
-import com.mbs.sdk.net.HttpRequest;
-import com.mbs.sdk.net.listener.OnProgressListener;
-import com.mbs.sdk.net.listener.OnResultListener;
-import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.base.cache.UserCache;
 import com.vivwe.faceunity.fragment.CreateAvatarFragment;
@@ -23,9 +16,6 @@ import com.vivwe.faceunity.fragment.FaceToAssetsFragment;
 import com.vivwe.main.R;
 import com.vivwe.main.entity.UserInfoEntity;
 import com.vivwe.video.activity.VideoCreateByDynamicActivity;
-
-import java.io.File;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -47,8 +37,6 @@ public class HomeFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         return view;
     }
-
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

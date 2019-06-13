@@ -667,6 +667,7 @@ class CardStack : RelativeLayout {
             }
         }, 1000, 3000)
     }
+<<<<<<< HEAD
 
 
     // 调用的一些方法
@@ -716,4 +717,6 @@ class CardStack : RelativeLayout {
 //    {
 //        mCardStack.undo()
 //    }
+=======
+>>>>>>> 6c7b0e53cb6702995fb197eb2be3181452c27ad1
 }

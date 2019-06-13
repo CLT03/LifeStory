@@ -46,36 +46,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
-    <TextView
-        android:id="@+id/textView45"
-        android:layout_width="@dimen/x220"
-        android:layout_height="@dimen/x88"
-        android:layout_marginTop="@dimen/x20"
-        android:background="@drawable/ra_white_btn"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/x30"
-        android:text="姓名"
-        android:textColor="#000000"
-        android:textSize="@dimen/x28"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView44" />
+        <TextView
+            android:id="@+id/textView45"
+            android:layout_width="@dimen/x220"
+            android:layout_height="@dimen/x88"
+            android:layout_marginTop="@dimen/x20"
+            android:background="@drawable/ra_white_btn"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/x30"
+            android:paddingRight="@dimen/x106"
+            android:text="姓名"
+            android:textColor="#000000"
+            android:textSize="@dimen/x28"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView44" />
 
-    <EditText
-        android:id="@+id/edt_name"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/colorWhite"
-        android:hint="选填，便于我们与您联系"
-        android:inputType="textPersonName"
-        android:textColor="#000000"
-        android:maxLines="1"
-        android:maxLength="12"
-        android:textColorHint="#a6a6a6"
-        android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@id/textView45"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView45"
-        app:layout_constraintTop_toTopOf="@id/textView45" />
+        <EditText
+            android:id="@+id/edt_name"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/colorWhite"
+            android:hint="选填，便于我们与您联系"
+            android:inputType="textPersonName"
+            android:paddingLeft="x30"
+            android:maxLength="12"
+            android:maxLines="1"
+            android:textColor="#000000"
+            android:textColorHint="#a6a6a6"
+            android:textSize="@dimen/x28"
+            app:layout_constraintBottom_toBottomOf="@id/textView45"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView45"
+            app:layout_constraintTop_toTopOf="@id/textView45" />
 
     <View
         android:id="@+id/view10"
@@ -86,34 +88,34 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
 
-    <TextView
-        android:id="@+id/textView46"
-        android:layout_width="@dimen/x220"
-        android:layout_height="@dimen/x88"
-        android:background="@drawable/ra_white_btn"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/x30"
-        android:text="联系电话"
-        android:textColor="#000000"
-        android:textSize="@dimen/x28"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView45" />
+        <TextView
+            android:id="@+id/textView46"
+            android:layout_width="@dimen/x220"
+            android:layout_height="@dimen/x88"
+            android:background="@drawable/ra_white_btn"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/x30"
+            android:text="联系电话"
+            android:textColor="#000000"
+            android:textSize="@dimen/x28"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
-    <EditText
-        android:id="@+id/edt_phone"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#ffffff"
-        android:hint="选填，便于我们与您联系"
-        android:inputType="phone"
-        android:maxLength="11"
-        android:textColor="#000000"
-        android:textColorHint="#a6a6a6"
-        android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@id/textView46"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView46"
-        app:layout_constraintTop_toTopOf="@id/textView46" />
+        <EditText
+            android:id="@+id/edt_phone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#ffffff"
+            android:hint="选填，便于我们与您联系"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:textColor="#000000"
+            android:textColorHint="#a6a6a6"
+            android:textSize="@dimen/x28"
+            app:layout_constraintBottom_toBottomOf="@id/textView46"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView46"
+            app:layout_constraintTop_toTopOf="@id/textView46" />
 
     <View
         android:id="@+id/view11"
