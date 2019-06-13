@@ -667,4 +667,53 @@ class CardStack : RelativeLayout {
             }
         }, 1000, 3000)
     }
+
+
+    // 调用的一些方法
+//    val id = item.getItemId()
+//    // 重置
+//    if (id == R.id.action_reset)
+//    {
+//        mCardStack.reset(true)
+//        return true
+//    }
+//
+//    // 底部
+//    if (id == R.id.action_bottom)
+//    {
+//        mCardStack.setStackGravity(if (mCardStack.getStackGravity() === CardAnimator.TOP) CardAnimator.BOTTOM else CardAnimator.TOP)
+//        mCardStack.reset(true)
+//        return true
+//    }
+//
+//    // 循环
+//    if (id == R.id.action_loop)
+//    {
+//        mCardStack.setEnableLoop(!mCardStack.isEnableLoop())
+//        mCardStack.reset(true)
+//    }
+//
+//    // 是否允许旋转
+//    if (id == R.id.action_rotation)
+//    {
+//        mCardStack.setEnableRotation(!mCardStack.isEnableRotation())
+//        mCardStack.reset(true)
+//    }
+//
+//    // 可见个数
+//    if (id == R.id.action_visibly_size)
+//    {
+//        mCardStack.setVisibleCardNum(mCardStack.getVisibleCardNum() + 1)
+//    }
+//
+//    // 间隔
+//    if (id == R.id.action_span)
+//    {
+//        mCardStack.setStackMargin(mCardStack.getStackMargin() + 10)
+//    }
+//
+//    if (id == R.id.action_settings)
+//    {
+//        mCardStack.undo()
+//    }
 }

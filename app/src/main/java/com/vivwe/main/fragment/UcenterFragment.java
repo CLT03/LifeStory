@@ -184,6 +184,7 @@ public class UcenterFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        advCs.stopTimer();
         unbind.unbind();
     }
 

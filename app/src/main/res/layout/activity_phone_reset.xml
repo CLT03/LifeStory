@@ -36,16 +36,14 @@
 
     <TextView
         android:id="@+id/textView46"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/x280"
         android:layout_height="@dimen/x100"
+        android:paddingLeft="@dimen/x30"
         android:background="@drawable/ra_white_btn"
         android:gravity="center_vertical"
-        android:paddingStart="@dimen/x30"
-        android:paddingRight="@dimen/x106"
         android:text="已绑定的手机号码"
         android:textColor="#191919"
         android:textSize="@dimen/x28"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
@@ -59,44 +57,47 @@
 
     <TextView
         android:id="@+id/tv_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/x76"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center_vertical"
+        android:background="@color/colorWhite"
+        android:paddingLeft="@dimen/x30"
         android:text="135****0712"
         android:textColor="#000000"
         android:textSize="@dimen/x28"
         app:layout_constraintBottom_toTopOf="@+id/view11"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView46"
         app:layout_constraintTop_toTopOf="@+id/textView46" />
 
     <TextView
         android:id="@+id/textView47"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/x280"
         android:layout_height="@dimen/x100"
         android:background="@drawable/ra_white_btn"
         android:gravity="center_vertical"
-        android:paddingStart="@dimen/x30"
-        android:paddingRight="@dimen/x106"
+        android:paddingLeft="@dimen/x30"
         android:text="验证码"
         android:textColor="#191919"
         android:textSize="@dimen/x28"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
     <EditText
         android:id="@+id/edt_verification"
-        android:layout_width="@dimen/x140"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginRight="@dimen/x216"
         android:background="#ffffff"
         android:hint="输入验证码"
-        android:inputType="textPersonName"
+        android:paddingLeft="@dimen/x30"
+        android:inputType="numberDecimal"
         android:textColor="#000000"
+        android:maxLength="6"
         android:textColorHint="#a6a6a6"
         android:textSize="@dimen/x28"
         app:layout_constraintBottom_toBottomOf="@id/textView47"
-        app:layout_constraintEnd_toEndOf="@+id/textView47"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView47"
         app:layout_constraintTop_toTopOf="@id/textView47" />
 
     <Button
@@ -107,7 +108,7 @@
         android:background="@drawable/r4_back_btn"
         android:text="获取验证码"
         android:textColor="#ffffff"
-        android:textSize="@dimen/x24"
+        android:textSize="@dimen/x22"
         app:layout_constraintBottom_toBottomOf="@+id/edt_verification"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/edt_verification" />
@@ -123,34 +124,34 @@
 
     <TextView
         android:id="@+id/textView48"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/x140"
+        android:layout_width="@dimen/x280"
+        android:layout_height="@dimen/x100"
         android:background="@drawable/ra_white_btn"
         android:gravity="center_vertical"
-        android:paddingStart="@dimen/x30"
-        android:paddingTop="@dimen/x40"
-        android:paddingRight="@dimen/x106"
         android:text="新手机号"
+        android:paddingLeft="@dimen/x30"
         android:textColor="#191919"
         android:textSize="@dimen/x28"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView47" />
 
     <EditText
         android:id="@+id/edt_phone"
-        android:layout_width="@dimen/x300"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginRight="@dimen/x30"
         android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/x30"
         android:hint="输入你的新手机号"
-        android:inputType="textPersonName"
-        android:paddingTop="@dimen/x40"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:text="13432767755"
         android:textColor="#000000"
         android:textColorHint="#a6a6a6"
         android:textSize="@dimen/x28"
         app:layout_constraintBottom_toBottomOf="@id/textView48"
-        app:layout_constraintEnd_toEndOf="@+id/textView48"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView48"
         app:layout_constraintTop_toTopOf="@id/textView48" />
 
     <View
@@ -167,7 +168,7 @@
         android:layout_height="@dimen/x92"
         android:layout_marginBottom="@dimen/x174"
         android:background="@drawable/r23_back_btn"
-        android:text="提交"
+        android:text="确定"
         android:textColor="#ffffff"
         android:textSize="@dimen/x32"
         android:textStyle="bold"

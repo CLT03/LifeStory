@@ -1,12 +1,16 @@
 package com.vivwe.base.cache
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import com.faceunity.p2a_art.constant.AvatarConstant
 import com.faceunity.p2a_art.entity.AvatarP2A
 import com.google.gson.GsonBuilder
 import com.mbs.sdk.db.SharedPreferences
+import com.vivwe.base.constant.Globals
 import com.vivwe.base.entity.UserToken
 import com.vivwe.main.R
+import com.vivwe.main.activity.LoginActivity
 import com.vivwe.main.entity.UserInfoEntity
 
 /**
@@ -119,13 +123,19 @@ open class UserCache : SharedPreferences() {
         /**
          * 用户退出登录并清空用户所有信息
          */
-        fun loginOut() {
+        fun loginOut(context: Context) {
             if (userToken != null) {
                 SharedPreferences.clear()
                 DataServiceCache.getInstance().remove(userToken!!.account)
                 UserCache.userToken = null
                 UserCache.userInfoEntity = null
             }
+
+            context.sendBroadcast(Intent().setAction(Globals.EXIT_APP))
+            val intent = Intent()
+            intent.setClass(context, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            context.startActivity(intent)
         }
     }
 }

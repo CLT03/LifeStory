@@ -3,6 +3,7 @@ package com.vivwe.main.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.mbs.sdk.net.HttpRequest
@@ -43,6 +44,7 @@ class RegisterActivity : BaseActivity() {
     /** 获取验证码按钮  */
     @BindView(R.id.tv_code_obtain)
     lateinit var codeObtainTv: TextView
+
 
     /**
      * 发送验证码计时

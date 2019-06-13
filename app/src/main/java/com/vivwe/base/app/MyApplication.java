@@ -10,6 +10,7 @@ import com.mbs.sdk.net.listener.OnWebExceptionListener;
 import com.mbs.sdk.net.msg.WebMsg;
 import com.shixing.sxvideoengine.SXVideo;
 import com.vivwe.base.cache.UserCache;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.base.entity.UserToken;
 import com.vivwe.base.exception.CrashCollectHandler;
 import com.vivwe.base.ui.alert.AlertDialog;
@@ -106,12 +107,8 @@ public class MyApplication extends Application implements OnWebExceptionListener
                 break;
             case 401:
                 Toast.show(this, "您的登录已经失效!", 3000);
-                // 清空缓存
-                UserCache.Companion.loginOut();
-                Intent intent = new Intent();
-                intent.setClass(this, LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
+                // 退出当前登录
+                UserCache.Companion.loginOut(this);
                 break;
         }
     }

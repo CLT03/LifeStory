@@ -43,7 +43,7 @@ public class SettingActivity extends BaseActivity {
                 startActivity(new Intent(this,ResetPhoneActivity.class));
                 break;
             case R.id.tv_help:
-                startActivity(new Intent(this,FeebackActivity.class));
+                startActivity(new Intent(this, FeedbackActivity.class));
                 break;
             case R.id.tv_update:
                 //startActivity(new Intent(this,VersionUpdateActivity.class));
@@ -52,8 +52,7 @@ public class SettingActivity extends BaseActivity {
                 startActivity(new Intent(this,AboutActivity.class));
                 break;
             case R.id.btn_exit:
-                UserCache.Companion.loginOut();
-                startActivity(new Intent(this,LoginActivity.class));
+                UserCache.Companion.loginOut(this);
                 break;
         }
     }

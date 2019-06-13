@@ -6,6 +6,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 /**
@@ -37,6 +38,19 @@ public interface WebMainApi {
                                        @Field("captcha") String captcha);
 
     /**
+     * 修改绑定手机
+     * @param phoneNumber 手机号
+     * @param newPhoneNumber 新手机号
+     * @param captcha 验证码
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api/user/updatePhoneNumber")
+    public Observable<WebMsg> resetBindPhone(@Field("phoneNumber") String phoneNumber,
+                                       @Field("newPhoneNumber") String newPhoneNumber,
+                                       @Field("captcha") String captcha);
+
+    /**
      * 通过手机获取验证码
      * @param phoneNumber 手机号
      * @return
@@ -53,4 +67,19 @@ public interface WebMainApi {
      */
     @GET("api/authentication")
     public Observable<WebMsg> login(@Query("phoneNumber") String phoneNumber, @Query("password") String password);
+
+    /**
+     * 添加用户用户反馈
+     * @param name 联系人
+     * @param phone 联系方式
+     * @param content 内容
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api/feed-back")
+    public Observable<WebMsg> addFeedback(@Field("name") String name, @Field("phone") String phone, @Field("content") String content );
+
+    @FormUrlEncoded
+    @POST("api/about-life")
+    public Observable<WebMsg> getAbout();
 }
