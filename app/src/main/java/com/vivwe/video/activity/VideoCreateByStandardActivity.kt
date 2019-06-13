@@ -15,6 +15,7 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
+import butterknife.OnClick
 import com.vivwe.base.activity.BaseActivity
 import com.vivwe.main.R
 import com.vivwe.video.AssetDelegate
@@ -161,6 +162,7 @@ class VideoCreateByStandardActivity : BaseActivity(), AssetDelegate {
         textEditTael.setupWidth(model)
     }
 
+    @OnClick(R.id.iv_back)
     override fun onBackPressed() {
         if (textEditTael.getVisibility() === View.VISIBLE) {
             textEditTael.hide()

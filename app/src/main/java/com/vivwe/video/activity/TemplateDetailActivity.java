@@ -140,6 +140,7 @@ public class TemplateDetailActivity extends BaseActivity {
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
+                        Toast.makeText(TemplateDetailActivity.this, "模板下载失败，请稍后重试！", Toast.LENGTH_LONG).show();
                     } finally {
                         btnBuy.setText("¥" + templateDetailEntity.getPrice() + "/次");
                     }

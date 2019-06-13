@@ -145,7 +145,6 @@
         android:hint="输入你的新手机号"
         android:inputType="phone"
         android:maxLength="11"
-        android:text="13432767755"
         android:textColor="#000000"
         android:textColorHint="#a6a6a6"
         android:textSize="@dimen/x28"

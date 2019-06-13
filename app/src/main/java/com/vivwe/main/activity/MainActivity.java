@@ -94,6 +94,11 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
         init();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        //super.onSaveInstanceState(outState);
+    }
+
     private int touchMode = 0;
     private void init(){
 

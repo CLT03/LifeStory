@@ -79,7 +79,7 @@ public interface WebMainApi {
     @POST("api/feed-back")
     public Observable<WebMsg> addFeedback(@Field("name") String name, @Field("phone") String phone, @Field("content") String content );
 
-    @FormUrlEncoded
-    @POST("api/about-life")
+    /** 获取关于我们 */
+    @GET("api/about-life")
     public Observable<WebMsg> getAbout();
 }

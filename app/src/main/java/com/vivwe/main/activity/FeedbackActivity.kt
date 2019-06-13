@@ -55,7 +55,7 @@ class FeedbackActivity : BaseActivity() {
             return;
         }
 
-        if(StringUtils.checkMobileNumber(phone)){
+        if(!StringUtils.checkMobileNumber(phone)){
             Toast.makeText(this, "请输入正确的手机号码！", Toast.LENGTH_LONG).show()
             return;
         }
