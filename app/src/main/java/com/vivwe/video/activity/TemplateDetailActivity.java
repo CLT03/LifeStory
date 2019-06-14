@@ -1,6 +1,7 @@
 package com.vivwe.video.activity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -76,6 +77,13 @@ public class TemplateDetailActivity extends BaseActivity {
                     videoView.setVideoPath(Globals.URL_QINIU+templateDetailEntity.getPath());
                     MediaController controller=new MediaController(TemplateDetailActivity.this);
                     videoView.setMediaController(controller);
+                    videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                        @Override
+                        public boolean onError(MediaPlayer mp, int what, int extra) {
+                            videoView.stopPlayback();
+                            return true;
+                        }
+                    });
                     videoView.start();
                     tvTitle.setText(templateDetailEntity.getTitle());
                     tvContent.setText(templateDetailEntity.getDescription());
