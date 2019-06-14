@@ -30,14 +30,20 @@ import com.google.gson.reflect.TypeToken;
 import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
+import com.vivwe.author.activity.DesignerHomeActivity;
+import com.vivwe.author.adapter.DesignerHomePopWAdapter;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.base.cache.UserCache;
+import com.vivwe.base.ui.alert.AlertDialog;
 import com.vivwe.base.ui.alert.PopWindow;
 import com.vivwe.base.ui.alert.Toast;
+import com.vivwe.base.ui.alert.adapter.BasePopWindowAdapter;
 import com.vivwe.base.ui.alert.adapter.BottomMenuSpinerAdapter;
 import com.vivwe.main.R;
 import com.vivwe.personal.api.PersonalApi;
 import com.vivwe.video.adapter.VideoToShowCommendAdapter;
+import com.vivwe.video.adapter.VideoToShowOthersPWAdapter;
+import com.vivwe.video.adapter.VideoToShowOwnPWAdapter;
 import com.vivwe.video.api.VideoApi;
 import com.vivwe.video.entity.CommentCommentEntity;
 import com.vivwe.video.entity.VideoComment;
@@ -107,9 +113,13 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
     private int mCommentType;//0 是评论视频 1回复视频评论
     private int mVideoCommentId;//视频评论id
     private int mToUserId;//被回复的人的id
-   // private String mEditHint;//输入框的提示
+    // private String mEditHint;//输入框的提示
     private String mToUserNickName;//被回复的人的名字
     private int mVideoCommentIndex;//被回复视频评论的下标
+    private PopWindow mPwOthers, mPwOwn;
+    private VideoToShowOthersPWAdapter othersPWAdapter;
+    private VideoToShowOwnPWAdapter ownPWAdapter;
+    private AlertDialog alertDialogDelete;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -184,13 +194,13 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
                     tvTitle.setText(videoDetailEntity.getVideoTitle());
                     tvLike.setText(String.valueOf(videoDetailEntity.getLrcount()));
                     tvComment.setText(String.valueOf(videoDetailEntity.getVdcount()));
-                    tvCommentNumber.setText(videoDetailEntity.getVdcount()+"条评论");
+                    tvCommentNumber.setText(videoDetailEntity.getVdcount() + "条评论");
                     tvShare.setText(String.valueOf(videoDetailEntity.getShareCount()));
                     isLike = videoDetailEntity.getIsLiked();
                     if (isLike == 1) {//已点赞
                         ivLike.setImageDrawable(getResources().getDrawable(R.mipmap.icon_like_my));
                     }
-                    if(videoDetailEntity.getIsSub()==1){//已关注
+                    if (videoDetailEntity.getIsSub() == 1) {//已关注
                         ivAttention.setVisibility(View.GONE);
                     }
                 } else if (webMsg.netIsSuccessed()) {
@@ -210,7 +220,9 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
                 attention();
                 break;
             case R.id.iv_share:
-                startActivity(new Intent(this,MusicLibraryActivity.class));
+                if(videoDetailEntity.getUserId()==UserCache.Companion.getUserInfo().getId()){
+                    showPwOwn();
+                }else showPwOthers();
                 break;
             case R.id.iv_like:
                 newLike();
@@ -256,6 +268,182 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
         });
     }
 
+
+
+    //其他人视频的弹框
+    private void showPwOthers() {
+        if (mPwOthers == null) {
+            mPwOthers = new PopWindow(this);
+            othersPWAdapter = new VideoToShowOthersPWAdapter().setOnclickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    switch (view.getId()) {
+                        case R.id.tv_send:
+                            break;
+                        case R.id.tv_wechat:
+                            break;
+                        case R.id.tv_qq:
+                            break;
+                        case R.id.tv_sina:
+                            break;
+                        case R.id.tv_tread:
+                            newTread();
+                            break;
+                        case R.id.tv_collect:
+                            newStar();
+                            break;
+                        case R.id.tv_report:
+                            startActivity(new Intent(VideoToShowActivity.this,VideoReportActivity.class)
+                                    .putExtra("videoId",getIntent().getIntExtra("videoId",0))
+                                    .putExtra("type",1).putExtra("userId",videoDetailEntity.getUserId()));
+                            break;
+                        case R.id.btn_cancel:
+                            mPwOthers.dismiss();
+                            break;
+                    }
+                }
+            });
+            mPwOthers.addView(othersPWAdapter);
+            othersPWAdapter.getTvTread().setText("踩" + videoDetailEntity.getHrcount());
+            if (videoDetailEntity.getIsHated() == 1) {
+                othersPWAdapter.getIvTread().setImageDrawable(getResources().getDrawable(R.mipmap.icon_video_recommend_yes));
+            }
+
+            if(videoDetailEntity.getIsStared()==1){
+                othersPWAdapter.getIvCollect().setImageDrawable(getResources().getDrawable(R.mipmap.icon_video_add_collected));
+            }
+            mPwOthers.setAnimationStyle(R.style.popwin_anim_style);
+            mPwOthers.showAtLocation(cl, Gravity.BOTTOM, 0, 0);
+        } else mPwOthers.showAtLocation(cl, Gravity.BOTTOM, 0, 0);
+    }
+
+    //自己视频的弹框
+    private void showPwOwn() {
+        if (mPwOwn == null) {
+            mPwOwn = new PopWindow(this);
+            ownPWAdapter = new VideoToShowOwnPWAdapter().setOnclickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    switch (view.getId()) {
+                        case R.id.tv_send:
+                            break;
+                        case R.id.tv_wechat:
+                            break;
+                        case R.id.tv_qq:
+                            break;
+                        case R.id.tv_sina:
+                            break;
+                        case R.id.tv_save:
+                            break;
+                        case R.id.tv_collect:
+                            newStar();
+                            break;
+                        case R.id.tv_del:
+                            ShowDeleteVideoDialog();
+                            break;
+                        case R.id.btn_cancel:
+                            mPwOwn.dismiss();
+                            break;
+                    }
+                }
+            });
+            mPwOwn.addView(ownPWAdapter);
+            if (videoDetailEntity.getIsHated() == 1) {
+                ownPWAdapter.getIvCollect().setImageDrawable(getResources().getDrawable(R.mipmap.icon_video_add_collected));
+            }
+            mPwOwn.setAnimationStyle(R.style.popwin_anim_style);
+            mPwOwn.showAtLocation(cl, Gravity.BOTTOM, 0, 0);
+        } else mPwOwn.showAtLocation(cl, Gravity.BOTTOM, 0, 0);
+    }
+
+
+
+    private void ShowDeleteVideoDialog(){
+        if (alertDialogDelete==null){
+            alertDialogDelete=AlertDialog.createCustom(this, R.layout.item_alert_video_delete);
+            alertDialogDelete.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alertDialogDelete.dismiss();
+                }
+            });
+            alertDialogDelete.findViewById(R.id.tv_delete).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deleteVideo();
+                }
+            });
+            alertDialogDelete.show();
+        }else alertDialogDelete.show();
+
+    }
+
+    private void deleteVideo(){
+        HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).deleteVideo(getIntent().getIntExtra("videoId", 0)), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    Toast.show(VideoToShowActivity.this, webMsg.getDesc(), 2000);
+                    finish();
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(VideoToShowActivity.this, webMsg.getDesc(), 2000);
+                }
+            }
+        });
+    }
+
+
+    //踩或取消踩
+    private void newTread() {
+        HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).newTread(UserCache.Companion.getUserInfo().getId(),
+                getIntent().getIntExtra("videoId", 0)), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    if (videoDetailEntity.getIsHated() == 1) {
+                        videoDetailEntity.setIsHated(0);
+                        othersPWAdapter.getIvTread().setImageDrawable(getResources().getDrawable(R.mipmap.icon_video_recommend_not));
+                        videoDetailEntity.setHrcount(videoDetailEntity.getHrcount() - 1);
+                        othersPWAdapter.getTvTread().setText("踩" + videoDetailEntity.getHrcount());
+                    } else {
+                        videoDetailEntity.setIsHated(1);
+                        othersPWAdapter.getIvTread().setImageDrawable(getResources().getDrawable(R.mipmap.icon_video_recommend_yes));
+                        videoDetailEntity.setHrcount(videoDetailEntity.getHrcount() + 1);
+                        othersPWAdapter.getTvTread().setText("踩" + videoDetailEntity.getHrcount());
+                    }
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(VideoToShowActivity.this, webMsg.getDesc(), 2000);
+                }
+            }
+        });
+    }
+
+    //踩或取消踩
+    private void newStar() {
+        HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).newStar(null,1,UserCache.Companion.getUserInfo().getId(),
+                getIntent().getIntExtra("videoId", 0)), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    if (videoDetailEntity.getIsStared() == 1) {
+                        videoDetailEntity.setIsStared(0);
+                        if(videoDetailEntity.getUserId()==UserCache.Companion.getUserInfo().getId())
+                            ownPWAdapter.getIvCollect().setImageDrawable(getResources().getDrawable(R.mipmap.icon_video_collect_add_1));
+                        else othersPWAdapter.getIvCollect().setImageDrawable(getResources().getDrawable(R.mipmap.icon_video_collect_add_1));
+                    } else {
+                        videoDetailEntity.setIsStared(1);
+                        if(videoDetailEntity.getUserId()==UserCache.Companion.getUserInfo().getId())
+                            ownPWAdapter.getIvCollect().setImageDrawable(getResources().getDrawable(R.mipmap.icon_video_add_collected));
+                        else othersPWAdapter.getIvCollect().setImageDrawable(getResources().getDrawable(R.mipmap.icon_video_add_collected));
+                    }
+                } else if (webMsg.netIsSuccessed()) {
+                    Toast.show(VideoToShowActivity.this, webMsg.getDesc(), 2000);
+                }
+            }
+        });
+    }
+
+
     //点赞取消点赞
     private void newLike() {
         HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).newLike(1, UserCache.Companion.getUserInfo().getId(),
@@ -266,12 +454,12 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
                     if (isLike == 1) {
                         isLike = 0;
                         ivLike.setImageDrawable(getResources().getDrawable(R.mipmap.icon_video_like));
-                        videoDetailEntity.setLrcount(videoDetailEntity.getLrcount()-1);
+                        videoDetailEntity.setLrcount(videoDetailEntity.getLrcount() - 1);
                         tvLike.setText(String.valueOf(videoDetailEntity.getLrcount()));
                     } else {
                         isLike = 1;
                         ivLike.setImageDrawable(getResources().getDrawable(R.mipmap.icon_like_my));
-                        videoDetailEntity.setLrcount(videoDetailEntity.getLrcount()+1);
+                        videoDetailEntity.setLrcount(videoDetailEntity.getLrcount() + 1);
                         tvLike.setText(String.valueOf(videoDetailEntity.getLrcount()));
                     }
                 } else if (webMsg.netIsSuccessed()) {
@@ -283,12 +471,12 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
 
     //获取评论
     private void getComment() {
-        Log.e("ououou",getIntent().getIntExtra("videoId", 0)+" ");
+        Log.e("ououou", getIntent().getIntExtra("videoId", 0) + " ");
         HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).getVideoCommentList(1, Integer.MAX_VALUE, UserCache.Companion.getUserInfo().getId(), getIntent().getIntExtra("videoId", 0)), new OnResultListener() {
             @Override
             public void onWebUiResult(WebMsg webMsg) {
                 if (webMsg.dataIsSuccessed()) {
-                    videoCommentEntity= webMsg.getData(VideoCommentEntity.class);
+                    videoCommentEntity = webMsg.getData(VideoCommentEntity.class);
                     adapterComment.setCommentEntities(videoCommentEntity.getVdList());
                 } else if (webMsg.netIsSuccessed()) {
                     Toast.show(VideoToShowActivity.this, webMsg.getDesc(), 2000);
@@ -296,6 +484,7 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
             }
         });
     }
+
 
 
     @Override
@@ -329,9 +518,9 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         //判断是否是“发送”键
-        if(actionId == EditorInfo.IME_ACTION_SEND){
-            if(mCommentType==0)
-              newComment();
+        if (actionId == EditorInfo.IME_ACTION_SEND) {
+            if (mCommentType == 0)
+                newComment();
             else newReplyComment();
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
@@ -340,16 +529,17 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
         return false;
     }
 
-    private void newComment(){
+    //新的评论
+    private void newComment() {
         final String content = edtComment.getText().toString();
-        if(edtComment.getText().toString().length()>0) {
+        if (edtComment.getText().toString().length() > 0) {
             HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).newComment(content,
                     UserCache.Companion.getUserInfo().getId(), getIntent().getIntExtra("videoId", 0)),
                     new OnResultListener() {
                         @Override
                         public void onWebUiResult(WebMsg webMsg) {
                             if (webMsg.dataIsSuccessed()) {
-                                VideoComment videoComment=new VideoComment();
+                                VideoComment videoComment = new VideoComment();
                                 videoComment.setVdId(getIntent().getIntExtra("videoId", 0));
                                 videoComment.setUserId(UserCache.Companion.getUserInfo().getId());
                                 videoComment.setContent(content);
@@ -360,27 +550,28 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
                                 videoComment.setGmtCreate(simpleDateFormat.format(date));
                                 videoCommentEntity.getVdList().add(videoComment);
                                 adapterComment.setCommentEntities(videoCommentEntity.getVdList());
-                                videoDetailEntity.setVdcount(videoDetailEntity.getVdcount()+1);
-                                tvCommentNumber.setText(videoDetailEntity.getVdcount()+"条评论");
+                                videoDetailEntity.setVdcount(videoDetailEntity.getVdcount() + 1);
+                                tvCommentNumber.setText(videoDetailEntity.getVdcount() + "条评论");
                                 tvComment.setText(String.valueOf(videoDetailEntity.getVdcount()));
                             } else if (webMsg.netIsSuccessed()) {
                                 Toast.show(VideoToShowActivity.this, webMsg.getDesc(), 2000);
                             }
                         }
                     });
-        }else Toast.show(this,"说点啥",2000);
+        } else Toast.show(this, "说点啥", 2000);
     }
 
-    public void newReplyComment(){
+    //新的评论回复
+    public void newReplyComment() {
         final String content = edtComment.getText().toString();
-        if(edtComment.getText().toString().length()>0) {
+        if (edtComment.getText().toString().length() > 0) {
             HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).newReplyComment(content,
-                    UserCache.Companion.getUserInfo().getId(),mToUserId, mVideoCommentId),
+                    UserCache.Companion.getUserInfo().getId(), mToUserId, mVideoCommentId),
                     new OnResultListener() {
                         @Override
                         public void onWebUiResult(WebMsg webMsg) {
                             if (webMsg.dataIsSuccessed()) {
-                                CommentCommentEntity commentCommentEntity=new CommentCommentEntity();
+                                CommentCommentEntity commentCommentEntity = new CommentCommentEntity();
                                 commentCommentEntity.setVideoDiscussId(mVideoCommentId);
                                 commentCommentEntity.setFromUId(UserCache.Companion.getUserInfo().getId());
                                 commentCommentEntity.setFromNickname(UserCache.Companion.getUserInfo().getNickname());
@@ -395,8 +586,8 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
                                 videoCommentEntity.getVdList().get(mVideoCommentIndex).getVdrList().add(commentCommentEntity);
                                 videoCommentEntity.getVdList().get(mVideoCommentIndex).addReplyNumber();
                                 adapterComment.setCommentEntities(videoCommentEntity.getVdList());
-                                videoDetailEntity.setVdcount(videoDetailEntity.getVdcount()+1);
-                                tvCommentNumber.setText(videoDetailEntity.getVdcount()+"条评论");
+                                videoDetailEntity.setVdcount(videoDetailEntity.getVdcount() + 1);
+                                tvCommentNumber.setText(videoDetailEntity.getVdcount() + "条评论");
                                 tvComment.setText(String.valueOf(videoDetailEntity.getVdcount()));
                                 //videoCommentEntity.getPageItem().setTotal(videoCommentEntity.getPageItem().getTotal()+1);
                                 //tvCommentNumber.setText(videoCommentEntity.getPageItem().getTotal()+"条评论");
@@ -406,20 +597,20 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
                             }
                         }
                     });
-        }else Toast.show(this,"说点啥",2000);
+        } else Toast.show(this, "说点啥", 2000);
     }
 
     //在列表里面点击回复时需要先设置好相关信息
-    public void setCommentData(int mCommentType,int mVideoCommentId,int mToUserId,String mToUserNickName,int mVideoCommentIndex){
-        this.mCommentType=mCommentType;
-        this.mVideoCommentId=mVideoCommentId;
-        this.mToUserId=mToUserId;
-        this.mToUserNickName=mToUserNickName;
-        this.mVideoCommentIndex=mVideoCommentIndex;
-        Log.e("ououo"," "+mToUserId+" "+mVideoCommentId);
-        edtComment.setHint("回复"+mToUserNickName);
+    public void setCommentData(int mCommentType, int mVideoCommentId, int mToUserId, String mToUserNickName, int mVideoCommentIndex) {
+        this.mCommentType = mCommentType;
+        this.mVideoCommentId = mVideoCommentId;
+        this.mToUserId = mToUserId;
+        this.mToUserNickName = mToUserNickName;
+        this.mVideoCommentIndex = mVideoCommentIndex;
+        Log.e("ououo", " " + mToUserId + " " + mVideoCommentId);
+        edtComment.setHint("回复" + mToUserNickName);
         edtComment.setText(null);
-        if(groupComment.getVisibility()==View.GONE) {
+        if (groupComment.getVisibility() == View.GONE) {
             groupComment.setVisibility(View.VISIBLE);
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
@@ -428,11 +619,11 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
 
     @Override
     public void onBackPressed() {
-        if(cl.getVisibility()==View.VISIBLE){
+        if (cl.getVisibility() == View.VISIBLE) {
             cl.startAnimation(mHiddenAction);
             cl.setVisibility(View.GONE);
             view1.setVisibility(View.GONE);
-        }else super.onBackPressed();
+        } else super.onBackPressed();
     }
 
 

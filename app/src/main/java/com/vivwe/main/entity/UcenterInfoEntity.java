@@ -12,11 +12,29 @@ public class UcenterInfoEntity {
     private int orderCount;//已购买
     private int starCount;//收藏
     private History data;
+    private int role;//1是普通用户 2是创作者
+    private int isApplying;//是否申请创作者中 0-否 1-是
+
+    public int getIsApplying() {
+        return isApplying;
+    }
+
+    public void setIsApplying(int isApplying) {
+        this.isApplying = isApplying;
+    }
 
     private String gender;
     private String birthday;
     private String address;
     private String signature;
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
 
     public String getGender() {
         return gender;

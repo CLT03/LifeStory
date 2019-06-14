@@ -73,34 +73,25 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/imageView46"
+            
+            <RelativeLayout
+                android:id="@+id/rl"
                 android:layout_width="@dimen/x436"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/x24"
                 app:layout_constraintDimensionRatio="h,218:386"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/app_bg_h" />
+                app:layout_constraintTop_toTopOf="parent">
+                
+                <VideoView
+                    android:id="@+id/video_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/tv_download"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/x20"
-                android:layout_marginRight="@dimen/x20"
-                android:background="@drawable/r8_transparent_normal"
-                android:paddingLeft="@dimen/x12"
-                android:paddingTop="@dimen/x6"
-                android:paddingRight="@dimen/x12"
-                android:paddingBottom="@dimen/x6"
-                android:text="已下载"
-                android:textColor="#bfbdbd"
-                android:textSize="@dimen/x16"
-                app:layout_constraintEnd_toEndOf="@+id/imageView46"
-                app:layout_constraintTop_toTopOf="@+id/imageView46" />
+        
 
             <TextView
                 android:id="@+id/tv_content"
@@ -112,7 +103,7 @@
                 android:textSize="@dimen/x28"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView46" />
+                app:layout_constraintTop_toBottomOf="@+id/rl" />
 
             <View
                 android:id="@+id/iv_cover"

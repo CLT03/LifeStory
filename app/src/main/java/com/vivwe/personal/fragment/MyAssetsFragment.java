@@ -103,7 +103,7 @@ public class MyAssetsFragment extends Fragment {
         }
     }
 
-    public ArrayList<Integer> getChooseIdList(){
+    public ArrayList<Long> getChooseIdList(){
         switch (getArguments().getInt("tag")) {
             case 0:
                 if(adapterImg!=null){

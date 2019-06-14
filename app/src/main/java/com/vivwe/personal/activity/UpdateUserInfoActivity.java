@@ -64,7 +64,7 @@ public class UpdateUserInfoActivity extends BaseActivity {
                         .putExtra("name",tvName.getText().toString()), 1);
                 break;
             case R.id.tv_gender:
-               // chooseGender();
+                chooseGender();
                 break;
             case R.id.tv_birthday:
                 break;
@@ -86,26 +86,28 @@ public class UpdateUserInfoActivity extends BaseActivity {
 
     private void chooseGender(){
         if (alertDialog==null){
-            alertDialog=AlertDialog.createCustom(this, R.layout.item_alert_video_merge_loading);
-            alertDialog.show();
+            alertDialog=AlertDialog.createCustom(this, R.layout.item_alert_update_userinfo_gender);
             alertDialog.findViewById(R.id.iv_male).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     tvGender.setText("男性");
+                    alertDialog.dismiss();
                 }
             });
             alertDialog.findViewById(R.id.iv_female).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     tvGender.setText("女性");
+                    alertDialog.dismiss();
                 }
             });
-            alertDialog.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            alertDialog.findViewById(R.id.iv_cancel).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     alertDialog.dismiss();
                 }
             });
+            alertDialog.show();
         }else alertDialog.show();
 
     }

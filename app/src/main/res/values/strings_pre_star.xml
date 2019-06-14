@@ -4,7 +4,7 @@
     <string name="activity_personal_author_apply_phone"><font color="#FF0000">*</font>手机号码</string>
     <string name="activity_personal_author_apply_verification"><font color="#FF0000">*</font>验证码</string>
     <string name="activity_personal_author_apply_id_card"><font color="#FF0000">*</font>身份证号</string>
-    <string name="activity_personal_author_apply_alipay"><font color="#FF0000">*</font>支付宝号</string>
+    <string name="activity_personal_author_apply_alipay"><font color="#FF0000">*</font>银行卡号</string>
     <string name="activity_personal_author_apply_mail"><font color="#FF0000">*</font>联系邮箱</string>
     <string name="activity_video_template_detail">每个作品都有着设计师的辛勤劳动，<font color="#FF0000">支持一下吧！</font></string>
     <string name="activity_video_report">举报内容问题<font color="#FF0000">*</font></string>

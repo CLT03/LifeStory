@@ -1,13 +1,17 @@
 package com.vivwe.author.api;
 
 import com.mbs.sdk.net.msg.WebMsg;
+import com.vivwe.author.entity.ApplyEntity;
+import com.vivwe.personal.entity.UserEntity;
 
 import java.util.ArrayList;
 
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
@@ -46,6 +50,11 @@ public interface AuthorApi {
     @FormUrlEncoded
     @PUT("api/template/soldOutTemplates")
     Observable<WebMsg> soldOutTemplates(@Field("templateId") ArrayList<Integer> templateId);
+
+
+    //申请成为创作者
+    @POST("api/user/applyCreator")
+    Observable<WebMsg> applyCreator(@Body ApplyEntity applyEntity);
 
 
 

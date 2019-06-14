@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.constraint.Group;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +15,7 @@ import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.main.R;
+import com.vivwe.main.api.WebUcenterApi;
 import com.vivwe.main.entity.VideoHistoryEntity;
 import com.vivwe.personal.adapter.MyBrowsingHistoryAdapter;
 import com.vivwe.personal.api.PersonalApi;
@@ -23,7 +23,6 @@ import com.vivwe.personal.api.PersonalApi;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -80,41 +79,53 @@ public class MyBrowsingHistoryActivity extends BaseActivity {
         recyclerViewEarlier.setLayoutManager(linearLayoutManager2);
         earlierAdapter=new MyBrowsingHistoryAdapter(this);
         recyclerViewEarlier.setAdapter(earlierAdapter);
-        VideoHistoryEntity videoHistoryEntity=(VideoHistoryEntity)Objects.requireNonNull(getIntent().getExtras()).getSerializable("history");
-        if(videoHistoryEntity!=null &&videoHistoryEntity.getMyVideoList().size()>0){
-            ArrayList<VideoHistoryEntity.MyVideo> videos=videoHistoryEntity.getMyVideoList();
-            ArrayList<VideoHistoryEntity.MyVideo> todayHistory=new ArrayList<>();
-            ArrayList<VideoHistoryEntity.MyVideo> yesterdayHistory=new ArrayList<>();
-            ArrayList<VideoHistoryEntity.MyVideo> earlierHistory=new ArrayList<>();
-            for(int i=0; i<videos.size();i++){
-                int j=(int)dateDiff(videos.get(i).getGmtModified().substring(0,10),"yyyy-MM-dd");
-                if(j==0)
-                    todayHistory.add(videos.get(i));
-                else if(j==1)
-                    yesterdayHistory.add(videos.get(i));
-                else  {
-                    earlierHistory.addAll(videos.subList(i,videos.size()));
-                    break;
-                }
-            }
-            if(todayHistory.size()>0){
-                todayAdapter.setHistoryEntities(todayHistory);
-                groupToday.setVisibility(View.VISIBLE);
-            }
-            if(yesterdayHistory.size()>0){
-                yesterdayAdapter.setHistoryEntities(yesterdayHistory);
-                groupYesterday.setVisibility(View.VISIBLE);
-            }
-            if(earlierHistory.size()>0){
-                earlierAdapter.setHistoryEntities(earlierHistory);
-                groupEarlier.setVisibility(View.VISIBLE);
-            }
-        }
-
+        getData();
         //Log.e("ououou"," "+dateDiff("2019-05-28","yyyy-MM-dd")+" "+videoHistoryEntity);
     }
 
+    private void getData(){
+        HttpRequest.getInstance().excute(HttpRequest.create(WebUcenterApi.class).getVideoHistory(1,Integer.MAX_VALUE), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    VideoHistoryEntity videoHistoryEntity = webMsg.getData(VideoHistoryEntity.class);
+                    if(videoHistoryEntity!=null &&videoHistoryEntity.getMyVideoList().size()>0){
+                        ArrayList<VideoHistoryEntity.MyVideo> videos=videoHistoryEntity.getMyVideoList();
+                        ArrayList<VideoHistoryEntity.MyVideo> todayHistory=new ArrayList<>();
+                        ArrayList<VideoHistoryEntity.MyVideo> yesterdayHistory=new ArrayList<>();
+                        ArrayList<VideoHistoryEntity.MyVideo> earlierHistory=new ArrayList<>();
+                        for(int i=0; i<videos.size();i++){
+                            int j=(int)dateDiff(videos.get(i).getGmtModified().substring(0,10),"yyyy-MM-dd");
+                            if(j==0)
+                                todayHistory.add(videos.get(i));
+                            else if(j==1)
+                                yesterdayHistory.add(videos.get(i));
+                            else  {
+                                earlierHistory.addAll(videos.subList(i,videos.size()));
+                                break;
+                            }
+                        }
+                        if(todayHistory.size()>0){
+                            todayAdapter.setHistoryEntities(todayHistory);
+                            groupToday.setVisibility(View.VISIBLE);
+                        }
+                        if(yesterdayHistory.size()>0){
+                            yesterdayAdapter.setHistoryEntities(yesterdayHistory);
+                            groupYesterday.setVisibility(View.VISIBLE);
+                        }
+                        if(earlierHistory.size()>0){
+                            earlierAdapter.setHistoryEntities(earlierHistory);
+                            groupEarlier.setVisibility(View.VISIBLE);
+                        }
+                    }
+                } else if (webMsg.netIsSuccessed()) {
+                    com.vivwe.base.ui.alert.Toast.show(MyBrowsingHistoryActivity.this, webMsg.getDesc(), 2000);
+                }
+            }
+        });
+    }
 
+    //计算视频最后修改时候与现在时间的差的天数
     public long dateDiff( String endTime, String format) {
         // 按照传入的格式生成一个simpledateformate对象
         @SuppressLint("SimpleDateFormat") SimpleDateFormat sd = new SimpleDateFormat(format);
@@ -156,14 +167,14 @@ public class MyBrowsingHistoryActivity extends BaseActivity {
                 break;
             case R.id.tv_all:
                 if (ifAllChoose) {
-                    todayAdapter.setIfEdit(false);
-                    yesterdayAdapter.setIfEdit(false);
-                    earlierAdapter.setIfEdit(false);
+                    todayAdapter.allChoose(false);
+                    yesterdayAdapter.allChoose(false);
+                    earlierAdapter.allChoose(false);
                     ifAllChoose = false;
                 } else {
-                    todayAdapter.setIfEdit(true);
-                    yesterdayAdapter.setIfEdit(true);
-                    earlierAdapter.setIfEdit(true);
+                    todayAdapter.allChoose(true);
+                    yesterdayAdapter.allChoose(true);
+                    earlierAdapter.allChoose(true);
                     ifAllChoose = true;
                 }
                 break;
@@ -173,12 +184,23 @@ public class MyBrowsingHistoryActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (groupEdit.getVisibility() == View.VISIBLE) {
+            groupEdit.setVisibility(View.GONE);
+            todayAdapter.setIfEdit(false);
+            yesterdayAdapter.setIfEdit(false);
+            earlierAdapter.setIfEdit(false);
+            tvEdit.setText("编辑");
+        } else super.onBackPressed();
+    }
+
     private void delete() {
         ArrayList<Integer> chooseIdList = new ArrayList<>(todayAdapter.getChooseIdList());
         chooseIdList.addAll(yesterdayAdapter.getChooseIdList());
         chooseIdList.addAll(earlierAdapter.getChooseIdList());
         if (chooseIdList.size() > 0) {
-            HttpRequest.getInstance().excute(HttpRequest.create(PersonalApi.class).deleteVidoeHistory(chooseIdList), new OnResultListener() {
+            HttpRequest.getInstance().excute(HttpRequest.create(PersonalApi.class).deleteVideoHistory(chooseIdList), new OnResultListener() {
                 @Override
                 public void onWebUiResult(WebMsg webMsg) {
                     if (webMsg.dataIsSuccessed()) {
@@ -186,13 +208,13 @@ public class MyBrowsingHistoryActivity extends BaseActivity {
                         todayAdapter.deleteSuccess();
                         yesterdayAdapter.deleteSuccess();
                         earlierAdapter.deleteSuccess();
-                        if(todayAdapter.getHistoryEntities().size()==0){
+                        if(todayAdapter.getHistoryEntities()==null){
                             groupToday.setVisibility(View.GONE);
                         }
-                        if(yesterdayAdapter.getHistoryEntities().size()==0){
+                        if(yesterdayAdapter.getHistoryEntities()==null){
                             groupYesterday.setVisibility(View.GONE);
                         }
-                        if(earlierAdapter.getHistoryEntities().size()==0){
+                        if(earlierAdapter.getHistoryEntities()==null){
                             groupEarlier.setVisibility(View.GONE);
                         }
                     } else if (webMsg.netIsSuccessed()) {

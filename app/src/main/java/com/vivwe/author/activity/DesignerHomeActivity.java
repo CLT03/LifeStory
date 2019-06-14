@@ -168,7 +168,7 @@ public class DesignerHomeActivity extends BaseActivity {
                     switch (view.getId()) {
                         case R.id.tv_report:
                             startActivity(new Intent(DesignerHomeActivity.this,VideoReportActivity.class)
-                                    .putExtra("userId",getIntent().getIntExtra("userId",0)));
+                                    .putExtra("userId",getIntent().getIntExtra("userId",0)).putExtra("type",3));
                             break;
                         case R.id.btn_cancel:
                             pw.dismiss();

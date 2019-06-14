@@ -46,6 +46,25 @@ public class UserInfoEntity {
      */
     private int likeRecord;
 
+    private int role;//角色 1普通 2设计师
+    private String phoneNumber; //手机号码
+
+    public int getRole() {
+        return role;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
     public int getId() {
         return id;
     }

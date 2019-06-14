@@ -168,6 +168,14 @@ public class VideoToShowCommendAdapter extends RecyclerView.Adapter<VideoToShowC
             }
         });
 
+        holder.viewClick.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                android.widget.Toast.makeText(activity, "长点击", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
         holder.ivLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
