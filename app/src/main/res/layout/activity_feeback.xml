@@ -68,7 +68,7 @@
             android:background="@color/colorWhite"
             android:hint="选填，便于我们与您联系"
             android:inputType="textPersonName"
-            android:paddingLeft="x30"
+            android:paddingLeft="@dimen/x30"
             android:maxLength="12"
             android:maxLines="1"
             android:textColor="#000000"
