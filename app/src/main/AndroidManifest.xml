@@ -54,11 +54,7 @@
         <activity android:name="com.vivwe.author.activity.TemplateApprovedActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name=".activity.SettingActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name=".activity.ResetPasswordActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
-<<<<<<< HEAD
-        <activity android:name=".activity.FeedbackActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
-=======
         <activity android:name=".activity.FeebackActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
->>>>>>> 6c7b0e53cb6702995fb197eb2be3181452c27ad1
         <activity android:name=".activity.AboutActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name=".activity.MessageActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name="com.vivwe.video.activity.VideoToShowActivity" android:windowSoftInputMode="stateAlwaysHidden" android:theme="@style/WelcomeTheme" android:launchMode="singleTop"/>
