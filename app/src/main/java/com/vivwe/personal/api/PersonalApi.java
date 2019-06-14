@@ -81,7 +81,7 @@ public interface PersonalApi {
                                    @Query("pageNum") int pageNum,
                                    @Query("pageSize") int pageSize);
 
-    //获取素材
+    //获取草稿
     @GET("api/drafts/listDrafts")
     Observable<WebMsg> getDraftsList();
 
@@ -90,31 +90,38 @@ public interface PersonalApi {
     Observable<WebMsg> deleteDraft(@Query("id") ArrayList<Integer> id);
 
     //删除素材
-    @DELETE("api/asset/assetIds")
-    Observable<WebMsg> deleteAssets(@Query("assetIds") ArrayList<Integer> assetIds);
+    @DELETE("api/asset")
+    Observable<WebMsg> deleteAssets(@Query("assetIds") ArrayList<Long> assetIds);
 
     //删除历史记录
     @DELETE("api/play-history/deletePlayHistorys")
-    Observable<WebMsg> deleteVidoeHistory(@Query("playHistoryIds") ArrayList<Integer> playHistoryIds);
+    Observable<WebMsg> deleteVideoHistory(@Query("playHistoryIds") ArrayList<Integer> playHistoryIds);
 
     //获取推荐模板
     @GET("api/template/getPushTemplate")
     Observable<WebMsg> getRecommendTemplate(@Query("pageNum") int pageNum,
                                            @Query("pageSize") int pageSize,
                                             @Query("userId") int userId);
-/*    //获取推荐模板
-    @GET("api/video/getPushVide")
+    //获取推荐视频
+    @GET("api/video/getPushVideo")
     Observable<WebMsg> getRecommendVideo(@Query("pageNum") int pageNum,
                                             @Query("pageSize") int pageSize,
                                             @Query("userId") int userId);
-    //获取推荐模板
-    @GET("api/template/getPushTemplate")
-    Observable<WebMsg> getRecommendTemplate(@Query("pageNum") int pageNum,
+    //获取推荐设计师
+    @GET("api/user/getPushDesigner")
+    Observable<WebMsg> getRecommendDesigner(@Query("pageNum") int pageNum,
                                             @Query("pageSize") int pageSize,
                                             @Query("userId") int userId);
-    //获取推荐模板
-    @GET("api/template/getPushTemplate")
-    Observable<WebMsg> getRecommendTemplate(@Query("pageNum") int pageNum,
+    //获取推荐普通用户
+    @GET("api/user/getPushUser")
+    Observable<WebMsg> getRecommendUser(@Query("pageNum") int pageNum,
                                             @Query("pageSize") int pageSize,
-                                            @Query("userId") int userId);*/
+                                            @Query("userId") int userId);
+
+    //获取广告列表
+    @FormUrlEncoded
+    @POST("api/ad-image/getAdImageList")
+    Observable<WebMsg> getAdImageList(@Field("pageNum") int pageNum,
+                                    @Field("pageSize") int pageSize,
+                                    @Field("type") int type);
 }

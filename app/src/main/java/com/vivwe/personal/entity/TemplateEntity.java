@@ -29,6 +29,15 @@ public class TemplateEntity {
         private String max_duration; //最大时长 单位秒
         private int numberOfUsers; //使用人数
         private String reason; //未通过原因
+        private int style;//1 是标准模板 2 是动态模板
+
+        public int getStyle() {
+            return style;
+        }
+
+        public void setStyle(int style) {
+            this.style = style;
+        }
 
         public int getStarId() {
             return starId;

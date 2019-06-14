@@ -31,13 +31,13 @@ public class MyBrowsingHistoryAdapter extends RecyclerView.Adapter<MyBrowsingHis
 
     public MyBrowsingHistoryAdapter(Activity activity) {
         this.activity = activity;
-        requestOptions=new RequestOptions().centerCrop()
+        requestOptions = new RequestOptions().centerCrop()
                 .placeholder(activity.getResources().getDrawable(R.drawable.ic_launcher_background));
     }
 
     public void setHistoryEntities(ArrayList<VideoHistoryEntity.MyVideo> historyEntities) {
         this.historyEntities = historyEntities;
-        if(waitDeleteHistory==null) waitDeleteHistory=new ArrayList<>();
+        if (waitDeleteHistory == null) waitDeleteHistory = new ArrayList<>();
         notifyDataSetChanged();
     }
 
@@ -54,9 +54,10 @@ public class MyBrowsingHistoryAdapter extends RecyclerView.Adapter<MyBrowsingHis
         TextView tvTitle;
         @BindView(R.id.tv_progress)
         TextView tvProgress;
+
         ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 
@@ -71,18 +72,20 @@ public class MyBrowsingHistoryAdapter extends RecyclerView.Adapter<MyBrowsingHis
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
         Glide.with(activity).load(historyEntities.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
         holder.tvTitle.setText(historyEntities.get(i).getVideoTitle());
-        if(ifEdit){
+        if (ifEdit) {
             holder.ivChoose.setVisibility(View.VISIBLE);
-            if(waitDeleteHistory.contains(historyEntities.get(i))) holder.ivChoose.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_checked));
-            else holder.ivChoose.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_check));
-        }else holder.ivChoose.setVisibility(View.GONE);
+            if (waitDeleteHistory.contains(historyEntities.get(i)))
+                holder.ivChoose.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_checked));
+            else
+                holder.ivChoose.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_check));
+        } else holder.ivChoose.setVisibility(View.GONE);
         holder.ivChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(waitDeleteHistory.contains(historyEntities.get(holder.getAdapterPosition()))){
+                if (waitDeleteHistory.contains(historyEntities.get(holder.getAdapterPosition()))) {
                     holder.ivChoose.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_check));
                     waitDeleteHistory.remove(historyEntities.get(holder.getAdapterPosition()));
-                }else{
+                } else {
                     holder.ivChoose.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_checked));
                     waitDeleteHistory.add(historyEntities.get(holder.getAdapterPosition()));
                 }
@@ -92,7 +95,7 @@ public class MyBrowsingHistoryAdapter extends RecyclerView.Adapter<MyBrowsingHis
 
     @Override
     public int getItemCount() {
-        return historyEntities==null?0:historyEntities.size();
+        return historyEntities == null ? 0 : historyEntities.size();
     }
 
     public void setIfEdit(boolean ifEdit) {
@@ -100,11 +103,11 @@ public class MyBrowsingHistoryAdapter extends RecyclerView.Adapter<MyBrowsingHis
         notifyDataSetChanged();
     }
 
-    public void allChoose(boolean ifAllChoose){
-        if(waitDeleteHistory!=null){
-            if(ifAllChoose){
+    public void allChoose(boolean ifAllChoose) {
+        if (waitDeleteHistory != null) {
+            if (ifAllChoose) {
                 waitDeleteHistory.clear();
-            }else{
+            } else {
                 waitDeleteHistory.clear();
                 waitDeleteHistory.addAll(historyEntities);
             }
@@ -113,8 +116,8 @@ public class MyBrowsingHistoryAdapter extends RecyclerView.Adapter<MyBrowsingHis
     }
 
     public ArrayList<Integer> getChooseIdList() {
-        ArrayList<Integer> chooseIdList=new ArrayList<>();
-        if(waitDeleteHistory!=null) {
+        ArrayList<Integer> chooseIdList = new ArrayList<>();
+        if (waitDeleteHistory != null) {
             for (int i = 0; i < waitDeleteHistory.size(); i++) {
                 chooseIdList.add(waitDeleteHistory.get(i).getPlayHistoryId());
             }
@@ -122,12 +125,13 @@ public class MyBrowsingHistoryAdapter extends RecyclerView.Adapter<MyBrowsingHis
         return chooseIdList;
     }
 
-    public void deleteSuccess(){
-        historyEntities.removeAll(waitDeleteHistory);
-        waitDeleteHistory.clear();
-        notifyDataSetChanged();
+    public void deleteSuccess() {
+        if (historyEntities != null) {
+            historyEntities.removeAll(waitDeleteHistory);
+            waitDeleteHistory.clear();
+            notifyDataSetChanged();
+        }
     }
-    
 
 
 }

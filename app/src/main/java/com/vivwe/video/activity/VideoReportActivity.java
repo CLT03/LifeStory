@@ -39,6 +39,7 @@ public class VideoReportActivity extends BaseActivity {
 
     private int reportType = 1;
     private ImageView preChooseIv;
+    private Integer videoId,videoDiscussId,userId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,6 +67,19 @@ public class VideoReportActivity extends BaseActivity {
 
             }
         });
+        //类型 1-视频举报 2-评论举报 3-用户举报
+        switch (getIntent().getIntExtra("type",0)){
+            case 1:
+                videoId=getIntent().getIntExtra("videoId",0);
+                userId=getIntent().getIntExtra("userId",0);
+                break;
+            case 2:
+                videoDiscussId=getIntent().getIntExtra("videoDiscussId",0);
+                break;
+            case 3:
+                userId=getIntent().getIntExtra("userId",0);
+                break;
+        }
     }
 
     @OnClick({R.id.iv_back, R.id.tv_submit, R.id.iv_illegal, R.id.iv_yellow, R.id.iv_gambling, R.id.iv_violence, R.id.iv_tort, R.id.iv_rumor, R.id.iv_other})
@@ -115,8 +129,9 @@ public class VideoReportActivity extends BaseActivity {
             android.widget.Toast.makeText(this, "描述字数不能少于四个", Toast.LENGTH_SHORT).show();
             return;
         }
-        HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).addReport(null, null,
-                3, UserCache.Companion.getUserInfo().getId(), reportType, editText.getText().toString(), getIntent().getIntExtra("userId", 0)
+        HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).addReport(videoId, videoDiscussId,
+                getIntent().getIntExtra("type",0), UserCache.Companion.getUserInfo().getId(),
+                reportType, editText.getText().toString(), userId
         ), new OnResultListener() {
             @Override
             public void onWebUiResult(WebMsg webMsg) {

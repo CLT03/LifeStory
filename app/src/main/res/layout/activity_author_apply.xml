@@ -24,9 +24,9 @@
         android:id="@+id/iv_back"
         android:layout_width="@dimen/x88"
         android:layout_height="0dp"
+        android:background="@drawable/ra_white_btn"
         android:paddingLeft="@dimen/x34"
         android:paddingTop="@dimen/x30"
-        android:background="@drawable/ra_white_btn"
         android:paddingRight="@dimen/x36"
         android:paddingBottom="@dimen/x26"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
@@ -63,7 +63,7 @@
 
     <EditText
         android:id="@+id/edt_name"
-        android:layout_width="@dimen/x340"
+        android:layout_width="@dimen/x540"
         android:layout_height="0dp"
         android:layout_marginLeft="@dimen/x188"
         android:background="#ffffff"
@@ -92,7 +92,7 @@
 
     <EditText
         android:id="@+id/edt_phone"
-        android:layout_width="@dimen/x340"
+        android:layout_width="@dimen/x540"
         android:layout_height="0dp"
         android:layout_marginLeft="@dimen/x188"
         android:background="#ffffff"
@@ -103,49 +103,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toTopOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/x86"
-        android:layout_marginTop="@dimen/x2"
-        android:background="#ffffff"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/x30"
-        android:text="@string/activity_personal_author_apply_verification"
-        android:textColor="#000000"
-        android:textSize="@dimen/x28"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <EditText
-        android:id="@+id/edt_verification"
-        android:layout_width="@dimen/x340"
-        android:layout_height="0dp"
-        android:layout_marginLeft="@dimen/x188"
-        android:background="#ffffff"
-        android:hint="请输入验证码"
-        android:textColorHint="#a6a6a6"
-        android:textColor="#000000"
-        android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintStart_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/textView6" />
-
-    <Button
-        android:id="@+id/btn_get_verification"
-        android:layout_width="@dimen/x160"
-        android:layout_height="@dimen/x52"
-        android:layout_marginEnd="@dimen/x30"
-        android:background="@drawable/sign_btn"
-        android:gravity="center"
-        android:text="获取验证码"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/x24"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView7"
@@ -160,11 +117,11 @@
         android:textSize="@dimen/x28"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
         android:id="@+id/edt_id_card"
-        android:layout_width="@dimen/x340"
+        android:layout_width="@dimen/x540"
         android:layout_height="0dp"
         android:layout_marginLeft="@dimen/x188"
         android:background="#ffffff"
@@ -192,14 +149,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <EditText
-        android:id="@+id/edt_alipay"
-        android:layout_width="@dimen/x340"
+        android:id="@+id/edt_bankcard"
+        android:layout_width="@dimen/x540"
         android:layout_height="0dp"
         android:layout_marginLeft="@dimen/x188"
         android:background="#ffffff"
-        android:hint="请输入支付宝号"
-        android:textColorHint="#a6a6a6"
+        android:hint="请输入银行卡号"
         android:textColor="#000000"
+        android:textColorHint="#a6a6a6"
         android:textSize="@dimen/x28"
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
         app:layout_constraintStart_toStartOf="@+id/textView8"
@@ -222,7 +179,7 @@
 
     <EditText
         android:id="@+id/edt_mail"
-        android:layout_width="@dimen/x340"
+        android:layout_width="@dimen/x540"
         android:layout_height="0dp"
         android:layout_marginLeft="@dimen/x188"
         android:background="#ffffff"
@@ -239,8 +196,8 @@
         android:layout_width="@dimen/x336"
         android:layout_height="@dimen/x220"
         android:layout_marginLeft="@dimen/x30"
+        android:background="@mipmap/icon_idcard_front"
         android:layout_marginTop="@dimen/x60"
-        android:src="@mipmap/icon_idcard_front"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_mail" />
 
@@ -249,7 +206,7 @@
         android:layout_width="@dimen/x336"
         android:layout_height="@dimen/x220"
         android:layout_marginEnd="@dimen/x30"
-        android:src="@mipmap/icon_idcard_obverse"
+        android:background="@mipmap/icon_idcard_obverse"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/iv_upload_id_card" />
 

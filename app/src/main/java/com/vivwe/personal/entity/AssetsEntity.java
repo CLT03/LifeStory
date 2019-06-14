@@ -18,7 +18,7 @@ public class AssetsEntity {
         private int userId;
         private String url;
         private int type;//	类型 1-图片 2-gif
-        private String gmt_create;
+        private String gmtExpireTime;
 
         public int getId() {
             return id;
@@ -52,12 +52,12 @@ public class AssetsEntity {
             this.type = type;
         }
 
-        public String getGmt_create() {
-            return gmt_create;
+        public String getGmtExpireTime() {
+            return gmtExpireTime;
         }
 
-        public void setGmt_create(String gmt_create) {
-            this.gmt_create = gmt_create;
+        public void setGmtExpireTime(String gmtExpireTime) {
+            this.gmtExpireTime = gmtExpireTime;
         }
     }
 }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/view14"
+        android:layout_width="@dimen/x540"
+        android:layout_height="@dimen/x270"
+        android:background="@drawable/r7_white_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x42"
+        android:text="确认删除视频吗？"
+        android:textColor="#000000"
+        android:textSize="@dimen/x36"
+        app:layout_constraintEnd_toEndOf="@+id/view14"
+        app:layout_constraintStart_toStartOf="@+id/view14"
+        app:layout_constraintTop_toTopOf="@+id/view14" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x18"
+        android:text="删除后不可恢复"
+        android:textColor="#888888"
+        android:textSize="@dimen/x30"
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <View
+        android:id="@+id/view38"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x2"
+        android:layout_marginTop="@dimen/x28"
+        android:background="#dddddd"
+        app:layout_constraintEnd_toEndOf="@+id/view14"
+        app:layout_constraintStart_toStartOf="@+id/view14"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <View
+        android:id="@+id/view39"
+        android:layout_width="@dimen/x2"
+        android:layout_height="0dp"
+        android:background="#dddddd"
+        app:layout_constraintBottom_toBottomOf="@+id/view14"
+        app:layout_constraintEnd_toEndOf="@+id/textView20"
+        app:layout_constraintStart_toStartOf="@+id/textView20"
+        app:layout_constraintTop_toBottomOf="@+id/view38" />
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/r7_white_left_bottom_btn"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="#000000"
+        android:textSize="@dimen/x36"
+        app:layout_constraintBottom_toBottomOf="@+id/view39"
+        app:layout_constraintEnd_toStartOf="@+id/view39"
+        app:layout_constraintStart_toStartOf="@+id/view38"
+        app:layout_constraintTop_toTopOf="@+id/view39" />
+
+    <TextView
+        android:id="@+id/tv_delete"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/r7_white_right_bottom_btn"
+        android:gravity="center"
+        android:text="删除"
+        android:textColor="#108EE9"
+        android:textSize="@dimen/x36"
+        app:layout_constraintBottom_toBottomOf="@+id/view39"
+        app:layout_constraintEnd_toEndOf="@+id/view38"
+        app:layout_constraintStart_toEndOf="@+id/view39"
+        app:layout_constraintTop_toTopOf="@+id/view39" />
+
+
+</android.support.constraint.ConstraintLayout>

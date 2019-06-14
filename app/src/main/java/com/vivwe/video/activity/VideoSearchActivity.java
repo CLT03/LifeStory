@@ -1,6 +1,6 @@
 package com.vivwe.video.activity;
 
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,27 +8,25 @@ import android.support.constraint.Group;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
-
-import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.base.ui.textview.LinearGradientTextView;
 import com.vivwe.main.R;
-
-
 import com.vivwe.video.adapter.VideoSearchPagerAdapter;
-
 import com.vivwe.video.fragment.VideoSearchFragment;
+import com.vivwe.video.ui.flowlayout.FlowLayout;
+import com.vivwe.video.ui.flowlayout.TagAdapter;
+import com.vivwe.video.ui.flowlayout.TagFlowLayout;
 
 import java.util.ArrayList;
-
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,6 +56,8 @@ public class VideoSearchActivity extends BaseActivity {
     Group groupResult;
     ArrayList<VideoSearchFragment> fragments = new ArrayList<>();
     LinearGradientTextView textViewTag;
+    @BindView(R.id.flow_layout)
+    TagFlowLayout flowLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -147,6 +147,29 @@ public class VideoSearchActivity extends BaseActivity {
             }
         });
         edtSearch.requestFocus();
+        ArrayList<String> arrayList=new ArrayList<>();
+        arrayList.add("sdjfjsdkjfskd");
+        arrayList.add("sdjfjsdkjfskd");
+        arrayList.add("真的吗等你回家俯拾地芥");
+        arrayList.add("sdjfjsdkjfskd");
+        arrayList.add("真的吗等你回家俯拾地芥");
+        TagAdapter<String> tagAdapter = new TagAdapter<String>(arrayList) {
+            @Override
+            public View getView(FlowLayout parent, int position, String s) {
+                TextView tv = (TextView) LayoutInflater.from(VideoSearchActivity.this).inflate(R.layout.item_video_flowlayout,
+                        parent, false);
+                tv.setText(s);
+                return tv;
+            }
+        };
+        flowLayout.setAdapter(tagAdapter);
+        flowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+            @Override
+            public boolean onTagClick(View view, int position, FlowLayout parent) {
+                Toast.makeText(VideoSearchActivity.this, "点击了"+position, Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
     }
 
 

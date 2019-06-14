@@ -69,11 +69,30 @@ public interface VideoApi {
                                @Field("videoDiscussReplyId") Integer videoDiscussReplyId,
                                @Field("videoId") Integer videoId);
 
+    //新增或取消收藏（视频/模板）
+    @FormUrlEncoded
+    @POST("api/star/addStar")
+    Observable<WebMsg> newStar(@Field("templateId") Integer templateId,
+                               @Field("type") int type, //1-视频 2-模板
+                               @Field("userId") int userId,
+                               @Field("videoId") Integer videoId);
+
+    //删除视频
+    @FormUrlEncoded
+    @POST("api/video/deleteVideoById")
+    Observable<WebMsg> deleteVideo(@Field("id") int id);
+
     //新的视频评论
     @FormUrlEncoded
     @POST("api/video-discuss/addVideoDiscuss")
     Observable<WebMsg> newComment(@Field("content") String content,
                                   @Field("userId") int userId,
+                                  @Field("videoId") int videoId);
+
+    //视频新增和取消踩记录
+    @FormUrlEncoded
+    @POST("api/hate-record/addHateRecord")
+    Observable<WebMsg> newTread(@Field("userId") int userId,
                                   @Field("videoId") int videoId);
 
     //新的回复视频评论

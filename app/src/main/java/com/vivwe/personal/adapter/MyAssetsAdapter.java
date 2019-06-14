@@ -64,7 +64,7 @@ public class MyAssetsAdapter extends RecyclerView.Adapter<MyAssetsAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
         Glide.with(activity).load(assests.get(i).getUrl()).apply(requestOptions).into(holder.ivCover);
-        holder.tvTime.setText(assests.get(i).getGmt_create());
+        holder.tvTime.setText(assests.get(i).getGmtExpireTime().substring(5,16)+"到期");
         if(ifEdit){
             holder.ivChoose.setVisibility(View.VISIBLE);
             if(waitDeleteAssets.contains(assests.get(i))) holder.ivChoose.setImageDrawable(activity.getResources().getDrawable(R.mipmap.icon_checked));
@@ -108,11 +108,11 @@ public class MyAssetsAdapter extends RecyclerView.Adapter<MyAssetsAdapter.ViewHo
         notifyDataSetChanged();
     }
 
-    public ArrayList<Integer> getChooseIdList() {
-        ArrayList<Integer> chooseIdList=new ArrayList<>();
+    public ArrayList<Long> getChooseIdList() {
+        ArrayList<Long> chooseIdList=new ArrayList<>();
         if(waitDeleteAssets!=null) {
             for (int i = 0; i < waitDeleteAssets.size(); i++) {
-                chooseIdList.add(waitDeleteAssets.get(i).getId());
+                chooseIdList.add((long) waitDeleteAssets.get(i).getId());
             }
         }
         return chooseIdList;

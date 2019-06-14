@@ -10,15 +10,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
 import com.mbs.sdk.utils.ScreenUtils;
+import com.vivwe.author.activity.ApplyActivity;
 import com.vivwe.author.activity.CenterActivity;
 import com.vivwe.base.activity.BaseFragment;
+import com.vivwe.base.cache.UserCache;
 import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.base.ui.cardstack.CardStack;
 import com.vivwe.main.R;
@@ -39,6 +46,10 @@ import com.vivwe.personal.activity.MyFansActivity;
 import com.vivwe.personal.activity.MyPurchasedActivity;
 import com.vivwe.personal.activity.MyVideoActivity;
 import com.vivwe.personal.activity.RecommendForYouActivity;
+import com.vivwe.personal.api.PersonalApi;
+import com.vivwe.personal.entity.AdvertisementEntity;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,13 +89,17 @@ public class UcenterFragment extends BaseFragment {
     TextView tvDraft;
     @BindView(R.id.tv_source)
     TextView tvSource;
+    @BindView(R.id.tv_author_ucenter)
+    TextView tvAuthorUcenter;
     private UcenterHistoryAdapter adapter;
     private VideoHistoryEntity videoHistoryEntity;
     @BindView(R.id.cs_adv)
     CardStack advCs;
+    private int IsApplying;
 
     // 广告Adatper
     private UcenterAdvAdapter advAdapter;
+    private RequestOptions requestOptions;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -100,25 +115,7 @@ public class UcenterFragment extends BaseFragment {
     }
 
     private void init() {
-
-        // 初始化广告
-        advAdapter = new UcenterAdvAdapter(this.getContext());
-        advAdapter.add("test1");
-        advAdapter.add("test2");
-        advAdapter.add("test3");
-        advCs.setContentResource(R.layout.fragment_ucenter_adv);
-        advCs.setAdapter(advAdapter);
-
-        if (advCs.getAdapter() != null) {
-            Log.i("MyActivity", "Card Stack size: " + advCs.getAdapter().getCount());
-        }
-
-        advCs.reset(true);
-        if(advAdapter.getCount() > 1) {
-            advCs.startTimer();
-        }
-
-
+        requestOptions=new RequestOptions().placeholder(getResources().getDrawable(R.drawable.ic_launcher_background)).circleCrop();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerViewHistory.setLayoutManager(linearLayoutManager);
@@ -129,6 +126,7 @@ public class UcenterFragment extends BaseFragment {
         tvTitle.setLayoutParams(layoutParams);
         tvTitle.setPadding(0, ScreenUtils.getStatusHeight(getContext()), 0, 0);
         getData();
+        getAdImageList();
     }
 
     private void getData() {
@@ -137,11 +135,18 @@ public class UcenterFragment extends BaseFragment {
             public void onWebUiResult(WebMsg webMsg) {
                 if (webMsg.dataIsSuccessed()) {
                     UcenterInfoEntity userInfoEntity = webMsg.getData(UcenterInfoEntity.class);
+                    Glide.with(UcenterFragment.this).load(userInfoEntity.getAvatar()).apply(requestOptions).into(ivHead);
                     tvName.setText(userInfoEntity.getNickname());
                     tvId.setText(String.valueOf(userInfoEntity.getId()));
                     tvAttention.setText(String.valueOf(userInfoEntity.getSubNum()));
                     tvFans.setText(String.valueOf(userInfoEntity.getFans()));
                     tvLike.setText(String.valueOf(userInfoEntity.getLikeRecord()));
+                    IsApplying=userInfoEntity.getIsApplying();
+                    if(userInfoEntity.getIsApplying()==1){
+                        tvAuthorUcenter.setText("申请审批中...");
+                    }else if(userInfoEntity.getRole()==1){
+                        tvAuthorUcenter.setText("申请成为创作者");
+                    }
                 } else if (webMsg.netIsSuccessed()) {
                     Toast.show(getContext(), webMsg.getDesc(), 2000);
                 }
@@ -169,7 +174,7 @@ public class UcenterFragment extends BaseFragment {
                 if (webMsg.dataIsSuccessed()) {
                     videoHistoryEntity = webMsg.getData(VideoHistoryEntity.class);
                     if(videoHistoryEntity.getMyVideoList().size()>0)
-                       adapter.setHistoryEntities(videoHistoryEntity.getMyVideoList());
+                        adapter.setHistoryEntities(videoHistoryEntity.getMyVideoList());
                     else recyclerViewHistory.setVisibility(View.GONE);
                 } else if (webMsg.netIsSuccessed()) {
                     recyclerViewHistory.setVisibility(View.GONE);
@@ -180,11 +185,40 @@ public class UcenterFragment extends BaseFragment {
 
     }
 
+    private void getAdImageList(){
+        HttpRequest.getInstance().excute(HttpRequest.create(PersonalApi.class).getAdImageList(1,Integer.MAX_VALUE,2), new OnResultListener() {
+            @Override
+            public void onWebUiResult(WebMsg webMsg) {
+                if (webMsg.dataIsSuccessed()) {
+                    AdvertisementEntity advertisementEntity =webMsg.getData(AdvertisementEntity.class);
+                    // 初始化广告
+                    advAdapter = new UcenterAdvAdapter(getContext(), new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            android.widget.Toast.makeText(mainActivity, "position "+position, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    for(int i=0;i<advertisementEntity.getRecords().size();i++){
+                        advAdapter.add(advertisementEntity.getRecords().get(i).getImageUrl());
+                    }
+                    advCs.setContentResource(R.layout.fragment_ucenter_adv);
+                    advCs.setAdapter(advAdapter);
+                    advCs.reset(true);
+                    if(advAdapter.getCount() > 1) {
+                        advCs.startTimer();
+                    }
+                } else if (webMsg.netIsSuccessed()) {
+                    recyclerViewHistory.setVisibility(View.GONE);
+                    Toast.show(getContext(), webMsg.getDesc(), 2000);
+                }
+            }
+        });
+    }
+
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        advCs.stopTimer();
         unbind.unbind();
     }
 
@@ -201,29 +235,27 @@ public class UcenterFragment extends BaseFragment {
                 break;
             case R.id.iv_attention:
             case R.id.tv_attention:
-                startActivity(new Intent(getActivity(), MyAttentionActivity.class));
+                startActivityForResult(new Intent(getActivity(), MyAttentionActivity.class),1);
                 break;
             case R.id.iv_fans:
             case R.id.tv_fans:
-                startActivity(new Intent(getActivity(), MyFansActivity.class));
+                startActivityForResult(new Intent(getActivity(), MyFansActivity.class),1);
                 break;
             case R.id.tv_purchased:
-                startActivity(new Intent(getActivity(), MyPurchasedActivity.class));
+                startActivityForResult(new Intent(getActivity(), MyPurchasedActivity.class),1);
                 break;
             case R.id.tv_collected:
-                startActivity(new Intent(getActivity(), MyCollectedActivity.class));
+                startActivityForResult(new Intent(getActivity(), MyCollectedActivity.class),1);
                 break;
             case R.id.tv_draft:
-                startActivity(new Intent(getActivity(), MyDraftActivity.class));
+                startActivityForResult(new Intent(getActivity(), MyDraftActivity.class),1);
                 break;
             case R.id.tv_source:
-                startActivity(new Intent(getActivity(), MyAssetsActivity.class).putExtra("tag",1));
+                startActivityForResult(new Intent(getActivity(), MyAssetsActivity.class),1);
                 break;
             case R.id.iv_more:
             case R.id.tv_more:
-                Bundle bundle =new Bundle();
-                bundle.putSerializable("history",videoHistoryEntity);
-                startActivity(new Intent(getActivity(), MyBrowsingHistoryActivity.class).putExtras(bundle));
+                startActivityForResult(new Intent(getActivity(), MyBrowsingHistoryActivity.class),1);
                 break;
             case R.id.tv_video:
                 startActivity(new Intent(getActivity(), MyVideoActivity.class));
@@ -232,8 +264,22 @@ public class UcenterFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), RecommendForYouActivity.class));
                 break;
             case R.id.tv_author_ucenter:
-                startActivity(new Intent(getActivity(), CenterActivity.class));
+                if(IsApplying==1){//正在申请中
+                    return;
+                }
+                if (UserCache.Companion.getUserInfo().getRole() == 1) {
+                    startActivityForResult(new Intent(getActivity(), ApplyActivity.class),1);
+                } else startActivity(new Intent(getActivity(), CenterActivity.class));
                 break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Log.e("ououou","requestCode "+requestCode);
+        if(requestCode==1){
+            getData();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

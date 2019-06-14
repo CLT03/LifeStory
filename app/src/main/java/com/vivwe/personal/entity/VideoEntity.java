@@ -17,6 +17,15 @@ public class VideoEntity {
         private int playCount;
         private String videoTitle;
         private int starId;//收藏id
+        private int scount;//收藏量
+
+        public int getScount() {
+            return scount;
+        }
+
+        public void setScount(int scount) {
+            this.scount = scount;
+        }
 
         public int getStarId() {
             return starId;

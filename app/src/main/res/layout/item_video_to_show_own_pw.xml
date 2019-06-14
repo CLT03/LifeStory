@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/r6_white_top_normal">
+
+    <View
+        android:id="@+id/view28"
+        android:layout_width="@dimen/x750"
+        android:layout_height="@dimen/x446"
+        android:background="@drawable/r6_white_top_normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_send"
+        android:layout_width="@dimen/x104"
+        android:layout_height="@dimen/x104"
+        android:layout_marginLeft="@dimen/x18"
+        android:layout_marginTop="@dimen/x44"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center_horizontal|bottom"
+        android:text="转发"
+        android:textColor="#000000"
+        android:textSize="@dimen/x24"
+        app:layout_constraintStart_toStartOf="@id/view28"
+        app:layout_constraintTop_toTopOf="@id/view28" />
+
+    <ImageView
+        android:id="@+id/imageView33"
+        android:layout_width="@dimen/x60"
+        android:layout_height="@dimen/x60"
+        app:layout_constraintEnd_toEndOf="@+id/tv_send"
+        app:layout_constraintStart_toStartOf="@+id/tv_send"
+        app:layout_constraintTop_toTopOf="@+id/tv_send"
+        app:srcCompat="@mipmap/icon_forward" />
+
+    <TextView
+        android:id="@+id/tv_wechat"
+        android:layout_width="@dimen/x104"
+        android:layout_height="@dimen/x104"
+        android:layout_marginLeft="@dimen/x36"
+        android:layout_marginTop="@dimen/x44"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center_horizontal|bottom"
+        android:text="微信"
+        android:textColor="#000000"
+        android:textSize="@dimen/x24"
+        app:layout_constraintStart_toEndOf="@+id/tv_send"
+        app:layout_constraintTop_toTopOf="@id/view28" />
+
+    <ImageView
+        android:id="@+id/imageView35"
+        android:layout_width="@dimen/x60"
+        android:layout_height="@dimen/x60"
+        app:layout_constraintEnd_toEndOf="@+id/tv_wechat"
+        app:layout_constraintStart_toStartOf="@+id/tv_wechat"
+        app:layout_constraintTop_toTopOf="@+id/tv_wechat"
+        app:srcCompat="@mipmap/icon_wechat" />
+
+    <TextView
+        android:id="@+id/tv_qq"
+        android:layout_width="@dimen/x104"
+        android:layout_height="@dimen/x104"
+        android:layout_marginLeft="@dimen/x36"
+        android:layout_marginTop="@dimen/x44"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center_horizontal|bottom"
+        android:text="QQ"
+        android:textColor="#000000"
+        android:textSize="@dimen/x24"
+        app:layout_constraintStart_toEndOf="@+id/tv_wechat"
+        app:layout_constraintTop_toTopOf="@id/view28" />
+
+    <ImageView
+        android:id="@+id/imageView44"
+        android:layout_width="@dimen/x60"
+        android:layout_height="@dimen/x60"
+        app:layout_constraintEnd_toEndOf="@+id/tv_qq"
+        app:layout_constraintStart_toStartOf="@+id/tv_qq"
+        app:layout_constraintTop_toTopOf="@+id/tv_qq"
+        app:srcCompat="@mipmap/icon_qq" />
+
+    <TextView
+        android:id="@+id/tv_sina"
+        android:layout_width="@dimen/x104"
+        android:layout_height="@dimen/x104"
+        android:layout_marginLeft="@dimen/x36"
+        android:layout_marginTop="@dimen/x44"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center_horizontal|bottom"
+        android:text="新浪微博"
+        android:textColor="#000000"
+        android:textSize="@dimen/x24"
+        app:layout_constraintStart_toEndOf="@+id/tv_qq"
+        app:layout_constraintTop_toTopOf="@id/view28" />
+
+    <ImageView
+        android:id="@+id/imageView46"
+        android:layout_width="@dimen/x60"
+        android:layout_height="@dimen/x60"
+        app:layout_constraintEnd_toEndOf="@+id/tv_sina"
+        app:layout_constraintStart_toStartOf="@+id/tv_sina"
+        app:layout_constraintTop_toTopOf="@+id/tv_sina"
+        app:srcCompat="@mipmap/icon_sina" />
+
+    <TextView
+        android:id="@+id/tv_save"
+        android:layout_width="@dimen/x122"
+        android:layout_height="@dimen/x90"
+        android:layout_marginTop="@dimen/x80"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center_horizontal|bottom"
+        android:text="保存至本地"
+        android:textColor="#A2A2A2"
+        android:textSize="@dimen/x24"
+        app:layout_constraintEnd_toEndOf="@+id/tv_send"
+        app:layout_constraintStart_toStartOf="@+id/tv_send"
+        app:layout_constraintTop_toBottomOf="@+id/tv_send" />
+
+    <ImageView
+        android:id="@+id/iv_tread"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x48"
+        app:layout_constraintEnd_toEndOf="@+id/tv_save"
+        app:layout_constraintStart_toStartOf="@+id/tv_save"
+        app:layout_constraintTop_toTopOf="@+id/tv_save"
+        app:srcCompat="@mipmap/icon_video_download" />
+
+    <TextView
+        android:id="@+id/tv_collect"
+        android:layout_width="@dimen/x90"
+        android:layout_height="@dimen/x90"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center_horizontal|bottom"
+        android:text="收藏"
+        android:textColor="#A2A2A2"
+        android:textSize="@dimen/x24"
+        app:layout_constraintEnd_toEndOf="@+id/tv_wechat"
+        app:layout_constraintStart_toStartOf="@+id/tv_wechat"
+        app:layout_constraintTop_toTopOf="@+id/iv_tread" />
+
+    <ImageView
+        android:id="@+id/iv_collect"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x48"
+        app:layout_constraintEnd_toEndOf="@+id/tv_collect"
+        app:layout_constraintStart_toStartOf="@+id/tv_collect"
+        app:layout_constraintTop_toTopOf="@+id/tv_collect"
+        app:srcCompat="@mipmap/icon_video_collect_add_1" />
+
+    <TextView
+        android:id="@+id/tv_del"
+        android:layout_width="@dimen/x114"
+        android:layout_height="@dimen/x90"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center_horizontal|bottom"
+        android:text="删除"
+        android:textColor="#A2A2A2"
+        android:textSize="@dimen/x24"
+        app:layout_constraintEnd_toEndOf="@+id/tv_qq"
+        app:layout_constraintStart_toStartOf="@+id/tv_qq"
+        app:layout_constraintTop_toTopOf="@+id/iv_tread" />
+
+    <ImageView
+        android:id="@+id/imageView47"
+        android:layout_width="@dimen/x48"
+        android:layout_height="@dimen/x48"
+        app:layout_constraintEnd_toEndOf="@+id/tv_del"
+        app:layout_constraintStart_toStartOf="@+id/tv_del"
+        app:layout_constraintTop_toTopOf="@+id/tv_del"
+        app:srcCompat="@mipmap/icon_del_moments" />
+
+    <View
+        android:id="@+id/view37"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x2"
+        android:layout_marginTop="@dimen/x44"
+        android:background="#EBEBEB"
+        app:layout_constraintEnd_toEndOf="@id/view28"
+        app:layout_constraintStart_toStartOf="@id/view28"
+        app:layout_constraintTop_toBottomOf="@+id/tv_save" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ra_white_btn"
+        android:text="取消"
+        android:textColor="#666666"
+        android:textSize="@dimen/x28"
+        app:layout_constraintBottom_toBottomOf="@id/view28"
+        app:layout_constraintEnd_toEndOf="@id/view28"
+        app:layout_constraintStart_toStartOf="@id/view28"
+        app:layout_constraintTop_toBottomOf="@+id/view37" />
+
+</android.support.constraint.ConstraintLayout>

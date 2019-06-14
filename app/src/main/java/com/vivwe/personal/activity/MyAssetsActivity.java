@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.base.constant.Globals;
+import com.vivwe.base.ui.alert.AlertDialog;
 import com.vivwe.base.ui.alert.Loading;
 import com.vivwe.base.util.MiscUtil;
 import com.vivwe.main.R;
@@ -248,6 +250,10 @@ public class MyAssetsActivity extends BaseActivity {
                 }
             }
         } else Toast.makeText(this, "选择不能为空！", Toast.LENGTH_SHORT).show();
+
+
+
+
     }
 
 
