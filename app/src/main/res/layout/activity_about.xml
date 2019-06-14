@@ -17,6 +17,7 @@
         android:textSize="@dimen/x32"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,26 +34,13 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/x110"
-        android:paddingLeft="@dimen/x40"
         android:gravity="center_vertical"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_title1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_title1"/>
-
-    <TextView
-        android:id="@+id/textView40"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/x110"
+        android:textSize="@dimen/x32"
+        android:textColor="@color/colorBlack"
+        android:background="@color/colorWhite"
         android:paddingLeft="@dimen/x40"
-        android:visibility="gone"
-        android:gravity="center_vertical"
-        android:textColor="#191919"
-        android:textSize="@dimen/x36"
-        android:textStyle="bold"
-        android:background="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title1" />
@@ -63,30 +51,16 @@
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:paddingLeft="@dimen/x40"
-        android:visibility="gone"
         android:paddingTop="@dimen/x6"
         android:paddingRight="@dimen/x40"
         android:paddingBottom="@dimen/x48"
         android:textColor="#6a6a6a"
         android:textSize="@dimen/x28"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
-    <TextView
-        android:id="@+id/textView41"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/x40"
-        android:paddingTop="@dimen/x6"
-        android:paddingRight="@dimen/x40"
-        android:visibility="gone"
-        android:paddingBottom="@dimen/x48"
-        android:textSize="@dimen/x28"
-        android:textColor="#6a6a6a"
-        android:background="#ffffff"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView40" />
+
 
 </android.support.constraint.ConstraintLayout>

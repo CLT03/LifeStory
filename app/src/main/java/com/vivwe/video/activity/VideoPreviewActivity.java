@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.vivwe.base.activity.BaseActivity;
@@ -55,6 +56,16 @@ public class VideoPreviewActivity extends BaseActivity {
                 videoView.setVideoPath(path);
                 videoView.requestFocus();
                 videoView.start();
+            }
+        });
+
+        // 添加视频播放的错误监听
+        videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+                videoView.stopPlayback(); // 播放异常，则停止播放，防止弹窗是界面阻塞
+                Toast.makeText(VideoPreviewActivity.this, "视频错误，无法播放！", Toast.LENGTH_LONG).show();
+                return true;
             }
         });
 

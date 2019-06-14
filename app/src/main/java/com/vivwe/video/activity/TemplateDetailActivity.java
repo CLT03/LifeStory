@@ -11,7 +11,6 @@ import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.mbs.sdk.net.HttpRequest;
@@ -26,9 +25,7 @@ import com.vivwe.base.util.MiscUtil;
 import com.vivwe.main.R;
 import com.vivwe.video.api.TemplateApi;
 import com.vivwe.video.entity.TemplateDetailEntity;
-
 import java.io.File;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
