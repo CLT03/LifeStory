@@ -132,7 +132,7 @@ public class TemplateDetailActivity extends BaseActivity {
                     file.getPath(), new OnProgressListener() {
                         @Override
                         public void onProgress(long currentBytes, long contentLength) {
-                            btnBuy.setText("" + currentBytes / contentLength * 100);
+                            btnBuy.setText(String.valueOf(currentBytes*100 / contentLength));
                         }
 
                         @Override
@@ -195,4 +195,10 @@ public class TemplateDetailActivity extends BaseActivity {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        if(videoView!=null && videoView.isPlaying())
+            videoView.stopPlayback();
+        super.onDestroy();
+    }
 }
