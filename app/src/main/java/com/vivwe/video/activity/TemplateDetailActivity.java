@@ -54,6 +54,7 @@ public class TemplateDetailActivity extends BaseActivity {
     private RequestOptions requestOptions;
     private int isStarted;
     private TemplateDetailEntity templateDetailEntity;
+    private boolean mFinished;//是否结束activity
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -120,6 +121,8 @@ public class TemplateDetailActivity extends BaseActivity {
         }
     }
 
+
+
     private void downLoadTemplate() {
         final File fileDest = new File(templateDetailEntity.getStyle() == 1 ? getExternalFilesDir("standard") : getExternalFilesDir("dynamic"),
                 templateDetailEntity.getTitle());
@@ -132,22 +135,28 @@ public class TemplateDetailActivity extends BaseActivity {
                     file.getPath(), new OnProgressListener() {
                         @Override
                         public void onProgress(long currentBytes, long contentLength) {
-                            btnBuy.setText(String.valueOf(currentBytes*100 / contentLength));
+                            Log.e("ououou","progress "+currentBytes+" "+contentLength);
+                            btnBuy.setText(String.valueOf(currentBytes*100 / contentLength)+"%");
+                            //btnBuy.setText(currentBytes/1024/1024+"MB");
                         }
 
                         @Override
                         public void onFinished(WebMsg webMsg) {
+                            Log.e("ououou","onFinished "+webMsg.getData());
                             try {
                                 if (webMsg.dataIsSuccessed()) {
                                     MiscUtil.UnZipFolder(file.getPath(), fileDest.getPath());//解压
-                                    file.delete();
-                                    if (templateDetailEntity.getStyle() == 1) {
-                                        startActivity(new Intent(TemplateDetailActivity.this, VideoCreateByStandardActivity.class)
-                                                .putExtra("path", fileDest.getPath() + "/" + fileDest.list()[0]));
-                                    } else {
-                                        startActivity(new Intent(TemplateDetailActivity.this, VideoCreateByDynamicActivity.class)
-                                                .putExtra("path", fileDest.getPath() + "/" + fileDest.list()[0]));
-                                    }
+                                    if (file.delete()){
+                                        if(!mFinished) {
+                                            if (templateDetailEntity.getStyle() == 1) {
+                                                startActivity(new Intent(TemplateDetailActivity.this, VideoCreateByStandardActivity.class)
+                                                        .putExtra("path", fileDest.getPath() + "/" + fileDest.list()[0]));
+                                            } else {
+                                                startActivity(new Intent(TemplateDetailActivity.this, VideoCreateByDynamicActivity.class)
+                                                        .putExtra("path", fileDest.getPath() + "/" + fileDest.list()[0]));
+                                            }
+                                        }
+                                    }else Toast.makeText(TemplateDetailActivity.this, "服务器文件错误。", Toast.LENGTH_SHORT).show();
                                 } else {
                                     btnBuy.setClickable(true);
                                     btnBuy.setText("¥" + templateDetailEntity.getPrice() + "/次");
@@ -199,6 +208,7 @@ public class TemplateDetailActivity extends BaseActivity {
     protected void onDestroy() {
         if(videoView!=null && videoView.isPlaying())
             videoView.stopPlayback();
+        mFinished=true;
         super.onDestroy();
     }
 }
