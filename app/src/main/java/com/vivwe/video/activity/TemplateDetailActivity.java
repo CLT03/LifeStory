@@ -135,14 +135,14 @@ public class TemplateDetailActivity extends BaseActivity {
                     file.getPath(), new OnProgressListener() {
                         @Override
                         public void onProgress(long currentBytes, long contentLength) {
-                            Log.e("ououou","progress "+currentBytes+" "+contentLength);
+                            //Log.e("ououou","progress "+currentBytes+" "+contentLength);
                             btnBuy.setText(String.valueOf(currentBytes*100 / contentLength)+"%");
                             //btnBuy.setText(currentBytes/1024/1024+"MB");
                         }
 
                         @Override
                         public void onFinished(WebMsg webMsg) {
-                            Log.e("ououou","onFinished "+webMsg.getData());
+                            //Log.e("ououou","onFinished "+webMsg.getData());
                             try {
                                 if (webMsg.dataIsSuccessed()) {
                                     MiscUtil.UnZipFolder(file.getPath(), fileDest.getPath());//解压
