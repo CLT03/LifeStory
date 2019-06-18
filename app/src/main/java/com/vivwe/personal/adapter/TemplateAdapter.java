@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.main.R;
 import com.vivwe.personal.entity.TemplateEntity;
 import com.vivwe.video.activity.TemplateDetailActivity;
@@ -70,7 +71,7 @@ public class TemplateAdapter extends RecyclerView.Adapter<TemplateAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
-        Glide.with(activity).load(templates.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
+        Glide.with(activity).load(Globals.URL_QINIU+templates.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
         holder.tvTitle.setText(templates.get(i).getTitle());
         if (Float.parseFloat(templates.get(i).getPrice()) == 0.0) {
             holder.ivCharge.setVisibility(View.GONE);

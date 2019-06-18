@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.main.R;
 import com.vivwe.main.entity.VideoHistoryEntity;
 import com.vivwe.personal.entity.AssetsEntity;
@@ -70,7 +71,7 @@ public class MyBrowsingHistoryAdapter extends RecyclerView.Adapter<MyBrowsingHis
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
-        Glide.with(activity).load(historyEntities.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
+        Glide.with(activity).load(Globals.URL_QINIU+historyEntities.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
         holder.tvTitle.setText(historyEntities.get(i).getVideoTitle());
         if (ifEdit) {
             holder.ivChoose.setVisibility(View.VISIBLE);

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x88"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:text="用户名"
+        android:textColor="#191919"
+        android:textSize="@dimen/x32"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/x88"
+        android:layout_height="@dimen/x88"
+        android:paddingLeft="@dimen/x34"
+        android:paddingTop="@dimen/x30"
+        android:paddingRight="@dimen/x36"
+        android:paddingBottom="@dimen/x26"
+        android:background="@drawable/ra_white_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_title"
+        app:srcCompat="@mipmap/icon_back_black" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:srlAccentColor="#00000000"
+        app:srlPrimaryColor="#00000000"
+        android:background="#F4F4FB"
+        app:srlEnablePreviewInEditMode="true">
+
+        <com.vivwe.main.ui.ReplyMessageRefreshHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:background="#F4F4FB"
+            android:layout_height="match_parent"/>
+
+   <!--     <com.scwang.smartrefresh.layout.footer.BallPulseFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>-->
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+    <View
+        android:id="@+id/view42"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x126"
+        android:background="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/view43"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x2"
+        android:background="#E5E5E5"
+        app:layout_constraintBottom_toTopOf="@+id/view42"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="@dimen/x596"
+        android:layout_height="@dimen/x84"
+        android:layout_marginLeft="@dimen/x30"
+        android:textSize="@dimen/x30"
+        android:textColor="#333333"
+        android:hint="请输入内容"
+        android:textColorHint="#808080"
+        android:paddingLeft="@dimen/x30"
+        android:paddingRight="@dimen/x30"
+        android:background="@drawable/r21_gray_normal"
+        app:layout_constraintBottom_toBottomOf="@+id/view42"
+        app:layout_constraintStart_toStartOf="@+id/view42"
+        app:layout_constraintTop_toBottomOf="@+id/view43" />
+
+    <TextView
+        android:id="@+id/textView77"
+        android:layout_width="@dimen/x80"
+        android:layout_height="@dimen/x60"
+        android:text="发送"
+        android:textColor="#666666"
+        android:textSize="@dimen/x32"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/ra_white_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/view42"
+        app:layout_constraintEnd_toEndOf="@+id/view42"
+        app:layout_constraintStart_toEndOf="@+id/editText2"
+        app:layout_constraintTop_toTopOf="@+id/view42" />
+
+
+</android.support.constraint.ConstraintLayout>

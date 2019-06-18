@@ -9,6 +9,7 @@ import butterknife.OnItemClick
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.vivwe.base.cache.ImageLoaderCache
+import com.vivwe.base.constant.Globals
 import com.vivwe.main.R
 
 /**
@@ -42,7 +43,7 @@ class UcenterAdvAdapter: ArrayAdapter<String> {
         var image: ImageView = contentView!!.findViewById(R.id.iv_image)
         var path:String = getItem(position)
 
-        Glide.with(context).load(path).apply(request).into(image)
+        Glide.with(context).load(Globals.URL_QINIU+path).apply(request).into(image)
 
 //        v.text = getItem(position)
         cl.setOnClickListener {

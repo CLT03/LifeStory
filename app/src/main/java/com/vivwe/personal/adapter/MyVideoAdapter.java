@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.main.R;
 import com.vivwe.personal.entity.VideoEntity;
 
@@ -58,7 +59,7 @@ public class MyVideoAdapter extends RecyclerView.Adapter<MyVideoAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.tvNumber.setText(String.valueOf(myVideos.get(i).getPlayCount()));
-        Glide.with(activity).load(myVideos.get(i).getImageUrl()).apply(requestOptions).into(viewHolder.ivCover);
+        Glide.with(activity).load(Globals.URL_QINIU+myVideos.get(i).getImageUrl()).apply(requestOptions).into(viewHolder.ivCover);
     }
 
     @Override

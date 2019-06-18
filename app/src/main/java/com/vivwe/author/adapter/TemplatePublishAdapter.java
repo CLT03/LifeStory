@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.main.R;
 import com.vivwe.personal.entity.AssetsEntity;
 import com.vivwe.personal.entity.TemplateEntity;
@@ -75,7 +76,7 @@ public class TemplatePublishAdapter extends RecyclerView.Adapter<TemplatePublish
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
-        Glide.with(activity).load(templates.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
+        Glide.with(activity).load(Globals.URL_QINIU+templates.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
         holder.tvClick.setText(String.valueOf(templates.get(i).getClickCount()));
         holder.tvCollected.setText(String.valueOf(templates.get(i).getCollectNumber()));
         holder.tvMaterial.setText(templates.get(i).getMax_material_count()+"个素材");

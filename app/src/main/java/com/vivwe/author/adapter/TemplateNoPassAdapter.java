@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.main.R;
 import com.vivwe.personal.entity.TemplateEntity;
 
@@ -69,7 +70,7 @@ public class TemplateNoPassAdapter extends RecyclerView.Adapter<TemplateNoPassAd
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
-        Glide.with(activity).load(templates.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
+        Glide.with(activity).load(Globals.URL_QINIU+templates.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
         holder.tvMaterial.setText(templates.get(i).getMax_material_count()+"个素材");
         holder.tvMoney.setText("¥"+templates.get(i).getPrice()+"元");
         holder.tvTime.setText(templates.get(i).getMax_duration()+"秒");

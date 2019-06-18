@@ -127,6 +127,17 @@
         app:layout_constraintTop_toTopOf="@+id/tv_name" />
 
     <ImageView
+        android:id="@+id/iv_new_message"
+        android:layout_width="@dimen/x80"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/x20"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_attention"
+        app:layout_constraintStart_toEndOf="@+id/btn_attention"
+        app:layout_constraintTop_toTopOf="@+id/btn_attention"
+        app:srcCompat="@mipmap/icon_design_home_message" />
+
+    <ImageView
         android:id="@+id/iv_change"
         android:layout_width="@dimen/x56"
         android:layout_height="@dimen/x56"

@@ -34,6 +34,7 @@ import com.vivwe.author.activity.DesignerHomeActivity;
 import com.vivwe.author.adapter.DesignerHomePopWAdapter;
 import com.vivwe.base.activity.BaseActivity;
 import com.vivwe.base.cache.UserCache;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.base.ui.alert.AlertDialog;
 import com.vivwe.base.ui.alert.PopWindow;
 import com.vivwe.base.ui.alert.Toast;
@@ -189,7 +190,7 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
             public void onWebUiResult(WebMsg webMsg) {
                 if (webMsg.dataIsSuccessed()) {
                     videoDetailEntity = webMsg.getData(VideoDetailEntity.class);
-                    Glide.with(VideoToShowActivity.this).load(videoDetailEntity.getAvatar()).apply(requestOptions).into(ivHead);
+                    Glide.with(VideoToShowActivity.this).load(Globals.URL_QINIU+videoDetailEntity.getAvatar()).apply(requestOptions).into(ivHead);
                     tvName.setText("#" + videoDetailEntity.getNickName());
                     tvTitle.setText(videoDetailEntity.getVideoTitle());
                     tvLike.setText(String.valueOf(videoDetailEntity.getLrcount()));

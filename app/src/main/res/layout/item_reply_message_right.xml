@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F4F4FB">
+
+    <ImageView
+        android:id="@+id/iv_head"
+        android:layout_width="@dimen/x84"
+        android:layout_height="@dimen/x84"
+        android:layout_marginTop="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_time"
+        app:srcCompat="@mipmap/icon_logo_default" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x30"
+        android:text="10:00"
+        android:textColor="#808080"
+        android:textSize="@dimen/x24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView81"
+        android:layout_width="@dimen/x500"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/x24"
+        android:background="#ffffff"
+        android:paddingLeft="@dimen/x30"
+        android:paddingTop="@dimen/x22"
+        android:paddingRight="@dimen/x30"
+        android:paddingBottom="@dimen/x22"
+        android:text="我们下午2点钟见面吧！！！我们下午2点钟见面吧！！！我们下午2点钟见面吧！！！我们下午2点钟见面吧！！！我们下午2点钟见面吧！！！"
+        android:textColor="#404040"
+        android:textSize="@dimen/x28"
+        android:textStyle="bold"
+        android:enabled="true"
+        android:textIsSelectable="true"
+        android:focusable="true"
+        android:longClickable="true"
+        app:layout_constraintEnd_toStartOf="@+id/iv_head"
+        app:layout_constraintTop_toTopOf="@+id/iv_head" />
+</android.support.constraint.ConstraintLayout>

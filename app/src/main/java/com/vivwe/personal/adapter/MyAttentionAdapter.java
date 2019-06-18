@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
 import com.vivwe.personal.api.PersonalApi;
@@ -74,7 +75,7 @@ public class MyAttentionAdapter extends RecyclerView.Adapter<MyAttentionAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
-        Glide.with(activity).load(attentions.get(i).getAvatar()).apply(requestOptions).into(holder.ivHead);
+        Glide.with(activity).load(Globals.URL_QINIU+attentions.get(i).getAvatar()).apply(requestOptions).into(holder.ivHead);
         holder.tvName.setText(attentions.get(i).getNickname());
         holder.tvRemark.setText(attentions.get(i).getSignature());
         if(attentions.get(i).getIsSub()==0){

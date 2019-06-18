@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.main.R;
 import com.vivwe.personal.entity.AssetsEntity;
 import com.vivwe.personal.entity.TemplateEntity;
@@ -63,7 +64,7 @@ public class MyAssetsAdapter extends RecyclerView.Adapter<MyAssetsAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
-        Glide.with(activity).load(assests.get(i).getUrl()).apply(requestOptions).into(holder.ivCover);
+        Glide.with(activity).load(Globals.URL_QINIU+assests.get(i).getUrl()).apply(requestOptions).into(holder.ivCover);
         holder.tvTime.setText(assests.get(i).getGmtExpireTime().substring(5,16)+"到期");
         if(ifEdit){
             holder.ivChoose.setVisibility(View.VISIBLE);
