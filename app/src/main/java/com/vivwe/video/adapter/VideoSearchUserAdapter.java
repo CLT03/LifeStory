@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
 import com.vivwe.personal.api.PersonalApi;
@@ -70,7 +71,7 @@ public class VideoSearchUserAdapter extends RecyclerView.Adapter<VideoSearchUser
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
-        Glide.with(activity).load(users.get(i).getAvatar()).apply(requestOptions).into(holder.ivHead);
+        Glide.with(activity).load(Globals.URL_QINIU+users.get(i).getAvatar()).apply(requestOptions).into(holder.ivHead);
         holder.tvName.setText(users.get(i).getNickName());
         holder.tvRemark.setText(users.get(i).getSignature());
         if(users.get(i).getIsSub()==0){

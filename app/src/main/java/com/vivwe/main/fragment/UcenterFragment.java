@@ -26,9 +26,11 @@ import com.vivwe.author.activity.ApplyActivity;
 import com.vivwe.author.activity.CenterActivity;
 import com.vivwe.base.activity.BaseFragment;
 import com.vivwe.base.cache.UserCache;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.base.ui.cardstack.CardStack;
 import com.vivwe.main.R;
+import com.vivwe.main.activity.ActivityMessageActivity;
 import com.vivwe.main.activity.MessageActivity;
 import com.vivwe.main.activity.SettingActivity;
 import com.vivwe.main.adapter.UcenterAdvAdapter;
@@ -135,7 +137,7 @@ public class UcenterFragment extends BaseFragment {
             public void onWebUiResult(WebMsg webMsg) {
                 if (webMsg.dataIsSuccessed()) {
                     UcenterInfoEntity userInfoEntity = webMsg.getData(UcenterInfoEntity.class);
-                    Glide.with(UcenterFragment.this).load(userInfoEntity.getAvatar()).apply(requestOptions).into(ivHead);
+                    Glide.with(UcenterFragment.this).load(Globals.URL_QINIU+userInfoEntity.getAvatar()).apply(requestOptions).into(ivHead);
                     tvName.setText(userInfoEntity.getNickname());
                     tvId.setText(String.valueOf(userInfoEntity.getId()));
                     tvAttention.setText(String.valueOf(userInfoEntity.getSubNum()));

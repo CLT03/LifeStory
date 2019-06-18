@@ -64,9 +64,9 @@ public class ApplyActivity extends BaseActivity {
     EditText edtBankCard;
     @BindView(R.id.btn_submit)
     Button btnSubmit;
-    private String[] idCardPaths = new String[2];//本地身份图片路径
-    private String[] idCardServicePaths = new String[2];//服务器身份图片路径
-    private int number;
+    private String[] idCardPaths = new String[2];//本地身份证图片路径
+    private String[] idCardServicePaths = new String[2];//服务器身份证图片路径
+    private int number;//已上传的照片数
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -101,11 +101,11 @@ public class ApplyActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (data != null) {
-            if (requestCode == 1) {
+            if (requestCode == 1) {//身份证前
                 Glide.with(this).load(data.getData()).into(ivUploadIdCard);
                 idCardPaths[0] = getFilePathFromContentUri(data.getData(), getContentResolver());
             }
-            if (requestCode == 2) {
+            if (requestCode == 2) {//身份证后
                 Glide.with(this).load(data.getData()).into(ivUploadIdCardBack);
                 idCardPaths[1] = getFilePathFromContentUri(data.getData(), getContentResolver());
             }

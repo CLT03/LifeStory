@@ -18,6 +18,7 @@ import com.mbs.sdk.utils.ScreenUtils;
 import com.vivwe.author.api.AuthorApi;
 import com.vivwe.author.entity.DesignrCenterEntity;
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
 import com.vivwe.main.entity.UcenterInfoEntity;
@@ -91,7 +92,7 @@ public class CenterActivity extends BaseActivity {
             public void onWebUiResult(WebMsg webMsg) {
                 if (webMsg.dataIsSuccessed()) {
                     DesignrCenterEntity designrCenterEntity = webMsg.getData(DesignrCenterEntity.class);
-                    Glide.with(CenterActivity.this).load(designrCenterEntity.getAvatar()).apply(requestOptions).into(ivHead);
+                    Glide.with(CenterActivity.this).load(Globals.URL_QINIU+designrCenterEntity.getAvatar()).apply(requestOptions).into(ivHead);
                     tvName.setText(designrCenterEntity.getNickname());
                     tvTheme.setText("主题 "+designrCenterEntity.getTopical());
                     tvMake.setText("制作 "+designrCenterEntity.getProductionNumber());

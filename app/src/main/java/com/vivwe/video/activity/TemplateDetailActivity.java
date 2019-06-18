@@ -92,7 +92,7 @@ public class TemplateDetailActivity extends BaseActivity {
                         isStarted = templateDetailEntity.getIsStared();
                         ivStar.setImageDrawable(getResources().getDrawable(R.mipmap.icon_collect_template));
                     }
-                    Glide.with(TemplateDetailActivity.this).load(templateDetailEntity.getAvatar()).apply(requestOptions).into(ivHead);
+                    Glide.with(TemplateDetailActivity.this).load(Globals.URL_QINIU+templateDetailEntity.getAvatar()).apply(requestOptions).into(ivHead);
                 } else if (webMsg.netIsSuccessed()) {
                     Toast.makeText(TemplateDetailActivity.this, webMsg.getDesc(), Toast.LENGTH_LONG).show();
                 }

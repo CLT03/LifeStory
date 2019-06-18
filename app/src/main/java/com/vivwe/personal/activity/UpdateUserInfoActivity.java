@@ -7,10 +7,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.activity.BaseActivity;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.base.ui.alert.AlertDialog;
 import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.main.R;
@@ -42,12 +45,15 @@ public class UpdateUserInfoActivity extends BaseActivity {
     TextView tvSign;
     private AlertDialog alertDialog;
     private UcenterInfoEntity userInfoEntity;
+    private RequestOptions requestOptions;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_update_userinfo);
         ButterKnife.bind(this);
+        requestOptions = new RequestOptions().circleCrop()
+                .placeholder(getResources().getDrawable(R.drawable.ic_launcher_background));
         getData();
     }
 
@@ -142,6 +148,7 @@ public class UpdateUserInfoActivity extends BaseActivity {
             public void onWebUiResult(WebMsg webMsg) {
                 if (webMsg.dataIsSuccessed()) {
                     userInfoEntity = webMsg.getData(UcenterInfoEntity.class);
+                    Glide.with(UpdateUserInfoActivity.this).load(Globals.URL_QINIU+userInfoEntity.getAvatar()).apply(requestOptions).into(ivHead);
                     tvName.setText(userInfoEntity.getNickname());
                     tvGender.setText(userInfoEntity.getGender().equals("1.0")?"男":"女");
                     tvBirthday.setText(userInfoEntity.getBirthday());

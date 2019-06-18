@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.main.R;
 import com.vivwe.personal.entity.VideoEntity;
 
@@ -60,7 +61,7 @@ public class RecommendVideoAdapter extends RecyclerView.Adapter<RecommendVideoAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
-        Glide.with(activity).load(videos.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
+        Glide.with(activity).load(Globals.URL_QINIU+videos.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
         holder.ivNumber.setText(String.valueOf(videos.get(i).getScount()));
     }
 

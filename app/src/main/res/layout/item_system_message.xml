@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ebebeb">
+
+    <TextView
+        android:id="@+id/textView73"
+        android:layout_width="@dimen/x174"
+        android:layout_height="@dimen/x44"
+        android:layout_marginTop="@dimen/x28"
+        android:background="@drawable/r2_white_normal"
+        android:gravity="center"
+        android:text="3月7日 13:06"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/x24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView48"
+        android:layout_width="@dimen/x72"
+        android:layout_height="@dimen/x72"
+        android:layout_marginLeft="@dimen/x12"
+        android:layout_marginTop="@dimen/x30"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView73"
+        app:srcCompat="@mipmap/icon_system_message" />
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x14"
+        android:layout_marginTop="@dimen/x26"
+        android:text="交易通知"
+        android:textColor="#666666"
+        android:textSize="@dimen/x24"
+        app:layout_constraintStart_toEndOf="@+id/imageView48"
+        app:layout_constraintTop_toBottomOf="@+id/textView73" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="@dimen/x520"
+        android:layout_height="@dimen/x160"
+        android:background="@drawable/r4_white_stroke_normal"
+        android:paddingLeft="@dimen/x24"
+        android:paddingTop="@dimen/x72"
+        android:text="李四购买了您的模板。"
+        android:textColor="#333333"
+        android:textSize="@dimen/x28"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textView40"
+        app:layout_constraintTop_toBottomOf="@+id/textView40" />
+
+    <TextView
+        android:id="@+id/textView66"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x24"
+        android:layout_marginTop="@dimen/x22"
+        android:text="交易通知"
+        android:textColor="#ff9f00"
+        android:textSize="@dimen/x28"
+        app:layout_constraintStart_toStartOf="@+id/textView41"
+        app:layout_constraintTop_toTopOf="@+id/textView41" />
+
+</android.support.constraint.ConstraintLayout>

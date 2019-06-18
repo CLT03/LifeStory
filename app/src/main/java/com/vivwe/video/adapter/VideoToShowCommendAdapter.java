@@ -25,6 +25,7 @@ import com.mbs.sdk.net.HttpRequest;
 import com.mbs.sdk.net.listener.OnResultListener;
 import com.mbs.sdk.net.msg.WebMsg;
 import com.vivwe.base.cache.UserCache;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.base.ui.alert.Toast;
 import com.vivwe.base.util.MiscUtil;
 import com.vivwe.main.R;
@@ -95,7 +96,7 @@ public class VideoToShowCommendAdapter extends RecyclerView.Adapter<VideoToShowC
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
         final VideoComment videoComment = commentEntities.get(i);
-        Glide.with(activity).load(videoComment.getAvatar()).apply(requestOptions).into(holder.ivHead);
+        Glide.with(activity).load(Globals.URL_QINIU+videoComment.getAvatar()).apply(requestOptions).into(holder.ivHead);
         holder.tvName.setText(videoComment.getNickName());
         //设置评论内容加时间
         SpannableString sStr = new SpannableString(videoComment.getContent() + "  " + MiscUtil.getDistanceFromDate(videoComment.getGmtCreate()));

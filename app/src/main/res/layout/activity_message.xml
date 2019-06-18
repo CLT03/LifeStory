@@ -12,7 +12,7 @@
         android:layout_height="@dimen/x88"
         android:background="#ffffff"
         android:gravity="center"
-        android:text="消息通知列表"
+        android:text="我的消息"
         android:textColor="#191919"
         android:textSize="@dimen/x32"
         android:textStyle="bold"
@@ -37,8 +37,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_notice"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/x2"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />

@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.base.util.MiscUtil;
 import com.vivwe.main.R;
 import com.vivwe.video.activity.VideoToShowActivity;
@@ -81,7 +82,7 @@ public class VideoToShowCommendToCommentAdapter extends RecyclerView.Adapter<Vid
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
         CommentCommentEntity cce = commentEntities.get(i);
-        Glide.with(activity).load(cce.getFromAvatar()).apply(requestOptions).into(holder.ivHead);
+        Glide.with(activity).load(Globals.URL_QINIU+cce.getFromAvatar()).apply(requestOptions).into(holder.ivHead);
         holder.tvName.setText(cce.getFromNickname());
         if (/*cce.getToUId() == videoCommentUserId ||*/ cce.getToNickname() == null) {//回复的是上一级
             //设置评论内容加时间
