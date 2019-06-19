@@ -1,17 +1,14 @@
 package com.vivwe.faceunity.adapter;
 
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.faceunity.p2a_art.entity.BundleRes;
-import com.vivwe.base.ui.RoundImageView;
+import com.vivwe.base.ui.imageview.RoundImageView;
 import com.vivwe.main.R;
 
 import static com.vivwe.base.app.MyApplication.getContext;

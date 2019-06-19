@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <View
+        android:id="@+id/view41"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x88"
+        android:background="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title1"
+        android:layout_width="@dimen/x120"
+        android:layout_height="@dimen/x88"
+        android:background="@drawable/ra_white_btn"
+        android:gravity="center"
+        android:paddingLeft="@dimen/x22"
+        android:paddingRight="@dimen/x22"
+        android:text="完成"
+        android:textColor="#191919"
+        android:textSize="@dimen/x32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/x120"
+        android:layout_height="@dimen/x88"
+        android:background="@drawable/ra_white_btn"
+        android:paddingTop="@dimen/x22"
+        android:paddingBottom="@dimen/x22"
+        android:src="@mipmap/icon_back_black"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_title1" />
+
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="@dimen/x88"
+        android:layout_height="@dimen/x88"
+        android:layout_marginStart="@dimen/x280"
+        android:background="@drawable/ra_white_btn"
+        android:src="@mipmap/icon_editimg_rollback"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_back" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="@dimen/x88"
+        android:layout_height="@dimen/x88"
+        android:layout_marginEnd="@dimen/x280"
+        android:background="@drawable/ra_white_btn"
+        android:src="@mipmap/icon_editimg_headway"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_back"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/iv_back2"
+        android:layout_width="@dimen/x88"
+        android:layout_height="@dimen/x88"
+        android:background="@drawable/ra_white_btn"
+        android:paddingTop="@dimen/x20"
+        android:paddingBottom="@dimen/x20"
+        android:src="@mipmap/icon_cancel_1_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_back3"
+        android:layout_width="@dimen/x88"
+        android:layout_height="@dimen/x88"
+        android:background="@drawable/ra_white_btn"
+        android:paddingTop="@dimen/x20"
+        android:paddingBottom="@dimen/x20"
+        android:scaleType="center"
+        android:src="@mipmap/icon_ok_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="#181818"
+        app:layout_constraintBottom_toTopOf="@+id/iv_back2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view41">
+
+    </FrameLayout>
+
+    <View
+        android:id="@+id/view43"
+        android:layout_width="0.5dp"
+        android:layout_height="@dimen/x88"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.vivwe.base.ui.textview.LinearGradientTextView
+        android:id="@+id/tv_crop"
+        android:layout_width="@dimen/x88"
+        android:layout_height="@dimen/x88"
+        android:layout_marginEnd="@dimen/x32"
+        android:gravity="center"
+        android:text="裁剪"
+        android:textSize="@dimen/x30"
+        app:endColor="#B35CFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view43"
+        app:layout_constraintTop_toBottomOf="@+id/fl_content"
+        app:startColor="#52D3FF" />
+
+    <View
+        android:id="@+id/v_crop"
+        android:layout_width="@dimen/x88"
+        android:layout_height="2dp"
+        android:background="@drawable/app_bg_h"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_crop"
+        app:layout_constraintStart_toStartOf="@+id/tv_crop" />
+
+    <com.vivwe.base.ui.textview.LinearGradientTextView
+        android:id="@+id/tv_rotate"
+        android:layout_width="@dimen/x88"
+        android:layout_height="@dimen/x88"
+        android:layout_marginStart="@dimen/x32"
+        android:gravity="center"
+        android:paddingLeft="@dimen/x32"
+        android:paddingRight="@dimen/x32"
+        android:text="旋转"
+        android:textSize="@dimen/x30"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view43"
+        app:layout_constraintTop_toBottomOf="@+id/fl_content"
+        app:textColor="#2C2E30" />
+
+
+    <View
+        android:id="@+id/v_rotate"
+        android:layout_width="@dimen/x88"
+        android:layout_height="2dp"
+        android:background="@drawable/app_bg_h"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_rotate"
+        app:layout_constraintStart_toStartOf="@+id/tv_rotate" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -15,6 +15,7 @@ import com.vivwe.faceunity.fragment.EditDecorationFragment;
 import com.vivwe.faceunity.fragment.FaceToAssetsFragment;
 import com.vivwe.main.R;
 import com.vivwe.main.entity.UserInfoEntity;
+import com.vivwe.video.activity.TestActivity;
 import com.vivwe.video.activity.VideoCreateByDynamicActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,7 +74,7 @@ public class HomeFragment extends BaseFragment {
     @OnClick(R.id.tv_username)
     public void toTest(){
         Intent intent = new Intent();
-        intent.setClass(this.getContext(), VideoCreateByDynamicActivity.class);
+        intent.setClass(this.getContext(), TestActivity.class);
         this.startActivity(intent);
 
 //        String url = "http://192.168.0.253:8083/api/template/downloadTemplate";

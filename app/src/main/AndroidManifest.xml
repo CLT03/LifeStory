@@ -80,6 +80,9 @@
 
         <activity android:name="com.vivwe.base.util.imgeloader.ImageLoadActivity" android:theme="@style/AppWhiteTheme" />
         <activity android:name="com.vivwe.base.util.imgeloader.ImageEditActivity" android:theme="@style/AppWhiteTheme" />
+
+        <!-- 测试 -->
+        <activity android:name="com.vivwe.video.activity.TestActivity" android:theme="@style/AppWhiteTheme" />
         <!-- 自动同步化身服务 -->
         <service android:name="com.vivwe.faceunity.service.SyncAvatarService" />
     </application>

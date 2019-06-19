@@ -157,7 +157,7 @@
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/rcv_parts" />
 
-    <!--<com.vivwe.base.ui.RoundImageView
+    <!--<com.vivwe.base.ui.imageview.RoundImageView
         android:id="@+id/view15"
         android:layout_width="164dp"
         android:layout_height="164dp"

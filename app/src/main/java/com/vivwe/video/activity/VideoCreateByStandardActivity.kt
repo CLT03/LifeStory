@@ -1,6 +1,7 @@
 package com.vivwe.video.activity
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
@@ -8,15 +9,27 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.TextView
 import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
+import com.google.gson.GsonBuilder
+import com.shixing.sxvideoengine.SXRenderListener
+import com.shixing.sxvideoengine.SXTemplate
+import com.shixing.sxvideoengine.SXTemplateRender
 import com.vivwe.base.activity.BaseActivity
+import com.vivwe.base.cache.ImageLoaderCache
+import com.vivwe.base.constant.Globals
+import com.vivwe.base.ui.CircleBarView
+import com.vivwe.base.ui.alert.AlertDialog
+import com.vivwe.base.util.TimeUtils
+import com.vivwe.base.util.imgeloader.ImageLoadActivity
 import com.vivwe.main.R
 import com.vivwe.video.AssetDelegate
 import com.vivwe.video.adapter.VideoCreateStandaryThumbAdapter
@@ -41,7 +54,6 @@ import java.util.*
  * remark:
  */
 class VideoCreateByStandardActivity : BaseActivity(), AssetDelegate {
-
 
     /** 元素编辑 */
     @BindView(R.id.fl_container)
@@ -137,24 +149,52 @@ class VideoCreateByStandardActivity : BaseActivity(), AssetDelegate {
                     override fun onError(e: Throwable) {}
 
                 })
-
-
     }
 
     private var mModel: MediaUiModel? = null
     override fun pickMedia(model: MediaUiModel?) {
         mModel = model
-        pickSingleMedia()
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_PERMISSION_SINGLE)
-//        } else {
-//            pickSingleMedia()
-//        }
+        pickSingleMedia(1, 1)
     }
 
-    /** 选择图片（替换操作） */
-    private fun pickSingleMedia() {
-        Toast.makeText(this, "去选择图片", Toast.LENGTH_LONG).show()
+    @OnClick(R.id.tv_batchImport, R.id.iv_batchImport)
+    fun batchImport(){
+        pickSingleMedia(2, mTemplateModel!!.assetsSize)
+    }
+
+    /**
+     * 选择图片（替换操作）
+     * @param count 图层数量
+     */
+    private fun pickSingleMedia(requestCode: Int, count:Int) {
+        var intent = Intent()
+        intent.setClass(this, ImageLoadActivity::class.java)
+        intent.putExtra("choose_count", count)
+        this.startActivityForResult(intent, requestCode)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        /** 添加照片 */
+        if(requestCode == 1 && data != null) {
+            var paths: ArrayList<String> = data!!.getStringArrayListExtra("result")
+            if(Globals.isDebug){
+                Log.v(">>>", GsonBuilder().create().toJson(paths))
+            }
+
+            if(paths.size == 1){
+                mModel!!.setImageAsset(paths[0])
+            }
+
+        } else if(requestCode == 2 && data != null){
+            var paths: ArrayList<String> = data!!.getStringArrayListExtra("result")
+            if(Globals.isDebug){
+                Log.v(">>>", GsonBuilder().create().toJson(paths))
+            }
+
+            mTemplateModel!!.setReplaceFiles(paths)
+        }
     }
 
     override fun editText(model: TextUiModel?) {
@@ -169,6 +209,60 @@ class VideoCreateByStandardActivity : BaseActivity(), AssetDelegate {
         } else {
             super.onBackPressed()
         }
+    }
+
+    @OnClick(R.id.tv_next)
+    fun render() {
+
+        var alert = AlertDialog.createCustom(this, R.layout.item_alert_video_merge_loading);
+        alert.show()
+
+        var progressCbv = alert.findViewById(R.id.cbv_progress) as CircleBarView
+        var progressTv = alert.findViewById(R.id.tv_progress) as TextView
+
+        Thread(Runnable {
+            val paths = mTemplateModel!!.getReplaceableFilePaths(externalCacheDir!!.path)
+
+            val template = SXTemplate(mFolder!!.path, SXTemplate.TemplateUsage.kForRender)
+            template.setReplaceableFilePaths(paths)
+            template.commit()
+            val outputPath = getOutputPath()
+
+            if(Globals.isDebug) Log.v("---", "standard render music: " + mFolder!!.path + "/music.mp3")
+            val sxTemplateRender = SXTemplateRender(template, mFolder!!.path + "/music.mp3", outputPath)
+            sxTemplateRender.start()
+            sxTemplateRender.setRenderListener(object : SXRenderListener {
+                override fun onStart() {
+
+                }
+
+                override fun onUpdate(progress: Int) {
+                    if(Globals.isDebug) Log.v("---","sandard render progress: "+ progress)
+                    progressTv.setText(progress.toString() + "%")
+                    progressCbv.currentValue = progress
+                }
+
+                override fun onFinish(success: Boolean, msg: String) {
+                    alert.dismiss()
+                    if (!success) {
+                        Toast.makeText(this@VideoCreateByStandardActivity, msg, Toast.LENGTH_SHORT).show()
+                    } else {
+                        var intent = Intent()
+                        intent.setClass(this@VideoCreateByStandardActivity, VideoPreviewActivity::class.java)
+                        intent.putExtra("path", outputPath)
+                        this@VideoCreateByStandardActivity.startActivity(intent)
+                    }
+                }
+
+                override fun onCancel() {
+
+                }
+            })
+        }).start()
+    }
+
+    private fun getOutputPath(): String {
+        return getExternalFilesDir("video").path + File.separator + System.currentTimeMillis() + ".mp4"
     }
 
 }

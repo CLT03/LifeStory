@@ -1,4 +1,4 @@
-package com.vivwe.base.ui;
+package com.vivwe.base.ui.imageview;
 
 import android.content.Context;
 import android.content.res.TypedArray;

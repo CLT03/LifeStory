@@ -26,7 +26,7 @@ class CircleBarView: View {
         field = value
         invalidate()
     }
-    var currentValue:Int = 10
+    var currentValue:Int = 0
     set(value) {
         field = value
         invalidate()

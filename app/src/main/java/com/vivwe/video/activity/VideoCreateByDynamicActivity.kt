@@ -30,6 +30,7 @@ import com.vivwe.base.util.imgeloader.ImageLoadActivity
 import com.vivwe.main.R
 import com.vivwe.video.adapter.VideoCreateDynamicImagesAdapter
 import com.vivwe.video.listener.OnVideoCreateImageItemClicListener
+import org.jetbrains.annotations.Nullable
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -165,6 +166,7 @@ class VideoCreateByDynamicActivity: BaseActivity() {
     /**
      * 清空所有图片
      */
+
     @OnClick(R.id.tv_clear)
     fun clearAll(){
         if(!adapter.isEdit) return
@@ -194,21 +196,21 @@ class VideoCreateByDynamicActivity: BaseActivity() {
         var alert = AlertDialog.createCustom(this@VideoCreateByDynamicActivity, R.layout.item_alert_video_addassets);
 
         // 本地库选择图片
-        alert.findViewById<TextView>(R.id.tv_native).setOnClickListener(View.OnClickListener {
+        alert.findViewById<TextView>(R.id.tv_native).setOnClickListener() {
             alert.dismiss()
             addImagesByNative()
-        })
+        }
 
         // 素材库中选择图片
-        alert.findViewById<TextView>(R.id.tv_libary).setOnClickListener(View.OnClickListener {
+        alert.findViewById<TextView>(R.id.tv_libary).setOnClickListener() {
             alert.dismiss()
             addImagesByLibaray()
-        })
+        }
 
         // 关闭窗口
-        alert.findViewById<TextView>(R.id.ibtn_close).setOnClickListener(View.OnClickListener {
+        alert.findViewById<TextView>(R.id.ibtn_close).setOnClickListener() {
             alert.dismiss()
-        })
+        }
     }
 
     /**

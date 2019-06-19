@@ -24,7 +24,7 @@
         android:layout_marginTop="8dp"
         android:background="@mipmap/icon_video_merge_loading_label"
         android:gravity="center_horizontal"
-        android:text="59%"
+        android:text="0%"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/x26"
         app:layout_constraintBottom_toTopOf="@+id/view14"

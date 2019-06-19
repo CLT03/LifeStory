@@ -1,5 +1,6 @@
 package com.vivwe.main.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.hardware.Camera;
@@ -94,18 +95,23 @@ public class MainActivity extends BaseFragmentActivity implements CameraRenderer
         init();
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        //super.onSaveInstanceState(outState);
+//        super.onSaveInstanceState(outState);
     }
 
     private int touchMode = 0;
     private void init(){
 
         // 注册视频合成license
-        String license = "FenLdZXrnW+f40bJcj2ivsQGAQfXKrzBUGybmzjmIDcwpj0rUs8aoIbRItJ4tGknq32D9f1b66nuFCiFraEoxftIgvu2DAenEs8pzzMXPtJg60xJ5dF2iWlzJWe2AYTKbkRkUdzLi3PmAFrxycOpwoS6qImrSwlrj39BsdoL5lAc2+Wr2KWyUOEkKZ1KuwvtDpl7Z394v85+4RLpAhh1Vem9rWIxr5qNAxmOjZTSdL2Z4K0NfCg0vdy6UseKtQya4nSk93KfZFjMLa2nqdbMN0drFn++u6cSblVIzo3a8ya1nqhhwrONfyQ+iGgKkqxA4Gewc6PedRShIpeYorBklQiExEi2yY7yqF2WtcAiFI9XXjAuu+dSnDfW1loNqCIaclD32oPkiXClK3ulvt2UT5ngrQ18KDS93LpSx4q1DJridKT3cp9kWMwtraep1sw3zhoeA7T8tg7QspjriD2grkkilnGME7Yq8yuYG6dYQiYnIkadb4FQX+aRvGmlV7dw9T9tz0273tN8q62EZdbsx4e1qOHPp6Oi00tXx83BZaHfsiMfbRvL8r29EU/PcxtmLvWrYmrejcflZiYtujUMlZ6+9uu7+kphK8kSXSfR0W1PuKK8hyvrpTro6mtRsYiOg3iI33M6Xv/xemLnfBzV59srUKMlgUuJqR0Vfd/3RMHJ3Mw8L3oxUU/flFdAeQ4ah7Wo4c+no6LTS1fHzcFloYWjXDy9iUfCUKU9taxYuxsjzbfHTQI/OinfMXCsD8oeycv9cLiDgcz62vHGhBAFLLJj6LUFBTJp8ce7cTQ0A0fG6iisGu02ML0taKjqk5w+CArbtkIMY8jpKE98WOM2HxV2D3XQNzr31Phm6EgP8ay1nqhhwrONfyQ+iGgKkqxA367o7342NYgFWzTgX/2FFAiExEi2yY7yqF2WtcAiFI/86kO3MqpKhsfSBfqGAFeEclD32oPkiXClK3ulvt2UT8bqKKwa7TYwvS1oqOqTnD4ICtu2QgxjyOkoT3xY4zYf/28pY7VfiPpEHgRRrbwDGEkilnGME7Yq8yuYG6dYQiYnIkadb4FQX+aRvGmlV7dwSYdeRYvABO2afLfzyzux4CsCbVB/gFLriPqiA2kbZq+0J8RUp9K5KWWFUFd2nTyPLvWrYmrejcflZiYtujUMlTERmtWIDj/XMWdRlcO2/jwXml4KBkSGeevwpBZDs2cefxKgkn7lGIt8nlIn6++BDdsrUKMlgUuJqR0Vfd/3RMGiMqLGsORC0r14xTIJAWC8KwJtUH+AUuuI+qIDaRtmrwoYGiYpb9jzKpkFYYyFea3mAeRF2Whcsd2LUhZzMfo4ycv9cLiDgcz62vHGhBAFLFhldX4EWhjl7KxQkrTJWLI=";
+        String license = "SaBiNtUKR70+hEDILnrjjtpAzsNqFvbzv7T3fm1R9izEgeMlo2PBMaoHwffFV7bSFuX/+QSUXcjPyOof1plfvU4F9y7wQeGAv09gXhOi2pQglQhyYkD8owFLfQqtedwdNb1D3s4tDn9GcjD1kOGpqw//DtpXYQFyuWFccJqTbx33+ekqMAC9Cw/YnMkk4xOl3g3gSmrGlxocbxqY4ZNMhjEGqeWiPElpY2Pt/Ql1oa2wra+jvKHuyF4lkZcC6/YK8+LGB6JLiMiTZQGw8erx2GpPFgD83GvUnHyWScKi6RKuo69TFBH/KgFQPGikE7pC1vPGyszgMN+wspD9dEWl50m/Xs8krX14qmJkzXIDABYs9nMBZ8nfp3rzoP3w/JpiYbesw+aU8PLCPatW02QtxOFrbIxaKzbRVzt/8k2lJL8J0uwqREn7TYgO5eyKl5k23N6I1N9CHY/EJLzqKSuP9fyFaUyJ2/XZrS/HqwGsNnZ6wLLz1Jb4f0rJ/oLSej5FwyghY8qP5o8/8h/wTOPAlVqvX0MWR9j8hcx+G1w7XgmiXanbXt/EYyTy19bbeie/";
         License l = License.init(license);
         boolean b = l.isValid();
+        if(Globals.isDebug){
+            Log.v("---", "license init:" + b);
+        }
+
 
         // 设置状态栏文字颜色
         setStatusBarColor(Color.BLACK);

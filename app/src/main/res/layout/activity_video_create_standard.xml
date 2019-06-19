@@ -50,7 +50,7 @@
         app:layout_constraintTop_toTopOf="@+id/tv_next" />
 
     <ImageView
-        android:id="@+id/imageView33"
+        android:id="@+id/iv_batchImport"
         android:layout_width="@dimen/x66"
         android:layout_height="@dimen/x66"
         android:layout_marginStart="8dp"
@@ -61,15 +61,15 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_back" />
 
     <TextView
-        android:id="@+id/textView72"
+        android:id="@+id/tv_batchImport"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/x66"
         android:gravity="center"
         android:text="批量导入"
         android:textColor="#F9F9F9FF"
         android:textSize="@dimen/x28"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView33"
-        app:layout_constraintStart_toEndOf="@+id/imageView33"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_batchImport"
+        app:layout_constraintStart_toEndOf="@+id/iv_batchImport"
         app:layout_constraintTop_toBottomOf="@+id/iv_back" />
     <FrameLayout
         android:id="@+id/fl_container"
@@ -81,7 +81,7 @@
         app:layout_constraintBottom_toTopOf="@+id/rcv_list_thumb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView72"
+        app:layout_constraintTop_toBottomOf="@+id/tv_batchImport"
         app:layout_constraintVertical_weight="1" />
 
     <android.support.v7.widget.RecyclerView
