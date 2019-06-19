@@ -101,7 +101,8 @@ public interface VideoApi {
     Observable<WebMsg> newReplyComment(@Field("content") String content,
                                        @Field("fromUserId") int fromUserId,
                                        @Field("toUserId") int toUserId,
-                                       @Field("videoDiscussId") int videoDiscussId);
+                                       @Field("videoDiscussId") int videoDiscussId,
+                                       @Field("videoId") int videoId);
 
 
     /**

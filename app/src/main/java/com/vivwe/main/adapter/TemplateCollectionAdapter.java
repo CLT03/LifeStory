@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.vivwe.base.constant.Globals;
 import com.vivwe.main.R;
 import com.vivwe.video.activity.AllTemplateActivity;
 import com.vivwe.video.entity.CommentCommentEntity;
@@ -33,7 +34,7 @@ public class TemplateCollectionAdapter extends RecyclerView.Adapter<TemplateColl
 
     public TemplateCollectionAdapter(Activity activity) {
         this.activity = activity;
-        requestOptions = new RequestOptions().circleCrop()
+        requestOptions = new RequestOptions().centerCrop()
                 .placeholder(activity.getResources().getDrawable(R.drawable.ic_launcher_background));
     }
 
@@ -62,7 +63,7 @@ public class TemplateCollectionAdapter extends RecyclerView.Adapter<TemplateColl
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
-        Glide.with(activity).load(templateTypeEntities.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
+        Glide.with(activity).load(Globals.URL_QINIU+templateTypeEntities.get(i).getImageUrl()).apply(requestOptions).into(holder.ivCover);
         holder.tvTitle.setText(templateTypeEntities.get(i).getName());
         holder.ivCover.setOnClickListener(new View.OnClickListener() {
             @Override

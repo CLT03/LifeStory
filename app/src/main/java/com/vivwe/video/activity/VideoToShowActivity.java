@@ -567,7 +567,7 @@ public class VideoToShowActivity extends BaseActivity implements TextView.OnEdit
         final String content = edtComment.getText().toString();
         if (edtComment.getText().toString().length() > 0) {
             HttpRequest.getInstance().excute(HttpRequest.create(VideoApi.class).newReplyComment(content,
-                    UserCache.Companion.getUserInfo().getId(), mToUserId, mVideoCommentId),
+                    UserCache.Companion.getUserInfo().getId(), mToUserId, mVideoCommentId,getIntent().getIntExtra("videoId",0)),
                     new OnResultListener() {
                         @Override
                         public void onWebUiResult(WebMsg webMsg) {

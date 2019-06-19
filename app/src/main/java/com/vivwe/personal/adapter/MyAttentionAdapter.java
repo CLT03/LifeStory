@@ -36,7 +36,7 @@ public class MyAttentionAdapter extends RecyclerView.Adapter<MyAttentionAdapter.
 
     public MyAttentionAdapter(Activity activity) {
         this.activity = activity;
-        requestOptions = new RequestOptions().centerCrop()
+        requestOptions = new RequestOptions().circleCrop()
                 .placeholder(activity.getResources().getDrawable(R.drawable.ic_launcher_background));
     }
 
