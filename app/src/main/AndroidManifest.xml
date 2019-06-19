@@ -76,6 +76,7 @@
         <activity android:name="com.vivwe.main.activity.ActivityMessageActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name="com.vivwe.main.activity.SystemMessageActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
         <activity android:name="com.vivwe.main.activity.ReplyMessageActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
+        <activity android:name="com.vivwe.video.activity.CommentMessageActivity" android:theme="@style/AppWhiteTheme" android:launchMode="singleTop"/>
 
         <activity android:name="com.vivwe.base.util.imgeloader.ImageLoadActivity" android:theme="@style/AppWhiteTheme" />
         <activity android:name="com.vivwe.base.util.imgeloader.ImageEditActivity" android:theme="@style/AppWhiteTheme" />

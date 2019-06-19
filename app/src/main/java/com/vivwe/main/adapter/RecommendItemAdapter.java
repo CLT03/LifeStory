@@ -38,8 +38,14 @@ public class RecommendItemAdapter extends RecyclerView.Adapter<RecommendItemAdap
                 .placeholder(activity.getResources().getDrawable(R.drawable.ic_launcher_background));
     }
 
+    public void setVideos(ArrayList<VideoEntity.Video> videos,boolean clear) {
+        if(clear) this.videos.clear();
+        this.videos.addAll(videos);
+        notifyDataSetChanged();
+    }
+
     public void setVideos(ArrayList<VideoEntity.Video> videos) {
-        this.videos = videos;
+        this.videos=videos;
         notifyDataSetChanged();
     }
 

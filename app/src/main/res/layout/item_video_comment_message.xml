@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff">
+
+    <ImageView
+        android:id="@+id/imageView52"
+        android:layout_width="@dimen/x84"
+        android:layout_height="@dimen/x84"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginTop="@dimen/x14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/icon_logo_default" />
+
+    <TextView
+        android:id="@+id/textView79"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x14"
+        android:text="露西"
+        android:textColor="#333333"
+        android:textSize="@dimen/x28"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView52"
+        app:layout_constraintTop_toTopOf="@+id/imageView52" />
+
+    <ImageView
+        android:id="@+id/imageView53"
+        android:layout_width="@dimen/x40"
+        android:layout_height="@dimen/x40"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/textView79"
+        app:layout_constraintTop_toBottomOf="@+id/textView79"
+        app:srcCompat="@mipmap/icon_like_my" />
+
+    <TextView
+        android:id="@+id/textView82"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_marginTop="@dimen/x40"
+        android:text="昨天 09:00"
+        android:textColor="#757575"
+        android:textSize="@dimen/x24"
+        app:layout_constraintStart_toStartOf="@+id/textView79"
+        app:layout_constraintTop_toTopOf="@+id/imageView53" />
+
+    <TextView
+        android:id="@+id/textView83"
+        android:layout_width="@dimen/x600"
+        android:layout_height="@dimen/x40"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="你的视频非常棒！！！你的视频非常棒！！！你的视频非常棒！！！"
+        android:textColor="#333333"
+        android:textSize="@dimen/x28"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textView79"
+        app:layout_constraintTop_toBottomOf="@+id/textView79" />
+
+    <View
+        android:id="@+id/view44"
+        android:layout_width="@dimen/x730"
+        android:layout_height="@dimen/x2"
+        android:layout_marginTop="@dimen/x10"
+        android:background="#dddddd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView82" />
+</android.support.constraint.ConstraintLayout>

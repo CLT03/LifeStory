@@ -1,5 +1,6 @@
 package com.vivwe.personal.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -20,6 +21,7 @@ import com.vivwe.main.R;
 import com.vivwe.personal.adapter.MyVideoAdapter;
 import com.vivwe.personal.api.PersonalApi;
 import com.vivwe.personal.entity.VideoEntity;
+import com.vivwe.video.activity.CommentMessageActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -75,7 +77,7 @@ public class MyVideoActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_notice:
-
+                startActivity(new Intent(this,CommentMessageActivity.class));
                 break;
         }
     }

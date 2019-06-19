@@ -87,18 +87,23 @@ public class RecommendItemFragment extends BaseFragment {
             public void onWebUiResult(WebMsg webMsg) {
                 if (webMsg.dataIsSuccessed()) {
                     videoEntity = webMsg.getData(VideoEntity.class);
-                    adapter.setVideos(videoEntity.getMyVideoList());
-                    if(mRefreshOrLoadMore==1){
-                        refreshLayout.finishRefresh();
-                        android.widget.Toast.makeText(getContext(), "刷新成功！", Toast.LENGTH_SHORT).show();
-                    }else if(mRefreshOrLoadMore==2)
-                        refreshLayout.finishLoadMore();
-
+                    adapter.setVideos(videoEntity.getMyVideoList(),pageNum==1);
+                    finishGetData(true);
                 } else if (webMsg.netIsSuccessed()) {
+                    finishGetData(false);
                     Toast.show(getContext(), webMsg.getDesc(), 2000);
                 }
             }
         });
+    }
+
+    private void finishGetData(boolean success) {
+        if (mRefreshOrLoadMore == 1 && refreshLayout!=null) {
+            if(success) android.widget.Toast.makeText(getContext(), "刷新成功！", Toast.LENGTH_SHORT).show();
+            refreshLayout.finishRefresh();
+        }
+        if (mRefreshOrLoadMore == 2 && refreshLayout!=null)
+            refreshLayout.finishLoadMore();
     }
 
 
